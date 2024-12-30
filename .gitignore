@@ -23,6 +23,13 @@ log.txt
 /platforms
 /plugins
 
+# Build outputs
+/build/
+/target/
+
+*.backup
+.env
+
 # Compiled output
 /dist
 /tmp
