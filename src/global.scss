@@ -39,15 +39,23 @@
 @import '@ionic/angular/css/palettes/dark.system.css';
 
 
-* {
-  background-color: $background-color-white;
+ion-app { 
+  --ion-background-color: $background-color-white;
 }
 
 ion-title {
   background-color: $background-color-white;
   color: $primary-color;
   font-family: $title-font;
+
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra inferior */
+  z-index: 10; /* Asegura que el header esté por encima del contenido */
 }
+
+.ion-page {
+  background: $background-color-white !important;
+}
+
 
 h1 h2 h3 h4 h5 h6 {
   font-family: $title-font;
