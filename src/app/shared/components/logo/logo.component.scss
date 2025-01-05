@@ -1,0 +1,15 @@
+@use '@theme/variables.scss' as *;
+
+.main-logo {
+    max-width: $max-length;
+    width: 100%;
+    height: auto;
+
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+// Logo style when clicked
+.main-logo.clicked {
+    transform: scale(0.95);
+    opacity: 0.8;
+}

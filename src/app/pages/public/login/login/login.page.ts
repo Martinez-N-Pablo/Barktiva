@@ -1,18 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { FormGroup, FormsModule } from '@angular/forms';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonItem, IonList } from '@ionic/angular/standalone';
 import { LogoComponent } from '@app/shared/components/logo/logo.component';
+import { ErrorMessages, PlaceholderMessages } from '@app/core/magicStrings';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, LogoComponent]
+  imports: [
+    IonList, 
+    IonItem, 
+    IonInput, 
+    IonContent, 
+    IonHeader, 
+    IonTitle, 
+    IonToolbar, 
+    CommonModule, 
+    FormsModule, 
+    LogoComponent
+  ]
 })
 export class LoginPage implements OnInit {
   logoPath: string = 'home';
+  
+  errorMessages: any = ErrorMessages;
+  placeholderMessages: { [key: string]: string } = PlaceholderMessages;
+
+  loginForm!: FormGroup;
 
   constructor() { }
 
