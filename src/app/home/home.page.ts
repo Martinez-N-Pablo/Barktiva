@@ -12,6 +12,8 @@ import { LogoComponent } from '../shared/components/logo/logo.component';
 })
 export class HomePage {
   private _router: Router = inject(Router);
+
+  logoPath: string = 'login';
   
   constructor() {}
 
