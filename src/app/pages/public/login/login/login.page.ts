@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonItem, IonList } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonItem, IonList, IonButton } from '@ionic/angular/standalone';
 import { LogoComponent } from '@app/shared/components/logo/logo.component';
 import { ErrorMessages, PlaceholderMessages } from '@app/core/magicStrings';
 
@@ -10,7 +10,7 @@ import { ErrorMessages, PlaceholderMessages } from '@app/core/magicStrings';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonButton, 
     IonList, 
     IonItem, 
     IonInput, 
@@ -35,5 +35,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
+
+  redirectToRegister() {}
 
 }

@@ -9,7 +9,7 @@ export const ErrorMessages = {
 
 export const PlaceholderMessages: { [key: string]: string } = {
     email: 'Email',
-    password: 'Password',
+    password: 'Contraseña',
     confirmPassword: 'Confirm password',
     name: 'Name',
     surname: 'Surname',

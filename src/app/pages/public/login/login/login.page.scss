@@ -1,0 +1,28 @@
+@use '@theme/variables.scss' as *;
+
+ion-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    > * {
+        margin-bottom: #{$distance};
+    }
+
+    ion-item {
+        background: $background-color-white;
+
+        ion-button {
+            border: 3px solid $secondary-color;
+            border-radius: 1.2em;
+            width: 100%;
+            font-family: $paragraph-font;
+            font-weight: bold;
+            color: $black-color;
+            --background: #{$terciary-color};
+    
+        }
+    }
+}
+

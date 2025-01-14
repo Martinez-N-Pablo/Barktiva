@@ -1,10 +1,10 @@
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title size="large">Login</ion-title>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content [fullscreen]="true">
   <div>
     <app-logo
       [customStyles]="{ 'width': '65%' }"
@@ -12,20 +12,50 @@
       class="main-logo">
     </app-logo>
   </div>
-  <div>
-    <form action="submit">
+  <div class="">
+    <form id="loginForm" action="submit">
       <!-- Email input -->
        <ion-list>
         <ion-item>
           <ion-input
-            label="Email"
             area-label="Email"
-            labelPlacement="stacked"
             type="email"
+            autocomplete="email"
+            color="primary"
+            inputmode="email"
+            required
+            class="login"
             [placeholder]="placeholderMessages['email'] || ''"
-            [errorText]="errorMessages.email || ''"
+            
           ></ion-input>
         </ion-item>
+        <!-- Password input -->
+         <ion-item>
+          <ion-input
+            area-label="Contraseña"
+            type="password"
+            inputmode="password"
+            required
+            class="login"
+            [placeholder]="placeholderMessages['password'] || ''"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-button
+            expand="block"
+            shape="round"
+            buttonType="submit"
+            form="loginForm"
+          >Iniciar sesión</ion-button>
+        </ion-item>
+        <!-- <ion-item>
+          <ion-button
+            expand="block"
+            shape="round"
+            buttonType="button"
+            (click)="redirectToRegister()"
+          >Registrarse</ion-button>
+        </ion-item> -->
        </ion-list>
     </form>
   </div>

@@ -38,13 +38,16 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
 
+// :root {
+//   --ion-background-color: #{$background-color-white};
+//   --ion-text-color: #{$black-color};
+// }
 
 ion-app { 
   --ion-background-color: $background-color-white;
 }
 
 ion-title {
-  background-color: $background-color-white;
   color: $primary-color;
   font-family: $title-font;
 
@@ -63,8 +66,8 @@ h1 h2 h3 h4 h5 h6 {
 }
 
 p {
-    font-family: $paragraph-font;
-    color: $black-color;
+  font-family: $paragraph-font;
+  color: $black-color;
 }
 
 button {
@@ -76,6 +79,18 @@ button {
 a {
   text-decoration: none;
   color: $secondary-color;
+}
+
+ion-input.login { 
+  border: 3px solid $secondary-color;
+  border-radius: 1.2em; 
+  padding: .5em;
+  --padding-start: #{$distance};
+  --placeholder-font-style: #{$paragraph-font};
+  --placeholder-color:  #{$secondary-color};
+
+  width: 100%;
+  max-width: $max-length;
 }
 
 .main-logo {
