@@ -38,27 +38,22 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
 
-// :root {
-//   --ion-background-color: #{$background-color-white};
-//   --ion-text-color: #{$black-color};
-// }
-
-ion-app { 
-  --ion-background-color: $background-color-white;
+:root {
+  --ion-background-color: #{$background-color-white};
+  --ion-text-color: #{$black-color};
 }
 
 ion-title {
   color: $primary-color;
   font-family: $title-font;
 
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra inferior */
-  z-index: 10; /* Asegura que el header esté por encima del contenido */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
-.ion-page {
-  background: $background-color-white !important;
+ion-item {
+  --inner-border-width: 0; /* Delete de border */
 }
-
 
 h1 h2 h3 h4 h5 h6 {
   font-family: $title-font;
