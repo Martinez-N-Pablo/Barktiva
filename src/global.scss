@@ -83,10 +83,13 @@ ion-input.login {
   padding: .5em;
   --padding-start: #{$distance};
   --placeholder-font-style: #{$paragraph-font};
-  --placeholder-color:  #{$secondary-color};
+  --placeholder-color:  #{$black-color};
 
   width: 100%;
   max-width: $max-length;
+
+  --placeholder-font-style: #{$paragraph-font};
+  --highlight-color-focused: #{$black-color};
 }
 
 .main-logo {
