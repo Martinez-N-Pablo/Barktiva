@@ -7,7 +7,7 @@ export const ErrorMessages = {
     default: 'An unexpected error occurred.',
 };
 
-export const PlaceholderMessages: { [key: string]: string } = {
+export const PlaceholderMessages: any = {
     email: 'Email',
     password: 'Contraseña',
     confirmPassword: 'Confirm password',
@@ -19,4 +19,10 @@ export const PlaceholderMessages: { [key: string]: string } = {
     postalCode: 'Postal code',
     country: 'Country',
     birthdate: 'Birthdate',
+    singUpParagraph: '¿No tienes cuenta?',
+    singUp: 'Regístrate',
+};
+
+export const ParagraphMessages: any = {
+    loginFortgotPassword: '¿Hás olvidado la contraseña?',
 };

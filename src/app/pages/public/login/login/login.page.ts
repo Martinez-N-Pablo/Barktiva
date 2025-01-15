@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonItem, IonList, IonButton } from '@ionic/angular/standalone';
 import { LogoComponent } from '@app/shared/components/logo/logo.component';
-import { ErrorMessages, PlaceholderMessages } from '@app/core/magicStrings';
+import { ErrorMessages, ParagraphMessages, PlaceholderMessages } from '@app/core/magicStrings';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +27,8 @@ export class LoginPage implements OnInit {
   logoPath: string = 'home';
   
   errorMessages: any = ErrorMessages;
-  placeholderMessages: { [key: string]: string } = PlaceholderMessages;
+  paragraphMessages: any = ParagraphMessages;
+  placeholderMessages: any = PlaceholderMessages;
 
   loginForm!: FormGroup;
 

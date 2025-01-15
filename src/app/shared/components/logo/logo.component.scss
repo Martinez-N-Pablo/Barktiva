@@ -1,8 +1,8 @@
 @use '@theme/variables.scss' as *;
 
 .main-logo {
-    max-width: $max-length;
-    width: 100%;
+    width: 60%;
+    align-self: center;
     height: auto;
 
     transition: transform 0.2s ease, opacity 0.2s ease;

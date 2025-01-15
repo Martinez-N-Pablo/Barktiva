@@ -40,7 +40,14 @@
 
 :root {
   --ion-background-color: #{$background-color-white};
+  
   --ion-text-color: #{$black-color};
+  --ion-font-family: #{$paragraph-font};
+
+  --ion-color-primary: #{$primary-color};
+//  --ion-color-primary-rgb: 248, 158, 106;
+  --ion-color-secondary: #{$secondary-color};
+  --ion-color-tertiary: #{$terciary-color};
 }
 
 ion-title {
@@ -63,12 +70,6 @@ h1 h2 h3 h4 h5 h6 {
 p {
   font-family: $paragraph-font;
   color: $black-color;
-}
-
-button {
-  background-color: $secondary-color;
-  border-radius: .5em;
-  border: none;
 }
 
 a {
