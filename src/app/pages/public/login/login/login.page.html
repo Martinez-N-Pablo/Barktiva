@@ -1,6 +1,6 @@
 <ion-header collapse="condense">
   <ion-toolbar>
-    <ion-title size="large">Login</ion-title>
+    <ion-title size="large">{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,10 +12,10 @@
       class="main-logo">
     </app-logo>
   </div>
-  <div class="">
-    <form id="loginForm" action="submit">
+  <div>
+    <form id="loginForm" form action="submit" [formGroup]="loginForm">
       <!-- Email input -->
-       <ion-list>
+       <ion-list class="loginInputList">
         <ion-item>
           <ion-input
             area-label="Email"
@@ -24,6 +24,7 @@
             inputmode="email"
             required
             class="login"
+            formControlName="email"
             [placeholder]="placeholderMessages.email || ''"
             
           ></ion-input>
@@ -36,6 +37,7 @@
             inputmode="password"
             required
             class="login"
+            formControlName="password"
             [placeholder]="placeholderMessages.password || ''"
           ></ion-input>
         </ion-item>
@@ -45,7 +47,9 @@
             shape="round"
             buttonType="submit"
             form="loginForm"
-          >Iniciar sesión
+            (click)="login()"
+          >
+            {{ paragraphMessages.iniciarSesion || "" }}
           </ion-button>
         </ion-item>
         <ion-item>
@@ -54,8 +58,8 @@
        </ion-list>
     </form>
     <p class="register-link">
-      {{placeholderMessages!['singUpParagraph'] || ""}}
-      <a href="/singup" class="register">{{placeholderMessages!.singUp || ""}}</a>
+      {{placeholderMessages!.singUpParagraph || ""}}
+      <a (click)="redirectToRegister()" class="register">{{placeholderMessages!.singUp || ""}}</a>
     </p>
   </div>
 </ion-content>

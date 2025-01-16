@@ -78,7 +78,7 @@ a {
 }
 
 ion-input.login { 
-  border: 3px solid $secondary-color;
+  border: 3px solid $terciary-color;
   border-radius: 1.2em; 
   padding: .5em;
   --padding-start: #{$distance};
@@ -92,9 +92,57 @@ ion-input.login {
   --highlight-color-focused: #{$black-color};
 }
 
+
+ion-list.loginInputList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+  > * {
+      margin-bottom: #{$distance};
+  }
+
+  ion-item {
+      ion-button {
+          width: 100%;
+          font-family: $paragraph-font;
+          font-weight: bold;
+          --background: #{$terciary-color};
+          --border-color: #{$secondary-color};
+          --border-radius: 10em;
+          --border-style: solid;
+          --border-width: 3px;
+          --color: #{$black-color};
+      }
+
+      p {
+          text-align: center;
+          width: 100%;            
+          opacity: 0.7;
+      }
+  }
+}
+
 .main-logo {
   text-align: center;
   display: flex;
   align-content: center;
   justify-content: center;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 16px;
+  width: 100%;
+  display: block;
+  position: absolute;
+  bottom: 0;
+}
+
+.register-link a {
+  color: var(--ion-color-primary, #3880ff);
+  text-decoration: none;
+  font-weight: bold;
 }

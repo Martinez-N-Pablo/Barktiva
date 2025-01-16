@@ -10,19 +10,35 @@ export const ErrorMessages = {
 export const PlaceholderMessages: any = {
     email: 'Email',
     password: 'Contraseña',
-    confirmPassword: 'Confirm password',
-    name: 'Name',
+    confirmPassword: 'Confirmar contraseña',
+    name: 'Nombre',
     surname: 'Surname',
     phone: 'Phone',
     address: 'Address',
     city: 'City',
     postalCode: 'Postal code',
     country: 'Country',
-    birthdate: 'Birthdate',
+    birthdate: 'Fecha de nacimiento',
+    loginParagraph: '¿Ya tienes cuenta?',
+    login: 'Iniciar sesión',
     singUpParagraph: '¿No tienes cuenta?',
     singUp: 'Regístrate',
 };
 
 export const ParagraphMessages: any = {
     loginFortgotPassword: '¿Hás olvidado la contraseña?',
+    iniciarSesion: 'Iniciar sesión',
+    singUp: 'Registrarse',
+};
+
+export const RoutesName: any = {
+    home: 'home',
+    login: 'login',
+    singup: 'singup',
+};
+
+export const Titles: any = {
+    home: 'Inicio',
+    login: 'Iniciar sesión',
+    singup: 'Registrarse',
 };
