@@ -7,7 +7,7 @@
 <ion-content [fullscreen]="true">
   <div>
     <app-logo
-      [customStyles]="{ 'width': '60%' }"
+      [customStyles]="{ 'width': '50%' }"
       [logoPath]="logoPath"
       class="main-logo">
     </app-logo>
@@ -53,13 +53,22 @@
           </ion-button>
         </ion-item>
         <ion-item>
-          <p>{{ paragraphMessages.loginFortgotPassword || "" }}</p>
+          <p><a href="">{{ paragraphMessages.loginFortgotPassword || "" }}</a></p>
         </ion-item>
        </ion-list>
     </form>
-    <p class="register-link">
-      {{placeholderMessages!.singUpParagraph || ""}}
-      <a (click)="redirectToRegister()" class="register">{{placeholderMessages!.singUp || ""}}</a>
-    </p>
+    <div class="register-link">
+      <p class="">
+        {{placeholderMessages!.singUpParagraph || ""}}
+      </p>
+      <ion-button
+        class="secundary-button"
+        expand="block"
+        shape="round"
+        (click)="redirectToRegister()"
+      >
+        {{ paragraphMessages.singUp || "" }}
+      </ion-button>
+    </div>
   </div>
 </ion-content>

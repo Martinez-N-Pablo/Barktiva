@@ -19,9 +19,9 @@ export const PlaceholderMessages: any = {
     postalCode: 'Postal code',
     country: 'Country',
     birthdate: 'Fecha de nacimiento',
-    loginParagraph: '¿Ya tienes cuenta?',
+    loginParagraph: '¿Ya tienes una cuenta?',
     login: 'Iniciar sesión',
-    singUpParagraph: '¿No tienes cuenta?',
+    singUpParagraph: '¿No tienes una cuenta?',
     singUp: 'Regístrate',
 };
 
