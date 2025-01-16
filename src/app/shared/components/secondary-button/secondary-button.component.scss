@@ -1,0 +1,14 @@
+@use '@theme/variables.scss' as *;
+
+.secundary-button {
+    text-align: center;
+    align-self: center;
+    width: 90%;
+    font-weight: bold;
+    --background: none;
+    --border-color: #{$secondary-color};
+    --border-radius: 10em;
+    --border-style: solid;
+    --border-width: 3px;
+    --color: #{$black-color};
+}

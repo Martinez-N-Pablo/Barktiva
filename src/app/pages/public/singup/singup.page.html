@@ -96,14 +96,7 @@
       <p class="">
         {{placeholderMessages!.loginParagraph || ""}}
       </p>
-      <ion-button
-        class="secundary-button"
-        expand="block"
-        shape="round"
-        (click)="redirectToLogin()"
-      >
-        {{ placeholderMessages.login || "" }}
-      </ion-button>
+      <app-secondary-button [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="redirectToLogin()"></app-secondary-button>
     </div>
   </div>
 </ion-content>

@@ -6,6 +6,7 @@ import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titl
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LogoComponent } from '@app/shared/components/logo/logo.component';
+import { SecondaryButtonComponent } from '@app/shared/components/secondary-button/secondary-button.component';
 
 @Component({
   selector: 'app-singup',
@@ -24,7 +25,8 @@ import { LogoComponent } from '@app/shared/components/logo/logo.component';
     CommonModule, 
     FormsModule,
     ReactiveFormsModule,
-    LogoComponent
+    LogoComponent,
+    SecondaryButtonComponent,
   ]
 })
 export class SingupPage implements OnInit {

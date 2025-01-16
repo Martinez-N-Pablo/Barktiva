@@ -61,14 +61,7 @@
       <p class="">
         {{placeholderMessages!.singUpParagraph || ""}}
       </p>
-      <ion-button
-        class="secundary-button"
-        expand="block"
-        shape="round"
-        (click)="redirectToRegister()"
-      >
-        {{ paragraphMessages.singUp || "" }}
-      </ion-button>
+      <app-secondary-button [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="redirectToRegister()"></app-secondary-button>
     </div>
   </div>
 </ion-content>

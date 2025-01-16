@@ -5,6 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonItem, IonList
 import { LogoComponent } from '@app/shared/components/logo/logo.component';
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
 import { Router } from '@angular/router';
+import { SecondaryButtonComponent } from '@app/shared/components/secondary-button/secondary-button.component';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ import { Router } from '@angular/router';
     CommonModule, 
     FormsModule, 
     LogoComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SecondaryButtonComponent,
   ]
 })
 export class LoginPage implements OnInit {
