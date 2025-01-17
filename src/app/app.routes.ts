@@ -21,5 +21,9 @@ export const routes: Routes = [
     path: 'dashboard',
     loadComponent: () => import('./pages/private/dashboard/dashboard.page').then( m => m.DashboardPage)
   },
+  {
+    path: 'pet-form',
+    loadComponent: () => import('./pages/private/pet-form/pet-form.page').then( m => m.PetFormPage)
+  },
 
 ];
