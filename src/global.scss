@@ -39,7 +39,7 @@
 @import '@ionic/angular/css/palettes/dark.system.css';
 
 :root {
-  --ion-background-color: #{$background-color-white};
+  --ion-background-color: #{$ea-color};
 
   --ion-text-color: #{$black-color};
   --ion-font-family: #{$paragraph-font};
@@ -84,7 +84,7 @@ ion-input.login {
   --padding-start: #{$distance};
   --placeholder-font-style: #{$paragraph-font};
   --placeholder-color:  #{$black-color};
-  
+
   max-width: $max-length;
 
   --placeholder-font-style: #{$paragraph-font};
