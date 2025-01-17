@@ -17,5 +17,9 @@ export const routes: Routes = [
     path: 'singup',
     loadComponent: () => import('./pages/public/singup/singup.page').then( m => m.SingupPage)
   },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./pages/private/dashboard/dashboard.page').then( m => m.DashboardPage)
+  },
 
 ];
