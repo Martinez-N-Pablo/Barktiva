@@ -40,7 +40,7 @@
 
 :root {
   --ion-background-color: #{$background-color-white};
-  
+
   --ion-text-color: #{$black-color};
   --ion-font-family: #{$paragraph-font};
 
@@ -77,9 +77,9 @@ a {
   color: $secondary-color;
 }
 
-ion-input.login { 
+ion-input.login {
   border: 3px solid $terciary-color;
-  border-radius: 1.2em; 
+  border-radius: 1.2em;
   padding: .5em;
   --padding-start: #{$distance};
   --placeholder-font-style: #{$paragraph-font};
@@ -104,21 +104,9 @@ ion-list.loginInputList {
   }
 
   ion-item {
-      ion-button {
-          width: 100%;
-          font-family: $paragraph-font;
-          font-weight: bold;
-          --background: #{$terciary-color};
-          --border-color: #{$secondary-color};
-          --border-radius: 10em;
-          --border-style: solid;
-          --border-width: 3px;
-          --color: #{$black-color};
-      }
-
       p {
           text-align: center;
-          width: 100%;            
+          width: 100%;
           opacity: 0.7;
 
           a {

@@ -24,7 +24,7 @@
             required
             class="login"
             formControlName="name"
-            [placeholder]="placeholderMessages.email || ''"
+            [placeholder]="placeholderMessages.name || ''"
             
           ></ion-input>
         </ion-item>
@@ -80,15 +80,7 @@
           ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-button
-            expand="block"
-            shape="round"
-            buttonType="submit"
-            form="loginForm"
-            (click)="singup()"
-          >
-            {{ paragraphMessages.singUp || "" }}
-          </ion-button>
+          <app-secondary-button [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="singup()"></app-secondary-button>
         </ion-item>
        </ion-list>
     </form>
@@ -96,7 +88,7 @@
       <p class="">
         {{placeholderMessages!.loginParagraph || ""}}
       </p>
-      <app-secondary-button [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="redirectToLogin()"></app-secondary-button>
+      <app-secondary-button [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="redirectToLogin()"></app-secondary-button>
     </div>
   </div>
 </ion-content>

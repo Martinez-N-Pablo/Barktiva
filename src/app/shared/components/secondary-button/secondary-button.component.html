@@ -1,8 +1,10 @@
 <ion-button
-  class="secundary-button"
+  [class]="class"
   expand="block"
   shape="round"
+  [form]="form"
   (click)="onClick()"
+  buttonType="type"
 >
   {{ buttonContent || "" }}
 </ion-button>

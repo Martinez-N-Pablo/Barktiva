@@ -42,15 +42,8 @@
           ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-button
-            expand="block"
-            shape="round"
-            buttonType="submit"
-            form="loginForm"
-            (click)="login()"
-          >
-            {{ paragraphMessages.iniciarSesion || "" }}
-          </ion-button>
+          <app-secondary-button [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="login()"></app-secondary-button>
+
         </ion-item>
         <ion-item>
           <p><a href="">{{ paragraphMessages.loginFortgotPassword || "" }}</a></p>
@@ -61,7 +54,7 @@
       <p class="">
         {{placeholderMessages!.singUpParagraph || ""}}
       </p>
-      <app-secondary-button [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="redirectToRegister()"></app-secondary-button>
+      <app-secondary-button [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="redirectToRegister()"></app-secondary-button>
     </div>
   </div>
 </ion-content>

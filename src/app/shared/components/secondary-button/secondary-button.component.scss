@@ -1,12 +1,24 @@
 @use '@theme/variables.scss' as *;
 
-.secundary-button {
+ion-button.secondary-button {
     text-align: center;
     align-self: center;
     width: 90%;
     font-weight: bold;
     --background: none;
-    --border-color: #{$secondary-color};
+    --border-color: #{$terciary-color};
+    --border-radius: 10em;
+    --border-style: solid;
+    --border-width: 3px;
+    --color: #{$black-color};
+}
+
+ion-button.primary-button {
+    width: 100%;
+    font-family: $paragraph-font;
+    font-weight: bold;
+    --background: #{$primary-color};
+    --border-color: #{$terciary-color};
     --border-radius: 10em;
     --border-style: solid;
     --border-width: 3px;

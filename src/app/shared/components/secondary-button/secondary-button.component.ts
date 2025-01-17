@@ -13,6 +13,12 @@ import { Router } from '@angular/router';
 export class SecondaryButtonComponent  implements OnInit {
   @Input()
   buttonContent: string = "";
+  @Input()
+  class: string = "";
+  @Input()
+  type: string = "";
+  @Input()
+  form: string = "";
 
   @Output()
   onButtonClicked: EventEmitter<void> = new EventEmitter<void>();
