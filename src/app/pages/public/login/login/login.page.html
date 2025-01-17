@@ -30,7 +30,7 @@
           ></ion-input>
         </ion-item>
         <!-- Password input -->
-         <ion-item>
+         <ion-item class="last-item">
           <ion-input
             area-label="Contraseña"
             type="password"
@@ -41,12 +41,14 @@
             [placeholder]="placeholderMessages.password || ''"
           ></ion-input>
         </ion-item>
+
+        <div class="forgot-password">
+          <p><a href="">{{ paragraphMessages.loginFortgotPassword || "" }}</a></p>
+        </div>
+        
         <ion-item>
           <app-secondary-button [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="login()"></app-secondary-button>
 
-        </ion-item>
-        <ion-item>
-          <p><a href="">{{ paragraphMessages.loginFortgotPassword || "" }}</a></p>
         </ion-item>
        </ion-list>
     </form>

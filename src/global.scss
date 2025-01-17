@@ -99,7 +99,7 @@ ion-list.loginInputList {
   justify-content: center;
   width: 100%;
 
-  > * {
+  > ion-item {
       margin-bottom: #{$distance};
   }
 
