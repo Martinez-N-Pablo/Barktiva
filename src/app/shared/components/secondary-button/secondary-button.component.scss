@@ -1,26 +1,32 @@
 @use '@theme/variables.scss' as *;
 
+ion-button {
+    font-weight: bold;
+    width: 100%;
+    font-family: $paragraph-font;
+
+    --border-radius: 10em;
+    --border-style: solid;
+    --border-width: 3px;
+    --color: #{$black-color};
+    --border-color: #{$terciary-color};
+
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+ion-button.clicked {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+
 ion-button.secondary-button {
     text-align: center;
     align-self: center;
     width: 90%;
-    font-weight: bold;
+    
     --background: none;
-    --border-color: #{$terciary-color};
-    --border-radius: 10em;
-    --border-style: solid;
-    --border-width: 3px;
-    --color: #{$black-color};
 }
 
 ion-button.primary-button {
-    width: 100%;
-    font-family: $paragraph-font;
-    font-weight: bold;
     --background: #{$primary-color};
-    --border-color: #{$terciary-color};
-    --border-radius: 10em;
-    --border-style: solid;
-    --border-width: 3px;
-    --color: #{$black-color};
 }

@@ -16,7 +16,6 @@ import { SecondaryButtonComponent } from '@app/shared/components/secondary-butto
   imports: [
     IonItem,
     IonInput,
-    IonButton, 
     IonList, 
     IonContent, 
     IonHeader, 

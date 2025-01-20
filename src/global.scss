@@ -50,6 +50,10 @@
   --ion-color-tertiary: #{$terciary-color};
 }
 
+app-input {
+  width: 100%;
+}
+
 ion-title {
   color: $primary-color;
   font-family: $title-font;
@@ -75,20 +79,6 @@ p {
 a {
   text-decoration: none;
   color: $secondary-color;
-}
-
-ion-input.login {
-  border: 3px solid $terciary-color;
-  border-radius: 1.2em;
-  padding: .5em;
-  --padding-start: #{$distance};
-  --placeholder-font-style: #{$paragraph-font};
-  --placeholder-color:  #{$black-color};
-
-  max-width: $max-length;
-
-  --placeholder-font-style: #{$paragraph-font};
-  --highlight-color-focused: #{$black-color};
 }
 
 

@@ -5,6 +5,7 @@
   [form]="form"
   (click)="onClick()"
   buttonType="type"
+  [class.clicked]="isClicked"
 >
   {{ buttonContent || "" }}
 </ion-button>

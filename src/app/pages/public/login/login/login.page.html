@@ -17,29 +17,28 @@
       <!-- Email input -->
        <ion-list class="loginInputList">
         <ion-item>
-          <ion-input
-            area-label="Email"
-            type="email"
-            autocomplete="email"
-            inputmode="email"
-            required
-            class="login"
-            formControlName="email"
-            [placeholder]="placeholderMessages.email || ''"
-            
-          ></ion-input>
+          <app-input
+            [areaLabel]="'Email'"
+            [type]="'email'"
+            [autocomplete]="'email'"
+            [inputmode]="'email'"
+            [required]="true"
+            [class]="'login'"
+            [control]="getControl('email')"
+            [placeholder]="placeholderMessages.email || ''">
+          </app-input>
         </ion-item>
         <!-- Password input -->
          <ion-item class="last-item">
-          <ion-input
-            area-label="Contraseña"
-            type="password"
-            inputmode="password"
-            required
-            class="login"
-            formControlName="password"
+          <app-input
+            [areaLabel]="'Contraseña'"
+            [type]="'password'"
+            [inputmode]="'password'"
+            [required]="true"
+            [class]="'login'"
+            [control]="getControl('password')"
             [placeholder]="placeholderMessages.password || ''"
-          ></ion-input>
+          ></app-input>
         </ion-item>
 
         <div class="forgot-password">

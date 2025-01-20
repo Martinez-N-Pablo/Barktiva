@@ -23,12 +23,21 @@ export class SecondaryButtonComponent  implements OnInit {
   @Output()
   onButtonClicked: EventEmitter<void> = new EventEmitter<void>();
 
+  isClicked: boolean = false;
+
   constructor() { }
 
   ngOnInit() {}
 
   onClick(): void {
-    this.onButtonClicked.emit();
+    if (!this.isClicked) {
+      this.isClicked = true;
+
+      setTimeout(() => {
+        this.isClicked = false
+        this.onButtonClicked.emit();
+      }, 100);
+    }
   }
 
 }

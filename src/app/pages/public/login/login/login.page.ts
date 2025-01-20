@@ -6,6 +6,7 @@ import { LogoComponent } from '@app/shared/components/logo/logo.component';
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
 import { Router } from '@angular/router';
 import { SecondaryButtonComponent } from '@app/shared/components/secondary-button/secondary-button.component';
+import { InputComponent } from '@app/shared/components/input/input.component';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,6 @@ import { SecondaryButtonComponent } from '@app/shared/components/secondary-butto
   styleUrls: ['./login.page.scss'],
   standalone: true,
   imports: [
-    IonButton, 
     IonList, 
     IonItem, 
     IonInput, 
@@ -26,6 +26,7 @@ import { SecondaryButtonComponent } from '@app/shared/components/secondary-butto
     LogoComponent,
     ReactiveFormsModule,
     SecondaryButtonComponent,
+    InputComponent
   ]
 })
 export class LoginPage implements OnInit {
@@ -50,13 +51,28 @@ export class LoginPage implements OnInit {
   private _initLoginForm(): void {
     this.loginForm = this._formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(20)])
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
   }
 
-  login(): void { }
+  login(): void {
+    this.loginForm.markAllAsTouched();
+    
+    if (this.loginForm.invalid) {
+      console.log('Invalid form');
+      return;
+    }
+
+    console.log('Login');
+    console.log(this.loginForm.value);
+  }
 
   redirectToRegister(): void {
     this._router.navigate([`/${RoutesName.singup}`]);
+  }
+
+  
+  getControl(controlName: string): FormControl{
+    return this.loginForm.get(controlName) as FormControl;
   }
 }
