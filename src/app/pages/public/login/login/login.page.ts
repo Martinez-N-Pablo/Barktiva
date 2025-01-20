@@ -16,7 +16,6 @@ import { InputComponent } from '@app/shared/components/input/input.component';
   imports: [
     IonList, 
     IonItem, 
-    IonInput, 
     IonContent, 
     IonHeader, 
     IonTitle, 

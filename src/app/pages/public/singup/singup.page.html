@@ -14,70 +14,67 @@
   </div>
   <div>
     <form id="singupForm" form action="submit" [formGroup]="singupForm">
-       <ion-list class="loginInputList">
+      <ion-list class="loginInputList">
         <!-- Name input -->
         <ion-item>
-          <ion-input
-            area-label="Nombre"
-            type="text"
-            inputmode="text"
-            required
-            class="login"
-            formControlName="name"
-            [placeholder]="placeholderMessages.name || ''"
-            
-          ></ion-input>
+          <app-input
+            [areaLabel]="'Nombre'"
+            [type]="'text'"
+            [inputmode]="'text'"
+            [required]="true"
+            [class]="'login'"
+            [control]="getControl('name')"
+            [placeholder]="placeholderMessages.name || ''">
+          </app-input>
         </ion-item>
-        <!--Email input-->
+        <!-- Email input -->
         <ion-item>
-          <ion-input
-            area-label="Email"
-            type="email"
-            autocomplete="email"
-            inputmode="email"
-            required
-            class="login"
-            formControlName="email"
-            [placeholder]="placeholderMessages.email || ''"
-            
-          ></ion-input>
+          <app-input
+            [areaLabel]="'Email'"
+            [type]="'email'"
+            [autocomplete]="'email'"
+            [inputmode]="'email'"
+            [required]="true"
+            [class]="'login'"
+            [control]="getControl('email')"
+            [placeholder]="placeholderMessages.email || ''">
+          </app-input>
         </ion-item>
-        <!--Birthdate input-->
+        <!-- Birthdate input -->
         <ion-item>
-          <ion-input
-            area-label="Fecha de nacimiento"
-            type="date"
-            inputmode="date"
-            required
-            class="login"
-            formControlName="birthdate"
-            [placeholder]="placeholderMessages.birthdate || ''"
-            
-          ></ion-input>
+          <app-input
+            [areaLabel]="'Fecha de nacimiento'"
+            [type]="'date'"
+            [inputmode]="'date'"
+            [required]="true"
+            [class]="'login'"
+            [control]="getControl('birthdate')"
+            [placeholder]="placeholderMessages.birthdate || ''">
+          </app-input>
         </ion-item>
         <!-- Password input -->
-         <ion-item>
-          <ion-input
-            area-label="Contraseña"
-            type="password"
-            inputmode="password"
-            required
-            class="login"
-            formControlName="password"
-            [placeholder]="placeholderMessages.password || ''"
-          ></ion-input>
+        <ion-item>
+          <app-input
+            [areaLabel]="'Contraseña'"
+            [type]="'password'"
+            [inputmode]="'password'"
+            [required]="true"
+            [class]="'login'"
+            [control]="getControl('password')"
+            [placeholder]="placeholderMessages.password || ''">
+          </app-input>
         </ion-item>
         <!-- Repeat password input -->
         <ion-item>
-          <ion-input
-            area-label="Confirmar Contraseña"
-            type="password"
-            inputmode="password"
-            required
-            class="login"
-            formControlName="confirmPassword"
-            [placeholder]="placeholderMessages.confirmPassword || ''"
-          ></ion-input>
+          <app-input
+            [areaLabel]="'Confirmar Contraseña'"
+            [type]="'password'"
+            [inputmode]="'password'"
+            [required]="true"
+            [class]="'login'"
+            [control]="getControl('confirmPassword')"
+            [placeholder]="placeholderMessages.confirmPassword || ''">
+          </app-input>
         </ion-item>
         <ion-item>
           <app-secondary-button [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="singup()"></app-secondary-button>

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LogoComponent } from '@app/shared/components/logo/logo.component';
 import { SecondaryButtonComponent } from '@app/shared/components/secondary-button/secondary-button.component';
+import { InputComponent } from '@app/shared/components/input/input.component';
 
 @Component({
   selector: 'app-singup',
@@ -15,7 +16,7 @@ import { SecondaryButtonComponent } from '@app/shared/components/secondary-butto
   standalone: true,
   imports: [
     IonItem,
-    IonInput,
+    InputComponent,
     IonList, 
     IonContent, 
     IonHeader, 
@@ -61,6 +62,10 @@ export class SingupPage implements OnInit {
   singup(): void { }
 
   redirectToLogin (): void {
-      this._router.navigate([`/${RoutesName.login}`]);
-    }
+    this._router.navigate([`/${RoutesName.login}`]);
+  }
+
+  getControl(controlName: string): FormControl{
+    return this.singupForm.get(controlName) as FormControl;
+  }
 }
