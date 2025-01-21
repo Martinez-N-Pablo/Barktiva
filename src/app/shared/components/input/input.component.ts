@@ -22,6 +22,7 @@ export class InputComponent  implements OnInit {
   @Input() areaLabel: string = '';
   @Input() type: string = 'text';
   @Input() inputmode: string = '';
+  @Input() role: string = '';
   @Input() autocomplete?: string = '';
   @Input() class?: string = '';
   @Input() required?: boolean = false;

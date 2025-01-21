@@ -15,8 +15,8 @@
   <div>
     <form id="loginForm" form action="submit" [formGroup]="loginForm">
       <!-- Email input -->
-       <ion-list class="loginInputList">
-        <ion-item>
+       <ion-list class="loginInputList" role="list">
+        <ion-item role="listitem">
           <app-input
             [areaLabel]="'Email'"
             [type]="'email'"
@@ -29,7 +29,7 @@
           </app-input>
         </ion-item>
         <!-- Password input -->
-         <ion-item class="last-item">
+         <ion-item role="listitem" class="last-item">
           <app-input
             [areaLabel]="'Contraseña'"
             [type]="'password'"
@@ -41,13 +41,12 @@
           ></app-input>
         </ion-item>
 
-        <div class="forgot-password">
-          <p><a href="">{{ paragraphMessages.loginFortgotPassword || "" }}</a></p>
+        <div role="listitem" class="forgot-password">
+          <p><a href="" role="link" [attr.aria-label]="paragraphMessages.loginFortgotPassword || ''">{{ paragraphMessages.loginFortgotPassword || "" }}</a></p>
         </div>
         
-        <ion-item>
-          <app-secondary-button [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="login()"></app-secondary-button>
-
+        <ion-item role="listitem">
+          <app-secondary-button [role]="'button'" [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="login()"></app-secondary-button>
         </ion-item>
        </ion-list>
     </form>
@@ -55,7 +54,7 @@
       <p class="">
         {{placeholderMessages!.singUpParagraph || ""}}
       </p>
-      <app-secondary-button [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="redirectToRegister()"></app-secondary-button>
+      <app-secondary-button [role]="'button'" [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="redirectToRegister()"></app-secondary-button>
     </div>
   </div>
 </ion-content>

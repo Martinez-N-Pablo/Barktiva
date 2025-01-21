@@ -19,6 +19,8 @@ export class SecondaryButtonComponent  implements OnInit {
   type: string = "";
   @Input()
   form: string = "";
+  @Input()
+  role: string = "";
 
   @Output()
   onButtonClicked: EventEmitter<void> = new EventEmitter<void>();

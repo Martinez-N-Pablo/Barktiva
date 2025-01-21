@@ -14,9 +14,9 @@
   </div>
   <div>
     <form id="singupForm" form action="submit" [formGroup]="singupForm">
-      <ion-list class="loginInputList">
+      <ion-list class="loginInputList" role="list">
         <!-- Name input -->
-        <ion-item>
+        <ion-item role="listitem">
           <app-input
             [areaLabel]="'Nombre'"
             [type]="'text'"
@@ -24,11 +24,12 @@
             [required]="true"
             [class]="'login'"
             [control]="getControl('name')"
+            [role]="'textbox'"
             [placeholder]="placeholderMessages.name || ''">
           </app-input>
         </ion-item>
         <!-- Email input -->
-        <ion-item>
+        <ion-item role="listitem">
           <app-input
             [areaLabel]="'Email'"
             [type]="'email'"
@@ -37,11 +38,12 @@
             [required]="true"
             [class]="'login'"
             [control]="getControl('email')"
+            [role]="'textbox'"
             [placeholder]="placeholderMessages.email || ''">
           </app-input>
         </ion-item>
         <!-- Birthdate input -->
-        <ion-item>
+        <ion-item role="listitem">
           <app-input
             [areaLabel]="'Fecha de nacimiento'"
             [type]="'date'"
@@ -53,7 +55,7 @@
           </app-input>
         </ion-item>
         <!-- Password input -->
-        <ion-item>
+        <ion-item role="listitem">
           <app-input
             [areaLabel]="'Contraseña'"
             [type]="'password'"
@@ -61,11 +63,12 @@
             [required]="true"
             [class]="'login'"
             [control]="getControl('password')"
+            [role]="'textbox'"
             [placeholder]="placeholderMessages.password || ''">
           </app-input>
         </ion-item>
         <!-- Repeat password input -->
-        <ion-item>
+        <ion-item role="listitem">
           <app-input
             [areaLabel]="'Confirmar Contraseña'"
             [type]="'password'"
@@ -73,11 +76,12 @@
             [required]="true"
             [class]="'login'"
             [control]="getControl('confirmPassword')"
+            [role]="'textbox'"
             [placeholder]="placeholderMessages.confirmPassword || ''">
           </app-input>
         </ion-item>
-        <ion-item>
-          <app-secondary-button [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="singup()"></app-secondary-button>
+        <ion-item role="listitem">
+          <app-secondary-button [role]="'button'" [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="singup()"></app-secondary-button>
         </ion-item>
        </ion-list>
     </form>
@@ -85,7 +89,7 @@
       <p class="">
         {{placeholderMessages!.loginParagraph || ""}}
       </p>
-      <app-secondary-button [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="redirectToLogin()"></app-secondary-button>
+      <app-secondary-button [role]="'button'" [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="redirectToLogin()"></app-secondary-button>
     </div>
   </div>
 </ion-content>
