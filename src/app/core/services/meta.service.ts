@@ -13,7 +13,6 @@ export class MetaService {
 
   updateDescriptionForCurrentRoute(meta: Meta): void {
     const currentUrl = this._router.url;
-    console.log('currentUrl', currentUrl);
     setMetaDescriptionTag(meta, currentUrl);
   }
 }

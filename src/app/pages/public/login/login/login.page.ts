@@ -58,12 +58,8 @@ export class LoginPage implements OnInit {
     this.loginForm.markAllAsTouched();
     
     if (this.loginForm.invalid) {
-      console.log('Invalid form');
       return;
     }
-
-    console.log('Login');
-    console.log(this.loginForm.value);
   }
 
   redirectToRegister(): void {
