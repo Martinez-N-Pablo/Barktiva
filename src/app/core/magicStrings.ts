@@ -42,3 +42,11 @@ export const Titles: any = {
     login: 'Iniciar sesión',
     singup: 'Registrarse',
 };
+
+export const MetaDescriptions: any = {
+    home: 'Barktiva, aplicación para la gestión de cuidados veterinarios de mascotas',
+    login: 'Iniciar sesión para la aplicación Barktiva',
+    singUp: 'Registrarse en la aplicación Barktiva',
+    petForm: 'Formulario para añadir una mascota en la aplicación Barktiva',
+    dashboard: 'Dashboard de la aplicación Barktiva',
+};

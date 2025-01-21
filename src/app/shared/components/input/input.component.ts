@@ -1,0 +1,34 @@
+import { Component, forwardRef, Input, input, OnInit, } from'@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonInput, IonItem } from '@ionic/angular/standalone';
+import { FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-input',
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.scss'],
+  standalone: true,
+  imports: [CommonModule, IonInput, ReactiveFormsModule],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputComponent),
+      multi: true,
+    },
+  ],
+})
+export class InputComponent  implements OnInit {
+  @Input() placeholder: string = '';
+  @Input() areaLabel: string = '';
+  @Input() type: string = 'text';
+  @Input() inputmode: string = '';
+  @Input() autocomplete?: string = '';
+  @Input() class?: string = '';
+  @Input() required?: boolean = false;
+  @Input() control!: FormControl;
+
+  constructor() { }
+
+  ngOnInit() {}
+
+}
