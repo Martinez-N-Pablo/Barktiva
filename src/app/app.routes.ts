@@ -12,10 +12,11 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: () => import('./pages/public/login/login/login.page').then( m => m.LoginPage)
-  },  {
+    loadComponent: () => import('./pages/public/auth/login/login.page').then( m => m.LoginPage)
+  },
+  {
     path: 'singup',
-    loadComponent: () => import('./pages/public/singup/singup.page').then( m => m.SingupPage)
+    loadComponent: () => import('./pages/public/auth/singup/singup.page').then( m => m.SingupPage)
   },
   {
     path: 'dashboard',
