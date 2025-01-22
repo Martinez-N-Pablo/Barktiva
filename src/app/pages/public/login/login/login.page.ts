@@ -7,6 +7,7 @@ import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titl
 import { Router } from '@angular/router';
 import { SecondaryButtonComponent } from '@app/shared/components/secondary-button/secondary-button.component';
 import { InputComponent } from '@app/shared/components/input/input.component';
+import { validateForm } from '@app/core/scripts/validate-forms';
 
 @Component({
   selector: 'app-login',
@@ -56,10 +57,16 @@ export class LoginPage implements OnInit {
 
   login(): void {
     this.loginForm.markAllAsTouched();
+    validateForm(this.loginForm);
     
     if (this.loginForm.invalid) {
+      console.log('Formulario inválido');
+      console.log(this.loginForm.get('email')?.errors);
       return;
     }
+
+    // Call to the service to login
+    this._router.navigate([`/${RoutesName.petForm}`]);
   }
 
   redirectToRegister(): void {

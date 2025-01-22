@@ -2,13 +2,14 @@ import { Component, forwardRef, Input, input, OnInit, } from'@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonInput, IonItem } from '@ionic/angular/standalone';
 import { FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { BorderErrorDirective } from '@app/core/directive/border-error.directive';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonInput, ReactiveFormsModule],
+  imports: [CommonModule, IonInput, ReactiveFormsModule, BorderErrorDirective],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -27,6 +28,8 @@ export class InputComponent  implements OnInit {
   @Input() class?: string = '';
   @Input() required?: boolean = false;
   @Input() control!: FormControl;
+  @Input() ngClass!: any;
+  @Input() name?: string = '';
 
   constructor() { }
 

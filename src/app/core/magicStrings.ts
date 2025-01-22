@@ -35,6 +35,8 @@ export const RoutesName: any = {
     home: 'home',
     login: 'login',
     singup: 'singup',
+    dashboard: 'dashboard',
+    petForm: 'pet-form',
 };
 
 export const Titles: any = {

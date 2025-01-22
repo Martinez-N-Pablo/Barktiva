@@ -105,6 +105,10 @@ ion-list.loginInputList {
   }
 }
 
+.error {
+  border: 3px solid $danger-color !important;
+}
+
 .main-logo {
   text-align: center;
   display: flex;

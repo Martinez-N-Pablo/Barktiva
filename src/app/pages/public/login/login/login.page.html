@@ -19,12 +19,14 @@
         <ion-item role="listitem">
           <app-input
             [areaLabel]="'Email'"
+            [name]="'email'"
             [type]="'email'"
             [autocomplete]="'email'"
             [inputmode]="'email'"
             [required]="true"
             [class]="'login'"
             [control]="getControl('email')"
+            [ngClass]="{'input-error': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}"
             [placeholder]="placeholderMessages.email || ''">
           </app-input>
         </ion-item>
@@ -32,11 +34,13 @@
          <ion-item role="listitem" class="last-item">
           <app-input
             [areaLabel]="'Contraseña'"
+            [name]="'password'"
             [type]="'password'"
             [inputmode]="'password'"
             [required]="true"
             [class]="'login'"
             [control]="getControl('password')"
+            [ngClass]="{'input-error': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}"
             [placeholder]="placeholderMessages.password || ''"
           ></app-input>
         </ion-item>

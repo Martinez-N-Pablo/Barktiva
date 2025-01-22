@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { LogoComponent } from '@app/shared/components/logo/logo.component';
 import { SecondaryButtonComponent } from '@app/shared/components/secondary-button/secondary-button.component';
 import { InputComponent } from '@app/shared/components/input/input.component';
+import { validateForm } from '@app/core/scripts/validate-forms';
 
 @Component({
   selector: 'app-singup',
@@ -59,7 +60,19 @@ export class SingupPage implements OnInit {
     });
   }
   
-  singup(): void { }
+  singup(): void {
+    this.singupForm.markAllAsTouched();
+    validateForm(this.singupForm);
+    
+    if (this.singupForm.invalid) {
+      console.log('Formulario inválido');
+      console.log(this.singupForm.get('email')?.errors);
+      return;
+    }
+
+    // Call to the service to login
+    this._router.navigate([`/${RoutesName.petForm}`]);
+  }
 
   redirectToLogin (): void {
     this._router.navigate([`/${RoutesName.login}`]);

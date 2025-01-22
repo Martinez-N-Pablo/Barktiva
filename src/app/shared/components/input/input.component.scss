@@ -4,6 +4,7 @@ ion-input.login {
     border: 3px solid $terciary-color;
     border-radius: 1.2em;
     padding: .5em;
+    
     --padding-start: #{$distance};
     --placeholder-font-style: #{$paragraph-font};
     --placeholder-color:  #{$black-color};

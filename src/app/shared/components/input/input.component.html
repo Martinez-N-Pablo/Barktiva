@@ -1,4 +1,6 @@
 <ion-input
+  borderError
+  [attr.name]="name"
   [attr.aria-label]="areaLabel || ''"
   [attr.role]="role || ''"
   [type]="type || ''"
@@ -8,4 +10,5 @@
   [class]="class || ''"
   [formControl]="control"
   [placeholder]="placeholder || ''"
+  
 />
