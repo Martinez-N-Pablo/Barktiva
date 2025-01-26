@@ -5,4 +5,50 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <form id="petForm" form action="submit" (ngSubmit)="onSubmit()" [formGroup]="petForm">
+    <!-- Email input -->
+      <ion-list class="loginInputList" role="list">
+        <ion-item role="listitem">
+          <ion-select (ionChange)="onSelectChange($event)" (ionFocus)="onOpenSelect()" aria-label="Raza" interface="modal" [placeholder]="placeholderMessages.breedSelect || ''" formControlName="breed">
+            <ion-select-option value="">Ninguna</ion-select-option>
+            @for (breed of breeds; track breed) {
+              @if (breed) {
+                <ion-select-option [value]="breed.id">
+                  <div class="option-content">
+                    <img [src]="breed.image" alt="{{ breed.name }}" class="option-image" />
+                    <span class="option-text">{{ breed.name }}</span>
+                  </div>
+                </ion-select-option>
+              }
+            }
+            @empty {
+              <li>No hay razas actualmente.</li>
+            }
+          </ion-select>
+        </ion-item>
+
+        <ion-item class="loginInputList" role="list">
+          <app-logo
+            [customStyles]="{ 'width': '30%' }"
+            [logoPath]="logoPath"
+            class="main-logo">
+          </app-logo>
+        </ion-item>
+        
+        <ion-item role="listitem">
+          <app-secondary-button [role]="'submit'" [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.createPetForm"></app-secondary-button>
+        </ion-item>
+      </ion-list>
+      <ion-button id="open-action-sheet">Open</ion-button>
+<ion-action-sheet
+  trigger="open-action-sheet"
+  class="my-custom-class"
+  header="Example header"
+  subHeader="Example subheader"
+  [buttons]="actionSheetButtons"
+>
+<ion-searchbar></ion-searchbar>
+
+</ion-action-sheet>
+  </form>
 </ion-content>

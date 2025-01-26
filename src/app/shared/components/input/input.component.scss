@@ -1,9 +1,11 @@
 @use '@theme/variables.scss' as *;
 
 ion-input.login {
-    border: 3px solid $terciary-color;
-    border-radius: 1.2em;
-    padding: .5em;
+    border: 1.5px solid $terciary-color;
+    border-radius: 10px;
+    --padding-end: 10px;
+
+    
     
     --padding-start: #{$distance};
     --placeholder-font-style: #{$paragraph-font};
@@ -14,3 +16,7 @@ ion-input.login {
     --placeholder-font-style: #{$paragraph-font};
     --highlight-color-focused: #{$black-color};
 }
+
+.error {
+    border-color: $danger-color !important;
+  }

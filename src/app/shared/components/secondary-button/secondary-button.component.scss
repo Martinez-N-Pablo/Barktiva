@@ -5,9 +5,9 @@ ion-button {
     width: 100%;
     font-family: $paragraph-font;
 
-    --border-radius: 10em;
+    --border-radius: 10px;
     --border-style: solid;
-    --border-width: 3px;
+    --border-width: 1.5px;
     --color: #{$black-color};
     --border-color: #{$terciary-color};
 
@@ -29,4 +29,5 @@ ion-button.secondary-button {
 
 ion-button.primary-button {
     --background: #{$primary-color};
+    --border-width: 0px;
 }

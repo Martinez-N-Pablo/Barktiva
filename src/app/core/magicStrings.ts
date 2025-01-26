@@ -23,12 +23,15 @@ export const PlaceholderMessages: any = {
     login: 'Iniciar sesión',
     singUpParagraph: '¿No tienes una cuenta?',
     singUp: 'Regístrate',
+    breedSelect: 'Selecciona la raza',
 };
 
 export const ParagraphMessages: any = {
     loginFortgotPassword: '¿Hás olvidado la contraseña?',
     iniciarSesion: 'Iniciar sesión',
     singUp: 'Registrarse',
+    createPetForm: 'Crear Mascota',
+    updatePetForm: 'Modificar Mascota',
 };
 
 export const RoutesName: any = {
@@ -43,6 +46,8 @@ export const Titles: any = {
     home: 'Inicio',
     login: 'Iniciar sesión',
     singup: 'Registrarse',
+    dashboard: 'Inicio',
+    petForm: 'Formulario Mascota'
 };
 
 export const MetaDescriptions: any = {
