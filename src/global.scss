@@ -66,10 +66,11 @@ ion-item {
   --inner-border-width: 0; /* Delete de border */
 }
 
-h1 h2 h3 h4 h5 h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: $title-font;
   color: $primary-color;
 }
+
 
 p {
   font-family: $paragraph-font;
@@ -97,10 +98,6 @@ ion-list.loginInputList {
           text-align: center;
           width: 100%;
           opacity: 0.7;
-
-          a {
-            color: $secondary-color;
-          }
       }
   }
 }
@@ -126,13 +123,25 @@ app-secondary-button {
   bottom: 0;
 }
 
-.register-link a {
-  color: var(--ion-color-primary, #3880ff);
-  text-decoration: none;
-  font-weight: bold;
-}
-
 .register-link {
   display: flex;
   flex-flow: column;
+}
+
+.logo-container {
+  aspect-ratio: 16 / 9;
+  margin-top: 2em;
+}
+
+.title {
+  margin-top: 0;
+  font-size: 36px; 
+  font-weight: bold; 
+  width: 100%; 
+  text-align: center;
+  padding: 0;
+
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
 }

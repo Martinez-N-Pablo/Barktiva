@@ -19,4 +19,9 @@ ion-input.login {
 
 .error {
     border-color: $danger-color !important;
-  }
+}
+
+ion-title {
+    width: 100%;
+    text-align: center;
+}

@@ -1,21 +1,14 @@
-.logo-container {
-    aspect-ratio: 16 / 9;
-}
+@use 'theme/variables.scss' as *;
 
 .forgot-password {
-    text-align: end;
+    text-align: center;
     width: 100%;
     height: fit-content;
-    margin-bottom: 1em;
-    margin-top: .4em;
 
     p {
-        padding-right: 2em;
-        margin: 0;
-        font-size: smaller;
+        font-size: small;
+        a {
+            color: $primary-color;
+        }
     }
-}
-
-.last-item {
-    margin-bottom: 0;
 }

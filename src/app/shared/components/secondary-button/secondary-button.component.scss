@@ -25,6 +25,8 @@ ion-button.secondary-button {
     width: 90%;
     
     --background: none;
+    --border-color: #{$primary-color} !important;
+
 }
 
 ion-button.primary-button {

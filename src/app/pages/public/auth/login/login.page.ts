@@ -34,6 +34,7 @@ export class LoginPage implements OnInit {
   private _formBuilder: FormBuilder = inject(FormBuilder);
 
   logoPath: string = RoutesName.home;
+  logoContainerWidth: string = '45%';
   
   errorMessages: any = ErrorMessages;
   paragraphMessages: any = ParagraphMessages;

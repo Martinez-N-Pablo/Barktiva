@@ -1,16 +1,19 @@
-<ion-header collapse="condense">
+<!-- <ion-header collapse="condense">
   <ion-toolbar>
     <ion-title size="large">{{ title }}</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
   <div class="logo-container">
     <app-logo
-      [customStyles]="{ 'width': '50%' }"
+      [customStyles]="{ 'width': logoContainerWidth }"
       [logoPath]="logoPath"
       class="main-logo">
     </app-logo>
+  </div>
+  <div>
+    <h1 class="title">{{ title }}</h1>
   </div>
   <div>
     <form id="singupForm" form action="submit" [formGroup]="singupForm">

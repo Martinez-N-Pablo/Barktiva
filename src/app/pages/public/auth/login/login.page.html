@@ -1,17 +1,22 @@
-<ion-header collapse="condense">
+<!-- <ion-header collapse="condense">
   <ion-toolbar>
-    <ion-title size="large">{{ title }}</ion-title>
+    <ion-title class="title">{{ title }}</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
   <div class="logo-container">
     <app-logo
-      [customStyles]="{ 'width': '50%' }"
+      [customStyles]="{ 'width': logoContainerWidth }"
       [logoPath]="logoPath"
       class="main-logo">
     </app-logo>
   </div>
+  
+  <div>
+    <h1 class="title">{{ title }}</h1>
+  </div>
+
   <div>
     <form id="loginForm" form action="submit" [formGroup]="loginForm">
       <!-- Email input -->
@@ -44,14 +49,14 @@
             [placeholder]="placeholderMessages.password || ''"
           ></app-input>
         </ion-item>
-
-        <div role="listitem" class="forgot-password">
-          <p><a href="" role="link" [attr.aria-label]="paragraphMessages.loginFortgotPassword || ''">{{ paragraphMessages.loginFortgotPassword || "" }}</a></p>
-        </div>
         
         <ion-item role="listitem">
           <app-secondary-button [role]="'button'" [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="login()"></app-secondary-button>
         </ion-item>
+
+        <div role="listitem" class="forgot-password">
+          <p><a href="" role="link" [attr.aria-label]="paragraphMessages.loginFortgotPassword || ''">{{ paragraphMessages.loginFortgotPassword || "" }}</a></p>
+        </div>
        </ion-list>
     </form>
     <div class="register-link">

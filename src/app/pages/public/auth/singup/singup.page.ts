@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Form, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonInput, IonHeader, IonTitle, IonToolbar, IonList, IonButton, IonItem } from '@ionic/angular/standalone';
@@ -30,9 +30,11 @@ import { validateForm } from '@app/core/scripts/validate-forms';
     SecondaryButtonComponent,
   ]
 })
-export class SingupPage implements OnInit {
+export class SingupPage implements OnInit, OnDestroy {
   private _router: Router = inject(Router);
   private _formBuilder: FormBuilder = inject(FormBuilder);
+
+  logoContainerWidth = '45%';
 
   private _subscriptions: Subscription[] = [];
   
@@ -48,6 +50,10 @@ export class SingupPage implements OnInit {
 
   ngOnInit() {
     this._initSingupForm();
+  }
+
+  ngOnDestroy(): void {
+    
   }
 
   private _initSingupForm(): void {
@@ -66,7 +72,6 @@ export class SingupPage implements OnInit {
     
     if (this.singupForm.invalid) {
       console.log('Formulario inválido');
-      console.log(this.singupForm.get('email')?.errors);
       return;
     }
 
