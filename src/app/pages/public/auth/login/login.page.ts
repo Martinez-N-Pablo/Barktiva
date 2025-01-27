@@ -38,6 +38,8 @@ export class LoginPage implements OnInit {
   placeholderMessages: any = PlaceholderMessages;
   title: string = Titles.login;
 
+  formSubmited: boolean = false; 
+
   loginForm!: FormGroup;
 
   constructor() { }
@@ -48,6 +50,7 @@ export class LoginPage implements OnInit {
 
   // When the user leaves the view, clean the form errors
   ionViewWillLeave(): void {
+    this.formSubmited = false;
     Object.keys(this.loginForm.controls).forEach((key) => {
       const control = this.loginForm.get(key);
       control?.setErrors(null);
@@ -64,6 +67,7 @@ export class LoginPage implements OnInit {
   }
 
   login(): void {
+    this.formSubmited = true;
     this.loginForm.markAllAsTouched();
     // validateForm(this.loginForm);
     if (this.loginForm.invalid) {

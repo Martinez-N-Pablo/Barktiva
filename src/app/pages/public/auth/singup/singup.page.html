@@ -27,7 +27,7 @@
             [class]="'login'"
             [control]="getControl('name')"
             [role]="'textbox'"
-            [validState]="singupForm.get('name')?.invalid && singupForm.get('name')?.touched"
+            [validState]="singupForm.get('name')?.invalid && singupForm.get('name')?.touched && formSubmited"
 
             [placeholder]="placeholderMessages.name || ''">
           </app-input>
@@ -44,7 +44,7 @@
             [class]="'login'"
             [control]="getControl('email')"
             [role]="'textbox'"            
-            [validState]="singupForm.get('email')?.invalid && singupForm.get('email')?.touched"
+            [validState]="singupForm.get('email')?.invalid && singupForm.get('email')?.touched && formSubmited"
             [placeholder]="placeholderMessages.email || ''">
           </app-input>
         </ion-item>
@@ -58,7 +58,7 @@
             [required]="true"
             [class]="'login'"
             [control]="getControl('birthdate')"
-            [validState]="singupForm.get('birthdate')?.invalid && singupForm.get('birthdate')?.touched"
+            [validState]="singupForm.get('birthdate')?.invalid && singupForm.get('birthdate')?.touched && formSubmited"
 
             [placeholder]="placeholderMessages.birthdate || ''">
           </app-input>
@@ -74,7 +74,7 @@
             [class]="'login'"
             [control]="getControl('password')"
             [role]="'textbox'"
-            [validState]="singupForm.get('password')?.invalid && singupForm.get('password')?.touched"
+            [validState]="singupForm.get('password')?.invalid && singupForm.get('password')?.touched && formSubmited"
             [placeholder]="placeholderMessages.password || ''">
           </app-input>
         </ion-item>
@@ -89,7 +89,7 @@
             [class]="'login'"
             [control]="getControl('confirmPassword')"
             [role]="'textbox'"
-            [validState]="singupForm.get('confirmPassword')?.invalid && singupForm.get('birconfirmPasswordthdate')?.touched"
+            [validState]="singupForm.get('confirmPassword')?.invalid && singupForm.get('birconfirmPasswordthdate')?.touched && formSubmited"
             [placeholder]="placeholderMessages.confirmPassword || ''">
           </app-input>
         </ion-item>

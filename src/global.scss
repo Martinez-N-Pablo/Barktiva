@@ -39,7 +39,7 @@
 @import '@ionic/angular/css/palettes/dark.system.css';
 
 :root {
-  --ion-background-color: #{$ea-color};
+  --ion-background-color: #{$background-color-white};
 
   --ion-text-color: #{$black-color};
   --ion-font-family: #{$paragraph-font};
@@ -51,7 +51,11 @@
 }
 
 app-input {
-  width: 100%;
+  width: 100%;  
+  
+  ion-input {
+    width: 100%;
+  }
 }
 
 ion-title {
@@ -96,6 +100,10 @@ ion-list.loginInputList {
 
 app-secondary-button {
   display: contents;
+}
+
+ion-input {
+  --highlight-color-focused: #{$black-color};
 }
 
 .main-logo {

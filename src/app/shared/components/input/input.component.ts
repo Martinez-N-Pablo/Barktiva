@@ -30,6 +30,9 @@ export class InputComponent  implements OnInit, OnChanges {
   @Input() control!: FormControl;
   @Input() name?: string = '';
   @Input() validState?: boolean = true;
+  @Input() errorText: string = '';
+  @Input() label: string = '';
+
 
   constructor() { }
 

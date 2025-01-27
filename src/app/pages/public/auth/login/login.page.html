@@ -32,7 +32,8 @@
             [class]="'login'"
             [control]="getControl('email')"
             [placeholder]="placeholderMessages.email || ''"
-            [validState]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            [label]="placeholderMessages.email || ''"
+            [validState]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched && formSubmited">
           </app-input>
         </ion-item>
         <!-- Password input -->
@@ -46,7 +47,8 @@
             [class]="'login'"
             [control]="getControl('password')"
             [placeholder]="placeholderMessages.password || ''"
-            [validState]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            [label]="placeholderMessages.password || ''"
+            [validState]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched && formSubmited">
           ></app-input>
         </ion-item>
         

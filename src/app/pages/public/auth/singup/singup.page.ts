@@ -40,6 +40,7 @@ export class SingupPage implements OnInit {
   placeholderMessages: any = PlaceholderMessages;
   title: string = Titles.singup;
   logoPath: string = RoutesName.path;
+  formSubmited: boolean = false;
   
   singupForm!: FormGroup;
 
@@ -51,6 +52,7 @@ export class SingupPage implements OnInit {
 
   // When the user leaves the view, clean the form errors
   ionViewWillLeave(): void {
+    this.formSubmited = false;
     Object.keys(this.singupForm.controls).forEach((key) => {
       const control = this.singupForm.get(key);
       control?.setErrors(null);
@@ -70,8 +72,8 @@ export class SingupPage implements OnInit {
   }
   
   singup(): void {
+    this.formSubmited = true;
     this.singupForm.markAllAsTouched();
-    validateForm(this.singupForm);
     
     if (this.singupForm.invalid) {
       console.log('Formulario inválido');

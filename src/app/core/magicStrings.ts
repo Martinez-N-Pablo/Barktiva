@@ -1,6 +1,7 @@
 export const ErrorMessages = {
-    required: 'This field is required.',
+    required: 'Este campo es obligatorio',
     email: 'Por favor, introduzca un email válido',
+    passwordValidation: 'Las contraseñas deben coincidir',
     minlength: (min: number) => `Minimum length is ${min} characters.`,
     maxlength: (max: number) => `Maximum length is ${max} characters.`,
     pattern: 'Invalid format.',
