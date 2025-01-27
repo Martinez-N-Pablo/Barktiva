@@ -46,6 +46,16 @@ export class LoginPage implements OnInit {
     this._initLoginForm();
   }
 
+  // When the user leaves the view, clean the form errors
+  ionViewWillLeave(): void {
+    Object.keys(this.loginForm.controls).forEach((key) => {
+      const control = this.loginForm.get(key);
+      control?.setErrors(null);
+      control?.markAsPristine();
+      control?.markAsUntouched();
+    });
+  }
+
   private _initLoginForm(): void {
     this.loginForm = this._formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -55,11 +65,11 @@ export class LoginPage implements OnInit {
 
   login(): void {
     this.loginForm.markAllAsTouched();
-    validateForm(this.loginForm);
-    
+    // validateForm(this.loginForm);
     if (this.loginForm.invalid) {
       console.log('Formulario inválido');
-      console.log(this.loginForm.get('email')?.errors);
+      console.log(this.loginForm.get('email')?.invalid
+    );
       return;
     }
 

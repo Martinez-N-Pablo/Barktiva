@@ -27,7 +27,7 @@ import { validateForm } from '@app/core/scripts/validate-forms';
     SecondaryButtonComponent,
   ]
 })
-export class SingupPage implements OnInit, OnDestroy {
+export class SingupPage implements OnInit {
   private _router: Router = inject(Router);
   private _formBuilder: FormBuilder = inject(FormBuilder);
 
@@ -49,8 +49,14 @@ export class SingupPage implements OnInit, OnDestroy {
     this._initSingupForm();
   }
 
-  ngOnDestroy(): void {
-    
+  // When the user leaves the view, clean the form errors
+  ionViewWillLeave(): void {
+    Object.keys(this.singupForm.controls).forEach((key) => {
+      const control = this.singupForm.get(key);
+      control?.setErrors(null);
+      control?.markAsPristine();
+      control?.markAsUntouched();
+    });
   }
 
   private _initSingupForm(): void {
@@ -72,8 +78,18 @@ export class SingupPage implements OnInit, OnDestroy {
       return;
     }
 
+    // Check if the passwords are the same
+    if (!this._validatePasswords()) {
+      console.log('Password do not Match');
+      return;
+    }
+
     // Call to the service to login
     this._router.navigate([`/${RoutesName.petForm}`]);
+  }
+
+  private _validatePasswords(): boolean {
+    return this.singupForm.get('password')!.value === this.singupForm.get('confirmPassword')!.value
   }
 
   redirectToLogin (): void {

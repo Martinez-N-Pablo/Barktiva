@@ -45,3 +45,36 @@ function _updateBorderColor(control: FormControl, field: string): void {
         element.classList.remove('error');
     }
 }
+
+
+/**
+ * Clear all error classes from the form controls.
+ * This should be called, for example, on submit or when leaving a page.
+ * 
+ * @param form: FormGroup
+ */
+export function clearFormErrors(form: FormGroup): void {
+    if (form) {
+        Object.keys(form.controls).forEach(field => {
+            const control = form.get(field);
+            if (control instanceof FormControl) {
+                _clearErrorClass(field); // Clear the error class
+            } else if (control instanceof FormGroup) {
+                clearFormErrors(control); // Recursively clear nested form groups
+            }
+        });
+    }
+}
+
+/**
+ * Remove the error class for a specific field.
+ * 
+ * @param field: string; Input name
+ */
+function _clearErrorClass(field: string): void {
+    const element = document.querySelector(`ion-input[name="${field}"]`) as HTMLElement;
+
+    if (element && element.classList.contains('error')) {
+        element.classList.remove('error');
+    }
+}

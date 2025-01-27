@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, input, OnInit, } from'@angular/core';
+import { Component, forwardRef, Input, input, OnChanges, OnInit, SimpleChanges, } from'@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonInput, IonItem, IonLabel } from '@ionic/angular/standalone';
 import { FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
@@ -18,7 +18,7 @@ import { BorderErrorDirective } from '@app/core/directive/border-error.directive
     },
   ],
 })
-export class InputComponent  implements OnInit {
+export class InputComponent  implements OnInit, OnChanges {
   @Input() placeholder: string = '';
   @Input() areaLabel: string = '';
   @Input() type: string = 'text';
@@ -28,11 +28,16 @@ export class InputComponent  implements OnInit {
   @Input() class?: string = '';
   @Input() required?: boolean = false;
   @Input() control!: FormControl;
-  @Input() ngClass!: any;
   @Input() name?: string = '';
+  @Input() validState?: boolean = true;
 
   constructor() { }
 
   ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['validState']) {
+    }
+  }
 
 }

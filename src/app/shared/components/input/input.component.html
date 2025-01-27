@@ -1,6 +1,5 @@
 <!-- <label [for]="name" position="floating">{{placeholder}}:</label> -->
 <ion-input
-  borderError
   [attr.name]="name"
   [attr.aria-label]="areaLabel || ''"
   [attr.role]="role || ''"
@@ -11,5 +10,6 @@
   [class]="class || ''"
   [formControl]="control"
   [placeholder]="placeholder"
+  [class.error]="validState"
   fill="outline"
 />

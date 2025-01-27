@@ -27,6 +27,8 @@
             [class]="'login'"
             [control]="getControl('name')"
             [role]="'textbox'"
+            [validState]="singupForm.get('name')?.invalid && singupForm.get('name')?.touched"
+
             [placeholder]="placeholderMessages.name || ''">
           </app-input>
         </ion-item>
@@ -41,7 +43,8 @@
             [required]="true"
             [class]="'login'"
             [control]="getControl('email')"
-            [role]="'textbox'"
+            [role]="'textbox'"            
+            [validState]="singupForm.get('email')?.invalid && singupForm.get('email')?.touched"
             [placeholder]="placeholderMessages.email || ''">
           </app-input>
         </ion-item>
@@ -55,6 +58,8 @@
             [required]="true"
             [class]="'login'"
             [control]="getControl('birthdate')"
+            [validState]="singupForm.get('birthdate')?.invalid && singupForm.get('birthdate')?.touched"
+
             [placeholder]="placeholderMessages.birthdate || ''">
           </app-input>
         </ion-item>
@@ -69,6 +74,7 @@
             [class]="'login'"
             [control]="getControl('password')"
             [role]="'textbox'"
+            [validState]="singupForm.get('password')?.invalid && singupForm.get('password')?.touched"
             [placeholder]="placeholderMessages.password || ''">
           </app-input>
         </ion-item>
@@ -83,6 +89,7 @@
             [class]="'login'"
             [control]="getControl('confirmPassword')"
             [role]="'textbox'"
+            [validState]="singupForm.get('confirmPassword')?.invalid && singupForm.get('birconfirmPasswordthdate')?.touched"
             [placeholder]="placeholderMessages.confirmPassword || ''">
           </app-input>
         </ion-item>

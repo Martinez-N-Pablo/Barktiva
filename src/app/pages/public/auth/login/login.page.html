@@ -31,8 +31,8 @@
             [required]="true"
             [class]="'login'"
             [control]="getControl('email')"
-            [ngClass]="{'input-error': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}"
-            [placeholder]="placeholderMessages.email || ''">
+            [placeholder]="placeholderMessages.email || ''"
+            [validState]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
           </app-input>
         </ion-item>
         <!-- Password input -->
@@ -45,8 +45,8 @@
             [required]="true"
             [class]="'login'"
             [control]="getControl('password')"
-            [ngClass]="{'input-error': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}"
             [placeholder]="placeholderMessages.password || ''"
+            [validState]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
           ></app-input>
         </ion-item>
         
