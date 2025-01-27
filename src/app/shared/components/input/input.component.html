@@ -11,7 +11,7 @@
   [formControl]="control"
   [placeholder]="placeholder"
   [class.error]="validState"
-  [label]="label"
+  [label]="label + (required ? '*' : '')"
   labelPlacement="floating"
-  error-text="Hola"
+  [attr.error-text]="error"
 />

@@ -55,6 +55,7 @@ export class SingupPage implements OnInit {
     this.formSubmited = false;
     Object.keys(this.singupForm.controls).forEach((key) => {
       const control = this.singupForm.get(key);
+      control?.reset();
       control?.setErrors(null);
       control?.markAsPristine();
       control?.markAsUntouched();
@@ -65,33 +66,40 @@ export class SingupPage implements OnInit {
     this.singupForm = this._formBuilder.group({
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      birthdate: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required, Validators.minLength(20)]),
-      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(20)]),
-    });
+      // birthdate: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    }, { validators: this.passwordsMatchValidator } );
   }
   
   singup(): void {
     this.formSubmited = true;
     this.singupForm.markAllAsTouched();
-    
+    console.log(this.singupForm.errors);
+
     if (this.singupForm.invalid) {
       console.log('Formulario inválido');
+      this.printFormErrors(this.singupForm);
+      console.log(this.singupForm.errors);
       return;
     }
 
     // Check if the passwords are the same
-    if (!this._validatePasswords()) {
-      console.log('Password do not Match');
-      return;
-    }
+    // if (!this.passwordsMatchValidator()) {
+    //   this.singupForm.get('confirmPassword')?.setErrors({ passwordsMismatch: true });
+    //   console.log('Password do not Match');
+    //   return;
+    // }
 
     // Call to the service to login
     this._router.navigate([`/${RoutesName.petForm}`]);
   }
 
-  private _validatePasswords(): boolean {
-    return this.singupForm.get('password')!.value === this.singupForm.get('confirmPassword')!.value
+  passwordsMatchValidator(group: FormGroup): { [key: string]: any } | null {
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+
+    return password === confirmPassword ? null : { passwordsMismatch: true };
   }
 
   redirectToLogin (): void {
@@ -100,5 +108,19 @@ export class SingupPage implements OnInit {
 
   getControl(controlName: string): FormControl{
     return this.singupForm.get(controlName) as FormControl;
+  }
+
+  printFormErrors(form: FormGroup): void {
+    Object.keys(form.controls).forEach(field => {
+      const control = form.get(field);
+  
+      if (control?.errors) {
+        console.log(`Error en el campo "${field}":`, control.errors);
+      }
+  
+      if (control instanceof FormGroup) {
+        this.printFormErrors(control); // Llama recursivamente para grupos anidados
+      }
+    });
   }
 }

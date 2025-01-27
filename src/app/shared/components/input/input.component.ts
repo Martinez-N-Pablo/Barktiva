@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonInput, IonItem, IonLabel } from '@ionic/angular/standalone';
 import { FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { BorderErrorDirective } from '@app/core/directive/border-error.directive';
+import { ErrorMessages } from '@app/core/magicStrings';
 
 @Component({
   selector: 'app-input',
@@ -18,7 +19,7 @@ import { BorderErrorDirective } from '@app/core/directive/border-error.directive
     },
   ],
 })
-export class InputComponent  implements OnInit, OnChanges {
+export class InputComponent  implements OnInit {
   @Input() placeholder: string = '';
   @Input() areaLabel: string = '';
   @Input() type: string = 'text';
@@ -32,16 +33,21 @@ export class InputComponent  implements OnInit, OnChanges {
   @Input() validState?: boolean = true;
   @Input() errorText: string = '';
   @Input() label: string = '';
-  @Input() errors?: { [key: string]: any } | null = null;
+  @Input() errors: any;
 
+  errorMessage: any = ErrorMessages;
 
   constructor() { }
 
-  ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if(changes['validState']) {
-    }
+  ngOnInit() {
   }
 
+  get error(): string | null {
+    if (!this.errors) {
+      return null;
+    }
+
+    const errorKey = Object.keys(this.errorMessage).find(key => this.errors[key]);
+    return errorKey ? this.errorMessage[errorKey] : null;
+  }
 }

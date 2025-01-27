@@ -33,7 +33,7 @@
             [control]="getControl('email')"
             [placeholder]="placeholderMessages.email || ''"
             [label]="placeholderMessages.email || ''"
-            [errors]="loginForm.get('email')?.errors"
+            [errors]="loginForm.get('email')?.errors ?? null"
             [validState]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched && formSubmited">
           </app-input>
         </ion-item>
@@ -49,6 +49,7 @@
             [control]="getControl('password')"
             [placeholder]="placeholderMessages.password || ''"
             [label]="placeholderMessages.password || ''"
+            [errors]="loginForm.get('email')?.errors ?? null"
             [validState]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched && formSubmited">
           ></app-input>
         </ion-item>

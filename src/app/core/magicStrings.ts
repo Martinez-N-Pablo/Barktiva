@@ -2,9 +2,9 @@ export const ErrorMessages = {
     required: 'Este campo es obligatorio',
     email: 'Por favor, introduzca un email válido',
     passwordValidation: 'Las contraseñas deben coincidir',
-    minlength: (min: number) => `Minimum length is ${min} characters.`,
-    maxlength: (max: number) => `Maximum length is ${max} characters.`,
-    pattern: 'Invalid format.',
+    // minlength: (min: number) => `Debe tener mínimo ${min} caracteres`,
+    // maxlength: (max: number) => `Debe tener máximo ${max} caracteres`,
+    pattern: 'Formato invalido',
     default: 'An unexpected error occurred.',
 };
 
