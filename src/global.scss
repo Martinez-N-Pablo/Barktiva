@@ -47,7 +47,7 @@
   --ion-color-primary: #{$primary-color};
 //  --ion-color-primary-rgb: 248, 158, 106;
   --ion-color-secondary: #{$secondary-color};
-  --ion-color-tertiary: #{$terciary-color};
+  --ion-color-terciary: #{$terciary-color};
 }
 
 app-input {
@@ -83,7 +83,9 @@ p {
 
 a {
   text-decoration: none;
-  color: $secondary-color;
+  color: $primary-color;
+  opacity: 1;
+  font-weight: bold;
 }
 
 

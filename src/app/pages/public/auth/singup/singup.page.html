@@ -28,6 +28,7 @@
             [control]="getControl('name')"
             [role]="'textbox'"
             [validState]="singupForm.get('name')?.invalid && singupForm.get('name')?.touched && formSubmited"
+            [label]="placeholderMessages.name || ''"
 
             [placeholder]="placeholderMessages.name || ''">
           </app-input>
@@ -45,11 +46,12 @@
             [control]="getControl('email')"
             [role]="'textbox'"            
             [validState]="singupForm.get('email')?.invalid && singupForm.get('email')?.touched && formSubmited"
+            [label]="placeholderMessages.email || ''"
             [placeholder]="placeholderMessages.email || ''">
           </app-input>
         </ion-item>
         <!-- Birthdate input -->
-        <ion-item role="listitem">
+        <!-- <ion-item role="listitem">
           <app-input
             [areaLabel]="'Fecha de nacimiento'"
             [name]="'birthdate'"
@@ -59,10 +61,11 @@
             [class]="'login'"
             [control]="getControl('birthdate')"
             [validState]="singupForm.get('birthdate')?.invalid && singupForm.get('birthdate')?.touched && formSubmited"
+            [label]="placeholderMessages.birthdate || ''"
 
             [placeholder]="placeholderMessages.birthdate || ''">
           </app-input>
-        </ion-item>
+        </ion-item> -->
         <!-- Password input -->
         <ion-item role="listitem">
           <app-input
@@ -75,6 +78,7 @@
             [control]="getControl('password')"
             [role]="'textbox'"
             [validState]="singupForm.get('password')?.invalid && singupForm.get('password')?.touched && formSubmited"
+            [label]="placeholderMessages.password || ''"
             [placeholder]="placeholderMessages.password || ''">
           </app-input>
         </ion-item>
@@ -90,6 +94,7 @@
             [control]="getControl('confirmPassword')"
             [role]="'textbox'"
             [validState]="singupForm.get('confirmPassword')?.invalid && singupForm.get('birconfirmPasswordthdate')?.touched && formSubmited"
+            [label]="placeholderMessages.confirmPassword || ''"
             [placeholder]="placeholderMessages.confirmPassword || ''">
           </app-input>
         </ion-item>

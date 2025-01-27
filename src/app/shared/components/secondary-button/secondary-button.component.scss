@@ -8,8 +8,9 @@ ion-button {
     --border-radius: 10px;
     --border-style: solid;
     --border-width: 1.5px;
-    --color: #{$black-color};
-    --border-color: #{$terciary-color};
+    --color: #{$background-color-white};
+    --border-color: #{$boton-color};
+    
 
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
@@ -24,12 +25,12 @@ ion-button.secondary-button {
     align-self: center;
     width: 90%;
     
+    --color: #{$black-color};
     --background: none;
-    --border-color: #{$primary-color} !important;
-
+    --border-color: #{$boton-color} !important;
 }
 
 ion-button.primary-button {
-    --background: #{$primary-color};
+    --background: #{$boton-color};
     --border-width: 0px;
 }
