@@ -20,9 +20,6 @@ import { validateForm } from '@app/core/scripts/validate-forms';
     InputComponent,
     IonList, 
     IonContent, 
-    IonHeader, 
-    IonTitle, 
-    IonToolbar, 
     CommonModule, 
     FormsModule,
     ReactiveFormsModule,
@@ -34,7 +31,7 @@ export class SingupPage implements OnInit, OnDestroy {
   private _router: Router = inject(Router);
   private _formBuilder: FormBuilder = inject(FormBuilder);
 
-  logoContainerWidth = '45%';
+  logoContainerWidth = '40%';
 
   private _subscriptions: Subscription[] = [];
   

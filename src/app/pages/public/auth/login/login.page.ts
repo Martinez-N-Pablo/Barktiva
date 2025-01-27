@@ -18,9 +18,6 @@ import { validateForm } from '@app/core/scripts/validate-forms';
     IonList, 
     IonItem, 
     IonContent, 
-    IonHeader, 
-    IonTitle, 
-    IonToolbar, 
     CommonModule, 
     FormsModule, 
     LogoComponent,
@@ -34,7 +31,7 @@ export class LoginPage implements OnInit {
   private _formBuilder: FormBuilder = inject(FormBuilder);
 
   logoPath: string = RoutesName.home;
-  logoContainerWidth: string = '45%';
+  logoContainerWidth: string = '40%';
   
   errorMessages: any = ErrorMessages;
   paragraphMessages: any = ParagraphMessages;

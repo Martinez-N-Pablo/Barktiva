@@ -1,6 +1,6 @@
 import { Component, forwardRef, Input, input, OnInit, } from'@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonInput, IonItem } from '@ionic/angular/standalone';
+import { IonInput, IonItem, IonLabel } from '@ionic/angular/standalone';
 import { FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { BorderErrorDirective } from '@app/core/directive/border-error.directive';
 

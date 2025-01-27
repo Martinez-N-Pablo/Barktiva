@@ -1,3 +1,4 @@
+<!-- <label [for]="name" position="floating">{{placeholder}}:</label> -->
 <ion-input
   borderError
   [attr.name]="name"
@@ -9,6 +10,6 @@
   [required]="required || ''"
   [class]="class || ''"
   [formControl]="control"
-  [placeholder]="placeholder || ''"
-  
+  [placeholder]="placeholder"
+  fill="outline"
 />
