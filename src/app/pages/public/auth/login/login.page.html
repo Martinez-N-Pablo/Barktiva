@@ -33,6 +33,7 @@
             [control]="getControl('email')"
             [placeholder]="placeholderMessages.email || ''"
             [label]="placeholderMessages.email || ''"
+            [errors]="loginForm.get('email')?.errors"
             [validState]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched && formSubmited">
           </app-input>
         </ion-item>

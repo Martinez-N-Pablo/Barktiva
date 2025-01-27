@@ -32,6 +32,7 @@ export class InputComponent  implements OnInit, OnChanges {
   @Input() validState?: boolean = true;
   @Input() errorText: string = '';
   @Input() label: string = '';
+  @Input() errors?: { [key: string]: any } | null = null;
 
 
   constructor() { }
