@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonSelect, IonSelectOption,IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonSearchbar, IonActionSheet, IonButton } from '@ionic/angular/standalone';
 import { LogoComponent } from "../../../shared/components/logo/logo.component";
-import { SecondaryButtonComponent } from "../../../shared/components/secondary-button/secondary-button.component";
+import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
 import { Subscription } from 'rxjs';
 import { PetService } from '@app/core/services/pet.service';
@@ -23,7 +23,7 @@ import { AlertController } from '@ionic/angular';
     CommonModule, 
     FormsModule, 
     LogoComponent, 
-    SecondaryButtonComponent,
+    ButtonComponent,
     ReactiveFormsModule,
     IonSelect,
     IonSelectOption

@@ -10,7 +10,7 @@ import { ErrorMessages } from '@app/core/magicStrings';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonInput, ReactiveFormsModule, BorderErrorDirective],
+  imports: [CommonModule, IonInput, ReactiveFormsModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

@@ -111,7 +111,7 @@
             }
         <ion-item role="listitem">
           
-          <app-secondary-button [role]="'button'" [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="singup()"></app-secondary-button>
+          <app-button [role]="'button'" [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="singup()"></app-button>
         </ion-item>
        </ion-list>
     </form>
@@ -119,7 +119,7 @@
       <p class="">
         {{placeholderMessages!.loginParagraph || ""}}
       </p>
-      <app-secondary-button [role]="'button'" [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="redirectToLogin()"></app-secondary-button>
+      <app-button [role]="'button'" [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="redirectToLogin()"></app-button>
     </div>
   </div>
 </ion-content>

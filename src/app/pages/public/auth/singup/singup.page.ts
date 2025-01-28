@@ -6,7 +6,7 @@ import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titl
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LogoComponent } from '@app/shared/components/logo/logo.component';
-import { SecondaryButtonComponent } from '@app/shared/components/secondary-button/secondary-button.component';
+import { ButtonComponent } from '@app/shared/components/button/button.component';
 import { InputComponent } from '@app/shared/components/input/input.component';
 import { validateForm } from '@app/core/scripts/validate-forms';
 
@@ -24,7 +24,7 @@ import { validateForm } from '@app/core/scripts/validate-forms';
     FormsModule,
     ReactiveFormsModule,
     LogoComponent,
-    SecondaryButtonComponent,
+    ButtonComponent,
   ]
 })
 export class SingupPage implements OnInit {

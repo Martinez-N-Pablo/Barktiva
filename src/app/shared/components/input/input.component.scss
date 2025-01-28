@@ -5,6 +5,7 @@ ion-input.login {
     // border-radius: 10px 10px 0 0;
     
     --background: #dfdfdf;
+    
     --border-radius: 10px 10px 0px 0px;
     --border-color: #{$black-color};
 
@@ -16,7 +17,8 @@ ion-input.login {
 }
 
 .error {
-    border-color: $danger-color !important;
+    // border: 1px solid $danger-color !important;
+    --border-color: $danger-color !important;
 }
 
 ion-title {
