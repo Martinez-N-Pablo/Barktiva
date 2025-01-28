@@ -82,16 +82,10 @@
             [placeholder]="placeholderMessages.age || ''">
           </app-input>
         </ion-item>
-        <!-- <ion-item class="bottom-absolute" role="listitem">
-          <app-button [role]="'submit'" [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.createPetForm"></app-button>
-        </ion-item> -->
-        <ion-item role="bottom-absolute">
-          <app-button [role]="'submit'" [form]="'petForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.iniciarSesion"></app-button>
-        </ion-item>
       </ion-list>
-      <!-- <ion-item role="bottom-absolute">
-        <app-button slot="fixed" [role]="'submit'" [form]="'petForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.iniciarSesion"></app-button>
-      </ion-item> -->
+      <ion-item slot="fixed" class="bottom-absolute">
+        <app-button [role]="'submit'" [form]="'petForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.createPetForm"></app-button>
+      </ion-item>
   </form>
 </ion-content>
 
