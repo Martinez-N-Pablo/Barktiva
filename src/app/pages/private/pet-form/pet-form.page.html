@@ -1,15 +1,13 @@
 <ion-header collapse="condense">
-  <ion-toolbar>
     <ion-title size="large">Formulario Mascota</ion-title>
-  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <form id="petForm" form action="submit" (ngSubmit)="onSubmit()" [formGroup]="petForm">
     <!-- Email input -->
-      <ion-list class="loginInputList" role="list">
-        <ion-item role="listitem">
-          <ion-select (ionChange)="onSelectChange($event)" (ionFocus)="onOpenSelect()" aria-label="Raza" interface="modal" [placeholder]="placeholderMessages.breedSelect || ''" formControlName="breed">
+      <ion-list class="formList" role="list">
+        <!-- <ion-item role="listitem">
+          <ion-select (ionChange)="onSelectChange($event)" aria-label="Raza" interface="modal" [placeholder]="placeholderMessages.breedSelect || ''" formControlName="breed">
             <ion-select-option value="">Ninguna</ion-select-option>
             @for (breed of breeds; track breed) {
               @if (breed) {
@@ -25,22 +23,80 @@
               <li>No hay razas actualmente.</li>
             }
           </ion-select>
-        </ion-item>
+        </ion-item> -->
 
-        <ion-item class="loginInputList" role="list">
+        <ion-item role="listitem">
           <app-logo
             [customStyles]="{ 'width': '30%' }"
             [logoPath]="logoPath"
             class="main-logo">
           </app-logo>
         </ion-item>
-        
         <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Nombre'"
+            [name]="'name'"
+            [type]="'text'"
+            [inputmode]="'text'"
+            [required]="true"
+            [class]="'main-input'"
+            [control]="getControl('name')"
+            [role]="'textbox'"
+            [validState]="petForm.get('name')?.invalid && petForm.get('name')?.touched && formSubmited"
+            [errors]="petForm.get('name')?.errors ?? null"
+            [label]="placeholderMessages.name || ''"
+            [placeholder]="placeholderMessages.name || ''">
+          </app-input>
+        </ion-item>
+        <!-- Breed input -->
+        <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Email'"
+            [name]="'breed'"
+            [type]="'text'"
+            [inputmode]="'text'"
+            [required]="true"
+            [class]="'main-input'"
+            [control]="getControl('breed')"
+            [role]="'textbox'"            
+            [validState]="petForm.get('breed')?.invalid && petForm.get('breed')?.touched && formSubmited"
+            [errors]="petForm.get('breed')?.errors ?? null"
+            [label]="placeholderMessages.breed || ''"
+            [placeholder]="placeholderMessages.breed || ''">
+          </app-input>
+        </ion-item>
+        <!-- Sex -->
+        <!-- Repeat password input -->
+        <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Edad'"
+            [name]="'age'"
+            [type]="'number'"
+            [inputmode]="'number'"
+            [class]="'main-input'"
+            [control]="getControl('age')"
+            [role]="'number'"
+            [validState]="petForm.get('age')?.invalid && petForm.get('age')?.touched && formSubmited"
+            [errors]="petForm.get('age')?.errors ?? null"
+            [label]="placeholderMessages.age || ''"
+            [placeholder]="placeholderMessages.age || ''">
+          </app-input>
+        </ion-item>
+        <!-- <ion-item class="bottom-absolute" role="listitem">
           <app-button [role]="'submit'" [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.createPetForm"></app-button>
+        </ion-item> -->
+        <ion-item role="bottom-absolute">
+          <app-button [role]="'submit'" [form]="'petForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.iniciarSesion"></app-button>
         </ion-item>
       </ion-list>
-      <ion-button id="open-action-sheet">Open</ion-button>
-<ion-action-sheet
+      <!-- <ion-item role="bottom-absolute">
+        <app-button slot="fixed" [role]="'submit'" [form]="'petForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.iniciarSesion"></app-button>
+      </ion-item> -->
+  </form>
+</ion-content>
+
+<!--      <ion-button id="open-action-sheet">Open</ion-button>
+ <ion-action-sheet
   trigger="open-action-sheet"
   class="my-custom-class"
   header="Example header"
@@ -49,6 +105,4 @@
 >
 <ion-searchbar></ion-searchbar>
 
-</ion-action-sheet>
-  </form>
-</ion-content>
+</ion-action-sheet> -->

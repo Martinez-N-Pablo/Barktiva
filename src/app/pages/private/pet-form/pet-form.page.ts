@@ -1,20 +1,26 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonSelect, IonSelectOption,IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonSearchbar, IonActionSheet, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonSelect, IonSelectOption,IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonSearchbar, IonActionSheet, IonButton, IonFooter } from '@ionic/angular/standalone';
 import { LogoComponent } from "../../../shared/components/logo/logo.component";
 import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
 import { Subscription } from 'rxjs';
 import { PetService } from '@app/core/services/pet.service';
 import { AlertController } from '@ionic/angular';
+import { InputComponent } from '@app/shared/components/input/input.component';
 
 @Component({
   selector: 'app-pet-form',
   templateUrl: './pet-form.page.html',
   styleUrls: ['./pet-form.page.scss'],
   standalone: true,
-  imports: [IonButton, IonActionSheet, IonSearchbar, IonItem, 
+  imports: [
+    IonFooter, 
+    IonButton, 
+    IonActionSheet, 
+    IonSearchbar, 
+    IonItem, 
     IonList, 
     IonContent, 
     IonHeader, 
@@ -25,8 +31,7 @@ import { AlertController } from '@ionic/angular';
     LogoComponent, 
     ButtonComponent,
     ReactiveFormsModule,
-    IonSelect,
-    IonSelectOption
+    InputComponent
   ]
 })
 export class PetFormPage implements OnInit, OnDestroy {
@@ -42,6 +47,8 @@ export class PetFormPage implements OnInit, OnDestroy {
   placeholderMessages: any = PlaceholderMessages;
   
   title: string = Titles.petForm || "";
+  
+  formSubmited: boolean = false;
 
   breeds: any[] = [];
   breedSelected: any;
@@ -86,37 +93,19 @@ export class PetFormPage implements OnInit, OnDestroy {
     }
   }
 
-  // Método para abrir el select con buscador personalizado
-  async onOpenSelect() {
-    const alert = await this.alertCtrl.create({
-      header: 'Selecciona una opción',
-      inputs: [
-        {
-          name: 'search',
-          type: 'text',
-          placeholder: 'Buscar...',
-          value: this.searchQuery,
-          handler: (event: any) => {
-            this.filterOptions(event.target.value);
-          },
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-        },
-        {
-          text: 'Aceptar',
-          handler: (data) => {
-            console.log('Seleccionado:', data);
-          },
-        },
-      ],
-      message: this.getOptionsMarkup(), // Incrusta las opciones filtradas
-    });
+  ionViewWillLeave(): void {
+    if(this._subscription) {
+      this._subscription.unsubscribe();
+    }
 
-    await alert.present();
+    this.formSubmited = false;
+    Object.keys(this.petForm.controls).forEach((key) => {
+      const control = this.petForm.get(key);
+      control?.reset();
+      control?.setErrors(null);
+      control?.markAsPristine();
+      control?.markAsUntouched();
+    });
   }
 
   // Filtrar las opciones en tiempo real
@@ -141,13 +130,13 @@ export class PetFormPage implements OnInit, OnDestroy {
 
   private _initPetForm(): void {
     this.petForm = this._formBuilder.group({
-      breed: new FormControl(null, [Validators.required, Validators.email]),
-      photo: new FormControl('', [Validators.required, Validators.email]),
-      name: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      sex: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      age: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      weight: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      castrated: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+      breed: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
+      photo: new FormControl(''),
+      sex: new FormControl('', [Validators.minLength(1)]),
+      age: new FormControl(0, [Validators.min(0), Validators.max(30)]),
+      weight: new FormControl('', [Validators.min(0)]),
+      castrated: new FormControl(false),
     });
 
     this.petForm.get('breed')?.valueChanges.subscribe(data => {
@@ -169,6 +158,12 @@ export class PetFormPage implements OnInit, OnDestroy {
     );
   }
 
-  onSubmit(): void {}
+  onSubmit(): void {
+    this.formSubmited = true;
+  }
+
+  getControl(controlName: string): FormControl{
+    return this.petForm.get(controlName) as FormControl;
+  }
 
 }

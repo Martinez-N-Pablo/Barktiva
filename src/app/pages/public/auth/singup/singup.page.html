@@ -15,7 +15,7 @@
   </div>
   <div>
     <form id="singupForm" form action="submit" [formGroup]="singupForm">
-      <ion-list class="loginInputList" role="list">
+      <ion-list class="formList" role="list">
         <!-- Name input -->
         <ion-item role="listitem">
           <app-input
@@ -24,7 +24,7 @@
             [type]="'text'"
             [inputmode]="'text'"
             [required]="true"
-            [class]="'login'"
+            [class]="'main-input'"
             [control]="getControl('name')"
             [role]="'textbox'"
             [validState]="singupForm.get('name')?.invalid && singupForm.get('name')?.touched && formSubmited"
@@ -42,7 +42,7 @@
             [autocomplete]="'email'"
             [inputmode]="'email'"
             [required]="true"
-            [class]="'login'"
+            [class]="'main-input'"
             [control]="getControl('email')"
             [role]="'textbox'"            
             [validState]="singupForm.get('email')?.invalid && singupForm.get('email')?.touched && formSubmited"
@@ -59,7 +59,7 @@
             [type]="'date'"
             [inputmode]="'date'"
             [required]="true"
-            [class]="'login'"
+            [class]="'main-input'"
             [control]="getControl('birthdate')"
             [validState]="singupForm.get('birthdate')?.invalid && singupForm.get('birthdate')?.touched && formSubmited"
             [label]="placeholderMessages.birthdate || ''"
@@ -76,7 +76,7 @@
             [type]="'password'"
             [inputmode]="'password'"
             [required]="true"
-            [class]="'login'"
+            [class]="'main-input'"
             [control]="getControl('password')"
             [role]="'textbox'"
             [validState]="singupForm.get('password')?.invalid && singupForm.get('password')?.touched && formSubmited"
@@ -93,7 +93,7 @@
             [type]="'password'"
             [inputmode]="'password'"
             [required]="true"
-            [class]="'login'"
+            [class]="'main-input'"
             [control]="getControl('confirmPassword')"
             [role]="'textbox'"
             [validState]="singupForm.get('confirmPassword')?.invalid && singupForm.get('birconfirmPasswordthdate')?.touched && formSubmited"
@@ -110,16 +110,15 @@
               <small style="margin-left: 2em; color: red;">{{errorMessages.passwordValidation || ""}}</small> 
             }
         <ion-item role="listitem">
-          
           <app-button [role]="'button'" [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="singup()"></app-button>
         </ion-item>
        </ion-list>
     </form>
-    <div class="register-link">
+    <ion-footer class="bottom-absolute">
       <p class="">
         {{placeholderMessages!.loginParagraph || ""}}
       </p>
       <app-button [role]="'button'" [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="redirectToLogin()"></app-button>
-    </div>
+    </ion-footer>
   </div>
 </ion-content>

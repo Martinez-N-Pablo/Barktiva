@@ -20,7 +20,7 @@
   <div>
     <form id="loginForm" form action="submit" [formGroup]="loginForm">
       <!-- Email input -->
-       <ion-list class="loginInputList" role="list">
+       <ion-list class="formList" role="list">
         <ion-item role="listitem">
           <app-input
             [areaLabel]="'Email'"
@@ -29,7 +29,7 @@
             [autocomplete]="'email'"
             [inputmode]="'email'"
             [required]="true"
-            [class]="'login'"
+            [class]="'main-input'"
             [control]="getControl('email')"
             [placeholder]="placeholderMessages.email || ''"
             [label]="placeholderMessages.email || ''"
@@ -45,7 +45,7 @@
             [type]="'password'"
             [inputmode]="'password'"
             [required]="true"
-            [class]="'login'"
+            [class]="'main-input'"
             [control]="getControl('password')"
             [placeholder]="placeholderMessages.password || ''"
             [label]="placeholderMessages.password || ''"
@@ -63,11 +63,11 @@
         </div>
        </ion-list>
     </form>
-    <div class="register-link">
+    <ion-footer class="bottom-absolute">
       <p class="">
         {{placeholderMessages!.singUpParagraph || ""}}
       </p>
       <app-button [role]="'button'" [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="redirectToRegister()"></app-button>
-    </div>
+    </ion-footer>
   </div>
 </ion-content>

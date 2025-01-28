@@ -25,6 +25,8 @@ export const PlaceholderMessages: any = {
     singUpParagraph: '¿No tienes una cuenta?',
     singUp: 'Regístrate',
     breedSelect: 'Selecciona la raza',
+    breed: 'Raza',
+    age: 'Edad',
 };
 
 export const ParagraphMessages: any = {
