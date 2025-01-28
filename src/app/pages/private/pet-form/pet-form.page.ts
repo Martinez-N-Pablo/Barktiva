@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonSelect, IonSelectOption,IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonSearchbar, IonActionSheet, IonButton, IonFooter } from '@ionic/angular/standalone';
+import { IonThumbnail, IonContent, IonSelect, IonSelectOption,IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonSearchbar, IonActionSheet, IonButton, IonFooter, IonImg } from '@ionic/angular/standalone';
 import { LogoComponent } from "../../../shared/components/logo/logo.component";
 import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
@@ -15,8 +15,7 @@ import { InputComponent } from '@app/shared/components/input/input.component';
   templateUrl: './pet-form.page.html',
   styleUrls: ['./pet-form.page.scss'],
   standalone: true,
-  imports: [
-    IonFooter, 
+  imports: [IonImg, 
     IonButton, 
     IonActionSheet, 
     IonSearchbar, 
@@ -25,13 +24,12 @@ import { InputComponent } from '@app/shared/components/input/input.component';
     IonContent, 
     IonHeader, 
     IonTitle, 
-    IonToolbar, 
     CommonModule, 
     FormsModule, 
-    LogoComponent, 
     ButtonComponent,
     ReactiveFormsModule,
-    InputComponent
+    InputComponent,
+    IonThumbnail,
   ]
 })
 export class PetFormPage implements OnInit, OnDestroy {
@@ -41,6 +39,7 @@ export class PetFormPage implements OnInit, OnDestroy {
   private _petService: PetService = inject(PetService);
 
   logoPath: string = RoutesName.dashboard || "";
+  isClicked: boolean = false;
 
   errorMessages: any = ErrorMessages;
   paragraphMessages: any = ParagraphMessages;
@@ -54,6 +53,8 @@ export class PetFormPage implements OnInit, OnDestroy {
   breedSelected: any;
   searchQuery: string = '';
   filteredBreeds = [...this.breeds]; // Opciones filtradas (inicialmente todas)
+
+  photoFile!: File;
 
   public actionSheetButtons = [
     {
@@ -116,13 +117,6 @@ export class PetFormPage implements OnInit, OnDestroy {
     );
   }
 
-  // Generar dinámicamente las opciones para mostrarlas en el modal
-  getOptionsMarkup(): string {
-    return this.filteredBreeds
-      .map((option) => `<div>${option.label}</div>`)
-      .join('');
-  }
-
   // Detectar cambios en la selección
   onSelectChange(event: any): void {
     console.log('Seleccionado:', event.detail.value);
@@ -165,5 +159,4 @@ export class PetFormPage implements OnInit, OnDestroy {
   getControl(controlName: string): FormControl{
     return this.petForm.get(controlName) as FormControl;
   }
-
 }

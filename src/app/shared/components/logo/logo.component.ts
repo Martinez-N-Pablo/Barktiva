@@ -32,7 +32,7 @@ export class LogoComponent  implements OnInit {
       this.isClicked = true;
 
       setTimeout(() => {
-        this.isClicked = false
+        this.isClicked = false;
         this.redirect(this.logoPath);
       }, 100);
     }

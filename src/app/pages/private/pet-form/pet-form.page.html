@@ -26,11 +26,13 @@
         </ion-item> -->
 
         <ion-item role="listitem">
-          <app-logo
-            [customStyles]="{ 'width': '30%' }"
-            [logoPath]="logoPath"
-            class="main-logo">
-          </app-logo>
+          <div class="photoUploader">
+            <ion-button class="buttonPhotoUploader">
+              <ion-thumbnail slot="start">
+                <ion-img [class.clicked]="isClicked" [src]="'https://ionicframework.com/docs/img/demos/thumbnail.svg'"></ion-img>
+              </ion-thumbnail>
+            </ion-button>
+          </div>
         </ion-item>
         <ion-item role="listitem">
           <app-input

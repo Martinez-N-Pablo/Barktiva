@@ -5,7 +5,7 @@
 }
 
 // Logo style when clicked
-.main-logo.clicked {
+.main-logo:active {
     transform: scale(0.95);
     opacity: 0.8;
 }
