@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { PetService } from '@app/core/services/pet.service';
 import { AlertController } from '@ionic/angular';
 import { InputComponent } from '@app/shared/components/input/input.component';
+import { PhotoUploaderService } from '@app/core/services/photo-uploader.service';
 
 @Component({
   selector: 'app-pet-form',
@@ -37,6 +38,9 @@ export class PetFormPage implements OnInit, OnDestroy {
 
   private _formBuilder: FormBuilder = inject(FormBuilder);
   private _petService: PetService = inject(PetService);
+  private _photoUploaderService: PhotoUploaderService = inject(PhotoUploaderService);
+
+  previewImage: string = '';
 
   logoPath: string = RoutesName.dashboard || "";
   isClicked: boolean = false;
@@ -158,5 +162,13 @@ export class PetFormPage implements OnInit, OnDestroy {
 
   getControl(controlName: string): FormControl{
     return this.petForm.get(controlName) as FormControl;
+  }
+
+  async onSelectImage() {
+    const imageBase64 = await this._photoUploaderService.selectImage();
+    if (imageBase64) {
+      this.previewImage = imageBase64; // Actualizamos la vista previa
+      this.petForm.patchValue({ photo: imageBase64 }); // Añadimos la imagen al formulario
+    }
   }
 }
