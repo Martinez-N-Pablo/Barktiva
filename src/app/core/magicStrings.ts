@@ -27,6 +27,8 @@ export const PlaceholderMessages: any = {
     breedSelect: 'Selecciona la raza',
     breed: 'Raza',
     age: 'Edad',
+    male: 'Masculino',
+    female: 'Femenino',
 };
 
 export const ParagraphMessages: any = {

@@ -68,6 +68,20 @@
           </app-input>
         </ion-item>
         <!-- Sex -->
+        <ion-item style="display: block;" role="listitem">
+          <label for="">Sexo</label>
+          <ion-radio-group value="custom-checked"> 
+            <div>
+              <label [for]="sexValue.femenimo">{{placeholderMessages.female || ""}}</label>
+              <ion-radio [name]="sexValue.femenimo" [value]="sexValue.femenimo" aria-label="Checkbox para elegir sexo femenino de la mascota"></ion-radio>
+            </div>
+            <div>
+              <label [for]="sexValue.masculino">{{placeholderMessages.male || ""}}</label>
+              <ion-radio [name]="sexValue.masculino" [value]="sexValue.masculino" aria-label="Checkbox para elegir sexo masculino de la mascota"></ion-radio>
+            </div>
+          </ion-radio-group>
+        
+        </ion-item>
         <!-- Repeat password input -->
         <ion-item role="listitem">
           <app-input
@@ -81,6 +95,7 @@
             [validState]="petForm.get('age')?.invalid && petForm.get('age')?.touched && formSubmited"
             [errors]="petForm.get('age')?.errors ?? null"
             [label]="placeholderMessages.age || ''"
+            [pattern]="'\d*'"
             [placeholder]="placeholderMessages.age || ''">
           </app-input>
         </ion-item>

@@ -34,6 +34,7 @@ export class InputComponent  implements OnInit {
   @Input() errorText: string = '';
   @Input() label: string = '';
   @Input() errors: any;
+  @Input() pattern?: string = "";
 
   errorMessage: any = ErrorMessages;
 
