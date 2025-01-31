@@ -70,14 +70,20 @@
         <!-- Sex -->
         <ion-item role="listitem">
           <ion-radio-group value="custom-checked"> 
-            <div>
-              <label [for]="sexValue.femenimo">{{placeholderMessages.female || ""}}</label>
-              <ion-radio [name]="sexValue.femenimo" [value]="sexValue.femenimo" aria-label="Checkbox para elegir sexo femenino de la mascota"></ion-radio>
-            </div>
-            <div>
-              <label [for]="sexValue.masculino">{{placeholderMessages.male || ""}}</label>
-              <ion-radio [name]="sexValue.masculino" [value]="sexValue.masculino" aria-label="Checkbox para elegir sexo masculino de la mascota"></ion-radio>
-            </div>
+              <div>
+                <label for="">Sexo</label>
+              </div>
+              <div class="container">
+                <label [for]="sexValue.femenimo">
+                  <ion-text>{{placeholderMessages.female || ""}}</ion-text>
+                  <ion-radio [name]="sexValue.femenimo" [value]="sexValue.femenimo" aria-label="Checkbox para elegir sexo femenino de la mascota"></ion-radio>
+                </label>
+              
+                <label [for]="sexValue.masculino">
+                  <ion-text>{{placeholderMessages.male || ""}}</ion-text>
+                  <ion-radio [name]="sexValue.masculino" [value]="sexValue.masculino" aria-label="Checkbox para elegir sexo masculino de la mascota"></ion-radio>
+                </label>
+              </div>
           </ion-radio-group>
         </ion-item>
         <!-- Age input -->
@@ -99,14 +105,21 @@
         </ion-item>
         <!-- Castrated input -->
         <ion-item role="listitem">
-          <ion-radio-group value="custom-checked"> 
+          <ion-radio-group value="custom-checked">
             <div>
-              <label [for]="castratedValue.intact">{{placeholderMessages.intact || ""}}</label>
-              <ion-radio [name]="castratedValue.intact" [value]="castratedValue.intact" aria-label="Checkbox para elegir si la mascota no ha sido castrada"></ion-radio>
+              <label for="">Castrado</label>
             </div>
-            <div>
-              <label [for]="castratedValue.castrated">{{placeholderMessages.castrated || ""}}</label>
-              <ion-radio [name]="castratedValue.castrated" [value]="castratedValue.castrated" aria-label="Checkbox para elegir si la mascota ha sido castrada"></ion-radio>
+            <div class="container">
+              <label [for]="castratedValue.intact">
+                <ion-text>{{placeholderMessages.intact || ""}}</ion-text>
+                <ion-radio [name]="castratedValue.intact" [value]="castratedValue.intact" aria-label="Checkbox para elegir si la mascota no ha sido castrada"></ion-radio>
+              </label>
+
+              <label [for]="castratedValue.castrated">
+                <ion-text>{{placeholderMessages.castrated || ""}}
+                </ion-text>
+                <ion-radio [name]="castratedValue.castrated" [value]="castratedValue.castrated" aria-label="Checkbox para elegir si la mascota ha sido castrada"></ion-radio>
+              </label>
             </div>
           </ion-radio-group>
         </ion-item>
