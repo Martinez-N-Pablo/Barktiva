@@ -78,15 +78,30 @@ ion-radio-group {
 
   .container {
     display: flex;
+    justify-content: space-around;
     align-items: center;
+    width: 100%;
 
     label {
+      width: 100%;
       display: flex;
-      margin-right: 2em;
+      margin-right: .5em;
+      border: 1px solid $black-color;
+      border-radius: $border-radius;
+      padding: 2em;
+      text-align: center;
 
       ion-text {
-        margin-right: $distance;
+        text-align: center;
+        width: 100%;
       }
+
+      
+    }
+
+    label.isSelected {
+      background-color: $primary-color;
+      color: $background-color-white;
     }
   }
 }

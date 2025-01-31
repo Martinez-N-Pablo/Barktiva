@@ -74,14 +74,14 @@
                 <label for="">Sexo</label>
               </div>
               <div class="container">
-                <label [for]="sexValue.femenimo">
+                <label (click)="sexSelected(sexValue.femenimo)" [class.isSelected]="sexInputValue===sexValue.femenimo" [for]="sexValue.femenimo">
                   <ion-text>{{placeholderMessages.female || ""}}</ion-text>
-                  <ion-radio [name]="sexValue.femenimo" [value]="sexValue.femenimo" aria-label="Checkbox para elegir sexo femenino de la mascota"></ion-radio>
+                  <!-- <ion-radio [name]="sexValue.femenimo" [value]="sexValue.femenimo" aria-label="Checkbox para elegir sexo femenino de la mascota"></ion-radio> -->
                 </label>
               
-                <label [for]="sexValue.masculino">
+                <label (click)="sexSelected(sexValue.masculino)" [class.isSelected]="sexInputValue===sexValue.masculino" [for]="sexValue.masculino">
                   <ion-text>{{placeholderMessages.male || ""}}</ion-text>
-                  <ion-radio [name]="sexValue.masculino" [value]="sexValue.masculino" aria-label="Checkbox para elegir sexo masculino de la mascota"></ion-radio>
+                  <!-- <ion-radio [name]="sexValue.masculino" [value]="sexValue.masculino" aria-label="Checkbox para elegir sexo masculino de la mascota"></ion-radio> -->
                 </label>
               </div>
           </ion-radio-group>
@@ -110,15 +110,15 @@
               <label for="">Castrado</label>
             </div>
             <div class="container">
-              <label [for]="castratedValue.intact">
+              <label (click)="castratedSelected(castratedValue.intact)" [class.isSelected]="castratedInputValue===castratedValue.intact" [for]="castratedValue.intact">
                 <ion-text>{{placeholderMessages.intact || ""}}</ion-text>
-                <ion-radio [name]="castratedValue.intact" [value]="castratedValue.intact" aria-label="Checkbox para elegir si la mascota no ha sido castrada"></ion-radio>
+                <!-- <ion-radio [name]="castratedValue.intact" [value]="castratedValue.intact" aria-label="Checkbox para elegir si la mascota no ha sido castrada"></ion-radio> -->
               </label>
 
-              <label [for]="castratedValue.castrated">
+              <label (click)="castratedSelected(castratedValue.castrated)" [class.isSelected]="castratedInputValue===castratedValue.castrated" [for]="castratedValue.castrated">
                 <ion-text>{{placeholderMessages.castrated || ""}}
                 </ion-text>
-                <ion-radio [name]="castratedValue.castrated" [value]="castratedValue.castrated" aria-label="Checkbox para elegir si la mascota ha sido castrada"></ion-radio>
+                <!-- <ion-radio [name]="castratedValue.castrated" [value]="castratedValue.castrated" aria-label="Checkbox para elegir si la mascota ha sido castrada"></ion-radio> -->
               </label>
             </div>
           </ion-radio-group>

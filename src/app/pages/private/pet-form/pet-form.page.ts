@@ -63,6 +63,9 @@ export class PetFormPage implements OnInit, OnDestroy {
 
   photoFile!: File;
 
+  sexInputValue: string = "";
+  castratedInputValue: string = "";
+
   public actionSheetButtons = [
     {
       text: 'Delete',
@@ -173,5 +176,15 @@ export class PetFormPage implements OnInit, OnDestroy {
       this.previewImage = imageBase64; // Actualizamos la vista previa
       this.petForm.patchValue({ photo: imageBase64 }); // Añadimos la imagen al formulario
     }
+  }
+
+  sexSelected(value: string): void {
+    this.sexInputValue = value || "";
+    this.petForm.get('sex')?.setValue(this.sexInputValue);
+  }
+
+  castratedSelected(value: string): void {
+    this.castratedInputValue = value || "";
+    this.petForm.get('castrated')?.setValue(this.castratedInputValue);
   }
 }
