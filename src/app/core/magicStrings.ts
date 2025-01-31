@@ -29,6 +29,9 @@ export const PlaceholderMessages: any = {
     age: 'Edad',
     male: 'Masculino',
     female: 'Femenino',
+    castrated: 'Castrado',
+    intact: 'Intacto',
+    weight: 'Peso',
 };
 
 export const ParagraphMessages: any = {

@@ -68,8 +68,7 @@
           </app-input>
         </ion-item>
         <!-- Sex -->
-        <ion-item style="display: block;" role="listitem">
-          <label for="">Sexo</label>
+        <ion-item role="listitem">
           <ion-radio-group value="custom-checked"> 
             <div>
               <label [for]="sexValue.femenimo">{{placeholderMessages.female || ""}}</label>
@@ -80,9 +79,8 @@
               <ion-radio [name]="sexValue.masculino" [value]="sexValue.masculino" aria-label="Checkbox para elegir sexo masculino de la mascota"></ion-radio>
             </div>
           </ion-radio-group>
-        
         </ion-item>
-        <!-- Repeat password input -->
+        <!-- Age input -->
         <ion-item role="listitem">
           <app-input
             [areaLabel]="'Edad'"
@@ -97,6 +95,36 @@
             [label]="placeholderMessages.age || ''"
             [pattern]="'\d*'"
             [placeholder]="placeholderMessages.age || ''">
+          </app-input>
+        </ion-item>
+        <!-- Castrated input -->
+        <ion-item role="listitem">
+          <ion-radio-group value="custom-checked"> 
+            <div>
+              <label [for]="castratedValue.intact">{{placeholderMessages.intact || ""}}</label>
+              <ion-radio [name]="castratedValue.intact" [value]="castratedValue.intact" aria-label="Checkbox para elegir si la mascota no ha sido castrada"></ion-radio>
+            </div>
+            <div>
+              <label [for]="castratedValue.castrated">{{placeholderMessages.castrated || ""}}</label>
+              <ion-radio [name]="castratedValue.castrated" [value]="castratedValue.castrated" aria-label="Checkbox para elegir si la mascota ha sido castrada"></ion-radio>
+            </div>
+          </ion-radio-group>
+        </ion-item>
+        <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Peso'"
+            [name]="'weight'"
+            [type]="'number'"
+            [inputmode]="'number'"
+            [class]="'main-input'"
+            [control]="getControl('weight')"
+            [role]="'number'"
+            [validState]="petForm.get('weight')?.invalid && petForm.get('weight')?.touched && formSubmited"
+            [errors]="petForm.get('weight')?.errors ?? null"
+            [label]="placeholderMessages.weight || ''"
+            [pattern]="'\d*'"
+            [placeholder]="placeholderMessages.weight || ''"
+            [textExtraInfo]="'kg'">
           </app-input>
         </ion-item>
       </ion-list>

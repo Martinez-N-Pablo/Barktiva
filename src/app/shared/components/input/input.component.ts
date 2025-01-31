@@ -1,6 +1,6 @@
 import { Component, forwardRef, Input, input, OnChanges, OnInit, SimpleChanges, } from'@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonInput, IonItem, IonLabel } from '@ionic/angular/standalone';
+import { IonInput, IonItem, IonLabel, IonText } from '@ionic/angular/standalone';
 import { FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { BorderErrorDirective } from '@app/core/directive/border-error.directive';
 import { ErrorMessages } from '@app/core/magicStrings';
@@ -10,7 +10,7 @@ import { ErrorMessages } from '@app/core/magicStrings';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonInput, ReactiveFormsModule],
+  imports: [IonText, CommonModule, IonInput, ReactiveFormsModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -35,6 +35,7 @@ export class InputComponent  implements OnInit {
   @Input() label: string = '';
   @Input() errors: any;
   @Input() pattern?: string = "";
+  @Input() textExtraInfo?: string = "";
 
   errorMessage: any = ErrorMessages;
 

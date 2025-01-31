@@ -25,6 +25,7 @@ import { validateForm } from '@app/core/scripts/validate-forms';
     ReactiveFormsModule,
     LogoComponent,
     ButtonComponent,
+    IonInput
   ]
 })
 export class SingupPage implements OnInit {

@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonThumbnail, IonContent, IonSelect, IonSelectOption,IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonSearchbar, IonActionSheet, IonButton, IonFooter, IonImg, IonRow, IonCol, IonLabel, IonRadio, IonRadioGroup } from '@ionic/angular/standalone';
+import { IonThumbnail, IonContent, IonSelect, IonSelectOption,IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonSearchbar, IonActionSheet, IonButton, IonFooter, IonImg, IonRow, IonCol, IonLabel, IonRadio, IonRadioGroup, IonText } from '@ionic/angular/standalone';
 import { LogoComponent } from "../../../shared/components/logo/logo.component";
 import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
@@ -10,15 +10,14 @@ import { PetService } from '@app/core/services/pet.service';
 import { AlertController } from '@ionic/angular';
 import { InputComponent } from '@app/shared/components/input/input.component';
 import { PhotoUploaderService } from '@app/core/services/photo-uploader.service';
-import { SexValue } from '@app/core/sexValue';
-import { Patterns } from '@app/core/petterns';
+import { CastratedValue, Patterns, SexValue } from '@app/core/constValue';
 
 @Component({
   selector: 'app-pet-form',
   templateUrl: './pet-form.page.html',
   styleUrls: ['./pet-form.page.scss'],
   standalone: true,
-  imports: [IonRadioGroup, IonRadio, IonLabel, IonCol, IonRow, IonImg, 
+  imports: [IonText, IonRadioGroup, IonRadio, IonLabel, IonCol, IonRow, IonImg, 
     IonButton, 
     IonActionSheet, 
     IonSearchbar, 
@@ -44,12 +43,11 @@ export class PetFormPage implements OnInit, OnDestroy {
 
   previewImage: string = '';
 
-  sex: any;
-
   logoPath: string = RoutesName.dashboard || "";
   isClicked: boolean = false;
 
   sexValue = SexValue;
+  castratedValue = CastratedValue;
   errorMessages: any = ErrorMessages;
   paragraphMessages: any = ParagraphMessages;
   placeholderMessages: any = PlaceholderMessages;
@@ -137,7 +135,7 @@ export class PetFormPage implements OnInit, OnDestroy {
       breed: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
       photo: new FormControl(''),
       sex: new FormControl('', [Validators.minLength(1)]),
-      age: new FormControl(0, [Validators.min(0), Validators.max(30), Validators.pattern(Patterns.integer)]),
+      age: new FormControl('', [Validators.min(0), Validators.max(30), Validators.pattern(Patterns.integer)]),
       weight: new FormControl('', [Validators.min(0)]),
       castrated: new FormControl(false),
     });

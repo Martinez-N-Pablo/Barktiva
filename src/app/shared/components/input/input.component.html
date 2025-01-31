@@ -12,7 +12,11 @@
   [placeholder]="placeholder"
   [class.error]="validState"
   [label]="label + (required ? '*' : '')"
-  labelPlacement="floating"
+  [labelPlacement]="textExtraInfo ? 'stacked' : 'floating'"
   [attr.error-text]="error"
   [attr.pattern]="pattern"
-/>
+>
+@if (textExtraInfo) {
+  <small slot="end">{{textExtraInfo || ""}}</small>
+}
+</ion-input>

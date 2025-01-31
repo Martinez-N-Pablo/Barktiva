@@ -5,7 +5,7 @@ ion-button {
     width: 100%;
     font-family: $paragraph-font;
 
-    --border-radius: 10px;
+    --border-radius: #{$border-radius};
     --border-style: solid;
     --border-width: 1.5px;
     --color: #{$background-color-white};
