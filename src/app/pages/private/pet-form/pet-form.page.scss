@@ -88,7 +88,7 @@ ion-radio-group {
       margin-right: .5em;
       border: 1px solid $black-color;
       border-radius: $border-radius;
-      padding: 2em;
+      padding: 1em;
       text-align: center;
 
       ion-text {
@@ -134,5 +134,15 @@ ion-radio.radio-checked::part(mark) {
   border-color: #111;
 
   transform: rotate(45deg);
+}
+
+.open-modal {
+  border: 1px solid $black-color;
+  border-radius: $border-radius;
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 

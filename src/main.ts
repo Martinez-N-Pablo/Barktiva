@@ -7,6 +7,13 @@ import { AppComponent } from './app/app.component';
 import { isDevMode } from '@angular/core';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideHttpClient } from '@angular/common/http';
+import { addIcons } from 'ionicons';
+import { chevronForward, arrowForward, caretForward } from 'ionicons/icons';
+
+// Register only icons will be used
+addIcons({
+  chevronForward
+});
 
 bootstrapApplication(AppComponent, {
   providers: [

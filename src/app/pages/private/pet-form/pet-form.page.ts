@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonThumbnail, IonContent, IonSelect, IonSelectOption,IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonSearchbar, IonActionSheet, IonButton, IonFooter, IonImg, IonRow, IonCol, IonLabel, IonRadio, IonRadioGroup, IonText } from '@ionic/angular/standalone';
+import { IonThumbnail, IonContent, IonSelect, IonSelectOption,IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonSearchbar, IonActionSheet, IonButton, IonFooter, IonImg, IonRow, IonCol, IonLabel, IonRadio, IonRadioGroup, IonText, IonIcon } from '@ionic/angular/standalone';
 import { LogoComponent } from "../../../shared/components/logo/logo.component";
 import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
@@ -11,16 +11,19 @@ import { AlertController } from '@ionic/angular';
 import { InputComponent } from '@app/shared/components/input/input.component';
 import { PhotoUploaderService } from '@app/core/services/photo-uploader.service';
 import { CastratedValue, Patterns, SexValue } from '@app/core/constValue';
+import { ModalComponent } from '@app/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-pet-form',
   templateUrl: './pet-form.page.html',
   styleUrls: ['./pet-form.page.scss'],
   standalone: true,
-  imports: [IonText, IonRadioGroup, IonRadio, IonLabel, IonCol, IonRow, IonImg, 
-    IonButton, 
-    IonActionSheet, 
-    IonSearchbar, 
+  imports: [
+    IonIcon, 
+    IonText, 
+    IonRadioGroup, 
+    IonImg, 
+    IonButton,
     IonItem, 
     IonList, 
     IonContent, 
@@ -32,6 +35,7 @@ import { CastratedValue, Patterns, SexValue } from '@app/core/constValue';
     ReactiveFormsModule,
     InputComponent,
     IonThumbnail,
+    ModalComponent,
   ]
 })
 export class PetFormPage implements OnInit, OnDestroy {
@@ -154,7 +158,6 @@ export class PetFormPage implements OnInit, OnDestroy {
         next: (data: any) => {
           this.breeds = data;
           this.filteredBreeds = [...this.breeds];
-          console.log(this.breeds);
         },
         error: (error: any) => {},
         complete: () => {}

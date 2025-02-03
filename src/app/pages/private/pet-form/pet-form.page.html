@@ -52,20 +52,11 @@
         </ion-item>
         <!-- Breed input -->
         <ion-item role="listitem">
-          <app-input
-            [areaLabel]="'Email'"
-            [name]="'breed'"
-            [type]="'text'"
-            [inputmode]="'text'"
-            [required]="true"
-            [class]="'main-input'"
-            [control]="getControl('breed')"
-            [role]="'textbox'"            
-            [validState]="petForm.get('breed')?.invalid && petForm.get('breed')?.touched && formSubmited"
-            [errors]="petForm.get('breed')?.errors ?? null"
-            [label]="placeholderMessages.breed || ''"
-            [placeholder]="placeholderMessages.breed || ''">
-          </app-input>
+          <div id="open-modal" class="open-modal">
+            <ion-text slot="start">{{placeholderMessages.breed}}</ion-text>
+            <ion-icon slot="end" name="chevron-forward"></ion-icon>
+          </div>
+          <app-modal></app-modal>
         </ion-item>
         <!-- Sex -->
         <ion-item role="listitem">
