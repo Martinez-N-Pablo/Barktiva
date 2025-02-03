@@ -23,6 +23,8 @@ import { debounceTime } from 'rxjs';
 export class ModalComponent  implements OnInit {
   @Input() breedsList: any;
 
+  breedsFiltered: any[] = [];
+
   placeholderMessage = PlaceholderMessages;
   debounceTime = 1000;
 
@@ -31,7 +33,7 @@ export class ModalComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.breedsList);
+    this.breedsFiltered = this.breedsList;
     this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(searchTerm => {
       this.filterBreeds(searchTerm);
     });
@@ -39,12 +41,12 @@ export class ModalComponent  implements OnInit {
 
   filterBreeds(searchTerm: string | null): void {
     if (!searchTerm?.trim()) {
-      this.breedsList = [...this.breedsList];
+      this.breedsFiltered = [...this.breedsList];
       return;
     }
 
     const searchLower = searchTerm.toLowerCase();
-    this.breedsList = this.breedsList.filter( (breed: any) =>
+    this.breedsFiltered = this.breedsList.filter( (breed: any) =>
       breed.name.toLowerCase().includes(searchLower)
     );
   }

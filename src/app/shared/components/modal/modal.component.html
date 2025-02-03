@@ -4,7 +4,7 @@
       <ion-searchbar [formControl]="searchControl" inputmode="text" [debounce]="debounceTime" [placeholder]="placeholderMessage.search" (click)="modal.setCurrentBreakpoint(0.75)"></ion-searchbar>
       <ion-list>
         @if (breedsList) {
-          @for (breed of breedsList; track breed; let index = $index) {
+          @for (breed of breedsFiltered; track breed; let index = $index) {
             <ion-item>
               <ion-avatar slot="start">
                 <ion-img [src]="breed.img"></ion-img>
