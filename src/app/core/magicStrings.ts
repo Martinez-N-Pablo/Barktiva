@@ -32,6 +32,7 @@ export const PlaceholderMessages: any = {
     castrated: 'Castrado',
     intact: 'Intacto',
     weight: 'Peso',
+    search: 'Buscar',
 };
 
 export const ParagraphMessages: any = {

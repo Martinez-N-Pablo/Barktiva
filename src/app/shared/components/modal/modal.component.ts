@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { PlaceholderMessages } from '@app/core/magicStrings';
 import { IonModal, IonAvatar, IonSearchbar, IonContent, IonList, IonItem, IonImg, IonLabel, IonText } from "@ionic/angular/standalone";
-
+import { debounceTime } from 'rxjs';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -14,14 +16,37 @@ import { IonModal, IonAvatar, IonSearchbar, IonContent, IonList, IonItem, IonImg
     IonContent, 
     IonSearchbar, 
     IonAvatar, 
-    IonModal
+    IonModal,
+    ReactiveFormsModule,
   ],
 })
 export class ModalComponent  implements OnInit {
-  @Input() breedList: any;
+  @Input() breedsList: any;
+
+  placeholderMessage = PlaceholderMessages;
+  debounceTime = 1000;
+
+  searchControl = new FormControl('');
   
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.breedsList);
+    this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(searchTerm => {
+      this.filterBreeds(searchTerm);
+    });
+  }
+
+  filterBreeds(searchTerm: string | null): void {
+    if (!searchTerm?.trim()) {
+      this.breedsList = [...this.breedsList];
+      return;
+    }
+
+    const searchLower = searchTerm.toLowerCase();
+    this.breedsList = this.breedsList.filter( (breed: any) =>
+      breed.name.toLowerCase().includes(searchLower)
+    );
+  }
 
 }
