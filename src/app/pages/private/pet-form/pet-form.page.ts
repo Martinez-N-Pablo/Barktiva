@@ -1,7 +1,7 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, Signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonThumbnail, IonContent, IonSelect, IonSelectOption,IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonSearchbar, IonActionSheet, IonButton, IonFooter, IonImg, IonRow, IonCol, IonLabel, IonRadio, IonRadioGroup, IonText, IonIcon } from '@ionic/angular/standalone';
+import { IonThumbnail, IonContent, IonSelect, IonSelectOption,IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonSearchbar, IonActionSheet, IonButton, IonFooter, IonImg, IonRow, IonCol, IonLabel, IonRadio, IonRadioGroup, IonText, IonIcon, IonAvatar } from '@ionic/angular/standalone';
 import { LogoComponent } from "../../../shared/components/logo/logo.component";
 import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
@@ -12,13 +12,14 @@ import { InputComponent } from '@app/shared/components/input/input.component';
 import { PhotoUploaderService } from '@app/core/services/photo-uploader.service';
 import { CastratedValue, Patterns, SexValue } from '@app/core/constValue';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
+import { Breed } from '@app/core/interfaces/breed';
 
 @Component({
   selector: 'app-pet-form',
   templateUrl: './pet-form.page.html',
   styleUrls: ['./pet-form.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonAvatar, 
     IonIcon, 
     IonText, 
     IonRadioGroup, 
@@ -36,6 +37,7 @@ import { ModalComponent } from '@app/shared/components/modal/modal.component';
     InputComponent,
     IonThumbnail,
     ModalComponent,
+    IonLabel
   ]
 })
 export class PetFormPage implements OnInit, OnDestroy {
@@ -61,7 +63,7 @@ export class PetFormPage implements OnInit, OnDestroy {
   formSubmited: boolean = false;
 
   breeds: any[] = [];
-  breedSelected: any;
+  breedSelected: WritableSignal<Breed | null> = signal(null);
   searchQuery: string = '';
   filteredBreeds = [...this.breeds]; // Opciones filtradas (inicialmente todas)
 

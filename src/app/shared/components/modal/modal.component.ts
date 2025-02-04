@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, input, Input, InputSignal, OnInit, ViewChild, WritableSignal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Breed } from '@app/core/interfaces/breed';
 import { PlaceholderMessages } from '@app/core/magicStrings';
 import { IonModal, IonAvatar, IonSearchbar, IonContent, IonList, IonItem, IonImg, IonLabel, IonText } from "@ionic/angular/standalone";
 import { debounceTime } from 'rxjs';
@@ -22,6 +23,7 @@ import { debounceTime } from 'rxjs';
 })
 export class ModalComponent  implements OnInit {
   @Input() breedsList: any;
+  @Input() breedSelected!: WritableSignal<Breed | null>;
 
   breedsFiltered: any[] = [];
 
@@ -29,7 +31,9 @@ export class ModalComponent  implements OnInit {
   debounceTime = 1000;
 
   searchControl = new FormControl('');
-  
+
+  @ViewChild('modal', { static: true }) modal!: IonModal;
+
   constructor() { }
 
   ngOnInit() {
@@ -49,6 +53,14 @@ export class ModalComponent  implements OnInit {
     this.breedsFiltered = this.breedsList.filter( (breed: any) =>
       breed.name.toLowerCase().includes(searchLower)
     );
+  }
+
+  // When the user select a breed, it is send to the father component
+  onSelectBreed(breed: any): void {
+    if(breed) {
+      this.breedSelected.set(breed);
+      this.modal.dismiss();
+    }
   }
 
 }
