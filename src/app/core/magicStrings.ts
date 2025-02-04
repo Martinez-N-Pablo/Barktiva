@@ -56,7 +56,8 @@ export const Titles: any = {
     login: 'Iniciar sesión',
     singup: 'Registrarse',
     dashboard: 'Inicio',
-    petForm: 'Formulario Mascota'
+    petForm: 'Formulario Mascota',
+    task: 'Tarea',
 };
 
 export const MetaDescriptions: any = {

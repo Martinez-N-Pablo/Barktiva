@@ -26,5 +26,10 @@ export const routes: Routes = [
     path: 'pet-form',
     loadComponent: () => import('./pages/private/pet-form/pet-form.page').then( m => m.PetFormPage)
   },
+  {
+    path: 'task',
+    loadComponent: () => import('./pages/private/task/task.page').then( m => m.TaskPage)
+  },
+
 
 ];
