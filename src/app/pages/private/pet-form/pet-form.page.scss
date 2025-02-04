@@ -146,3 +146,11 @@ ion-radio.radio-checked::part(mark) {
   justify-content: space-between;
 }
 
+.breedSelected {
+  justify-content: start;
+  padding: $distance;
+
+  ion-avatar {
+    margin-right: 1em;
+  }
+}

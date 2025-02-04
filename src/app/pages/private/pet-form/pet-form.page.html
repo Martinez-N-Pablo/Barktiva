@@ -52,15 +52,25 @@
         </ion-item>
         <!-- Breed input -->
         <ion-item role="listitem">
-          <div id="open-modal" class="open-modal">
-            <ion-text slot="start">{{placeholderMessages.breed}}</ion-text>
-            <ion-icon slot="end" name="chevron-forward"></ion-icon>
+          <div id="open-modal" class="open-modal" [class.breedSelected]="breedSelected()">
+            @if (!breedSelected()) {
+              <ion-text slot="start">{{placeholderMessages.breed}}</ion-text>
+              <ion-icon slot="end" name="chevron-forward"></ion-icon>
+            }
+            @else {
+              <ion-avatar slot="start">
+                <ion-img [src]="breedSelected()!.img || ''"></ion-img>
+              </ion-avatar>
+              <ion-label>
+                <ion-text>{{breedSelected()!.name || ""}}</ion-text>
+              </ion-label>
+            }
           </div>
-          <app-modal [breedsList]="breeds"></app-modal>
+          <app-modal [breedSelected]="breedSelected" [breedsList]="breeds"></app-modal>
         </ion-item>
         <!-- Sex -->
         <ion-item role="listitem">
-          <ion-radio-group value="custom-checked"> 
+          <ion-radio-group value="custom-checked">  
               <div>
                 <label for="">Sexo</label>
               </div>

@@ -5,7 +5,7 @@
       <ion-list>
         @if (breedsList) {
           @for (breed of breedsFiltered; track breed; let index = $index) {
-            <ion-item>
+            <ion-item (click)="onSelectBreed(breed)">
               <ion-avatar slot="start">
                 <ion-img [src]="breed.img"></ion-img>
               </ion-avatar>
