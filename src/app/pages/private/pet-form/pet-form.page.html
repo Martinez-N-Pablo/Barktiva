@@ -33,7 +33,7 @@
         </ion-item>
         <!-- Breed input -->
         <ion-item role="listitem">
-          <div id="open-modal" class="open-modal" [class.breedSelected]="breedSelected()">
+          <div id="open-modal" class="modal-container-button" [class.breedSelected]="breedSelected()">
             @if (!breedSelected()) {
               <ion-text slot="start">{{placeholderMessages.breed}}</ion-text>
               <ion-icon slot="end" name="chevron-forward"></ion-icon>

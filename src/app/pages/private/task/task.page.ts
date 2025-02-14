@@ -1,18 +1,22 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, Signal, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonButton, IonImg, IonText, IonIcon, IonRadioGroup } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonButton, IonImg, IonText, IonIcon, IonRadioGroup, IonLabel, IonAvatar } from '@ionic/angular/standalone';
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, Titles } from '@app/core/magicStrings';
 import { InputComponent } from '@app/shared/components/input/input.component';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
 import { ButtonComponent } from '@app/shared/components/button/button.component';
+import { Dog } from '@app/core/interfaces/dog';
+import { Subscription } from 'rxjs';
+import { DogService } from '@app/core/services/dog.service';
+import { DogFacadeService } from '@app/core/presenters/dog-facade.service';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.page.html',
   styleUrls: ['./task.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonAvatar, IonLabel, 
     ButtonComponent,
     ReactiveFormsModule,
     IonIcon,
@@ -24,10 +28,13 @@ import { ButtonComponent } from '@app/shared/components/button/button.component'
     IonHeader,
     IonTitle,
     CommonModule,
-    FormsModule
+    FormsModule,
+    IonImg,
+    ModalComponent,
   ]
 })
 export class TaskPage implements OnInit {
+  private _subscription: Subscription = new Subscription();
   title: string = Titles.task;
 
   private _formBuilder: FormBuilder = inject(FormBuilder);
@@ -39,10 +46,16 @@ export class TaskPage implements OnInit {
   errorMessages = ErrorMessages;
   paragraphMessages = ParagraphMessages;
 
-  constructor() { }
+  dogsList: WritableSignal<Dog[]> = signal([]);
+  dogSelected: WritableSignal<Dog | null> = signal(null);
+
+  constructor(private _dogService: DogService, private _dogFacadeSerivce: DogFacadeService) {
+    // this._dogFacadeSerivce(_dogService);
+  }
 
   ngOnInit() {
     this._initForm();
+    this._getPets();
   }
 
   private _initForm(): void {
@@ -64,5 +77,19 @@ export class TaskPage implements OnInit {
 
   getControl(controlName: string): FormControl{
     return this.taskForm.get(controlName) as FormControl;
+  }
+
+  private _getPets(): void {
+    // this._subscription.add(
+    //   this._dogService.getBreeds().subscribe({
+    //     next: (data: any) => {
+    //       this.dogsList = data;
+    //     },
+    //     error: (error: any) => {},
+    //     complete: () => {}
+    //   })
+    // );
+
+    this.dogsList = this._dogFacadeSerivce.getBreeds();
   }
 }

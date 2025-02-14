@@ -33,6 +33,7 @@ export const PlaceholderMessages: any = {
     intact: 'Intacto',
     weight: 'Peso',
     search: 'Buscar',
+    pet: 'Mascota',
 };
 
 export const ParagraphMessages: any = {
@@ -41,6 +42,8 @@ export const ParagraphMessages: any = {
     singUp: 'Registrarse',
     createPetForm: 'Crear Mascota',
     updatePetForm: 'Modificar Mascota',
+    createTask: 'Crear Tarea',
+    updateTask: 'Modificar Tarea'
 };
 
 export const RoutesName: any = {
@@ -66,4 +69,5 @@ export const MetaDescriptions: any = {
     singUp: 'Registrarse en la aplicación Barktiva',
     petForm: 'Formulario para añadir una mascota en la aplicación Barktiva',
     dashboard: 'Dashboard de la aplicación Barktiva',
+    task: 'Formulario para crear una tarea'
 };

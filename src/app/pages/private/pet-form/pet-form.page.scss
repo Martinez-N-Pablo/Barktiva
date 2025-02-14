@@ -17,16 +17,6 @@
   font-size: 16px;
 }
 
-ion-action-sheet.my-custom-class {
-  --background: #f58840;
-  --backdrop-opacity: 0.6;
-  --button-background-selected: #e97223;
-  --button-color: #000000;
-  --color: #fff;
-  /* role: "destructive" button iOS styling override */
-  --ion-color-danger: #000000;
-}
-
 .photoUploader {
   width: 100%;
   display: flex;
@@ -134,23 +124,4 @@ ion-radio.radio-checked::part(mark) {
   border-color: #111;
 
   transform: rotate(45deg);
-}
-
-.open-modal {
-  border: 1px solid $black-color;
-  border-radius: $border-radius;
-  width: 100%;
-  padding: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.breedSelected {
-  justify-content: start;
-  padding: $distance;
-
-  ion-avatar {
-    margin-right: 1em;
-  }
 }

@@ -5,88 +5,28 @@
 
 <ion-content [fullscreen]="true">
   <form id="taskForm" form action="submit" (ngSubmit)="onSubmit()" [formGroup]="taskForm">
-    <!-- Email input -->
       <ion-list class="formList" role="list">
-        <!-- <ion-item role="listitem">
-          <ion-select (ionChange)="onSelectChange($event)" aria-label="Raza" interface="modal" [placeholder]="placeholderMessages.breedSelect || ''" formControlName="breed">
-            <ion-select-option value="">Ninguna</ion-select-option>
-            @for (breed of breeds; track breed) {
-              @if (breed) {
-                <ion-select-option [value]="breed.id">
-                  <div class="option-content">
-                    <img [src]="breed.image" alt="{{ breed.name }}" class="option-image" />
-                    <span class="option-text">{{ breed.name }}</span>
-                  </div>
-                </ion-select-option>
-              }
-            }
-            @empty {
-              <li>No hay razas actualmente.</li>
-            }
-          </ion-select>
-        </ion-item> -->
-
+        <!-- Dog input select -->
         <ion-item role="listitem">
-          <app-input
-            [areaLabel]="'Nombre'"
-            [name]="'name'"
-            [type]="'text'"
-            [inputmode]="'text'"
-            [required]="true"
-            [class]="'main-input'"
-            [control]="getControl('name')"
-            [role]="'textbox'"
-            [validState]="taskForm.get('name')?.invalid && taskForm.get('name')?.touched && formSubmited"
-            [errors]="taskForm.get('name')?.errors ?? null"
-            [label]="placeholderMessages.name || ''"
-            [placeholder]="placeholderMessages.name || ''">
-          </app-input>
-        </ion-item>
-        <!-- Breed input -->
-        <ion-item role="listitem">
-          <div id="open-modal" class="open-modal">
-            <ion-text slot="start">{{placeholderMessages.breed}}</ion-text>
-            <ion-icon slot="end" name="chevron-forward"></ion-icon>
+          <div id="open-modal" class="modal-container-button" [class.breedSelected]="dogSelected()">
+            @if (!dogSelected()) {
+              <ion-text slot="start">{{placeholderMessages.pet || ""}}</ion-text>
+              <ion-icon slot="end" name="chevron-forward"></ion-icon>
+            }
+            @else {
+              <ion-avatar slot="start">
+                <ion-img [src]="dogSelected()!.img || ''"></ion-img>
+              </ion-avatar>
+              <ion-label>
+                <ion-text>{{dogSelected()!.name || ""}}</ion-text>
+              </ion-label>
+            }
           </div>
-        </ion-item>
-        <!-- Age input -->
-        <ion-item role="listitem">
-          <app-input
-            [areaLabel]="'Edad'"
-            [name]="'age'"
-            [type]="'number'"
-            [inputmode]="'number'"
-            [class]="'main-input'"
-            [control]="getControl('age')"
-            [role]="'number'"
-            [validState]="taskForm.get('age')?.invalid && taskForm.get('age')?.touched && formSubmited"
-            [errors]="taskForm.get('age')?.errors ?? null"
-            [label]="placeholderMessages.age || ''"
-            [pattern]="'\d*'"
-            [placeholder]="placeholderMessages.age || ''">
-          </app-input>
-        </ion-item>
-        <!-- Castrated input -->
-        <ion-item role="listitem">
-          <app-input
-            [areaLabel]="'Peso'"
-            [name]="'weight'"
-            [type]="'number'"
-            [inputmode]="'number'"
-            [class]="'main-input'"
-            [control]="getControl('weight')"
-            [role]="'number'"
-            [validState]="taskForm.get('weight')?.invalid && taskForm.get('weight')?.touched && formSubmited"
-            [errors]="taskForm.get('weight')?.errors ?? null"
-            [label]="placeholderMessages.weight || ''"
-            [pattern]="'\d*'"
-            [placeholder]="placeholderMessages.weight || ''"
-            [textExtraInfo]="'kg'">
-          </app-input>
+          <app-modal [breedSelected]="dogSelected" [breedsList]="dogsList()"></app-modal>
         </ion-item>
       </ion-list>
       <ion-item slot="fixed" class="bottom-absolute">
-        <app-button [role]="'submit'" [form]="'taskForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.createtaskForm"></app-button>
+        <app-button [role]="'submit'" [form]="'taskForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.createTask"></app-button>
       </ion-item>
   </form>
 </ion-content>

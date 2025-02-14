@@ -20,6 +20,9 @@ export function setMetaDescriptionTag(meta: Meta, url: string) {
     case '/dashboard':
       description = MetaDescriptions.dashboard || '';
       break;
+    case '/task':
+      description = MetaDescriptions.task || '';
+      break;
     default:
       description = MetaDescriptions.home || '';
       break;

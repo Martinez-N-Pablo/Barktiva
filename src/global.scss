@@ -147,3 +147,23 @@ ion-input {
   overflow: visible;
   text-overflow: unset;
 }
+
+// Boton for open modal
+.modal-container-button {
+  border: 1px solid $black-color;
+  border-radius: $border-radius;
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.breedSelected {
+  justify-content: start;
+  padding: $distance;
+
+  ion-avatar {
+    margin-right: 1em;
+  }
+}
