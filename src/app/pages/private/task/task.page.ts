@@ -10,13 +10,14 @@ import { Dog } from '@app/core/interfaces/dog';
 import { Subscription } from 'rxjs';
 import { DogService } from '@app/core/services/dog.service';
 import { DogFacadeService } from '@app/core/presenters/dog-facade.service';
+import { SelectInputComponent } from "../../../shared/components/select-input/select-input.component";
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.page.html',
   styleUrls: ['./task.page.scss'],
   standalone: true,
-  imports: [IonAvatar, IonLabel, 
+  imports: [IonAvatar, IonLabel,
     ButtonComponent,
     ReactiveFormsModule,
     IonIcon,
@@ -30,8 +31,7 @@ import { DogFacadeService } from '@app/core/presenters/dog-facade.service';
     CommonModule,
     FormsModule,
     IonImg,
-    ModalComponent,
-  ]
+    ModalComponent, SelectInputComponent]
 })
 export class TaskPage implements OnInit {
   private _subscription: Subscription = new Subscription();

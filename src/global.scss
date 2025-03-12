@@ -154,9 +154,12 @@ ion-input {
   border-radius: $border-radius;
   width: 100%;
   padding: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  
+  .container-modal-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }	
 }
 
 .breedSelected {

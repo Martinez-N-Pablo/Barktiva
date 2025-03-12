@@ -22,7 +22,7 @@ import { debounceTime } from 'rxjs';
   ],
 })
 export class ModalComponent  implements OnInit {
-  @Input() breedsList: any;
+  @Input() breedsList: Breed[] = [];
   @Input() breedSelected!: WritableSignal<Breed | null>;
 
   breedsFiltered: any[] = [];

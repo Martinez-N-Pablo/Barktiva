@@ -49,18 +49,7 @@ ion-radio-group {
   flex-flow: column;
   justify-content: start;
   width: 100%;
-  // background-color: $background-input-grey;
-  // padding: 1em;
   border-radius: 10px;
-
-  // div {
-  //   display: flex;
-  //   align-items: center;
-  //   label {
-  //     margin-right: 0.8em;
-
-  //   }
-  // }
 
   div:first-child {
     margin-bottom: $distance;
@@ -95,6 +84,8 @@ ion-radio-group {
   }
 }
 
+
+/* Custom radio button */
 ion-radio::part(container) {
   width: 30px;
   height: 30px;

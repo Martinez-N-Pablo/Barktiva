@@ -43,7 +43,9 @@ export const ParagraphMessages: any = {
     createPetForm: 'Crear Mascota',
     updatePetForm: 'Modificar Mascota',
     createTask: 'Crear Tarea',
-    updateTask: 'Modificar Tarea'
+    updateTask: 'Modificar Tarea',
+    sex: 'Sexo',
+    sterilized: 'Esterilizado',
 };
 
 export const RoutesName: any = {

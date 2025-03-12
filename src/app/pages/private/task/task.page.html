@@ -9,18 +9,7 @@
         <!-- Dog input select -->
         <ion-item role="listitem">
           <div id="open-modal" class="modal-container-button" [class.breedSelected]="dogSelected()">
-            @if (!dogSelected()) {
-              <ion-text slot="start">{{placeholderMessages.pet || ""}}</ion-text>
-              <ion-icon slot="end" name="chevron-forward"></ion-icon>
-            }
-            @else {
-              <ion-avatar slot="start">
-                <ion-img [src]="dogSelected()!.img || ''"></ion-img>
-              </ion-avatar>
-              <ion-label>
-                <ion-text>{{dogSelected()!.name || ""}}</ion-text>
-              </ion-label>
-            }
+            <app-select-input class="container-modal-list" [breedSelected]="dogSelected" [placeholderMessage]="placeholderMessages.pet"></app-select-input>
           </div>
           <app-modal [breedSelected]="dogSelected" [breedsList]="dogsList()"></app-modal>
         </ion-item>

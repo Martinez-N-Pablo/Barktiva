@@ -1,0 +1,12 @@
+@if (!breedSelected()) {
+  <ion-text slot="start">{{placeholderMessage}}</ion-text>
+  <ion-icon slot="end" name="chevron-forward"></ion-icon>
+}
+@else {
+  <ion-avatar slot="start">
+    <ion-img [src]="breedSelected()!.img || ''"></ion-img>
+  </ion-avatar>
+  <ion-label>
+    <ion-text>{{breedSelected()!.name || ""}}</ion-text>
+  </ion-label>
+}

@@ -13,6 +13,7 @@ import { PhotoUploaderService } from '@app/core/services/photo-uploader.service'
 import { CastratedValue, Patterns, SexValue } from '@app/core/constValue';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
 import { Breed } from '@app/core/interfaces/breed';
+import { SelectInputComponent } from '@app/shared/components/select-input/select-input.component';
 
 @Component({
   selector: 'app-pet-form',
@@ -37,7 +38,8 @@ import { Breed } from '@app/core/interfaces/breed';
     InputComponent,
     IonThumbnail,
     ModalComponent,
-    IonLabel
+    IonLabel,
+    SelectInputComponent,
   ]
 })
 export class PetFormPage implements OnInit, OnDestroy {
