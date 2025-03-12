@@ -40,20 +40,13 @@
         </ion-item>
         <!-- Sex -->
         <ion-item role="listitem">
-          <ion-radio-group id="sex-radio-group" value="custom-checked">  
-              <div>
-                <ion-label for="sex-radio-group">{{paragraphMessages.sex || ""}}</ion-label>
-              </div>
-              <div class="container">
-                <label (click)="sexSelected(sexValue.femenimo)" [class.isSelected]="sexInputValue===sexValue.femenimo" [for]="sexValue.femenimo">
-                  <ion-text>{{placeholderMessages.female || ""}}</ion-text>
-                </label>
-              
-                <label (click)="sexSelected(sexValue.masculino)" [class.isSelected]="sexInputValue===sexValue.masculino" [for]="sexValue.masculino">
-                  <ion-text>{{placeholderMessages.male || ""}}</ion-text>
-                </label>
-              </div>
-          </ion-radio-group>
+          <app-input-radio 
+              [paragraphMessage]="paragraphMessages.sex || ''"
+              [radioGroupID]="paragraphMessages.sex || ''"
+              [radioOptions]="sexRadioOptions"
+              [radioInputSelected]="sexInputValue || ''"
+              (onRadioSelected)="sexSelected($event)"
+            ></app-input-radio>
         </ion-item>
         <!-- Age input -->
         <ion-item role="listitem">
@@ -74,22 +67,6 @@
         </ion-item>
         <!-- Castrated input -->
         <ion-item role="listitem">
-          <!-- <ion-radio-group id="sterilized-radio-group" value="custom-checked">
-            <div>
-              <ion-label for="sterilized-radio-group">{{paragraphMessages.sterilized || ""}}</ion-label>
-            </div>
-            <div class="container">
-              <label (click)="castratedSelected(castratedValue.intact)" [class.isSelected]="castratedInputValue===castratedValue.intact" [for]="castratedValue.intact">
-                <ion-text>{{placeholderMessages.intact || ""}}</ion-text>
-              </label>
-
-              <label (click)="castratedSelected(castratedValue.sterilized)" [class.isSelected]="castratedInputValue===castratedValue.sterilized" [for]="castratedValue.sterilized">
-                <ion-text>{{placeholderMessages.castrated || ""}}
-                </ion-text>
-              </label>
-            </div>
-            
-          </ion-radio-group> -->
           <app-input-radio 
               [paragraphMessage]="paragraphMessages.sterilized || ''"
               [radioGroupID]="paragraphMessages.sterilized || ''"
@@ -121,15 +98,3 @@
       </ion-item>
   </form>
 </ion-content>
-
-<!--      <ion-button id="open-action-sheet">Open</ion-button>
- <ion-action-sheet
-  trigger="open-action-sheet"
-  class="my-custom-class"
-  header="Example header"
-  subHeader="Example subheader"
-  [buttons]="actionSheetButtons"
->
-<ion-searchbar></ion-searchbar>
-
-</ion-action-sheet> -->

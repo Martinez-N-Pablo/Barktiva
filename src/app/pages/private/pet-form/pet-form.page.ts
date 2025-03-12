@@ -74,7 +74,11 @@ export class PetFormPage implements OnInit, OnDestroy {
   sexInputValue: string = "";
   castratedInputValue: string = "";
 
-  sexRadioOptions: string[] = ['Hembra', 'Macho'];
+  sexRadioOptions: {radioID: string, paragraphName: string}[] = [
+    {radioID: this.sexValue.femenimo || "", paragraphName: this.placeholderMessages.female || ""},
+    {radioID: this.sexValue.masculino || "", paragraphName: this.placeholderMessages.male || ""},
+  ];
+
   sterilizedRadioOptions: {radioID: string, paragraphName: string}[] = [
     {radioID: this.castratedValue.intact || "", paragraphName: this.placeholderMessages.intact || ""},
     {radioID: this.castratedValue.sterilized || "", paragraphName: this.placeholderMessages.sterilized || ""},
@@ -187,7 +191,7 @@ export class PetFormPage implements OnInit, OnDestroy {
     const imageBase64 = await this._photoUploaderService.selectImage();
     if (imageBase64) {
       this.previewImage = imageBase64; // Actualizamos la vista previa
-      this.petForm.patchValue({ photo: imageBase64 }); // Añadimos la imagen al formulario
+      this.petForm.patchValue({ photo: imageBase64 }); // Insertamos la imagen al formulario
     }
   }
 
