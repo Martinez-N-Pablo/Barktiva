@@ -74,7 +74,7 @@
         </ion-item>
         <!-- Castrated input -->
         <ion-item role="listitem">
-          <ion-radio-group id="sterilized-radio-group" value="custom-checked">
+          <!-- <ion-radio-group id="sterilized-radio-group" value="custom-checked">
             <div>
               <ion-label for="sterilized-radio-group">{{paragraphMessages.sterilized || ""}}</ion-label>
             </div>
@@ -83,12 +83,20 @@
                 <ion-text>{{placeholderMessages.intact || ""}}</ion-text>
               </label>
 
-              <label (click)="castratedSelected(castratedValue.castrated)" [class.isSelected]="castratedInputValue===castratedValue.castrated" [for]="castratedValue.castrated">
+              <label (click)="castratedSelected(castratedValue.sterilized)" [class.isSelected]="castratedInputValue===castratedValue.sterilized" [for]="castratedValue.sterilized">
                 <ion-text>{{placeholderMessages.castrated || ""}}
                 </ion-text>
               </label>
             </div>
-          </ion-radio-group>
+            
+          </ion-radio-group> -->
+          <app-input-radio 
+              [paragraphMessage]="paragraphMessages.sterilized || ''"
+              [radioGroupID]="paragraphMessages.sterilized || ''"
+              [radioOptions]="sterilizedRadioOptions"
+              [radioInputSelected]="castratedInputValue || ''"
+              (onRadioSelected)="castratedSelected($event)"
+            ></app-input-radio>
         </ion-item>
         <ion-item role="listitem">
           <app-input

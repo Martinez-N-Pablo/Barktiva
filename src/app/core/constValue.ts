@@ -8,6 +8,6 @@ export const SexValue = {
 }
 
 export const CastratedValue = {
-    castrated: 'c',
+    sterilized: 'c',
     intact: 'i'
 }

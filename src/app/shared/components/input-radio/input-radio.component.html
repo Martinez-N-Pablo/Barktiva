@@ -1,0 +1,15 @@
+<ion-radio-group id="sterilized-radio-group" value="custom-checked">
+  <div>
+    <ion-label for="sterilized-radio-group">{{paragraphMessage || ""}}</ion-label>
+  </div>
+  <div class="container">
+    <label (click)="onSelect(radioOptions[0].radioID)" [class.isSelected]="radioInputSelected === radioOptions[0].radioID" [for]="radioOptions[0].radioID">
+      <ion-text>{{radioOptions[0].paragraphName}}</ion-text>
+    </label>
+
+    <label (click)="onSelect(radioOptions[1].radioID)" [class.isSelected]="radioInputSelected === radioOptions[1].radioID" [for]="radioOptions[1].radioID">
+      <ion-text>{{radioOptions[1].paragraphName}}
+      </ion-text>
+    </label>
+  </div>
+</ion-radio-group>

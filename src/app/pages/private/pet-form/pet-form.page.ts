@@ -14,33 +14,33 @@ import { CastratedValue, Patterns, SexValue } from '@app/core/constValue';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
 import { Breed } from '@app/core/interfaces/breed';
 import { SelectInputComponent } from '@app/shared/components/select-input/select-input.component';
+import { InputRadioComponent } from "../../../shared/components/input-radio/input-radio.component";
 
 @Component({
   selector: 'app-pet-form',
   templateUrl: './pet-form.page.html',
   styleUrls: ['./pet-form.page.scss'],
   standalone: true,
-  imports: [IonAvatar, 
-    IonIcon, 
-    IonText, 
-    IonRadioGroup, 
-    IonImg, 
+  imports: [IonAvatar,
+    IonIcon,
+    IonText,
+    IonRadioGroup,
+    IonImg,
     IonButton,
-    IonItem, 
-    IonList, 
-    IonContent, 
-    IonHeader, 
-    IonTitle, 
-    CommonModule, 
-    FormsModule, 
+    IonItem,
+    IonList,
+    IonContent,
+    IonHeader,
+    IonTitle,
+    CommonModule,
+    FormsModule,
     ButtonComponent,
     ReactiveFormsModule,
     InputComponent,
     IonThumbnail,
     ModalComponent,
     IonLabel,
-    SelectInputComponent,
-  ]
+    SelectInputComponent, InputRadioComponent]
 })
 export class PetFormPage implements OnInit, OnDestroy {
   private _subscription: Subscription = new Subscription();
@@ -73,6 +73,12 @@ export class PetFormPage implements OnInit, OnDestroy {
 
   sexInputValue: string = "";
   castratedInputValue: string = "";
+
+  sexRadioOptions: string[] = ['Hembra', 'Macho'];
+  sterilizedRadioOptions: {radioID: string, paragraphName: string}[] = [
+    {radioID: this.castratedValue.intact || "", paragraphName: this.placeholderMessages.intact || ""},
+    {radioID: this.castratedValue.sterilized || "", paragraphName: this.placeholderMessages.sterilized || ""},
+  ];
 
   public actionSheetButtons = [
     {
@@ -190,7 +196,7 @@ export class PetFormPage implements OnInit, OnDestroy {
     this.petForm.get('sex')?.setValue(this.sexInputValue);
   }
 
-  castratedSelected(value: string): void {
+  castratedSelected(value: any): void {    
     this.castratedInputValue = value || "";
     this.petForm.get('castrated')?.setValue(this.castratedInputValue);
   }

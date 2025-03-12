@@ -34,6 +34,7 @@ export const PlaceholderMessages: any = {
     weight: 'Peso',
     search: 'Buscar',
     pet: 'Mascota',
+    sterilized: 'Esterilizado',
 };
 
 export const ParagraphMessages: any = {
