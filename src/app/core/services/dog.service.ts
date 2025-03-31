@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
@@ -37,9 +38,27 @@ export class DogService {
     }
   ];
 
-  constructor() { }
+  private _eventUrl = 'https://api.thedogapi.com/v1/events';
+
+  constructor(private _http: HttpClient) { }
 
   getDogs(): Observable<any[]> {
       return of(this._auxDogs);
-    }
+  }
+
+  getDogById(id: string): Observable<any> {
+    return this._http.get<any>(`${this._eventUrl}/dog/${id}`);
+  }
+
+  createDog(dog: any): Observable<any> {
+    return this._http.post<any>(`${this._eventUrl}/dog`, dog);
+  }
+
+  updateDog(id: string, dog: any): Observable<any> {
+    return this._http.put<any>(`${this._eventUrl}/dog/${id}`, dog);
+  }
+
+  deleteDog(id: string): Observable<any> {
+    return this._http.delete<any>(`${this._eventUrl}/dog/${id}`);
+  }
 }
