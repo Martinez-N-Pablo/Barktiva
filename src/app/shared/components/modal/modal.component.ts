@@ -62,5 +62,4 @@ export class ModalComponent  implements OnInit {
       this.modal.dismiss();
     }
   }
-
 }
