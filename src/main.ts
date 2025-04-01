@@ -9,6 +9,7 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { provideHttpClient } from '@angular/common/http';
 import { addIcons } from 'ionicons';
 import { chevronForward, arrowForward, caretForward } from 'ionicons/icons';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 // Register only icons will be used
 addIcons({
@@ -24,5 +25,6 @@ bootstrapApplication(AppComponent, {
             enabled: !isDevMode(),
             registrationStrategy: 'registerWhenStable:30000'
           }),
+    provideAnimations(),
   ],
 });

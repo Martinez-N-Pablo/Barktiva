@@ -18,18 +18,18 @@ import {
 import { Subject } from 'rxjs';
 import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import {
+  CalendarDateFormatter,
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
-  CalendarModule,
   CalendarView,
-  DateAdapter,
 } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { EventColor } from 'calendar-utils';
+import { DAYS_OF_WEEK, EventColor } from 'calendar-utils';
 import { FormsModule } from '@angular/forms';
-import { FlatpickrModule } from 'angularx-flatpickr';
 import { CommonModule } from '@angular/common';
+import { FlatPickrModuleModule } from '@app/core/modules/flat-pickr-module.module';
+import { CalendarModuleModule } from '@app/core/modules/calendar-module.module';
+import { CustomDateFormatter } from '@app/core/scripts/custom-date-formater';
 
 const colors: Record<string, EventColor> = {
   red: {
@@ -46,14 +46,6 @@ const colors: Record<string, EventColor> = {
   },
 };
 
-const calendarModule = CalendarModule.forRoot({
-  provide: DateAdapter,
-  useFactory: adapterFactory,
-});
-
-const flatpickr = FlatpickrModule.forRoot();
-
-
 @Component({
   selector: 'app-schelude',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -64,12 +56,8 @@ const flatpickr = FlatpickrModule.forRoot();
     CommonModule,
     FormsModule,
     NgbModalModule,
-    FlatpickrModule,
-    CalendarModule,
-    // CalendarModule.forRoot({
-    //   provide: DateAdapter,
-    //   useFactory: adapterFactory,
-    // }),
+    FlatPickrModuleModule,
+    CalendarModuleModule,
   ],
 })
 export class ScheludeComponent implements OnInit {
@@ -80,6 +68,10 @@ export class ScheludeComponent implements OnInit {
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
+
+  locale: string = 'es';
+
+  weekStartsOn: number = DAYS_OF_WEEK.MONDAY || 1;
 
   modalData: {
     action: string;
