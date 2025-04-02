@@ -73,6 +73,8 @@ export class ScheludeComponent implements OnInit {
 
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY || 1;
 
+  selectedDate: Date | null = null;
+
   modalData: {
     action: string;
     event: CalendarEvent;
@@ -158,6 +160,7 @@ export class ScheludeComponent implements OnInit {
         this.activeDayIsOpen = true;
       }
       this.viewDate = date;
+      this.selectedDate = date;
     }
   }
 
