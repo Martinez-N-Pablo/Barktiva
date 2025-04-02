@@ -15,7 +15,7 @@ import { ScheludeComponent } from '@app/shared/components/schelude/schelude.comp
 export class HomePage {
   private _router: Router = inject(Router);
 
-  logoPath: string = RoutesName.login;
+  logoPath: string = RoutesName.dashboard;
   
   constructor() {}
 

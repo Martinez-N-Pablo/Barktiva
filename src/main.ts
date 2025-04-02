@@ -10,6 +10,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { addIcons } from 'ionicons';
 import { chevronForward, arrowForward, caretForward } from 'ionicons/icons';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import 'hammerjs';
 
 // Register only icons will be used
 addIcons({

@@ -1,0 +1,16 @@
+<ng-template #customCellTemplate let-day="day">
+    <div class="cal-cell-top">
+      <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':'es' }}</span>
+    </div>
+  
+    <div class="cal-events">
+      <div
+        *ngFor="let event of day.events"
+        class="cal-event"
+        [style.backgroundColor]="event.color?.primary"
+      >
+        {{ event.title }}
+      </div>
+    </div>
+  </ng-template>
+  

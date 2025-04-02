@@ -29,7 +29,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FlatPickrModuleModule } from '@app/core/modules/flat-pickr-module.module';
 import { CalendarModuleModule } from '@app/core/modules/calendar-module.module';
-import { CustomDateFormatter } from '@app/core/scripts/custom-date-formater';
+import { HammerModule } from '@angular/platform-browser';
+import { trigger, keyframes, animate, transition } from '@angular/animations';
 
 const colors: Record<string, EventColor> = {
   red: {
@@ -58,6 +59,7 @@ const colors: Record<string, EventColor> = {
     NgbModalModule,
     FlatPickrModuleModule,
     CalendarModuleModule,
+    HammerModule,
   ],
 })
 export class ScheludeComponent implements OnInit {
@@ -215,4 +217,30 @@ export class ScheludeComponent implements OnInit {
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
+
+  onSwipeLeft(): void {
+    console.log('swipe left');
+    this.viewDate = this.incrementDate(1);
+    this.closeOpenMonthViewDay();
+  }
+  
+  onSwipeRight(): void {
+    console.log('swipe right');
+    this.viewDate = this.incrementDate(-1);
+    this.closeOpenMonthViewDay();
+  }
+  
+  incrementDate(factor: number): Date {
+    switch (this.view) {
+      case CalendarView.Month:
+        return addDays(this.viewDate, 30 * factor);
+      case CalendarView.Week:
+        return addDays(this.viewDate, 7 * factor);
+      case CalendarView.Day:
+        return addDays(this.viewDate, 1 * factor);
+      default:
+        return this.viewDate;
+    }
+  }
+  
 }

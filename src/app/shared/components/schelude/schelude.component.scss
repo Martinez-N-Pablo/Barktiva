@@ -6,3 +6,8 @@ pre {
     background-color: #f5f5f5;
     padding: 15px;
 }
+
+.calendar-container {
+    touch-action: pan-y;
+    height: 100%;
+}
