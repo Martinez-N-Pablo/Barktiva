@@ -48,6 +48,8 @@
 //  --ion-color-primary-rgb: 248, 158, 106;
   --ion-color-secondary: #{$secondary-color};
   --ion-color-terciary: #{$terciary-color};
+
+  --background: $background-color-white;
 }
 
 app-input {

@@ -1,7 +1,7 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Form, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonInput, IonHeader, IonTitle, IonToolbar, IonList, IonButton, IonItem, IonFooter } from '@ionic/angular/standalone';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { IonContent, IonList, IonItem, IonFooter } from '@ionic/angular/standalone';
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -25,7 +25,6 @@ import { validateForm } from '@app/core/scripts/validate-forms';
     ReactiveFormsModule,
     LogoComponent,
     ButtonComponent,
-    IonInput
   ]
 })
 export class SingupPage implements OnInit {

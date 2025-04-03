@@ -1,7 +1,7 @@
-import { Component, inject, OnDestroy, OnInit, signal, Signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonThumbnail, IonContent, IonSelect, IonSelectOption,IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonSearchbar, IonActionSheet, IonButton, IonFooter, IonImg, IonRow, IonCol, IonLabel, IonRadio, IonRadioGroup, IonText, IonIcon, IonAvatar } from '@ionic/angular/standalone';
+import { IonThumbnail, IonContent,IonHeader, IonTitle, IonList, IonItem, IonButton, IonImg } from '@ionic/angular/standalone';
 import { LogoComponent } from "../../../shared/components/logo/logo.component";
 import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
@@ -10,7 +10,7 @@ import { PetService } from '@app/core/services/pet.service';
 import { AlertController } from '@ionic/angular';
 import { InputComponent } from '@app/shared/components/input/input.component';
 import { PhotoUploaderService } from '@app/core/services/photo-uploader.service';
-import { CastratedValue, Patterns, SexValue } from '@app/core/constValue';
+import { SterilizedValue, Patterns, SexValue } from '@app/core/constValue';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
 import { Breed } from '@app/core/interfaces/breed';
 import { SelectInputComponent } from '@app/shared/components/select-input/select-input.component';
@@ -21,10 +21,7 @@ import { InputRadioComponent } from "../../../shared/components/input-radio/inpu
   templateUrl: './pet-form.page.html',
   styleUrls: ['./pet-form.page.scss'],
   standalone: true,
-  imports: [IonAvatar,
-    IonIcon,
-    IonText,
-    IonRadioGroup,
+  imports: [
     IonImg,
     IonButton,
     IonItem,
@@ -39,8 +36,8 @@ import { InputRadioComponent } from "../../../shared/components/input-radio/inpu
     InputComponent,
     IonThumbnail,
     ModalComponent,
-    IonLabel,
-    SelectInputComponent, InputRadioComponent]
+    SelectInputComponent,
+    InputRadioComponent]
 })
 export class PetFormPage implements OnInit, OnDestroy {
   private _subscription: Subscription = new Subscription();
@@ -55,7 +52,7 @@ export class PetFormPage implements OnInit, OnDestroy {
   isClicked: boolean = false;
 
   sexValue = SexValue;
-  castratedValue = CastratedValue;
+  SterilizedValue = SterilizedValue;
   errorMessages: any = ErrorMessages;
   paragraphMessages: any = ParagraphMessages;
   placeholderMessages: any = PlaceholderMessages;
@@ -80,8 +77,8 @@ export class PetFormPage implements OnInit, OnDestroy {
   ];
 
   sterilizedRadioOptions: {radioID: string, paragraphName: string}[] = [
-    {radioID: this.castratedValue.intact || "", paragraphName: this.placeholderMessages.intact || ""},
-    {radioID: this.castratedValue.sterilized || "", paragraphName: this.placeholderMessages.sterilized || ""},
+    {radioID: this.SterilizedValue.intact || "", paragraphName: this.placeholderMessages.intact || ""},
+    {radioID: this.SterilizedValue.sterilized || "", paragraphName: this.placeholderMessages.sterilized || ""},
   ];
 
   public actionSheetButtons = [

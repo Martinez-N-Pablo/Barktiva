@@ -17,3 +17,15 @@ pre {
 .calendar {
     --background: $background-color-white;
 }
+
+::ng-deep .cal-month-view {
+    background-color: $background-color-white;
+    .cal-day-cell {
+        min-height: 70%;
+        border-color: $background-input-grey;
+    }
+
+    .cal-day-number {
+        margin-top: 10px;
+    }
+}

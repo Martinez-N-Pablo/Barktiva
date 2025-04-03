@@ -7,7 +7,7 @@ export const SexValue = {
     masculino: 'm',
 }
 
-export const CastratedValue = {
+export const SterilizedValue = {
     sterilized: 'c',
     intact: 'i'
 }

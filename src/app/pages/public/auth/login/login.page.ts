@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonItem, IonList, IonButton, IonFooter } from '@ionic/angular/standalone';
+import { IonContent, IonItem, IonList, IonFooter } from '@ionic/angular/standalone';
 import { LogoComponent } from '@app/shared/components/logo/logo.component';
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
 import { Router } from '@angular/router';

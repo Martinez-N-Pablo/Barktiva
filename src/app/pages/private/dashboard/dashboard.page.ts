@@ -11,7 +11,16 @@ import { ScheludeComponent } from '@app/shared/components/schelude/schelude.comp
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
-  imports: [ScheludeComponent, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, LogoComponent]
+  imports: [
+    ScheludeComponent, 
+    IonContent, 
+    IonHeader, 
+    IonTitle, 
+    IonToolbar, 
+    CommonModule, 
+    FormsModule, 
+    LogoComponent
+  ]
 })
 export class DashboardPage implements OnInit {
   logoPath: string = RoutesName.login;

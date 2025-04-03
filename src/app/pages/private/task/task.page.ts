@@ -17,12 +17,9 @@ import { SelectInputComponent } from "../../../shared/components/select-input/se
   templateUrl: './task.page.html',
   styleUrls: ['./task.page.scss'],
   standalone: true,
-  imports: [IonAvatar, IonLabel,
+  imports: [
     ButtonComponent,
     ReactiveFormsModule,
-    IonIcon,
-    IonText,
-    InputComponent,
     IonItem,
     IonList,
     IonContent,
@@ -30,8 +27,9 @@ import { SelectInputComponent } from "../../../shared/components/select-input/se
     IonTitle,
     CommonModule,
     FormsModule,
-    IonImg,
-    ModalComponent, SelectInputComponent]
+    ModalComponent,
+    SelectInputComponent,
+  ]
 })
 export class TaskPage implements OnInit {
   private _subscription: Subscription = new Subscription();
