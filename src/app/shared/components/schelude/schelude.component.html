@@ -60,11 +60,13 @@
 <br />
 <div 
   [ngSwitch]="view" 
-  class="container calendar-container" 
+  class="container calendar-container h-auto" 
   (swipeleft)="onSwipeLeft()"
   (swiperight)="onSwipeRight()"
   >
     <mwl-calendar-month-view
+      class="calendar"
+      style="display: block; height: 80%;"
       *ngSwitchCase="CalendarView.Month"
       [viewDate]="viewDate"
       [events]="events"
@@ -72,12 +74,14 @@
       [activeDayIsOpen]="activeDayIsOpen"
       [locale]="locale"
       [weekStartsOn]="weekStartsOn"
+      [cellTemplate]="customCellTemplate"
       (dayClicked)="dayClicked($event.day)"
       (eventClicked)="handleEvent('Clicked', $event.event)"
       (eventTimesChanged)="eventTimesChanged($event)"
       >
     </mwl-calendar-month-view>
     <mwl-calendar-week-view
+      class="calendar"
       *ngSwitchCase="CalendarView.Week"
       [viewDate]="viewDate"
       [events]="events"
@@ -89,15 +93,19 @@
     >
     </mwl-calendar-week-view>
     <mwl-calendar-day-view
+      class="calendar"
       *ngSwitchCase="CalendarView.Day"
       [viewDate]="viewDate"
       [events]="events"
       [refresh]="refresh"
       [locale]="locale"
       (eventClicked)="handleEvent('Clicked', $event.event)"
-      (eventTimesChanged)="eventTimesChanged($event)"  >
+      (eventTimesChanged)="eventTimesChanged($event)">
     </mwl-calendar-day-view>
 </div>
+
+<app-month-cell-template style="display: none;"></app-month-cell-template>
+
 
 <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
 <!-- 

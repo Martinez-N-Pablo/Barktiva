@@ -1,9 +1,12 @@
+// #region Imports
 import {
   Component,
   OnInit,
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
+  AfterViewInit,
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   startOfDay,
@@ -31,6 +34,7 @@ import { FlatPickrModuleModule } from '@app/core/modules/flat-pickr-module.modul
 import { CalendarModuleModule } from '@app/core/modules/calendar-module.module';
 import { HammerModule } from '@angular/platform-browser';
 import { trigger, keyframes, animate, transition } from '@angular/animations';
+import { MonthCellTemplateComponent } from '../templates/shared/templates/month-cell-template/month-cell-template.component';
 
 const colors: Record<string, EventColor> = {
   red: {
@@ -60,9 +64,11 @@ const colors: Record<string, EventColor> = {
     FlatPickrModuleModule,
     CalendarModuleModule,
     HammerModule,
+    MonthCellTemplateComponent
   ],
 })
-export class ScheludeComponent implements OnInit {
+export class ScheludeComponent implements OnInit, AfterViewInit {
+  // #region Variables
   @ViewChild('modalContent', { static: true }) modalContent!: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
@@ -76,6 +82,11 @@ export class ScheludeComponent implements OnInit {
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY || 1;
 
   selectedDate: Date | null = null;
+
+  @ViewChild(MonthCellTemplateComponent, { static: true })
+    monthCellCmp!: MonthCellTemplateComponent;
+
+  customCellTemplate!: TemplateRef<any>;
 
   modalData: {
     action: string;
@@ -145,12 +156,21 @@ export class ScheludeComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  // #Constructor
+  constructor(private modal: NgbModal, private _cdr: ChangeDetectorRef) {}
 
+
+  // #region Implements methods
   ngOnInit(): void {
     
   }
 
+  ngAfterViewInit(): void {
+    this.customCellTemplate = this.monthCellCmp.templateRef;
+    this._cdr.detectChanges();
+  }
+
+  // #region Methods
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
