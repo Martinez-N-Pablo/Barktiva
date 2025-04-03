@@ -7,6 +7,7 @@ import {
   TemplateRef,
   AfterViewInit,
   ChangeDetectorRef,
+  HostListener,
 } from '@angular/core';
 import {
   startOfDay,
@@ -17,6 +18,10 @@ import {
   isSameDay,
   isSameMonth,
   addHours,
+  addMonths,
+  addWeeks,
+  subMonths,
+  subWeeks,
 } from 'date-fns';
 import { Subject } from 'rxjs';
 import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
@@ -33,7 +38,7 @@ import { CommonModule } from '@angular/common';
 import { FlatPickrModuleModule } from '@app/core/modules/flat-pickr-module.module';
 import { CalendarModuleModule } from '@app/core/modules/calendar-module.module';
 import { HammerModule } from '@angular/platform-browser';
-import { trigger, keyframes, animate, transition } from '@angular/animations';
+import { trigger, keyframes, animate, transition, style } from '@angular/animations';
 import { MonthCellTemplateComponent } from '../templates/shared/templates/month-cell-template/month-cell-template.component';
 
 const colors: Record<string, EventColor> = {
@@ -66,6 +71,17 @@ const colors: Record<string, EventColor> = {
     HammerModule,
     MonthCellTemplateComponent
   ],
+  animations: [
+    trigger('calendarSlide', [
+      transition(':enter', [
+        style({ transform: '{{transformFrom}}', opacity: 0 }),
+        animate('300ms ease-out', style({ transform: 'translateX(0)', opacity: 1 })),
+      ], { params: { transformFrom: 'translateX(100%)' } }),
+      transition(':leave', [
+        animate('300ms ease-in', style({ transform: '{{transformTo}}', opacity: 0 })),
+      ], { params: { transformTo: 'translateX(-100%)' } }),
+    ]),
+  ]
 })
 export class ScheludeComponent implements OnInit, AfterViewInit {
   // #region Variables
@@ -83,6 +99,9 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
 
   selectedDate: Date | null = null;
 
+  private touchStartX = 0;
+
+  // Template for the month cell
   @ViewChild(MonthCellTemplateComponent, { static: true })
     monthCellCmp!: MonthCellTemplateComponent;
 
@@ -113,6 +132,7 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
 
   refresh = new Subject<void>();
 
+  // Aux events
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
@@ -238,18 +258,46 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
     this.activeDayIsOpen = false;
   }
 
-  onSwipeLeft(): void {
-    console.log('swipe left');
-    this.viewDate = this.incrementDate(1);
-    this.closeOpenMonthViewDay();
-  }
-  
-  onSwipeRight(): void {
-    console.log('swipe right');
-    this.viewDate = this.incrementDate(-1);
-    this.closeOpenMonthViewDay();
-  }
-  
+   // Captura el inicio del toque
+   @HostListener('touchstart', ['$event'])
+   onTouchStart(event: TouchEvent) {
+     this.touchStartX = event.changedTouches[0].clientX;
+   }
+ 
+   // Captura el final y detecta dirección
+   @HostListener('touchend', ['$event'])
+   onTouchEnd(event: TouchEvent) {
+     const touchEndX = event.changedTouches[0].clientX;
+     const deltaX = touchEndX - this.touchStartX;
+ 
+     if (Math.abs(deltaX) > 50) {
+       if (deltaX < 0) {
+         this.onSwipeLeft();
+       } else {
+         this.onSwipeRight();
+       }
+     }
+   }
+ 
+   onSwipeLeft() {
+     if (this.view === CalendarView.Month) {
+       this.viewDate = addMonths(this.viewDate, 1);
+     } else if (this.view === CalendarView.Week) {
+       this.viewDate = addWeeks(this.viewDate, 1);
+     } else if (this.view === CalendarView.Day) {
+       this.viewDate = addDays(this.viewDate, 1);
+     }
+   }
+ 
+   onSwipeRight() {
+     if (this.view === CalendarView.Month) {
+       this.viewDate = subMonths(this.viewDate, 1);
+     } else if (this.view === CalendarView.Week) {
+       this.viewDate = subWeeks(this.viewDate, 1);
+     } else if (this.view === CalendarView.Day) {
+       this.viewDate = subDays(this.viewDate, 1);
+     }
+   }
   incrementDate(factor: number): Date {
     switch (this.view) {
       case CalendarView.Month:
@@ -262,5 +310,4 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
         return this.viewDate;
     }
   }
-  
 }

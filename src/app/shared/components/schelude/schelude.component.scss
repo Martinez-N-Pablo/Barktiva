@@ -18,6 +18,12 @@ pre {
     --background: $background-color-white;
 }
 
+.calendar-touch {
+    height: 100%;
+    display: block;
+    touch-action: pan-y;
+  }
+
 ::ng-deep .cal-month-view {
     background-color: $background-color-white;
     .cal-day-cell {
