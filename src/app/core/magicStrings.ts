@@ -2,8 +2,6 @@ export const ErrorMessages = {
     required: 'Este campo es obligatorio',
     email: 'Por favor, introduzca un email válido',
     passwordValidation: 'Las contraseñas deben coincidir',
-    // minlength: (min: number) => `Debe tener mínimo ${min} caracteres`,
-    // maxlength: (max: number) => `Debe tener máximo ${max} caracteres`,
     pattern: 'Formato invalido',
     default: 'An unexpected error occurred.',
 };
@@ -32,9 +30,13 @@ export const PlaceholderMessages: any = {
     castrated: 'Castrado',
     intact: 'Intacto',
     weight: 'Peso',
+    date: 'Fecha',
+    dateStart: 'Fecha inicio',
+    dateEnd: 'Fecha fin',
     search: 'Buscar',
     pet: 'Mascota',
     sterilized: 'Esterilizado',
+    dateFormat: 'dd/MM/yyyy',
 };
 
 export const ParagraphMessages: any = {

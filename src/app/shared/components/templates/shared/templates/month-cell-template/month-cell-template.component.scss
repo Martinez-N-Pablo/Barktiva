@@ -18,8 +18,8 @@
     align-items: center;
 
     .event-dot {
-      width: 10px;
-      height: 10px;
+      width: $dote-size;
+      height: $dote-size;
       border-radius: 50%;
       background-color: $boton-color;
     }

@@ -9,17 +9,11 @@ pre {
     padding: 15px;
 }
 
-.calendar-container {
-    touch-action: pan-y;
-    height: 100%;
-}
-
 .calendar {
     --background: $background-color-white;
 }
 
 .calendar-touch {
-    height: 100%;
     display: block;
     touch-action: pan-y;
   }

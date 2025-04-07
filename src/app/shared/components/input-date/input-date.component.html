@@ -1,0 +1,15 @@
+<ion-item>
+  <ion-label>{{label}}</ion-label>
+  <ion-datetime-button [datetime]="placeholder"></ion-datetime-button>
+</ion-item>
+
+<ion-modal keep-contents-mounted="true">
+  <ion-datetime
+    [id]="id"
+    presentation="date"
+    [(ngModel)]="value"
+    show-default-buttons="true"
+    prefer-wheel="false"
+    format-options="{ weekday: 'short', month: 'long', day: '2-digit' }">
+  </ion-datetime>
+</ion-modal>
