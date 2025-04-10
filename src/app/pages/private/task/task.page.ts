@@ -11,6 +11,8 @@ import { Subscription } from 'rxjs';
 import { DogService } from '@app/core/services/dog.service';
 import { DogFacadeService } from '@app/core/presenters/dog-facade.service';
 import { SelectInputComponent } from "../../../shared/components/select-input/select-input.component";
+import { InputDateComponent } from '@app/shared/components/input-date/input-date.component';
+import { TaskService } from '@app/core/services/task.service';
 
 @Component({
   selector: 'app-task',
@@ -29,6 +31,7 @@ import { SelectInputComponent } from "../../../shared/components/select-input/se
     FormsModule,
     ModalComponent,
     SelectInputComponent,
+    InputDateComponent
   ]
 })
 export class TaskPage implements OnInit {
@@ -36,6 +39,7 @@ export class TaskPage implements OnInit {
   title: string = Titles.task;
 
   private _formBuilder: FormBuilder = inject(FormBuilder);
+  private _taskService: any = inject(TaskService);
 
   taskForm!: FormGroup;
   formSubmited: boolean = false;
@@ -47,13 +51,36 @@ export class TaskPage implements OnInit {
   dogsList: WritableSignal<Dog[]> = signal([]);
   dogSelected: WritableSignal<Dog | null> = signal(null);
 
-  constructor(private _dogService: DogService, private _dogFacadeSerivce: DogFacadeService) {
+  taskTylesList: WritableSignal<any[]> = signal([]);
+  taskTypeSelected: WritableSignal<any | null> = signal(null);
+
+  startDate: any = {
+    label: this.placeholderMessages.dateStart,
+    placeholder: this.placeholderMessages.dateFormat,
+    id: 'startDate',
+    required: true,
+  };
+
+  endDate: any = {
+    label: this.placeholderMessages.dateEnd,
+    placeholder: this.placeholderMessages.dateFormat,
+    id: 'endDate',
+    required: true,
+  };
+
+  startDateValue: WritableSignal<string> = signal('');
+  endDateValue: WritableSignal<string> = signal('');
+
+  constructor(
+    private _dogService: DogService, 
+    private _dogFacadeSerivce: DogFacadeService) {
     // this._dogFacadeSerivce(_dogService);
   }
 
   ngOnInit() {
     this._initForm();
     this._getPets();
+    this._getTaskTypes();
   }
 
   private _initForm(): void {
@@ -71,6 +98,17 @@ export class TaskPage implements OnInit {
     });
   }
 
+  private _getTaskTypes(): void {
+    this._subscription.add(
+      this._taskService.getTasks().subscribe({
+        next: (data: any) => {
+          this.taskTylesList.set(data);
+        },
+        error: (error: any) => {},
+        complete: () => {}
+      })
+    );
+  }
   onSubmit(): void {}
 
   getControl(controlName: string): FormControl{
@@ -89,5 +127,13 @@ export class TaskPage implements OnInit {
     // );
 
     this.dogsList = this._dogFacadeSerivce.getBreeds();
+  }
+
+  onStartDateChange(newDate: string): void {
+    this.taskForm.get('initialDate')?.setValue(newDate);
+  }
+
+  onEndDateChange(newDate: any): void {
+    this.taskForm.get('finalDate')?.setValue(newDate);
   }
 }

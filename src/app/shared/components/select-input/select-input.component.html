@@ -1,12 +1,12 @@
-@if (!breedSelected()) {
+@if (!optionSelected()) {
   <ion-text slot="start">{{placeholderMessage}}</ion-text>
   <ion-icon slot="end" name="chevron-forward"></ion-icon>
 }
 @else {
   <ion-avatar slot="start">
-    <ion-img [src]="breedSelected()!.img || ''"></ion-img>
+    <ion-img [src]="optionSelected()!.img || ''"></ion-img>
   </ion-avatar>
   <ion-label>
-    <ion-text>{{breedSelected()!.name || ""}}</ion-text>
+    <ion-text>{{optionSelected()!.name || ""}}</ion-text>
   </ion-label>
 }

@@ -35,6 +35,7 @@ export const PlaceholderMessages: any = {
     dateEnd: 'Fecha fin',
     search: 'Buscar',
     pet: 'Mascota',
+    task: 'Tarea',
     sterilized: 'Esterilizado',
     dateFormat: 'dd/MM/yyyy',
 };

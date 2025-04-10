@@ -9,9 +9,40 @@
         <!-- Dog input select -->
         <ion-item role="listitem">
           <div id="open-modal" class="modal-container-button" [class.breedSelected]="dogSelected()">
-            <app-select-input class="container-modal-list" [breedSelected]="dogSelected" [placeholderMessage]="placeholderMessages.pet"></app-select-input>
+            <app-select-input class="container-modal-list" [optionSelected]="dogSelected" [placeholderMessage]="placeholderMessages.pet"></app-select-input>
           </div>
           <app-modal [breedSelected]="dogSelected" [breedsList]="dogsList()"></app-modal>
+        </ion-item>
+        <!-- Task input select -->
+        <ion-item role="listitem">
+          <div id="open-modal" class="modal-container-button" [class.breedSelected]="taskTypeSelected()">
+            <app-select-input class="container-modal-list" [optionSelected]="taskTypeSelected" [placeholderMessage]="placeholderMessages.task"></app-select-input>
+          </div>
+          <app-modal [breedSelected]="taskTypeSelected" [breedsList]="taskTylesList()"></app-modal>
+        </ion-item>
+        <!-- Start Date Input -->
+        <ion-item role="listitem">
+          <app-input-date
+            [value]="startDateValue" 
+            [label]="startDate.label || ''" 
+            [placeholder]="startDate.placeholder || ''" 
+            [idValue]="startDate.id || ''"
+            [required]="startDate.required || false"
+            (valueChange)="onStartDateChange($event)"
+            >
+          </app-input-date>
+        </ion-item>
+        <!-- End Date Input -->
+        <ion-item role="listitem">
+          <app-input-date
+            [value]="endDateValue" 
+            [label]="endDate.label || ''" 
+            [placeholder]="endDate.placeholder || ''" 
+            [idValue]="endDate.id || ''"
+            [required]="endDate.required || false"
+            (valueChange)="onEndDateChange($event)"
+            >
+          </app-input-date>
         </ion-item>
       </ion-list>
       <ion-item slot="fixed" class="bottom-absolute">
