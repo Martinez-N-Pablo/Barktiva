@@ -3,14 +3,14 @@
     <ion-content>
       <ion-searchbar [formControl]="searchControl" inputmode="text" [debounce]="debounceTime" [placeholder]="placeholderMessage.search" (click)="modal.setCurrentBreakpoint(0.75)"></ion-searchbar>
       <ion-list>
-        @if (breedsList) {
-          @for (breed of breedsFiltered; track breed; let index = $index) {
-            <ion-item (click)="onSelectBreed(breed)">
+        @if (optionsList) {
+          @for (option of optionsFiltered; track option; let index = $index) {
+            <ion-item (click)="onSelectOption(option)">
               <ion-avatar slot="start">
-                <ion-img [src]="breed.img"></ion-img>
+                <ion-img [src]="option.img"></ion-img>
               </ion-avatar>
               <ion-label>
-                <h2>{{breed.name}}</h2>
+                <h2>{{option.name}}</h2>
               </ion-label>
             </ion-item>
           }

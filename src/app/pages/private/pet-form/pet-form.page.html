@@ -34,9 +34,9 @@
         <!-- Breed input -->
         <ion-item role="listitem">
           <div id="open-modal" class="modal-container-button" [class.breedSelected]="breedSelected()">
-            <app-select-input class="container-modal-list" [breedSelected]="breedSelected" [placeholderMessage]="placeholderMessages.breed"></app-select-input>
+            <app-select-input class="container-modal-list" [optionSelected]="breedSelected" [placeholderMessage]="placeholderMessages.breed"></app-select-input>
           </div>
-          <app-modal [breedSelected]="breedSelected" [breedsList]="breeds"></app-modal>
+          <app-modal [optionSelected]="breedSelected" [optionsList]="breeds"></app-modal>
         </ion-item>
         <!-- Sex -->
         <ion-item role="listitem">

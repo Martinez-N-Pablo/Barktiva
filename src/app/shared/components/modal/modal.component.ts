@@ -1,9 +1,9 @@
 import { Component, input, Input, InputSignal, OnInit, ViewChild, WritableSignal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Breed } from '@app/core/interfaces/breed';
 import { PlaceholderMessages } from '@app/core/magicStrings';
 import { IonModal, IonAvatar, IonSearchbar, IonContent, IonList, IonItem, IonImg, IonLabel, IonText } from "@ionic/angular/standalone";
 import { debounceTime } from 'rxjs';
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -22,10 +22,10 @@ import { debounceTime } from 'rxjs';
   ],
 })
 export class ModalComponent  implements OnInit {
-  @Input() breedsList: Breed[] = [];
-  @Input() breedSelected!: WritableSignal<Breed | null>;
+  @Input() optionsList: any[] = [];
+  @Input() optionSelected!: WritableSignal<any | null>;
 
-  breedsFiltered: any[] = [];
+  optionsFiltered: any[] = [];
 
   placeholderMessage = PlaceholderMessages;
   debounceTime = 1000;
@@ -37,28 +37,28 @@ export class ModalComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.breedsFiltered = this.breedsList;
+    this.optionsFiltered = this.optionsList;
     this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(searchTerm => {
-      this.filterBreeds(searchTerm);
+      this.filteroption(searchTerm);
     });
   }
 
-  filterBreeds(searchTerm: string | null): void {
+  filteroption(searchTerm: string | null): void {
     if (!searchTerm?.trim()) {
-      this.breedsFiltered = [...this.breedsList];
+      this.optionsFiltered = [...this.optionsList];
       return;
     }
 
     const searchLower = searchTerm.toLowerCase();
-    this.breedsFiltered = this.breedsList.filter( (breed: any) =>
-      breed.name.toLowerCase().includes(searchLower)
+    this.optionsFiltered = this.optionsList.filter( (option: any) =>
+      option.name.toLowerCase().includes(searchLower)
     );
   }
 
-  // When the user select a breed, it is send to the father component
-  onSelectBreed(breed: any): void {
-    if(breed) {
-      this.breedSelected.set(breed);
+  // When the user select a option, it is send to the father component
+  onSelectOption(option: any): void {
+    if(option) {
+      this.optionSelected.set(option);
       this.modal.dismiss();
     }
   }
