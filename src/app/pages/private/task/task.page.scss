@@ -3,3 +3,60 @@
 ion-list:nth-child(1) {
     padding-top: 1em;
 }
+
+
+.textarea-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 35px;
+    margin-bottom: 16px;
+}
+
+.textarea-expand {
+    flex: 1;
+    min-height: 35px;
+    height: 100%;
+    --background: #{$background-input-grey};
+    
+    --border-radius: #{$border-radius} #{$border-radius} 0px 0px;
+    --border-color: #{$black-color};
+
+    --padding-end: 10px;
+    --padding-start: #{$distance};
+    --placeholder-font-style: #{$paragraph-font};
+    --placeholder-color:  #{$black-color};
+    --highlight-color-focused: #{$black-color};
+}
+
+.error {
+    --border-color: $danger-color !important;
+}
+
+.notification-select-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    label {
+      width: 100%;
+      display: flex;
+      margin-right: .5em;
+      border: 1px solid $black-color;
+      border-radius: $border-radius;
+      padding: 1em;
+      text-align: center;
+
+      ion-text {
+        text-align: center;
+        width: 100%;
+        font-weight: bold;
+      }      
+    }
+
+    label.isSelected {
+      background-color: $primary-color;
+      color: $background-color-white;
+    }
+  }

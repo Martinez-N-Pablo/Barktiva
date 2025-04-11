@@ -1,7 +1,7 @@
-import { Component, inject, OnInit, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Signal, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonButton, IonImg, IonText, IonIcon, IonRadioGroup, IonLabel, IonAvatar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonButton, IonImg, IonText, IonIcon, IonRadioGroup, IonLabel, IonAvatar, IonTextarea } from '@ionic/angular/standalone';
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, Titles } from '@app/core/magicStrings';
 import { InputComponent } from '@app/shared/components/input/input.component';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
@@ -20,6 +20,7 @@ import { TaskService } from '@app/core/services/task.service';
   styleUrls: ['./task.page.scss'],
   standalone: true,
   imports: [
+    IonTextarea, 
     ButtonComponent,
     ReactiveFormsModule,
     IonItem,
@@ -31,10 +32,12 @@ import { TaskService } from '@app/core/services/task.service';
     FormsModule,
     ModalComponent,
     SelectInputComponent,
-    InputDateComponent
+    InputDateComponent,
+    InputComponent,
+    IonText,
   ]
 })
-export class TaskPage implements OnInit {
+export class TaskPage implements OnInit, OnDestroy {
   private _subscription: Subscription = new Subscription();
   title: string = Titles.task;
 
@@ -71,6 +74,11 @@ export class TaskPage implements OnInit {
   startDateValue: WritableSignal<string> = signal('');
   endDateValue: WritableSignal<string> = signal('');
 
+  dogSelectModalId: string = 'dogSelectModalId';
+  taskTypeSelectModalId: string = 'taskTypeSelectModalId';
+
+  notificationState: boolean = false;
+
   constructor(
     private _dogService: DogService, 
     private _dogFacadeSerivce: DogFacadeService) {
@@ -80,7 +88,15 @@ export class TaskPage implements OnInit {
   ngOnInit() {
     this._initForm();
     this._getPets();
-    this._getTaskTypes();
+    this._getTaskTypes();    
+  }
+
+  ngOnDestroy(): void {
+    if(this._subscription) {
+      this._subscription.unsubscribe();
+    }
+
+    this.notificationState = false;
   }
 
   private _initForm(): void {
@@ -89,6 +105,7 @@ export class TaskPage implements OnInit {
       taskType: new FormControl('', [Validators.required]),
       dose: new FormControl('', [Validators.required]),
       dosePerWeek: new FormControl('', [Validators.required]),
+      notification: new FormControl('', [Validators.required]),
       quantity: new FormControl('', [Validators.required]),
       totalTime: new FormControl('', [Validators.required]),
       routeAdministration: new FormControl('', [Validators.required]),
@@ -135,5 +152,11 @@ export class TaskPage implements OnInit {
 
   onEndDateChange(newDate: any): void {
     this.taskForm.get('finalDate')?.setValue(newDate);
+  }
+
+  onChangeNotificationsState(): void {
+    this.notificationState = !this.notificationState
+    this.taskForm.get('notification')?.setValue(this.notificationState);
+    console.log(this.notificationState);
   }
 }

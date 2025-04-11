@@ -8,18 +8,55 @@
       <ion-list class="formList" role="list">
         <!-- Dog input select -->
         <ion-item role="listitem">
-          <div id="open-modal" class="modal-container-button" [class.breedSelected]="dogSelected()">
+          <div [id]="dogSelectModalId" class="modal-container-button" [class.breedSelected]="dogSelected()">
             <app-select-input class="container-modal-list" [optionSelected]="dogSelected" [placeholderMessage]="placeholderMessages.pet"></app-select-input>
           </div>
-          <app-modal [optionSelected]="dogSelected" [optionsList]="dogsList()"></app-modal>
+          <app-modal [modalID]="dogSelectModalId" [optionSelected]="dogSelected" [optionsList]="dogsList()"></app-modal>
         </ion-item>
         <!-- Task input select -->
         <ion-item role="listitem">
-          <div id="open-modal" class="modal-container-button" [class.breedSelected]="taskTypeSelected()">
+          <div [id]="taskTypeSelectModalId" class="modal-container-button" [class.breedSelected]="taskTypeSelected()">
             <app-select-input class="container-modal-list" [optionSelected]="taskTypeSelected" [placeholderMessage]="placeholderMessages.task"></app-select-input>
           </div>
-          <app-modal [optionSelected]="taskTypeSelected" [optionsList]="taskTylesList()"></app-modal>
+          <app-modal [modalID]="taskTypeSelectModalId" [optionSelected]="taskTypeSelected" [optionsList]="taskTylesList()"></app-modal>
         </ion-item>
+        <!-- Num of days and times per day -->
+        <div style="display: flex;">
+          <ion-item role="listitem">
+            <app-input
+              [areaLabel]="'Dosis'"
+              [name]="'dose'"
+              [type]="'number'"
+              [inputmode]="'number'"
+              [class]="'main-input'"
+              [control]="getControl('dose')"
+              [role]="'number'"
+              [validState]="taskForm.get('dose')?.invalid && taskForm.get('dose')?.touched && formSubmited"
+              [errors]="taskForm.get('dose')?.errors ?? null"
+              [label]="placeholderMessages.dose || ''"
+              [pattern]="'\d*'"
+              [placeholder]="placeholderMessages.dose || ''">
+            >
+            </app-input>
+          </ion-item>
+          <ion-item role="listitem">
+            <app-input
+              [areaLabel]="'Dosis por semana'"
+              [name]="'dosePerWeek'"
+              [type]="'number'"
+              [inputmode]="'number'"
+              [class]="'main-input'"
+              [control]="getControl('dosePerWeek')"
+              [role]="'number'"
+              [validState]="taskForm.get('dosePerWeek')?.invalid && taskForm.get('dosePerWeek')?.touched && formSubmited"
+              [errors]="taskForm.get('dosePerWeek')?.errors ?? null"
+              [label]="placeholderMessages.dosePerWeek || ''"
+              [pattern]="'\d*'"
+              [placeholder]="placeholderMessages.dosePerWeek || ''">
+            >
+            </app-input>
+          </ion-item>
+        </div>
         <!-- Start Date Input -->
         <ion-item role="listitem">
           <app-input-date
@@ -43,6 +80,28 @@
             (valueChange)="onEndDateChange($event)"
             >
           </app-input-date>
+        </ion-item>
+        <ion-item role="listitem" class="notification-select-wrapper">
+          <label (click)="onChangeNotificationsState()" [class.isSelected]="notificationState" [for]="">
+            <ion-text>{{placeholderMessages.reciveNotification || ""}}</ion-text>
+          </label>
+        </ion-item>
+        <ion-item role="listitem" class="textarea-wrapper">
+          <ion-textarea
+            aria-label="Descripción"
+            name="description"
+            formControlName="description"
+            class="main-input textarea-expand"
+            labelPlacement="floating"
+            autoGrow="true"
+            label="{{placeholderMessages.description || ''}}"
+            placeholder="{{placeholderMessages.description || ''}}"
+            [maxlength]="200"
+            errorText="{{errorMessages.maxlength || ''}}"
+            helperText="{{placeholderMessages.description || ''}}"
+            inputmode="text"
+          >
+          </ion-textarea>
         </ion-item>
       </ion-list>
       <ion-item slot="fixed" class="bottom-absolute">

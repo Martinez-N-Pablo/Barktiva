@@ -24,6 +24,7 @@ import { debounceTime } from 'rxjs';
 export class ModalComponent  implements OnInit {
   @Input() optionsList: any[] = [];
   @Input() optionSelected!: WritableSignal<any | null>;
+  @Input() modalID: string = '';
 
   optionsFiltered: any[] = [];
 

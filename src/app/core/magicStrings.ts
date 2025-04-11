@@ -1,8 +1,11 @@
+import { max } from "date-fns";
+
 export const ErrorMessages = {
     required: 'Este campo es obligatorio',
     email: 'Por favor, introduzca un email válido',
     passwordValidation: 'Las contraseñas deben coincidir',
     pattern: 'Formato invalido',
+    maxlength: 'El campo no puede exceder el número máximo de caracteres',
     default: 'An unexpected error occurred.',
 };
 
@@ -36,6 +39,11 @@ export const PlaceholderMessages: any = {
     search: 'Buscar',
     pet: 'Mascota',
     task: 'Tarea',
+    dose: 'Dosis',
+    dosePerWeek: 'Dosis por semana',
+    description: 'Descripción',
+    reciveNotification: 'Recibir notificaciones',
+    routeAdministration: 'Ruta administración',
     sterilized: 'Esterilizado',
     dateFormat: 'dd/MM/yyyy',
 };

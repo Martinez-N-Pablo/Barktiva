@@ -1,47 +1,48 @@
-export const TaskTypes = {
-    Feed: {
-        id: 1,
-        name: 'Alimentar',
-        icon: 'fast-food-outline',
+export const TaskTypes = [
+    {
+      id: 1,
+      name: 'Alimentar',
+      img: 'fast-food-outline',
     },
-    Walk: {
-        id: 2,
-        name: 'Passear',
-        icon: 'walk-outline',
+    {
+      id: 2,
+      name: 'Passear',
+      img: 'walk-outline',
     },
-    Bath: {
-        id: 3,
-        name: 'Dar banho',
-        icon: 'water-outline',
+    {
+      id: 3,
+      name: 'Dar banho',
+      img: 'water-outline',
     },
-    Grooming: {
-        id: 4,
-        name: 'Tosa',
-        icon: 'cut-outline',
+    {
+      id: 4,
+      name: 'Tosa',
+      img: 'cut-outline',
     },
-    Medication: {
-        id: 5,
-        name: 'Medicamento',
-        icon: 'medkit-outline',
+    {
+      id: 5,
+      name: 'Medicamento',
+      img: 'medkit-outline',
     },
-    Training: {
-        id: 6,
-        name: 'Treinamento',
-        icon: 'school-outline',
+    {
+      id: 6,
+      name: 'Treinamento',
+      img: 'school-outline',
     },
-    Play: {
-        id: 7,
-        name: 'Brincar',
-        icon: 'game-controller-outline',
+    {
+      id: 7,
+      name: 'Brincar',
+      img: 'game-controller-outline',
     },
-    VetVisit: {
-        id: 8,
-        name: 'Visita ao veterinário',
-        icon: 'medkit-outline',
+    {
+      id: 8,
+      name: 'Visita ao veterinário',
+      img: 'medkit-outline',
     },
-    Other: {
-        id: 9,
-        name: 'Outro',
-        icon: 'ellipsis-horizontal-circle-outline',
+    {
+      id: 9,
+      name: 'Outro',
+      img: 'ellipsis-horizontal-circle-outline',
     },
-};
+  ];
+  
