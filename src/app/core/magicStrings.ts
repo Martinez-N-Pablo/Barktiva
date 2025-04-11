@@ -40,12 +40,15 @@ export const PlaceholderMessages: any = {
     pet: 'Mascota',
     task: 'Tarea',
     dose: 'Dosis',
+    dosePerDay: 'Dosis por día',
     dosePerWeek: 'Dosis por semana',
+    dosePerMoth: 'Dosis por mes',
     description: 'Descripción',
     reciveNotification: 'Recibir notificaciones',
     routeAdministration: 'Ruta administración',
     sterilized: 'Esterilizado',
     dateFormat: 'dd/MM/yyyy',
+    selectDosesOption: 'Veces por'
 };
 
 export const ParagraphMessages: any = {

@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit, Signal, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonButton, IonImg, IonText, IonIcon, IonRadioGroup, IonLabel, IonAvatar, IonTextarea } from '@ionic/angular/standalone';
+import { IonContent, IonSelect, IonSelectOption, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonButton, IonImg, IonText, IonIcon, IonRadioGroup, IonLabel, IonAvatar, IonTextarea } from '@ionic/angular/standalone';
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, Titles } from '@app/core/magicStrings';
 import { InputComponent } from '@app/shared/components/input/input.component';
 import { ModalComponent } from '@app/shared/components/modal/modal.component';
@@ -13,6 +13,7 @@ import { DogFacadeService } from '@app/core/presenters/dog-facade.service';
 import { SelectInputComponent } from "../../../shared/components/select-input/select-input.component";
 import { InputDateComponent } from '@app/shared/components/input-date/input-date.component';
 import { TaskService } from '@app/core/services/task.service';
+import { DosesTimeOptions } from '@app/core/dosesTimeOptions';
 
 @Component({
   selector: 'app-task',
@@ -35,6 +36,8 @@ import { TaskService } from '@app/core/services/task.service';
     InputDateComponent,
     InputComponent,
     IonText,
+    IonSelect,
+    IonSelectOption,
   ]
 })
 export class TaskPage implements OnInit, OnDestroy {
@@ -50,6 +53,8 @@ export class TaskPage implements OnInit, OnDestroy {
   placeholderMessages = PlaceholderMessages;
   errorMessages = ErrorMessages;
   paragraphMessages = ParagraphMessages;
+
+  dosesTimeOptions: any[] = DosesTimeOptions; 
 
   dogsList: WritableSignal<Dog[]> = signal([]);
   dogSelected: WritableSignal<Dog | null> = signal(null);
@@ -104,7 +109,10 @@ export class TaskPage implements OnInit, OnDestroy {
       petId: new FormControl('', [Validators.required]),
       taskType: new FormControl('', [Validators.required]),
       dose: new FormControl('', [Validators.required]),
+      dosePerDay: new FormControl('', [Validators.required]),
       dosePerWeek: new FormControl('', [Validators.required]),
+      dosePerMonth: new FormControl('', [Validators.required]),
+
       notification: new FormControl('', [Validators.required]),
       quantity: new FormControl('', [Validators.required]),
       totalTime: new FormControl('', [Validators.required]),
@@ -112,6 +120,10 @@ export class TaskPage implements OnInit, OnDestroy {
       initialDate: new FormControl('', [Validators.required]),
       finalDate: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
+    });
+    this.taskForm.get('dose')?.valueChanges.subscribe(value => {
+      console.log('Nuevo valor de dose:', value);
+      console.log(this.dosesTimeOptions[2].id);
     });
   }
 
@@ -157,6 +169,5 @@ export class TaskPage implements OnInit, OnDestroy {
   onChangeNotificationsState(): void {
     this.notificationState = !this.notificationState
     this.taskForm.get('notification')?.setValue(this.notificationState);
-    console.log(this.notificationState);
   }
 }

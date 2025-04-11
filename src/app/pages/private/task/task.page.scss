@@ -33,6 +33,16 @@ ion-list:nth-child(1) {
 .error {
     --border-color: $danger-color !important;
 }
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+
+  ion-item {
+    width: 100%;
+  }
+}
 
 .notification-select-wrapper {
     display: flex;

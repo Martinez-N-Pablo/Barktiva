@@ -2,7 +2,6 @@
   <ion-title size="large">{{title || ""}}</ion-title>
 </ion-header>
 
-
 <ion-content [fullscreen]="true">
   <form id="taskForm" form action="submit" (ngSubmit)="onSubmit()" [formGroup]="taskForm">
       <ion-list class="formList" role="list">
@@ -21,25 +20,39 @@
           <app-modal [modalID]="taskTypeSelectModalId" [optionSelected]="taskTypeSelected" [optionsList]="taskTylesList()"></app-modal>
         </ion-item>
         <!-- Num of days and times per day -->
-        <div style="display: flex;">
+        <div class="container" style="display: flex;">
+          <ion-item role="listitem">
+            <ion-select 
+              [label]="placeholderMessages.selectDosesOption || ''" 
+              labelPlacement="floating"
+              formControlName="dose"
+              >
+              @for (option of dosesTimeOptions; track option) {
+                <ion-select-option [value]="option.id">{{option.nameLabel}}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
           <ion-item role="listitem">
             <app-input
-              [areaLabel]="'Dosis'"
-              [name]="'dose'"
+              [areaLabel]="'Dosis por día'"
+              [name]="'dosePerDay'"
               [type]="'number'"
               [inputmode]="'number'"
               [class]="'main-input'"
-              [control]="getControl('dose')"
+              [control]="getControl('dosePerDay')"
               [role]="'number'"
-              [validState]="taskForm.get('dose')?.invalid && taskForm.get('dose')?.touched && formSubmited"
-              [errors]="taskForm.get('dose')?.errors ?? null"
-              [label]="placeholderMessages.dose || ''"
+              [validState]="taskForm.get('dosePerDay')?.invalid && taskForm.get('dosePerDay')?.touched && formSubmited"
+              [errors]="taskForm.get('dosePerDay')?.errors ?? null"
+              [label]="placeholderMessages.dosePerDay || ''"
               [pattern]="'\d*'"
-              [placeholder]="placeholderMessages.dose || ''">
+              [placeholder]="placeholderMessages.dosePerDay || ''">
             >
             </app-input>
           </ion-item>
-          <ion-item role="listitem">
+        </div>
+        <!-- Doses for month or year, depend on dosesTimeOptions selected-->
+        <ng-container>
+          <ion-item *ngIf="taskForm.get('dose')?.value === dosesTimeOptions[1].id" role="listitem">
             <app-input
               [areaLabel]="'Dosis por semana'"
               [name]="'dosePerWeek'"
@@ -56,7 +69,25 @@
             >
             </app-input>
           </ion-item>
-        </div>
+
+          <ion-item *ngIf="taskForm.get('dose')?.value === dosesTimeOptions[2].id" role="listitem">
+            <app-input
+              [areaLabel]="'Dosis por mes'"
+              [name]="'dosePerMonth'"
+              [type]="'number'"
+              [inputmode]="'number'"
+              [class]="'main-input'"
+              [control]="getControl('dosePerMonth')"
+              [role]="'number'"
+              [validState]="taskForm.get('dosePerMonth')?.invalid && taskForm.get('dosePerMonth')?.touched && formSubmited"
+              [errors]="taskForm.get('dosePerMonth')?.errors ?? null"
+              [label]="placeholderMessages.dosePerMonth || ''"
+              [pattern]="'\d*'"
+              [placeholder]="placeholderMessages.dosePerMonth || ''">
+            >
+            </app-input>
+          </ion-item>
+        </ng-container>
         <!-- Start Date Input -->
         <ion-item role="listitem">
           <app-input-date
