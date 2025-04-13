@@ -159,11 +159,13 @@ export class TaskPage implements OnInit, OnDestroy {
   }
 
   onStartDateChange(newDate: string): void {
-    this.taskForm.get('initialDate')?.setValue(newDate);
+    const formatDatte = newDate.split('T')[0]; // Format the date to DD-MM-YYYY, whitout time
+    this.taskForm.get('initialDate')?.setValue(formatDatte);
   }
 
   onEndDateChange(newDate: any): void {
-    this.taskForm.get('finalDate')?.setValue(newDate);
+    const formatDatte = newDate.split('T')[0]; // Format the date to DD-MM-YYYY, whitout time
+    this.taskForm.get('finalDate')?.setValue(formatDatte);
   }
 
   onChangeNotificationsState(): void {
