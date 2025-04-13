@@ -161,17 +161,18 @@ ion-input {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }	
-}
-
-.breedSelected {
-  justify-content: start;
-  padding: $distance;
-
-  ion-avatar {
-    margin-right: 1em;
+  }
+  
+  .modalOptionSelected {
+    display: flex;
+    justify-content: start !important;
+  
+    ion-avatar {
+      margin-right: 1em;
+    }
   }
 }
+
 
 app-input-radio {
   width: 100%;

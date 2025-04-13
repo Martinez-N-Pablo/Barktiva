@@ -81,6 +81,9 @@ export class PetFormPage implements OnInit, OnDestroy {
     {radioID: this.SterilizedValue.sterilized || "", paragraphName: this.placeholderMessages.sterilized || ""},
   ];
 
+  // Breed Modal ID
+  breedSelectedModalID: string = "breedSelectedModalID";
+
   public actionSheetButtons = [
     {
       text: 'Delete',
