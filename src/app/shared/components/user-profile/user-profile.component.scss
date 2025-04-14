@@ -1,0 +1,38 @@
+/* Custom img button uploader */	
+.photoUploader {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-top: 1em;
+
+
+  ion-button.buttonPhotoUploader {
+    --background: transparent !important;
+    --background-activated: transparent;
+    --background-focused: transparent;
+    --background-hover: transparent;
+
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+    ion-thumbnail {
+      --size: 100px;
+      --border-radius: 14px;
+    }
+  }
+  ion-button:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+form {
+  height: 100%;
+
+  ion-list {
+    height: 100%;
+    display: flex;
+    justify-content: start;
+  }
+}
+  

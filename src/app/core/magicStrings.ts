@@ -14,7 +14,7 @@ export const PlaceholderMessages: any = {
     password: 'Contraseña',
     confirmPassword: 'Confirmar contraseña',
     name: 'Nombre',
-    surname: 'Surname',
+    surname: 'Apellidos',
     phone: 'Phone',
     address: 'Address',
     city: 'City',
@@ -59,6 +59,7 @@ export const ParagraphMessages: any = {
     updatePetForm: 'Modificar Mascota',
     createTask: 'Crear Tarea',
     updateTask: 'Modificar Tarea',
+    update: 'Actualizar',
     sex: 'Sexo',
     sterilized: 'Esterilizado',
 };
@@ -69,6 +70,7 @@ export const RoutesName: any = {
     singup: 'singup',
     dashboard: 'dashboard',
     petForm: 'pet-form',
+    user: 'userProfile',
 };
 
 export const Titles: any = {

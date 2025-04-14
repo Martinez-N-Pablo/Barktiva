@@ -1,0 +1,92 @@
+<form id="userProfileForm" form action="submit" [formGroup]="userProfileForm">
+  <ion-list class="formList" role="list">
+    <!-- Photo uploader -->
+    <ion-item role="listitem">
+      <div class="photoUploader">
+        <ion-button type="button" role="button" class="buttonPhotoUploader" (click)="onSelectImage()">
+          <ion-thumbnail slot="start">
+            <ion-img 
+              [class.clicked]="photoIsClicked" 
+              [src]="previewImage || 'https://ionicframework.com/docs/img/demos/thumbnail.svg'"
+              >
+            </ion-img>
+          </ion-thumbnail>
+        </ion-button>
+      </div>
+    </ion-item>
+    <!-- Name input -->
+    <ion-item role="listitem">
+      <app-input
+        [areaLabel]="'Nombre'"
+        [name]="'name'"
+        [type]="'text'"
+        [inputmode]="'text'"
+        [required]="true"
+        [class]="'main-input'"
+        [control]="getControl('name')"
+        [role]="'textbox'"
+        [validState]="userProfileForm.get('name')?.invalid && userProfileForm.get('name')?.touched && formSubmitted"
+        [errors]="userProfileForm.get('name')?.errors ?? null"
+        [label]="placeholderMessages.name || ''"
+        [placeholder]="placeholderMessages.name || ''">
+      </app-input>
+    </ion-item>
+    <!-- Surname input -->
+    <ion-item role="listitem">
+      <app-input
+        [areaLabel]="'Apellido'"
+        [name]="'surname'"
+        [type]="'text'"
+        [inputmode]="'text'"
+        [required]="true"
+        [class]="'main-input'"
+        [control]="getControl('surname')"
+        [role]="'textbox'"
+        [validState]="userProfileForm.get('surname')?.invalid && userProfileForm.get('surname')?.touched && formSubmitted"
+        [errors]="userProfileForm.get('surname')?.errors ?? null"
+        [label]="placeholderMessages.surname || ''"
+        [placeholder]="placeholderMessages.surname || ''">
+      </app-input>
+    </ion-item>
+    <!-- Email input -->
+    <ion-item role="listitem">
+      <app-input
+        [areaLabel]="'Email'"
+        [name]="'email'"
+        [type]="'email'"
+        [autocomplete]="'email'"
+        [inputmode]="'email'"
+        [required]="true"
+        [class]="'main-input'"
+        [control]="getControl('email')"
+        [role]="'textbox'"            
+        [validState]="userProfileForm.get('email')?.invalid && userProfileForm.get('email')?.touched && formSubmitted"
+        [errors]="userProfileForm.get('email')?.errors ?? null"
+        [label]="placeholderMessages.email || ''"
+        [placeholder]="placeholderMessages.email || ''">
+      </app-input>
+    </ion-item>
+    <!-- Birthdate input -->
+    <ion-item role="listitem">
+      <app-input-date
+        [value]="birthdateValue" 
+        [label]="birthdate.label || ''" 
+        [placeholder]="birthdate.placeholder || ''" 
+        [idValue]="birthdate.idValue || ''"
+        [required]="birthdate.required || false"
+        (valueChange)="onBirthdateChange($event)"
+        >
+      </app-input-date>
+    </ion-item>
+    <ion-item role="listitem" slot="fixed" class="bottom-absolute">
+      <app-button 
+        [role]="'submit'" 
+        [form]="'userProfileForm'" 
+        [type]="'submit'" 
+        [class]="'primary-button'" 
+        [buttonContent]="paragraphMessages.update || 'Actualizar'"
+        >
+      </app-button>
+    </ion-item>
+  </ion-list>
+</form>

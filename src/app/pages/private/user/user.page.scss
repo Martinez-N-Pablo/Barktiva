@@ -49,6 +49,38 @@ ion-header {
   }
 }
 
-ion-back-button {
-  color: $black-color;
+.form {
+  height: 100%;
+  margin-top: $distance;
+}
+
+ion-button.custom-back-button {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  font-weight: 500;
+  color: var(--ion-color-primary);
+  font-size: 1rem;
+  gap: 0.5rem; // Espaciado entre el h3 y el ícono
+
+
+  ion-icon {
+    font-size: 20px;
+    margin-right: $distance;
+
+  }
+
+  ion-label {
+    font-size: 1rem;
+  }
+
+  h3 {
+    margin: 0;
+    margin-top: 1px;
+  }
+
+  h3, ion-icon {
+    color: $black-color;
+  }
 }

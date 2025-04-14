@@ -1,9 +1,3 @@
-<!-- <ion-header collapse="condense">
-  <ion-toolbar>
-    <ion-title size="large">{{ title }}</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-content [fullscreen]="true">
     <app-logo
       [customStyles]="{ 'width': logoContainerWidth }"
@@ -27,7 +21,7 @@
             [class]="'main-input'"
             [control]="getControl('name')"
             [role]="'textbox'"
-            [validState]="singupForm.get('name')?.invalid && singupForm.get('name')?.touched && formSubmited"
+            [validState]="singupForm.get('name')?.invalid && singupForm.get('name')?.touched && formSubmitted"
             [errors]="singupForm.get('name')?.errors ?? null"
             [label]="placeholderMessages.name || ''"
             [placeholder]="placeholderMessages.name || ''">
@@ -45,30 +39,12 @@
             [class]="'main-input'"
             [control]="getControl('email')"
             [role]="'textbox'"            
-            [validState]="singupForm.get('email')?.invalid && singupForm.get('email')?.touched && formSubmited"
+            [validState]="singupForm.get('email')?.invalid && singupForm.get('email')?.touched && formSubmitted"
             [errors]="singupForm.get('email')?.errors ?? null"
             [label]="placeholderMessages.email || ''"
             [placeholder]="placeholderMessages.email || ''">
           </app-input>
         </ion-item>
-        <!-- Birthdate input -->
-        <!-- <ion-item role="listitem">
-          <app-input
-            [areaLabel]="'Fecha de nacimiento'"
-            [name]="'birthdate'"
-            [type]="'date'"
-            [inputmode]="'date'"
-            [required]="true"
-            [class]="'main-input'"
-            [control]="getControl('birthdate')"
-            [validState]="singupForm.get('birthdate')?.invalid && singupForm.get('birthdate')?.touched && formSubmited"
-            [label]="placeholderMessages.birthdate || ''"
-            [errors]="singupForm.get('birthdate')?.errors ?? null"
-
-            [placeholder]="placeholderMessages.birthdate || ''">
-          </app-input>
-        </ion-item> -->
-        <!-- Password input -->
         <ion-item role="listitem">
           <app-input
             [areaLabel]="'Contraseña'"
@@ -79,7 +55,7 @@
             [class]="'main-input'"
             [control]="getControl('password')"
             [role]="'textbox'"
-            [validState]="singupForm.get('password')?.invalid && singupForm.get('password')?.touched && formSubmited"
+            [validState]="singupForm.get('password')?.invalid && singupForm.get('password')?.touched && formSubmitted"
             [label]="placeholderMessages.password || ''"
             [errors]="singupForm.get('password')?.errors ?? null"
             [placeholder]="placeholderMessages.password || ''">
@@ -96,7 +72,7 @@
             [class]="'main-input'"
             [control]="getControl('confirmPassword')"
             [role]="'textbox'"
-            [validState]="singupForm.get('confirmPassword')?.invalid && singupForm.get('birconfirmPasswordthdate')?.touched && formSubmited"
+            [validState]="singupForm.get('confirmPassword')?.invalid && singupForm.get('birconfirmPasswordthdate')?.touched && formSubmitted"
             [errors]="singupForm.get('confirmPassword')?.errors ?? null"
             [label]="placeholderMessages.confirmPassword || ''"
             [placeholder]="placeholderMessages.confirmPassword || ''">
@@ -105,12 +81,20 @@
           @if (singupForm.errors?.['passwordsMismatch'] &&
             singupForm.get('password')?.valid &&
             singupForm.get('confirmPassword')?.valid &&
-            formSubmited) 
+            formSubmitted) 
             { 
               <small style="margin-left: 2em; color: red;">{{errorMessages.passwordValidation || ""}}</small> 
             }
         <ion-item role="listitem">
-          <app-button [role]="'button'" [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="singup()"></app-button>
+          <app-button 
+            [role]="'button'" 
+            [form]="'loginForm'" 
+            [type]="'submit'" 
+            [class]="'primary-button'" 
+            [buttonContent]="paragraphMessages.singUp" 
+            (onButtonClicked)="singup()"
+            >
+          </app-button>
         </ion-item>
        </ion-list>
     </form>
@@ -118,7 +102,14 @@
       <p class="">
         {{placeholderMessages!.loginParagraph || ""}}
       </p>
-      <app-button [role]="'button'" [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="redirectToLogin()"></app-button>
+      <app-button 
+        [role]="'button'" 
+        [type]="'button'" 
+        [class]="'secondary-button'" 
+        [buttonContent]="paragraphMessages.iniciarSesion" 
+        (onButtonClicked)="redirectToLogin()"
+        >
+      </app-button>
     </ion-footer>
   </div>
 </ion-content>

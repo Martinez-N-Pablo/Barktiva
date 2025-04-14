@@ -15,7 +15,8 @@ import { validateForm } from '@app/core/scripts/validate-forms';
   templateUrl: './singup.page.html',
   styleUrls: ['./singup.page.scss'],
   standalone: true,
-  imports: [IonFooter, 
+  imports: [
+    IonFooter, 
     IonItem,
     InputComponent,
     IonList, 
@@ -40,7 +41,7 @@ export class SingupPage implements OnInit {
   placeholderMessages: any = PlaceholderMessages;
   title: string = Titles.singup;
   logoPath: string = RoutesName.path;
-  formSubmited: boolean = false;
+  formSubmitted: boolean = false;
   
   singupForm!: FormGroup;
 
@@ -52,7 +53,7 @@ export class SingupPage implements OnInit {
 
   // When the user leaves the view, clean the form errors
   ionViewWillLeave(): void {
-    this.formSubmited = false;
+    this.formSubmitted = false;
     Object.keys(this.singupForm.controls).forEach((key) => {
       const control = this.singupForm.get(key);
       control?.reset();
@@ -73,7 +74,7 @@ export class SingupPage implements OnInit {
   }
   
   singup(): void {
-    this.formSubmited = true;
+    this.formSubmitted = true;
     this.singupForm.markAllAsTouched();
     console.log(this.singupForm.errors);
 
