@@ -1,4 +1,5 @@
 import { max } from "date-fns";
+import { send } from "ionicons/icons";
 
 export const ErrorMessages = {
     required: 'Este campo es obligatorio',
@@ -59,7 +60,9 @@ export const ParagraphMessages: any = {
     updatePetForm: 'Modificar Mascota',
     createTask: 'Crear Tarea',
     updateTask: 'Modificar Tarea',
+    accept: 'Aceptar',
     update: 'Actualizar',
+    send: 'Enviar',
     sex: 'Sexo',
     sterilized: 'Esterilizado',
 };

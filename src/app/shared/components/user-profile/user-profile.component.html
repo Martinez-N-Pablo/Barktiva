@@ -85,6 +85,7 @@
         [type]="'submit'" 
         [class]="'primary-button'" 
         [buttonContent]="paragraphMessages.update || 'Actualizar'"
+        (onButtonClicked)="submit()"
         >
       </app-button>
     </ion-item>

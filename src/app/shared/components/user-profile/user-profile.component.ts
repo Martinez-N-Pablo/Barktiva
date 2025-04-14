@@ -102,4 +102,6 @@ export class UserProfileComponent  implements OnInit {
     const formatDatte = newDate.split('T')[0]; // Format the date to DD-MM-YYYY, whitout time
     this.userProfileForm.get('birhdate')?.setValue(formatDatte);
   }
+
+  submit(): void {}
 }

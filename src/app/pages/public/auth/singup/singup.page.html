@@ -72,19 +72,19 @@
             [class]="'main-input'"
             [control]="getControl('confirmPassword')"
             [role]="'textbox'"
-            [validState]="singupForm.get('confirmPassword')?.invalid && singupForm.get('birconfirmPasswordthdate')?.touched && formSubmitted"
+            [validState]="singupForm.get('confirmPassword')?.invalid && singupForm.get('confirmPassword')?.touched && formSubmitted"
             [errors]="singupForm.get('confirmPassword')?.errors ?? null"
             [label]="placeholderMessages.confirmPassword || ''"
             [placeholder]="placeholderMessages.confirmPassword || ''">
           </app-input>
         </ion-item>
-          @if (singupForm.errors?.['passwordsMismatch'] &&
-            singupForm.get('password')?.valid &&
-            singupForm.get('confirmPassword')?.valid &&
-            formSubmitted) 
-            { 
-              <small style="margin-left: 2em; color: red;">{{errorMessages.passwordValidation || ""}}</small> 
-            }
+        @if (singupForm.errors?.['passwordsMismatch'] &&
+          singupForm.get('password')?.valid &&
+          singupForm.get('confirmPassword')?.valid &&
+          formSubmitted) 
+          { 
+            <small style="margin-left: 2em; color: red;">{{errorMessages.passwordValidation || ""}}</small> 
+          }
         <ion-item role="listitem">
           <app-button 
             [role]="'button'" 
