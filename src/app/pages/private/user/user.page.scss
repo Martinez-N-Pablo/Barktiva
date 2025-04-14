@@ -1,3 +1,5 @@
+@use '@theme/variables.scss' as *;
+
 .user-menu-modal::part(backdrop) {
     background: rgba(0, 0, 0, 0.4);
 }
@@ -33,4 +35,20 @@
 .user-menu-option.delete {
   color: var(--ion-color-danger);
   border-color: var(--ion-color-danger);
+}
+
+ion-header {
+  min-height: 61px;
+
+  ion-toolbar {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --border-width: 0;
+  }
+}
+
+ion-back-button {
+  color: $black-color;
 }

@@ -1,30 +1,26 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonIcon, IonHeader, IonTitle, IonToolbar, IonLabel, IonButton, IonImg, IonThumbnail, IonButtons, IonText } from '@ionic/angular/standalone';
+import { IonContent, IonLabel, IonImg, IonThumbnail } from '@ionic/angular/standalone';
 import { RoutesName } from '@app/core/magicStrings';
 import { ScheludeComponent } from '@app/shared/components/schelude/schelude.component';
 import { Router } from '@angular/router';
+import { HeaderComponent } from '@app/shared/components/header/header.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
   standalone: true,
-  imports: [IonText, 
-    IonButtons, 
+  imports: [
     IonImg,
     IonLabel,
     ScheludeComponent, 
     IonContent, 
-    IonHeader, 
-    IonTitle, 
-    IonToolbar, 
     CommonModule, 
     FormsModule,
     IonThumbnail,
-    IonButton,
-    IonIcon,
+    HeaderComponent,
   ]
 })
 export class DashboardPage implements OnInit {
@@ -44,10 +40,4 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
   }
-
-  goToProfile() {
-//    console.log('goToProfile: ' + RoutesName.user);
-    this._router.navigate(['user']);
-  }
-
 }

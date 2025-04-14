@@ -1,18 +1,35 @@
-<ion-content [fullscreen]="true">
-  <div class="user-menu-container">
-    <ion-button expand="block" fill="clear" class="user-menu-option" (click)="redirectToEditProfile()">
-      <ion-icon name="person-outline" slot="start"></ion-icon>
-      <span>Editar perfil</span>
-    </ion-button>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard" text="Atrás"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-    <ion-button expand="block" fill="clear" class="user-menu-option" (click)="redirectToChangePassword()">
-      <ion-icon name="key-outline" slot="start"></ion-icon>
-      <span>Cambiar contraseña</span>
-    </ion-button>
+@if (optionSelected) {
+  <ion-content [fullscreen]="true">
+    <div class="user-menu-container">
+      <ion-button expand="block" fill="clear" class="user-menu-option" (click)="redirectToEditProfile()">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <span>Editar perfil</span>
+      </ion-button>
+  
+      <ion-button expand="block" fill="clear" class="user-menu-option" (click)="redirectToChangePassword()">
+        <ion-icon name="key-outline" slot="start"></ion-icon>
+        <span>Cambiar contraseña</span>
+      </ion-button>
+  
+      <ion-button expand="block" fill="clear" class="user-menu-option delete" (click)="confirmDeleteAccount()">
+        <ion-icon name="trash-outline" slot="start"></ion-icon>
+        <span>Eliminar cuenta</span>
+      </ion-button>
+    </div>
+  </ion-content>
+}
+@else if(optionSelected === 1) {
+  <app-user-profile></app-user-profile>
+}
 
-    <ion-button expand="block" fill="clear" class="user-menu-option delete" (click)="confirmDeleteAccount()">
-      <ion-icon name="trash-outline" slot="start"></ion-icon>
-      <span>Eliminar cuenta</span>
-    </ion-button>
-  </div>
-</ion-content>
+@else if(optionSelected === 2) {
+  <app-change-password></app-change-password>
+}

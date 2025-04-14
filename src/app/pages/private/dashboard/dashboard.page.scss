@@ -22,41 +22,4 @@
             }
         }
     } 
-}
-
-/*
-    * Custom styles for header tittle
-*/
-.custom-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0 1rem;
-}
-
-.title-text {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-ion-button {
-    --padding-start: 0;
-    --padding-end: 0;
-}
-
-ion-icon {
-    font-size: 35px;
-    color: var(--ion-color-dark);
-}
-
-ion-toolbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-    z-index: 10;
-}
-
-ion-button {
-    --padding-top: 0;
-    --padding-bottom: 0;
-}
-  
+}  
