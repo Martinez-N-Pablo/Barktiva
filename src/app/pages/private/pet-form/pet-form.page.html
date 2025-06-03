@@ -34,7 +34,7 @@
         <!-- Breed input !!!IMPORTANT, Div id and modalID from app-modal, must be the same value -->
         <ion-item role="listitem">
           <div [id]="breedSelectedModalID" class="modal-container-button">
-            <app-select-input  [class.modalOptionSelected]="breedSelected()" class="container-modal-list" [optionSelected]="breedSelected" [placeholderMessage]="placeholderMessages.breed"></app-select-input>
+            <app-select-input [required]="true" [class.modalOptionSelected]="breedSelected()" class="container-modal-list" [optionSelected]="breedSelected" [placeholderMessage]="placeholderMessages.breed"></app-select-input>
           </div>
           <app-modal [modalID]="breedSelectedModalID" [optionSelected]="breedSelected" [optionsList]="breeds"></app-modal>
         </ion-item>

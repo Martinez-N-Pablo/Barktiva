@@ -1,5 +1,5 @@
 @if (!optionSelected()) {
-  <ion-text slot="start">{{placeholderMessage || ""}}</ion-text>
+  <ion-text slot="start">{{placeholderMessage + (required ? '*' : '') || ""}}</ion-text>
   <ion-icon slot="end" name="chevron-forward"></ion-icon>
 }
 @else {

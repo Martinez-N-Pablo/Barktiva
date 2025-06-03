@@ -18,7 +18,7 @@ import { IonText, IonLabel, IonAvatar, IonImg, IonIcon } from "@ionic/angular/st
 export class SelectInputComponent  implements OnInit {
   @Input() optionSelected!: WritableSignal<any | null>;
   @Input() placeholderMessage: string = "";
-  
+  @Input() required: boolean = false;
   constructor() { }
 
   ngOnInit() {
