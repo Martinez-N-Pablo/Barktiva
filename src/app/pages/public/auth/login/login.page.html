@@ -1,0 +1,73 @@
+<!-- <ion-header collapse="condense">
+  <ion-toolbar>
+    <ion-title class="title">{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true">
+  <div class="logo-container">
+    <app-logo
+      [customStyles]="{ 'width': logoContainerWidth }"
+      [logoPath]="logoPath"
+      class="main-logo">
+    </app-logo>
+  </div>
+  
+  <div>
+    <h1 class="title">{{ title }}</h1>
+  </div>
+
+  <div>
+    <form id="loginForm" form action="submit" [formGroup]="loginForm">
+      <!-- Email input -->
+       <ion-list class="formList" role="list">
+        <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Email'"
+            [name]="'email'"
+            [type]="'email'"
+            [autocomplete]="'email'"
+            [inputmode]="'email'"
+            [required]="true"
+            [class]="'main-input'"
+            [control]="getControl('email')"
+            [placeholder]="placeholderMessages.email || ''"
+            [label]="placeholderMessages.email || ''"
+            [errors]="loginForm.get('email')?.errors ?? null"
+            [validState]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched && formSubmited">
+          </app-input>
+        </ion-item>
+        <!-- Password input -->
+         <ion-item role="listitem" class="last-item">
+          <app-input
+            [areaLabel]="'Contraseña'"
+            [name]="'password'"
+            [type]="'password'"
+            [inputmode]="'password'"
+            [required]="true"
+            [class]="'main-input'"
+            [control]="getControl('password')"
+            [placeholder]="placeholderMessages.password || ''"
+            [label]="placeholderMessages.password || ''"
+            [errors]="loginForm.get('email')?.errors ?? null"
+            [validState]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched && formSubmited">
+          ></app-input>
+        </ion-item>
+        
+        <ion-item role="listitem">
+          <app-button [role]="'button'" [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="login()"></app-button>
+        </ion-item>
+
+        <div role="listitem" class="forgot-password">
+          <p><a href="" role="link" [attr.aria-label]="paragraphMessages.loginFortgotPassword || ''">{{ paragraphMessages.loginFortgotPassword || "" }}</a></p>
+        </div>
+       </ion-list>
+    </form>
+    <ion-footer class="bottom-absolute">
+      <p class="">
+        {{placeholderMessages!.singUpParagraph || ""}}
+      </p>
+      <app-button [role]="'button'" [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="redirectToRegister()"></app-button>
+    </ion-footer>
+  </div>
+</ion-content>

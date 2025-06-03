@@ -1,0 +1,18 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <div class="pet-card-container">
+    @for (dog of dogs; track dog; let i = $index) {
+      <div class="pet-card">
+        <ion-thumbnail slot="start">
+          <ion-img class="pet-card-img" [src]="i === 0 ? '../../../../assets/icon/plus.png' : '../../../../assets/icon/logo.png'"></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ i === 0 ? 'Nuevo' : (dog.name || '') }}</h2>
+        </ion-label>
+      </div>
+    }
+  </div>
+
+  <app-schelude></app-schelude>
+</ion-content>

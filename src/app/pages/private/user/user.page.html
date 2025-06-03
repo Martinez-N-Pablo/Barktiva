@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" class="custom-back-button" (click)="goBack()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        <h3>{{goBackText}}</h3>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+@if (optionSelected === -1) {
+  <ng-container>
+    <ion-content [fullscreen]="true">
+      <div class="user-menu-container">
+        <ion-button expand="block" fill="clear" class="user-menu-option" (click)="redirectToEditProfile()">
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <span>Editar perfil</span>
+        </ion-button>
+    
+        <ion-button expand="block" fill="clear" class="user-menu-option" (click)="redirectToChangePassword()">
+          <ion-icon name="key-outline" slot="start"></ion-icon>
+          <span>Cambiar contraseña</span>
+        </ion-button>
+    
+        <ion-button expand="block" fill="clear" class="user-menu-option delete" (click)="confirmDeleteAccount()">
+          <ion-icon name="trash-outline" slot="start"></ion-icon>
+          <span>Eliminar cuenta</span>
+        </ion-button>
+      </div>
+    </ion-content>
+  </ng-container>
+}
+@else if(optionSelected === 1) {
+  <ng-container>
+    <app-user-profile class="form"></app-user-profile>
+  </ng-container>
+}
+
+@else if(optionSelected === 2) {
+  <ng-container>
+    <app-change-password class="form"></app-change-password>
+  </ng-container>
+}

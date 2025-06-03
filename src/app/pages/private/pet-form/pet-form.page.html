@@ -1,0 +1,100 @@
+<ion-header collapse="condense">
+    <ion-title size="large">{{title || ""}}</ion-title>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form id="petForm" form action="submit" (ngSubmit)="onSubmit()" [formGroup]="petForm">
+    <!-- Email input -->
+      <ion-list class="formList" role="list">
+        <ion-item role="listitem">
+          <div class="photoUploader">
+            <ion-button type="button" role="button" class="buttonPhotoUploader" (click)="onSelectImage()">
+              <ion-thumbnail slot="start">
+                <ion-img [class.clicked]="isClicked" [src]="previewImage || 'https://ionicframework.com/docs/img/demos/thumbnail.svg'"></ion-img>
+              </ion-thumbnail>
+            </ion-button>
+          </div>
+        </ion-item>
+        <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Nombre'"
+            [name]="'name'"
+            [type]="'text'"
+            [inputmode]="'text'"
+            [required]="true"
+            [class]="'main-input'"
+            [control]="getControl('name')"
+            [role]="'textbox'"
+            [validState]="petForm.get('name')?.invalid && petForm.get('name')?.touched && formSubmited"
+            [errors]="petForm.get('name')?.errors ?? null"
+            [label]="placeholderMessages.name || ''"
+            [placeholder]="placeholderMessages.name || ''">
+          </app-input>
+        </ion-item>
+        <!-- Breed input !!!IMPORTANT, Div id and modalID from app-modal, must be the same value -->
+        <ion-item role="listitem">
+          <div [id]="breedSelectedModalID" class="modal-container-button">
+            <app-select-input  [class.modalOptionSelected]="breedSelected()" class="container-modal-list" [optionSelected]="breedSelected" [placeholderMessage]="placeholderMessages.breed"></app-select-input>
+          </div>
+          <app-modal [modalID]="breedSelectedModalID" [optionSelected]="breedSelected" [optionsList]="breeds"></app-modal>
+        </ion-item>
+        <!-- Sex -->
+        <ion-item role="listitem">
+          <app-input-radio 
+              [paragraphMessage]="paragraphMessages.sex || ''"
+              [radioGroupID]="paragraphMessages.sex || ''"
+              [radioOptions]="sexRadioOptions"
+              [radioInputSelected]="sexInputValue || ''"
+              (onRadioSelected)="sexSelected($event)"
+            ></app-input-radio>
+        </ion-item>
+        <!-- Age input -->
+        <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Edad'"
+            [name]="'age'"
+            [type]="'number'"
+            [inputmode]="'number'"
+            [class]="'main-input'"
+            [control]="getControl('age')"
+            [role]="'number'"
+            [validState]="petForm.get('age')?.invalid && petForm.get('age')?.touched && formSubmited"
+            [errors]="petForm.get('age')?.errors ?? null"
+            [label]="placeholderMessages.age || ''"
+            [pattern]="'\d*'"
+            [placeholder]="placeholderMessages.age || ''">
+          </app-input>
+        </ion-item>
+        <!-- Castrated input -->
+        <ion-item role="listitem">
+          <app-input-radio 
+              [paragraphMessage]="paragraphMessages.sterilized || ''"
+              [radioGroupID]="paragraphMessages.sterilized || ''"
+              [radioOptions]="sterilizedRadioOptions"
+              [radioInputSelected]="castratedInputValue || ''"
+              (onRadioSelected)="castratedSelected($event)"
+            ></app-input-radio>
+        </ion-item>
+        <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Peso'"
+            [name]="'weight'"
+            [type]="'number'"
+            [inputmode]="'number'"
+            [class]="'main-input'"
+            [control]="getControl('weight')"
+            [role]="'number'"
+            [validState]="petForm.get('weight')?.invalid && petForm.get('weight')?.touched && formSubmited"
+            [errors]="petForm.get('weight')?.errors ?? null"
+            [label]="placeholderMessages.weight || ''"
+            [pattern]="'\d*'"
+            [placeholder]="placeholderMessages.weight || ''"
+            [textExtraInfo]="'kg'">
+          </app-input>
+        </ion-item>
+      </ion-list>
+      <ion-item slot="fixed" class="bottom-absolute">
+        <app-button [role]="'submit'" [form]="'petForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.createPetForm"></app-button>
+      </ion-item>
+  </form>
+</ion-content>

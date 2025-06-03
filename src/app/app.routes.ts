@@ -10,4 +10,29 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/public/auth/login/login.page').then( m => m.LoginPage)
+  },
+  {
+    path: 'singup',
+    loadComponent: () => import('./pages/public/auth/singup/singup.page').then( m => m.SingupPage)
+  },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./pages/private/dashboard/dashboard.page').then( m => m.DashboardPage)
+  },
+  {
+    path: 'pet-form',
+    loadComponent: () => import('./pages/private/pet-form/pet-form.page').then( m => m.PetFormPage)
+  },
+  {
+    path: 'task',
+    loadComponent: () => import('./pages/private/task/task.page').then( m => m.TaskPage)
+  },
+  {
+    path: 'user',
+    loadComponent: () => import('./pages/private/user/user.page').then( m => m.UserPage)
+  },
+
 ];

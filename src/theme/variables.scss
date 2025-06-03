@@ -1,2 +1,58 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+// Typography
+$title-font: 'Baloo 2', sans-serif, cursive;
+$paragraph-font: 'Nunito Sans', sans-serif;
+
+$primary-color: #f87642;
+$secondary-color: #d33e00;
+$terciary-color: #2c2c2c;
+$danger-color: #dc3545;
+$succes-color: #28a745;
+
+$boton-color: #0054e9;
+
+//$color-whithe-background: #F9F9F9;
+$background-color-white: #fbfbfb;
+$background-input-grey: #dfdfdf;
+
+$black-color: #222124;
+
+$paragraph-size: 12px;
+
+$max-length: 390px; // Max width for mobile
+
+$border-radius: 10px;
+
+$distance: 0.7em; // Space between elements
+
+$dote-size: 10px; // Size of the dot in the calendar
+
+$pet-card-size: 70px; // Size of the pet card thumbnail
+
+//otro color de fondo FBF8EF
+//otro azul claro #197BBD
+//otro azul oscuro #125E8A
+
+//otro naranja F96E2A
+//otro color de fondo FBF8EF
+//otro azul claro C9E6F0
+//otro azul oscuro 78B3CE
+
+//otro azul claro #53E2F5
+//otro azul oscuro #6C9AA0
+
+// blanco #e7e6e1
+// background-color #dcd8d4
+// radius 10 px
+// naranja #FF8838
+// quitar borde boton principal
+
+//cambiar titulo de lugar
+//anterior negro 343a40
+// anterior naranja fd8447
+//naranja bueno cd6e39
+// naranja mas intenso F95F21
+// narajnja mas apagado df763d
+// azul con vanessa 006FE6

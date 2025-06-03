@@ -1,0 +1,11 @@
+@use '@theme/variables.scss' as *;
+
+.main-logo {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+// Logo style when clicked
+.main-logo:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+}

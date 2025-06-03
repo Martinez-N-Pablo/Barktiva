@@ -1,0 +1,115 @@
+<ion-content [fullscreen]="true">
+    <app-logo
+      [customStyles]="{ 'width': logoContainerWidth }"
+      [logoPath]="logoPath"
+      class="main-logo logo-container">
+    </app-logo>
+  <div>
+    <h1 class="title">{{ title }}</h1>
+  </div>
+  <div>
+    <form id="singupForm" form action="submit" [formGroup]="singupForm">
+      <ion-list class="formList" role="list">
+        <!-- Name input -->
+        <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Nombre'"
+            [name]="'name'"
+            [type]="'text'"
+            [inputmode]="'text'"
+            [required]="true"
+            [class]="'main-input'"
+            [control]="getControl('name')"
+            [role]="'textbox'"
+            [validState]="singupForm.get('name')?.invalid && singupForm.get('name')?.touched && formSubmitted"
+            [errors]="singupForm.get('name')?.errors ?? null"
+            [label]="placeholderMessages.name || ''"
+            [placeholder]="placeholderMessages.name || ''">
+          </app-input>
+        </ion-item>
+        <!-- Email input -->
+        <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Email'"
+            [name]="'email'"
+            [type]="'email'"
+            [autocomplete]="'email'"
+            [inputmode]="'email'"
+            [required]="true"
+            [class]="'main-input'"
+            [control]="getControl('email')"
+            [role]="'textbox'"            
+            [validState]="singupForm.get('email')?.invalid && singupForm.get('email')?.touched && formSubmitted"
+            [errors]="singupForm.get('email')?.errors ?? null"
+            [label]="placeholderMessages.email || ''"
+            [placeholder]="placeholderMessages.email || ''">
+          </app-input>
+        </ion-item>
+        <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Contraseña'"
+            [name]="'password'"
+            [type]="'password'"
+            [inputmode]="'password'"
+            [required]="true"
+            [class]="'main-input'"
+            [control]="getControl('password')"
+            [role]="'textbox'"
+            [validState]="singupForm.get('password')?.invalid && singupForm.get('password')?.touched && formSubmitted"
+            [label]="placeholderMessages.password || ''"
+            [errors]="singupForm.get('password')?.errors ?? null"
+            [placeholder]="placeholderMessages.password || ''">
+          </app-input>
+        </ion-item>
+        <!-- Repeat password input -->
+        <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Confirmar Contraseña'"
+            [name]="'confirmPassword'"
+            [type]="'password'"
+            [inputmode]="'password'"
+            [required]="true"
+            [class]="'main-input'"
+            [control]="getControl('confirmPassword')"
+            [role]="'textbox'"
+            [validState]="singupForm.get('confirmPassword')?.invalid && singupForm.get('confirmPassword')?.touched && formSubmitted"
+            [errors]="singupForm.get('confirmPassword')?.errors ?? null"
+            [label]="placeholderMessages.confirmPassword || ''"
+            [placeholder]="placeholderMessages.confirmPassword || ''">
+          </app-input>
+        </ion-item>
+        @if (singupForm.errors?.['passwordsMismatch'] &&
+          singupForm.get('password')?.valid &&
+          singupForm.get('confirmPassword')?.valid &&
+          formSubmitted) 
+          { 
+            <small style="margin-left: 2em; color: red;">{{errorMessages.passwordValidation || ""}}</small> 
+          }
+        <ion-item role="listitem">
+          <app-button 
+            [role]="'button'" 
+            [form]="'loginForm'" 
+            [type]="'submit'" 
+            [class]="'primary-button'" 
+            [buttonContent]="paragraphMessages.singUp" 
+            (onButtonClicked)="singup()"
+            >
+          </app-button>
+        </ion-item>
+       </ion-list>
+    </form>
+    <ion-footer class="bottom-absolute">
+      <p class="">
+        {{placeholderMessages!.loginParagraph || ""}}
+      </p>
+      <app-button 
+        [role]="'button'" 
+        [type]="'button'" 
+        [class]="'secondary-button'" 
+        [buttonContent]="paragraphMessages.iniciarSesion" 
+        (onButtonClicked)="redirectToLogin()"
+        >
+      </app-button>
+    </ion-footer>
+  </div>
+</ion-content>

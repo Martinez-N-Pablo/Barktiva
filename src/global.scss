@@ -9,6 +9,8 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+@use 'theme/variables.scss' as *;
+
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
 
@@ -35,3 +37,143 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+:root {
+  --ion-background-color: #{$background-color-white};
+
+  --ion-text-color: #{$black-color};
+  --ion-font-family: #{$paragraph-font};
+
+  --ion-color-primary: #{$primary-color};
+//  --ion-color-primary-rgb: 248, 158, 106;
+  --ion-color-secondary: #{$secondary-color};
+  --ion-color-terciary: #{$terciary-color};
+
+  --background: $background-color-white;
+}
+
+app-input {
+  width: 100%;  
+  
+  ion-input {
+    width: 100%;
+  }
+}
+
+ion-title {
+  color: $primary-color;
+  font-family: $title-font;
+
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+ion-item {
+  --inner-border-width: 0; /* Delete de border */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $title-font;
+  color: $primary-color;
+}
+
+
+p {
+  font-family: $paragraph-font;
+  color: $black-color;
+}
+
+a {
+  text-decoration: none;
+  color: $primary-color;
+  opacity: 1;
+  font-weight: bold;
+}
+
+
+ion-list.formList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+  > ion-item {
+      margin-bottom: #{$distance};
+  }
+}
+
+app-button {
+  display: contents;
+}
+
+ion-input {
+  --highlight-color-focused: #{$black-color};
+}
+
+.main-logo {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+}
+
+.bottom-absolute {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 16px;
+  width: 100%;
+  display: block;
+  position: absolute;
+  bottom: 0;
+}
+
+.register-link {
+  display: flex;
+  flex-flow: column;
+}
+
+.logo-container {
+  aspect-ratio: 16 / 9;
+  margin-top: 2em;
+}
+
+.title {
+  margin-top: 0;
+  font-size: 36px;
+  font-weight: bold; 
+  width: 100%; 
+  text-align: center;
+  padding: 0;
+
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+
+// Boton for open modal
+.modal-container-button {
+  border: 1px solid $black-color;
+  border-radius: $border-radius;
+  width: 100%;
+  padding: 1em;
+  
+  .container-modal-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .modalOptionSelected {
+    display: flex;
+    justify-content: start !important;
+  
+    ion-avatar {
+      margin-right: 1em;
+    }
+  }
+}
+
+
+app-input-radio {
+  width: 100%;
+}

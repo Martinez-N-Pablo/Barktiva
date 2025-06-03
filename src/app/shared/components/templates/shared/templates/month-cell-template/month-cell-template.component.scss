@@ -1,0 +1,27 @@
+@use '@theme/variables.scss' as *;
+
+.cal-day-cell {
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid $background-input-grey;
+  min-height: 100%;
+
+  .cal-day-number {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  .cal-day-events {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+
+    .event-dot {
+      width: $dote-size;
+      height: $dote-size;
+      border-radius: 50%;
+      background-color: $boton-color;
+    }
+  }
+}

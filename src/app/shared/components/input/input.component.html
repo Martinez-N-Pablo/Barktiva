@@ -1,0 +1,22 @@
+<!-- <label [for]="name" position="floating">{{placeholder}}:</label> -->
+<ion-input
+  [attr.name]="name"
+  [attr.aria-label]="areaLabel || ''"
+  [attr.role]="role || ''"
+  [type]="type || ''"
+  [autocomplete]="autocomplete || null"
+  [inputmode]="inputmode || ''"
+  [required]="required || ''"
+  [class]="class || ''"
+  [formControl]="control"
+  [placeholder]="placeholder"
+  [class.error]="validState"
+  [label]="label + (required ? '*' : '')"
+  [labelPlacement]="textExtraInfo ? 'stacked' : 'floating'"
+  [attr.error-text]="error"
+  [attr.pattern]="pattern"
+>
+@if (textExtraInfo) {
+  <small slot="end">{{textExtraInfo || ""}}</small>
+}
+</ion-input>

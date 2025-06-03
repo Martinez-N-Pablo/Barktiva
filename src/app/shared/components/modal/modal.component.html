@@ -1,0 +1,24 @@
+<ion-modal #modal [trigger]="modalID" [initialBreakpoint]="0.5" [breakpoints]="[0, 0.25, 0.5, 0.75]">
+  <ng-template>
+    <ion-content>
+      <ion-searchbar [formControl]="searchControl" inputmode="text" [debounce]="debounceTime" [placeholder]="placeholderMessage.search" (click)="modal.setCurrentBreakpoint(0.75)"></ion-searchbar>
+      <ion-list>
+        @if (optionsList && optionsFiltered) {
+          @for (option of optionsFiltered; track option; let index = $index) {
+            <ion-item (click)="onSelectOption(option)">
+              <ion-avatar slot="start">
+                <ion-img [src]="option.img"></ion-img>
+              </ion-avatar>
+              <ion-label>
+                <h2>{{option.name}}</h2>
+              </ion-label>
+            </ion-item>
+          }
+          @empty {
+            <ion-text>No se han encontrado resultados</ion-text>
+          }
+        }
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,36 @@
+@use '@theme/variables.scss' as *;
+
+ion-button {
+    font-weight: bold;
+    width: 100%;
+    font-family: $paragraph-font;
+
+    --border-radius: #{$border-radius};
+    --border-style: solid;
+    --border-width: 1.5px;
+    --color: #{$background-color-white};
+    --border-color: #{$boton-color};
+    
+
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+ion-button.clicked {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+
+ion-button.secondary-button {
+    text-align: center;
+    align-self: center;
+    width: 90%;
+    
+    --color: #{$black-color};
+    --background: none;
+    --border-color: #{$boton-color} !important;
+}
+
+ion-button.primary-button {
+    --background: #{$boton-color};
+    --border-width: 0px;
+}

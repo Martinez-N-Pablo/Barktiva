@@ -1,0 +1,18 @@
+@use 'theme/variables.scss' as *;
+
+.forgot-password {
+    text-align: center;
+    width: 100%;
+    height: fit-content;
+
+    p {
+        font-size: small;
+        a {
+            color: $primary-color;
+        }
+    }
+}
+
+app-logo {
+    margin-top: 0;
+}

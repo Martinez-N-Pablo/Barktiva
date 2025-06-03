@@ -1,0 +1,142 @@
+<ion-header collapse="condense">
+  <ion-title size="large">{{title || ""}}</ion-title>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form id="taskForm" form action="submit" (ngSubmit)="onSubmit()" [formGroup]="taskForm">
+      <ion-list class="formList" role="list">
+        <!-- Dog input select -->
+        <ion-item role="listitem">
+          <div [id]="dogSelectModalId" class="modal-container-button">
+            <app-select-input class="container-modal-list" [class.modalOptionSelected]="dogSelected()" [optionSelected]="dogSelected" [placeholderMessage]="placeholderMessages.pet"></app-select-input>
+          </div>
+          <app-modal [modalID]="dogSelectModalId" [optionSelected]="dogSelected" [optionsList]="dogsList()"></app-modal>
+        </ion-item>
+        <!-- Task input select -->
+        <ion-item role="listitem">
+          <div [id]="taskTypeSelectModalId" class="modal-container-button">
+            <app-select-input class="container-modal-list" [class.modalOptionSelected]="taskTypeSelected()" [optionSelected]="taskTypeSelected" [placeholderMessage]="placeholderMessages.task"></app-select-input>
+          </div>
+          <app-modal [modalID]="taskTypeSelectModalId" [optionSelected]="taskTypeSelected" [optionsList]="taskTylesList()"></app-modal>
+        </ion-item>
+        <!-- Num of days and times per day -->
+        <div class="container">
+          <ion-item role="listitem">
+            <ion-select 
+              [label]="placeholderMessages.selectDosesOption || ''" 
+              labelPlacement="floating"
+              formControlName="dose"
+              >
+              @for (option of dosesTimeOptions; track option) {
+                <ion-select-option [value]="option.id">{{option.nameLabel}}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+          <ion-item role="listitem">
+            <app-input
+              [areaLabel]="'Dosis por día'"
+              [name]="'dosePerDay'"
+              [type]="'number'"
+              [inputmode]="'number'"
+              [class]="'main-input'"
+              [control]="getControl('dosePerDay')"
+              [role]="'number'"
+              [validState]="taskForm.get('dosePerDay')?.invalid && taskForm.get('dosePerDay')?.touched && formSubmited"
+              [errors]="taskForm.get('dosePerDay')?.errors ?? null"
+              [label]="placeholderMessages.dosePerDay || ''"
+              [pattern]="'\d*'"
+              [placeholder]="placeholderMessages.dosePerDay || ''">
+            >
+            </app-input>
+          </ion-item>
+        </div>
+        <!-- Doses for month or year, depend on dosesTimeOptions selected-->
+        <ng-container>
+          <ion-item *ngIf="taskForm.get('dose')?.value === dosesTimeOptions[1].id" role="listitem">
+            <app-input
+              [areaLabel]="'Dosis por semana'"
+              [name]="'dosePerWeek'"
+              [type]="'number'"
+              [inputmode]="'number'"
+              [class]="'main-input'"
+              [control]="getControl('dosePerWeek')"
+              [role]="'number'"
+              [validState]="taskForm.get('dosePerWeek')?.invalid && taskForm.get('dosePerWeek')?.touched && formSubmited"
+              [errors]="taskForm.get('dosePerWeek')?.errors ?? null"
+              [label]="placeholderMessages.dosePerWeek || ''"
+              [pattern]="'\d*'"
+              [placeholder]="placeholderMessages.dosePerWeek || ''">
+            >
+            </app-input>
+          </ion-item>
+
+          <ion-item *ngIf="taskForm.get('dose')?.value === dosesTimeOptions[2].id" role="listitem">
+            <app-input
+              [areaLabel]="'Dosis por mes'"
+              [name]="'dosePerMonth'"
+              [type]="'number'"
+              [inputmode]="'number'"
+              [class]="'main-input'"
+              [control]="getControl('dosePerMonth')"
+              [role]="'number'"
+              [validState]="taskForm.get('dosePerMonth')?.invalid && taskForm.get('dosePerMonth')?.touched && formSubmited"
+              [errors]="taskForm.get('dosePerMonth')?.errors ?? null"
+              [label]="placeholderMessages.dosePerMonth || ''"
+              [pattern]="'\d*'"
+              [placeholder]="placeholderMessages.dosePerMonth || ''">
+            >
+            </app-input>
+          </ion-item>
+        </ng-container>
+        <!-- Start Date Input -->
+        <ion-item role="listitem">
+          <app-input-date
+            [value]="startDateValue" 
+            [label]="startDate.label || ''" 
+            [placeholder]="startDate.placeholder || ''" 
+            [idValue]="startDate.id || ''"
+            [required]="startDate.required || false"
+            (valueChange)="onStartDateChange($event)"
+            >
+          </app-input-date>
+        </ion-item>
+        <!-- End Date Input -->
+        <ion-item role="listitem">
+          <app-input-date
+            [value]="endDateValue" 
+            [label]="endDate.label || ''" 
+            [placeholder]="endDate.placeholder || ''" 
+            [idValue]="endDate.id || ''"
+            [required]="endDate.required || false"
+            (valueChange)="onEndDateChange($event)"
+            >
+          </app-input-date>
+        </ion-item>
+        <ion-item role="listitem" class="notification-select-wrapper">
+          <label (click)="onChangeNotificationsState()" [class.isSelected]="notificationState" [for]="">
+            <ion-text>{{placeholderMessages.reciveNotification || ""}}</ion-text>
+          </label>
+        </ion-item>
+        <ion-item role="listitem" class="textarea-wrapper">
+          <ion-textarea
+            aria-label="Descripción"
+            name="description"
+            formControlName="description"
+            class="main-input textarea-expand"
+            labelPlacement="floating"
+            autoGrow="true"
+            label="{{placeholderMessages.description || ''}}"
+            placeholder="{{placeholderMessages.description || ''}}"
+            [maxlength]="200"
+            errorText="{{errorMessages.maxlength || ''}}"
+            helperText="{{placeholderMessages.description || ''}}"
+            inputmode="text"
+          >
+          </ion-textarea>
+        </ion-item>
+      </ion-list>
+      <ion-item slot="fixed" class="bottom-absolute">
+        <app-button [role]="'submit'" [form]="'taskForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.createTask"></app-button>
+      </ion-item>
+  </form>
+</ion-content>

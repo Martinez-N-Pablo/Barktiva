@@ -1,0 +1,17 @@
+<ng-template #monthCellTemplate let-day="day">
+  <div class="cal-day-cell d-flex flex-column justify-content-between h-40">
+    <div class="cal-day-number text-end pe-1 pt-1">
+      <h4>      
+        {{ day.date | date: 'd' }}
+      </h4>
+    </div>
+    <div class="cal-day-events d-flex flex-wrap justify-content-start px-1 pb-1">
+      <div
+        *ngFor="let event of day.events"
+        class="event-dot"
+        [style.backgroundColor]="event.color?.primary"
+        [title]="event.title">
+      </div>
+    </div>
+  </div>
+</ng-template>

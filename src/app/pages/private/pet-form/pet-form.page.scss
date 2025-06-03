@@ -1,0 +1,120 @@
+@use '@theme/variables.scss' as *;
+
+.option-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.option-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.option-text {
+  font-size: 16px;
+}
+
+/* Custom img button uploader */	
+.photoUploader {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-top: 1em;
+
+
+  ion-button.buttonPhotoUploader {
+    --background: transparent !important;
+    --background-activated: transparent;
+    --background-focused: transparent;
+    --background-hover: transparent;
+
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+    ion-thumbnail {
+      --size: 100px;
+      --border-radius: 14px;
+    }
+  }
+  ion-button:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+/* Custom select */
+ion-radio-group {
+  display: flex;
+  flex-flow: column;
+  justify-content: start;
+  width: 100%;
+  border-radius: 10px;
+
+  div:first-child {
+    margin-bottom: $distance;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+
+    label {
+      width: 100%;
+      display: flex;
+      margin-right: .5em;
+      border: 1px solid $black-color;
+      border-radius: $border-radius;
+      padding: 1em;
+      text-align: center;
+
+      ion-text {
+        text-align: center;
+        width: 100%;
+        font-weight: bold;
+      }      
+    }
+
+    label.isSelected {
+      background-color: $primary-color;
+      color: $background-color-white;
+    }
+  }
+}
+
+
+/* Custom radio button */
+ion-radio::part(container) {
+  width: 30px;
+  height: 30px;
+
+  border-radius: 8px;
+  border: 2px solid #111;
+}
+
+ion-radio::part(mark) {
+  background: none;
+  transition: none;
+  transform: none;
+  border-radius: 0;
+}
+
+ion-radio.radio-checked::part(container) {
+  background: $primary-color;
+  border-color: transparent;
+}
+
+ion-radio.radio-checked::part(mark) {
+  width: 6px;
+  height: 10px;
+
+  border-width: 0px 2px 2px 0px;
+  border-style: solid;
+  border-color: #111;
+
+  transform: rotate(45deg);
+}

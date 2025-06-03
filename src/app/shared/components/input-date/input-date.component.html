@@ -1,0 +1,19 @@
+<ion-label>{{ label || 'Fecha' }}{{required ? "*" : ""}}</ion-label>
+<ion-datetime-button [datetime]="idValue"></ion-datetime-button>
+
+<ion-modal #dateModal [keepContentsMounted]="true">
+  <ng-template>
+    <ion-datetime
+      [id]="idValue"
+      presentation="date"
+      [formatOptions]="{
+        date: {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        }
+      }"
+      (ionChange)="onChange($event)"
+    ></ion-datetime>
+  </ng-template>
+</ion-modal>
