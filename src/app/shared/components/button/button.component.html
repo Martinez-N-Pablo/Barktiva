@@ -1,6 +1,7 @@
 <ion-button
   [class]="class"
   [attr.rol]="role"
+  [ngClass]="{ 'android-button': isAndroid }"
   expand="block"
   shape="round"
   [form]="form"

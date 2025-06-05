@@ -14,6 +14,9 @@ export class AppComponent implements OnInit {
   constructor(private _router: Router, private _metaService: MetaService) {}
 
   ngOnInit(): void {
+    // Se elimina tema oscuro
+    document.body.classList.remove('dark');
+
     this._router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this._metaService.updateDescriptionForCurrentRoute(this._meta);

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { IonButton } from '@ionic/angular/standalone';
+import { IonButton, Platform } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -25,9 +25,18 @@ export class ButtonComponent  implements OnInit {
   @Output()
   onButtonClicked: EventEmitter<void> = new EventEmitter<void>();
 
-  isClicked: boolean = false;
+  private _platform: Platform = inject(Platform);
 
-  constructor() { }
+  isClicked: boolean = false;
+  isAndroid: boolean = false; // Clase adiciona a aplicar al boton en base al SO
+
+  constructor() {
+    // Se comprueba que SO ejecuta la app y se inserta nueva clase si es Android
+    this._platform.ready().then(() => {
+      this.isAndroid = this._platform.is('android');
+    });
+
+  }
 
   ngOnInit() {}
 

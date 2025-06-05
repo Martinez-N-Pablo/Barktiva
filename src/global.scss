@@ -49,6 +49,9 @@
   --ion-color-secondary: #{$secondary-color};
   --ion-color-terciary: #{$terciary-color};
 
+  --ion-item-background: #{$background-color-white};
+  --ion-toolbar-background: #{$background-color-white};
+
   --background: $background-color-white;
 }
 
@@ -173,7 +176,34 @@ ion-input {
   }
 }
 
+// Elimina box-shadow del ion-footer
+ion-footer.footer-md {
+  box-shadow: none;
+  --webkit-box-shador: none;
+}
 
 app-input-radio {
   width: 100%;
+}
+
+// Forzar estilos claros hasta que se implemente modo oscuro
+@media (prefers-color-scheme: dark) {
+  :root.md {
+    color-scheme: light;
+
+    --ion-background-color: #{$background-color-white};
+
+    --ion-text-color: #{$black-color};
+    --ion-font-family: #{$paragraph-font};
+
+    --ion-color-primary: #{$primary-color};
+    //--ion-color-primary-rgb: 248, 158, 106;
+    --ion-color-secondary: #{$secondary-color};
+    --ion-color-terciary: #{$terciary-color};
+
+    --ion-item-background: #{$background-color-white};
+    --ion-toolbar-background: #{$background-color-white};
+
+    --background: $background-color-white;
+  }
 }

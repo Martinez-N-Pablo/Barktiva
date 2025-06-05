@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ButtonComponent } from '@app/shared/components/button/button.component';
 import { InputComponent } from '@app/shared/components/input/input.component';
 import { validateForm } from '@app/core/scripts/validate-forms';
+import { AuthFacadeService } from '@app/core/presenters/auth-facade.service';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,7 @@ import { validateForm } from '@app/core/scripts/validate-forms';
 export class LoginPage implements OnInit {
   private _router: Router = inject(Router);
   private _formBuilder: FormBuilder = inject(FormBuilder);
+  private _authFacade: AuthFacadeService = inject(AuthFacadeService);
 
   logoPath: string = RoutesName.home;
   logoContainerWidth: string = '40%';
@@ -69,11 +71,16 @@ export class LoginPage implements OnInit {
   login(): void {
     this.formSubmited = true;
     this.loginForm.markAllAsTouched();
+
+    console.log('Hola');
     // validateForm(this.loginForm);
     if (this.loginForm.invalid) {
       console.log('Formulario inválido');
-      console.log(this.loginForm.get('email')?.invalid
-    );
+      console.log(this.loginForm.get('email')?.invalid);
+      console.log('Valor: ' + this.loginForm.value);
+
+      this._authFacade.login(this.loginForm.value);
+
       return;
     }
 
