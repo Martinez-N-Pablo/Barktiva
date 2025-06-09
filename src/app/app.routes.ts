@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './middelware/auth.guard';
 
 export const routes: Routes = [
   {
@@ -20,18 +21,22 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
+    canActivate: [authGuard],
     loadComponent: () => import('./pages/private/dashboard/dashboard.page').then( m => m.DashboardPage)
   },
   {
     path: 'pet-form',
+    canActivate: [authGuard],
     loadComponent: () => import('./pages/private/pet-form/pet-form.page').then( m => m.PetFormPage)
   },
   {
     path: 'task',
+    canActivate: [authGuard],
     loadComponent: () => import('./pages/private/task/task.page').then( m => m.TaskPage)
   },
   {
     path: 'user',
+    canActivate: [authGuard],
     loadComponent: () => import('./pages/private/user/user.page').then( m => m.UserPage)
   },
 

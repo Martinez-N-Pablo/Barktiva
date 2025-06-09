@@ -186,6 +186,17 @@ app-input-radio {
   width: 100%;
 }
 
+// Se desactivan estilos de status en form por defecto
+ion-input.ion-valid,
+ion-input.ion-invalid,
+ion-textarea.ion-valid,
+ion-textarea.ion-invalid {
+  --highlight-color-focused: $black-color !important;
+  --highlight-color: $black-color !important;
+  --border-color: $black-color !important;
+  --color: $black-color !important;
+}
+
 // Forzar estilos claros hasta que se implemente modo oscuro
 @media (prefers-color-scheme: dark) {
   :root.md {

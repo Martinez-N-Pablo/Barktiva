@@ -9,6 +9,7 @@ import { LogoComponent } from '@app/shared/components/logo/logo.component';
 import { ButtonComponent } from '@app/shared/components/button/button.component';
 import { InputComponent } from '@app/shared/components/input/input.component';
 import { validateForm } from '@app/core/scripts/validate-forms';
+import { UserFacadeService } from '@app/core/presenters/user-facade.service';
 
 @Component({
   selector: 'app-singup',
@@ -31,6 +32,7 @@ import { validateForm } from '@app/core/scripts/validate-forms';
 export class SingupPage implements OnInit {
   private _router: Router = inject(Router);
   private _formBuilder: FormBuilder = inject(FormBuilder);
+  private _userFacade: UserFacadeService = inject(UserFacadeService);
 
   logoContainerWidth = '40%';
 
@@ -73,27 +75,30 @@ export class SingupPage implements OnInit {
     }, { validators: this.passwordsMatchValidator } );
   }
   
-  singup(): void {
+  async singup() {
     this.formSubmitted = true;
     this.singupForm.markAllAsTouched();
+
     console.log(this.singupForm.errors);
 
     if (this.singupForm.invalid) {
       console.log('Formulario inválido');
+      
       this.printFormErrors(this.singupForm);
+      
       console.log(this.singupForm.errors);
       return;
     }
 
-    // Check if the passwords are the same
-    // if (!this.passwordsMatchValidator()) {
-    //   this.singupForm.get('confirmPassword')?.setErrors({ passwordsMismatch: true });
-    //   console.log('Password do not Match');
-    //   return;
-    // }
+    let newUser = this.singupForm.value;
+    newUser.role = "user";
 
-    // Call to the service to login
-    this._router.navigate([`/${RoutesName.petForm}`]);
+    const singup = await this._userFacade.createUser(newUser);
+
+    if(singup) {
+      // Call to the service to login
+      this._router.navigate([`/${RoutesName.dashboard}`]);
+    }
   }
 
   passwordsMatchValidator(group: FormGroup): { [key: string]: any } | null {

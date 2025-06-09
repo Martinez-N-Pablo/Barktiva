@@ -68,24 +68,21 @@ export class LoginPage implements OnInit {
     });
   }
 
-  login(): void {
+  async login(): Promise<void> {
     this.formSubmited = true;
     this.loginForm.markAllAsTouched();
 
-    console.log('Hola');
     // validateForm(this.loginForm);
     if (this.loginForm.invalid) {
       console.log('Formulario inválido');
-      console.log(this.loginForm.get('email')?.invalid);
-      console.log('Valor: ' + this.loginForm.value);
-
-      this._authFacade.login(this.loginForm.value);
-
       return;
     }
 
-    // Call to the service to login
-    this._router.navigate([`/${RoutesName.petForm}`]);
+    const logged = await this._authFacade.login(this.loginForm.value);
+
+    if(logged) {
+      this._router.navigate([`/${RoutesName.dashboard}`]);
+    }
   }
 
   redirectToRegister(): void {

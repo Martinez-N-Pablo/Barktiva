@@ -122,8 +122,8 @@ export class TaskPage implements OnInit, OnDestroy {
       description: new FormControl('', [Validators.required]),
     });
     this.taskForm.get('dose')?.valueChanges.subscribe(value => {
-      console.log('Nuevo valor de dose:', value);
-      console.log(this.dosesTimeOptions[2].id);
+      // console.log('Nuevo valor de dose:', value);
+      // console.log(this.dosesTimeOptions[2].id);
     });
   }
 
