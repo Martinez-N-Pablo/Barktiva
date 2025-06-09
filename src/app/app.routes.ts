@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './middelware/auth.guard';
+import { authGuard } from './core/middelware/auth.guard';
 
 export const routes: Routes = [
   {
     path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    loadComponent: () => import('./pages/public/home/home.page').then((m) => m.HomePage),
   },
   {
     path: '',
