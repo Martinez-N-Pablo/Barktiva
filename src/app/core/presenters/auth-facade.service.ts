@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { ToastService } from '../services/toast.service';
 import { firstValueFrom } from 'rxjs';
 import { Preferences } from '@capacitor/preferences';
+import { ToasSuccessMessage, ToastErorMessage } from '../const/magicStrings';
 
 @Injectable({
   providedIn: 'root'
@@ -28,13 +29,13 @@ export class AuthFacadeService {
           }),
         });
 
-        return this._toastService.showToast('Inicio de sesión realizado', 'success').then(() => true);
+        return this._toastService.showToast(ToasSuccessMessage.logn || "", 'success').then(() => true);
       } else {
-        return this._toastService.showToast('Error de autenticación', 'danger').then(() => false);
+        return this._toastService.showToast(ToastErorMessage.login, 'danger').then(() => false);
       }
     })
     .catch(() => {
-      return this._toastService.showToast('Login fallido: credenciales inválidas o error del servidor', 'danger').then(() => false);
+      return this._toastService.showToast(ToastErorMessage.login, 'danger').then(() => false);
     });
   };
 
@@ -42,7 +43,7 @@ export class AuthFacadeService {
     const { value } = await Preferences.get({ key: 'user' });
 
     if(!value) {
-      return this._toastService.showToast('Error con el token', 'danger').then(() => false);
+      return this._toastService.showToast(ToastErorMessage.login || "", 'danger').then(() => false);
     }
 
     const user = JSON.parse(value as string);
@@ -52,7 +53,7 @@ export class AuthFacadeService {
         return true;
       })
       .catch(() => {
-      return this._toastService.showToast('No tiener permisos', 'danger').then(() => false);
+      return this._toastService.showToast(ToastErorMessage.permissions || "", 'danger').then(() => false);
     });
   }
 }

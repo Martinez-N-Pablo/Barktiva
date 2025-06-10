@@ -55,7 +55,14 @@
         </ion-item>
         
         <ion-item role="listitem">
-          <app-button [role]="'button'" [form]="'loginForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.iniciarSesion" (onButtonClicked)="login()"></app-button>
+          <app-button 
+            [role]="'button'" 
+            [form]="'loginForm'" 
+            [type]="'submit'" 
+            [class]="'primary-button'" 
+            [buttonContent]="paragraphMessages.iniciarSesion" 
+            (onButtonClicked)="login()">
+          </app-button>
         </ion-item>
 
         <div role="listitem" class="forgot-password">
@@ -67,7 +74,13 @@
       <p class="">
         {{placeholderMessages!.singUpParagraph || ""}}
       </p>
-      <app-button [role]="'button'" [type]="'button'" [class]="'secondary-button'" [buttonContent]="paragraphMessages.singUp" (onButtonClicked)="redirectToRegister()"></app-button>
+      <app-button 
+        [role]="'button'" 
+        [type]="'button'" 
+        [class]="'secondary-button'" 
+        [buttonContent]="paragraphMessages.singUp" 
+        (onButtonClicked)="redirectToRegister()">
+      </app-button>
     </ion-footer>
   </div>
 </ion-content>

@@ -7,7 +7,7 @@ export const ErrorMessages = {
     passwordValidation: 'Las contraseñas deben coincidir',
     pattern: 'Formato invalido',
     maxlength: 'El campo no puede exceder el número máximo de caracteres',
-    default: 'An unexpected error occurred.',
+    default: 'Ha ocurrido un error inexperado.',
 };
 
 export const PlaceholderMessages: any = {
@@ -92,4 +92,16 @@ export const MetaDescriptions: any = {
     petForm: 'Formulario para añadir una mascota en la aplicación Barktiva',
     dashboard: 'Dashboard de la aplicación Barktiva',
     task: 'Formulario para crear una tarea'
+};
+
+export const ToasSuccessMessage: any = {
+    register: 'Se ha rergistrado con éxito',
+    login: 'Inicio de sesión realizado',
+};
+
+export const ToastErorMessage: any = {
+    register: 'Error en el registro',
+    login: 'Login fallido: credenciales inválidas o error del servidor',
+    token: 'Error con el token',
+    permissions: 'No tiener permisos',
 };

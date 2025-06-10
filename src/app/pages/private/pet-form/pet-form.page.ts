@@ -2,19 +2,19 @@ import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@a
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonThumbnail, IonContent,IonHeader, IonTitle, IonList, IonItem, IonButton, IonImg } from '@ionic/angular/standalone';
-import { LogoComponent } from "../../../shared/components/logo/logo.component";
-import { ButtonComponent } from "../../../shared/components/button/button.component";
-import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
+import { LogoComponent } from "../../../components/logo/logo.component";
+import { ButtonComponent } from "../../../components/button/button.component";
+import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/const/magicStrings';
 import { Subscription } from 'rxjs';
 import { PetService } from '@app/core/services/pet.service';
 import { AlertController } from '@ionic/angular';
-import { InputComponent } from '@app/shared/components/input/input.component';
+import { InputComponent } from '@app/components/input/input.component';
 import { PhotoUploaderService } from '@app/core/services/photo-uploader.service';
-import { SterilizedValue, Patterns, SexValue } from '@app/core/constValue';
-import { ModalComponent } from '@app/shared/components/modal/modal.component';
+import { SterilizedValue, Patterns, SexValue } from '@app/core/const/constValue';
+import { ModalComponent } from '@app/components/modal/modal.component';
 import { Breed } from '@app/core/interfaces/breed';
-import { SelectInputComponent } from '@app/shared/components/select-input/select-input.component';
-import { InputRadioComponent } from "../../../shared/components/input-radio/input-radio.component";
+import { SelectInputComponent } from '@app/components/select-input/select-input.component';
+import { InputRadioComponent } from "../../../components/input-radio/input-radio.component";
 
 @Component({
   selector: 'app-pet-form',

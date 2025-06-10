@@ -4,6 +4,8 @@ import { UserService } from '../services/user.service';
 import { firstValueFrom } from 'rxjs';
 import { AuthFacadeService } from '@app/core/presenters/auth-facade.service';
 import { ToastService } from '../services/toast.service';
+import { ToastErorMessage } from '../const/magicStrings';
+import { ToasSuccessMessage } from '../const/magicStrings';
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +29,11 @@ export class UserFacadeService {
         return false;
       }
 
-      this._toastService.showToast('Se ha rergistrado con éxito', 'success').then(() => true);
+      this._toastService.showToast(ToasSuccessMessage.rergiser || "", 'success').then(() => true);
       return true;
     })
     .catch(() => {
-      return this._toastService.showToast('Error en el registro', 'danger').then(() => false);
+      return this._toastService.showToast(ToastErorMessage.register || "", 'danger').then(() => false);
     })
   };
     

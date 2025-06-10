@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule } from '@angular/forms';
 import { IonContent, IonButton, IonIcon, IonHeader, IonBackButton, IonToolbar, IonButtons, IonLabel } from '@ionic/angular/standalone';
 import { AlertController } from '@ionic/angular';
-import { ChangePasswordComponent } from '@app/shared/components/change-password/change-password.component';
-import { UserProfileComponent } from '@app/shared/components/user-profile/user-profile.component';
-import { InputComponent } from '@app/shared/components/input/input.component';
+import { ChangePasswordComponent } from '@app/components/change-password/change-password.component';
+import { UserProfileComponent } from '@app/components/user-profile/user-profile.component';
+import { InputComponent } from '@app/components/input/input.component';
 import { Router } from '@angular/router';
 import { c } from '@angular/core/event_dispatcher.d-pVP0-wST';
-import { RoutesName } from '@app/core/magicStrings';
+import { RoutesName } from '@app/core/const/magicStrings';
 
 export const USER_MENU_OPTIONS = {
   EDIT_PROFILE: 1,

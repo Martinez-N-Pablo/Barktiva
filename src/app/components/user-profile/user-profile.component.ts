@@ -4,7 +4,7 @@ import { ButtonComponent } from '../button/button.component';
 import { InputComponent } from '../input/input.component';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ErrorMessages, ParagraphMessages, PlaceholderMessages } from '@app/core/magicStrings';
+import { ErrorMessages, ParagraphMessages, PlaceholderMessages } from '@app/core/const/magicStrings';
 import { PhotoUploaderService } from '@app/core/services/photo-uploader.service';
 import { InputDateComponent } from '../input-date/input-date.component';
 

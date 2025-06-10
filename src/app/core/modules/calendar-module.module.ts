@@ -7,7 +7,6 @@ import { CustomDateFormatter } from '../scripts/custom-date-formater';
 
 registerLocaleData(localeEs);
 
-
 @NgModule({
   imports: [
     CalendarModule.forRoot({

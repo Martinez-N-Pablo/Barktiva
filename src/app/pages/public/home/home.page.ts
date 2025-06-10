@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
-import { LogoComponent } from '../../../shared/components/logo/logo.component';
-import { RoutesName } from '@app/core/magicStrings';
+import { LogoComponent } from '../../../components/logo/logo.component';
+import { RoutesName } from '@app/core/const/magicStrings';
 
 @Component({
   selector: 'app-home',

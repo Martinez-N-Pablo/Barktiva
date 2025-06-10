@@ -2,7 +2,7 @@ import { Component, forwardRef, Input, OnInit } from'@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonInput } from '@ionic/angular/standalone';
 import { FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import { ErrorMessages } from '@app/core/magicStrings';
+import { ErrorMessages } from '@app/core/const/magicStrings';
 
 @Component({
   selector: 'app-input',

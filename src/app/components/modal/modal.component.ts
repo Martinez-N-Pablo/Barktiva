@@ -1,6 +1,6 @@
 import { Component, input, Input, InputSignal, OnInit, ViewChild, WritableSignal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { PlaceholderMessages } from '@app/core/magicStrings';
+import { PlaceholderMessages } from '@app/core/const/magicStrings';
 import { IonModal, IonAvatar, IonSearchbar, IonContent, IonList, IonItem, IonImg, IonLabel, IonText } from "@ionic/angular/standalone";
 import { debounceTime } from 'rxjs';
 

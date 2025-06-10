@@ -14,7 +14,6 @@ export class BorderErrorDirective implements OnInit, OnChanges {
   constructor() { }
   ngOnInit(): void {
     if (this.control) {
-      console.log('Directiva inicializada con FormControl:', this.control);
       // Escucha los cambios en el estado del FormControl
       this.control.statusChanges.subscribe(() => this._updateBorderColor());
       // Inicializa el color del borde
@@ -25,8 +24,6 @@ export class BorderErrorDirective implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('init border error');
-    console.log(this.control);
     // if (this.control) {
     //   // Listen for changes in the control status
     //   this.control.statusChanges.subscribe(() => this._updateBorderColor());
@@ -35,8 +32,6 @@ export class BorderErrorDirective implements OnInit, OnChanges {
     // }
 
     if (changes['control'] && this.control) {
-      console.log('Entro')
-      console.log(this.control);
       // Escucha los cambios en el estado del control
       this.control.statusChanges.subscribe(() => this._updateBorderColor());
       // Inicializa el color del borde
@@ -45,7 +40,6 @@ export class BorderErrorDirective implements OnInit, OnChanges {
   }
 
   private _updateBorderColor(): void {
-    console.log('update border color');
     const element = this.el.nativeElement; // Get the native element of the control
 
     // If the control is invalid when touched or dirty, add a red border

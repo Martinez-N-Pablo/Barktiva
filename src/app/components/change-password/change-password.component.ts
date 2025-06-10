@@ -4,7 +4,7 @@ import { IonItem } from "@ionic/angular/standalone";
 import { Subscription } from 'rxjs';
 import { InputComponent } from '../input/input.component';
 import { ButtonComponent } from '../button/button.component';
-import { ErrorMessages, ParagraphMessages, PlaceholderMessages } from '@app/core/magicStrings';
+import { ErrorMessages, ParagraphMessages, PlaceholderMessages } from '@app/core/const/magicStrings';
 import { AlertController } from '@ionic/angular';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Meta } from "@angular/platform-browser";
-import { MetaDescriptions } from "../magicStrings";
+import { MetaDescriptions } from "../const/magicStrings";
 
 // This function sets the meta title tag based on the provided URL. SEO purposes.
 export function setMetaDescriptionTag(meta: Meta, url: string) {

@@ -2,18 +2,18 @@ import { Component, inject, OnDestroy, OnInit, Signal, signal, WritableSignal } 
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonSelect, IonSelectOption, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonButton, IonImg, IonText, IonIcon, IonRadioGroup, IonLabel, IonAvatar, IonTextarea } from '@ionic/angular/standalone';
-import { ErrorMessages, ParagraphMessages, PlaceholderMessages, Titles } from '@app/core/magicStrings';
-import { InputComponent } from '@app/shared/components/input/input.component';
-import { ModalComponent } from '@app/shared/components/modal/modal.component';
-import { ButtonComponent } from '@app/shared/components/button/button.component';
+import { ErrorMessages, ParagraphMessages, PlaceholderMessages, Titles } from '@app/core/const/magicStrings';
+import { InputComponent } from '@app/components/input/input.component';
+import { ModalComponent } from '@app/components/modal/modal.component';
+import { ButtonComponent } from '@app/components/button/button.component';
 import { Dog } from '@app/core/interfaces/dog';
 import { Subscription } from 'rxjs';
 import { DogService } from '@app/core/services/dog.service';
 import { DogFacadeService } from '@app/core/presenters/dog-facade.service';
-import { SelectInputComponent } from "../../../shared/components/select-input/select-input.component";
-import { InputDateComponent } from '@app/shared/components/input-date/input-date.component';
+import { SelectInputComponent } from "../../../components/select-input/select-input.component";
+import { InputDateComponent } from '@app/components/input-date/input-date.component';
 import { TaskService } from '@app/core/services/task.service';
-import { DosesTimeOptions } from '@app/core/dosesTimeOptions';
+import { DosesTimeOptions } from '@app/core/const/dosesTimeOptions';
 
 @Component({
   selector: 'app-task',

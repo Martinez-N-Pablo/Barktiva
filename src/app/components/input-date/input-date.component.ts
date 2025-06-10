@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, signal, ViewChild, WritableSignal } from '@angular/core';
 import { Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PlaceholderMessages } from '@app/core/magicStrings';
+import { PlaceholderMessages } from '@app/core/const/magicStrings';
 import { IonModal, IonDatetime, IonItem, IonLabel, IonDatetimeButton } from "@ionic/angular/standalone";
 
 @Component({

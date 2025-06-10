@@ -2,12 +2,12 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonList, IonItem, IonFooter } from '@ionic/angular/standalone';
-import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/magicStrings';
+import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/const/magicStrings';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LogoComponent } from '@app/shared/components/logo/logo.component';
-import { ButtonComponent } from '@app/shared/components/button/button.component';
-import { InputComponent } from '@app/shared/components/input/input.component';
+import { LogoComponent } from '@app/components/logo/logo.component';
+import { ButtonComponent } from '@app/components/button/button.component';
+import { InputComponent } from '@app/components/input/input.component';
 import { validateForm } from '@app/core/scripts/validate-forms';
 import { UserFacadeService } from '@app/core/presenters/user-facade.service';
 
