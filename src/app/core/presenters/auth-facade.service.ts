@@ -29,7 +29,7 @@ export class AuthFacadeService {
           }),
         });
 
-        return this._toastService.showToast(ToasSuccessMessage.logn || "", 'success').then(() => true);
+        return this._toastService.showToast(ToasSuccessMessage.login || "", 'success').then(() => true);
       } else {
         return this._toastService.showToast(ToastErorMessage.login, 'danger').then(() => false);
       }
