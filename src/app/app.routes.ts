@@ -26,7 +26,7 @@ export const routes: Routes = [
   },
   {
     path: 'pet-form',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     loadComponent: () => import('./pages/private/pet-form/pet-form.page').then( m => m.PetFormPage)
   },
   {

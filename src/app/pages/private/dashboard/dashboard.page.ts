@@ -34,6 +34,9 @@ export class DashboardPage implements OnInit {
 
   ];
 
+  petTitle: string = "Perros";
+  taskTitle: string = "Tareas";
+
   private _router: Router = inject(Router);
 
   constructor() { }

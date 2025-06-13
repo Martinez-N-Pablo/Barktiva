@@ -1,6 +1,9 @@
 <app-header></app-header>
 
 <ion-content [fullscreen]="true">
+  <h4 class="container mt-1">
+    {{petTitle}}
+  </h4>
   <div class="pet-card-container">
     @for (dog of dogs; track dog; let i = $index) {
       <div class="pet-card">
@@ -14,5 +17,8 @@
     }
   </div>
 
+  <h4 class="container">
+    {{taskTitle}}
+  </h4>
   <app-schelude></app-schelude>
 </ion-content>

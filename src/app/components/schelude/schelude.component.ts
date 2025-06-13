@@ -40,6 +40,7 @@ import { CalendarModuleModule } from '@app/core/modules/calendar-module.module';
 import { HammerModule } from '@angular/platform-browser';
 import { trigger, keyframes, animate, transition, style } from '@angular/animations';
 import { MonthCellTemplateComponent } from '../templates/shared/templates/month-cell-template/month-cell-template.component';
+import { IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 
 const colors: Record<string, EventColor> = {
   red: {
@@ -69,7 +70,9 @@ const colors: Record<string, EventColor> = {
     FlatPickrModuleModule,
     CalendarModuleModule,
     HammerModule,
-    MonthCellTemplateComponent
+    MonthCellTemplateComponent,
+    IonSelect,
+    IonSelectOption
   ],
   animations: [
     trigger('calendarSlide', [
@@ -154,6 +157,12 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
       actions: this.actions,
     },
     {
+      start: startOfDay(new Date()),
+      title: 'An event with no end date',
+      color: { ...colors['yellow'] },
+      actions: this.actions,
+    },
+    {
       start: subDays(endOfMonth(new Date()), 3),
       end: addDays(endOfMonth(new Date()), 3),
       title: 'A long event that spans 2 months',
@@ -175,10 +184,9 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
   ];
 
   activeDayIsOpen: boolean = true;
-
+  
   // #Constructor
   constructor(private modal: NgbModal, private _cdr: ChangeDetectorRef) {}
-
 
   // #region Implements methods
   ngOnInit(): void {
