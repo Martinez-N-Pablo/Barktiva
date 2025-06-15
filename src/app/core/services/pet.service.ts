@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { environment } from '@environment/environment';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -169,9 +171,64 @@ export class PetService {
     }
   ];
 
+  private _auxPets = [
+    {
+      "name": "Thor",
+      "img": "https://cdn2.thedogapi.com/images/BJa4kxc4X.jpg"
+    },
+    {
+      "name": "Firulais",
+      "img": "https://cdn2.thedogapi.com/images/SJyBfg5NX.jpg"
+    },
+    {
+      "name": "Peludito",
+      "img": "https://cdn2.thedogapi.com/images/6TqTQkO_O.jpg"
+    },
+    {
+      "name": "Chica",
+      "img": "https://cdn2.thedogapi.com/images/H1K2hx5Em.jpg"
+    },
+    {
+      "name": "Roy",
+      "img": "https://cdn2.thedogapi.com/images/Syd4xxqEm.jpg"
+    },
+    {
+      "name": "Max",
+      "img": "https://cdn2.thedogapi.com/images/S17ZilqNm.jpg"
+    },
+    {
+      "name": "Spiderman",
+      "img": "https://cdn2.thedogapi.com/images/r1j4ZUlE7.jpg"
+    }
+  ];
+
+  private _url: string = environment.backendURL || "";
+  private _http: HttpClient = inject(HttpClient);
+
+  private _eventUrl = 'https://api.thedogapi.com/v1/events';
+
+  getPets(): Observable<any[]> {
+      return of(this._auxPets);
+  }
+
   constructor() { }
 
   getBreeds(): Observable<any[]> {
     return of(this._breeds);
+  }
+
+  createPets(body: any, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.post<any>(`${this._url}/pet`, body, { headers });
+  }
+
+  getPetById(id: string, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.get<any>(`${this._url}/pet/${id}`, { headers });
+  }
+
+  updatePet(id: string, token: string, body: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.put<any>(`${this._url}/pet/${id}`, body, { headers });
   }
 }

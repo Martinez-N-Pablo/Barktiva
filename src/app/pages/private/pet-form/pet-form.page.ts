@@ -5,7 +5,7 @@ import { IonThumbnail, IonContent,IonHeader, IonTitle, IonList, IonItem, IonButt
 import { LogoComponent } from "../../../components/logo/logo.component";
 import { ButtonComponent } from "../../../components/button/button.component";
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/const/magicStrings';
-import { Subscription } from 'rxjs';
+import { firstValueFrom, Subscription } from 'rxjs';
 import { PetService } from '@app/core/services/pet.service';
 import { AlertController } from '@ionic/angular';
 import { InputComponent } from '@app/components/input/input.component';
@@ -15,6 +15,8 @@ import { ModalComponent } from '@app/components/modal/modal.component';
 import { Breed } from '@app/core/interfaces/breed';
 import { SelectInputComponent } from '@app/components/select-input/select-input.component';
 import { InputRadioComponent } from "../../../components/input-radio/input-radio.component";
+import { PetFacadeService } from '@app/core/presenters/pet-facade.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pet-form',
@@ -43,8 +45,9 @@ export class PetFormPage implements OnInit, OnDestroy {
   private _subscription: Subscription = new Subscription();
 
   private _formBuilder: FormBuilder = inject(FormBuilder);
-  private _petService: PetService = inject(PetService);
+  private _petFacadeService: PetFacadeService = inject(PetFacadeService);
   private _photoUploaderService: PhotoUploaderService = inject(PhotoUploaderService);
+  private _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
   previewImage: string = '';
 
@@ -108,17 +111,38 @@ export class PetFormPage implements OnInit, OnDestroy {
   ];
   
   petForm!: FormGroup;
+  petId: string = "";
 
   constructor(private alertCtrl: AlertController) { }
 
   ngOnInit() {
+    this.petId = this._activatedRoute.snapshot.paramMap.get('id') || "";
+  
     this._initPetForm();
     this._getPetsBreed();
+
+    if(this.petId) {
+      this._getPetData();
+    }
   }
 
   ngOnDestroy(): void {
     if(this._subscription) {
       this._subscription.unsubscribe();
+    }
+  }
+
+  private async _getPetData(): Promise<void> {
+    const pet = await this._petFacadeService.getPetById(this.petId);
+    console.log("Heeeee");
+    console.log(pet);
+    if(pet) {
+      this.petForm.patchValue(pet);
+      console.log(this.petForm.value);
+
+      this.sexInputValue = pet.sex || "";
+      this.castratedInputValue = pet.castrated || "";
+      this.breedSelected.set(this.breeds.find(value => value.name === pet.breed) || ""); 
     }
   }
 
@@ -156,9 +180,9 @@ export class PetFormPage implements OnInit, OnDestroy {
       breed: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
       photo: new FormControl(''),
       sex: new FormControl('', [Validators.minLength(1)]),
-      age: new FormControl('', [Validators.min(0), Validators.max(30), Validators.pattern(Patterns.integer)]),
-      weight: new FormControl('', [Validators.min(0)]),
-      castrated: new FormControl(false),
+      age: new FormControl('0', [Validators.min(0), Validators.max(30), Validators.pattern(Patterns.integer)]),
+      weight: new FormControl('0', [Validators.min(0)]),
+      castrated: new FormControl(""),
     });
 
     this.petForm.get('breed')?.valueChanges.subscribe(data => {
@@ -166,21 +190,32 @@ export class PetFormPage implements OnInit, OnDestroy {
     });
   }
 
-  private _getPetsBreed(): void {
-    this._subscription.add(
-      this._petService.getBreeds().subscribe({
-        next: (data: any) => {
-          this.breeds = data;
-          this.filteredBreeds = [...this.breeds];
-        },
-        error: (error: any) => {},
-        complete: () => {}
-      })
-    );
+  private async _getPetsBreed() {
+    const breeds = await firstValueFrom(this._petFacadeService.getBreeds());
+
+    if(breeds) {
+      this.breeds = breeds;
+      this.filteredBreeds = [...this.breeds];
+    }
   }
 
-  onSubmit(): void {
+  async onSubmit() {
+    if(this.breedSelected()) {
+      this.petForm.get("breed")?.setValue(this.breedSelected()!["name"] || "");
+    }
+
     this.formSubmited = true;
+    this.petForm.markAllAsTouched();
+
+    if(this.petForm.invalid) {
+      console.log("Formulario inválido");
+      return;
+    }
+    console.log(this.petForm.value);
+
+    console.log(this.petId);
+
+    (this.petId) ?  await this._petFacadeService.updatePet(this.petId, this.petForm.value) : await this._petFacadeService.createPet(this.petForm.value);
   }
 
   getControl(controlName: string): FormControl{
