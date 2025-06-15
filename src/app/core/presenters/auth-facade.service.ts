@@ -53,7 +53,7 @@ export class AuthFacadeService {
         return true;
       })
       .catch(() => {
-      return this._toastService.showToast(ToastErorMessage.permissions || "", 'danger').then(() => false);
-    });
+        return this._toastService.showToast(ToastErorMessage.permissions || "", 'danger').then(() => false);
+      });
   }
 }

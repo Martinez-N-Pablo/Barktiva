@@ -3,8 +3,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form id="petForm" form action="submit" (ngSubmit)="onSubmit()" [formGroup]="petForm">
-    <!-- Email input -->
+  <form id="petForm" form action="submit" [formGroup]="petForm">
+      <!-- Photo input -->
       <ion-list class="formList" role="list">
         <ion-item role="listitem">
           <div class="photoUploader">
@@ -15,6 +15,7 @@
             </ion-button>
           </div>
         </ion-item>
+        <!-- Name input -->
         <ion-item role="listitem">
           <app-input
             [areaLabel]="'Nombre'"
@@ -34,9 +35,19 @@
         <!-- Breed input !!!IMPORTANT, Div id and modalID from app-modal, must be the same value -->
         <ion-item role="listitem">
           <div [id]="breedSelectedModalID" class="modal-container-button">
-            <app-select-input [required]="true" [class.modalOptionSelected]="breedSelected()" class="container-modal-list" [optionSelected]="breedSelected" [placeholderMessage]="placeholderMessages.breed"></app-select-input>
+            <app-select-input 
+              [required]="true" 
+              [class.modalOptionSelected]="breedSelected()" 
+              class="container-modal-list" 
+              [optionSelected]="breedSelected" 
+              [placeholderMessage]="placeholderMessages.breed">
+            </app-select-input>
           </div>
-          <app-modal [modalID]="breedSelectedModalID" [optionSelected]="breedSelected" [optionsList]="breeds"></app-modal>
+          <app-modal 
+            [modalID]="breedSelectedModalID" 
+            [optionSelected]="breedSelected" 
+            [optionsList]="breeds">
+          </app-modal>
         </ion-item>
         <!-- Sex -->
         <ion-item role="listitem">
@@ -75,6 +86,7 @@
               (onRadioSelected)="castratedSelected($event)"
             ></app-input-radio>
         </ion-item>
+        <!-- Weight input -->
         <ion-item role="listitem">
           <app-input
             [areaLabel]="'Peso'"
@@ -94,7 +106,14 @@
         </ion-item>
       </ion-list>
       <ion-item slot="fixed" class="bottom-absolute">
-        <app-button [role]="'submit'" [form]="'petForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.createPetForm"></app-button>
+        <app-button 
+          [role]="'submit'" 
+          [form]="'petForm'" 
+          [type]="'submit'" 
+          [class]="'primary-button'" 
+          [buttonContent]="paragraphMessages.createPetForm"
+          (onButtonClicked)="onSubmit()">
+        </app-button>
       </ion-item>
   </form>
 </ion-content>

@@ -5,12 +5,12 @@
 <ion-content [fullscreen]="true">
   <form id="taskForm" form action="submit" (ngSubmit)="onSubmit()" [formGroup]="taskForm">
       <ion-list class="formList" role="list">
-        <!-- Dog input select -->
+        <!-- Oet input select -->
         <ion-item role="listitem">
-          <div [id]="dogSelectModalId" class="modal-container-button">
-            <app-select-input class="container-modal-list" [class.modalOptionSelected]="dogSelected()" [optionSelected]="dogSelected" [placeholderMessage]="placeholderMessages.pet"></app-select-input>
+          <div [id]="petSelectModalId" class="modal-container-button">
+            <app-select-input class="container-modal-list" [class.modalOptionSelected]="petSelected()" [optionSelected]="petSelected" [placeholderMessage]="placeholderMessages.pet"></app-select-input>
           </div>
-          <app-modal [modalID]="dogSelectModalId" [optionSelected]="dogSelected" [optionsList]="dogsList()"></app-modal>
+          <app-modal [modalID]="petSelectModalId" [optionSelected]="petSelected" [optionsList]="petsList()"></app-modal>
         </ion-item>
         <!-- Task input select -->
         <ion-item role="listitem">

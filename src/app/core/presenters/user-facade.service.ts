@@ -29,7 +29,7 @@ export class UserFacadeService {
         return false;
       }
 
-      this._toastService.showToast(ToasSuccessMessage.rergiser || "", 'success').then(() => true);
+      this._toastService.showToast(ToasSuccessMessage.register || "", 'success').then(() => true);
       return true;
     })
     .catch(() => {

@@ -6,10 +6,10 @@ import { ErrorMessages, ParagraphMessages, PlaceholderMessages, Titles } from '@
 import { InputComponent } from '@app/components/input/input.component';
 import { ModalComponent } from '@app/components/modal/modal.component';
 import { ButtonComponent } from '@app/components/button/button.component';
-import { Dog } from '@app/core/interfaces/dog';
-import { Subscription } from 'rxjs';
-import { DogService } from '@app/core/services/dog.service';
-import { DogFacadeService } from '@app/core/presenters/dog-facade.service';
+import { PetInterface } from '@app/core/interfaces/pet';
+import { firstValueFrom, Subscription } from 'rxjs';
+import { PetService } from '@app/core/services/pet.service';
+import { PetFacadeService } from '@app/core/presenters/pet-facade.service';
 import { SelectInputComponent } from "../../../components/select-input/select-input.component";
 import { InputDateComponent } from '@app/components/input-date/input-date.component';
 import { TaskService } from '@app/core/services/task.service';
@@ -54,10 +54,10 @@ export class TaskPage implements OnInit, OnDestroy {
   errorMessages = ErrorMessages;
   paragraphMessages = ParagraphMessages;
 
-  dosesTimeOptions: any[] = DosesTimeOptions; 
+  dosesTimeOptions: any[] = DosesTimeOptions;
 
-  dogsList: WritableSignal<Dog[]> = signal([]);
-  dogSelected: WritableSignal<Dog | null> = signal(null);
+  petsList: WritableSignal<PetInterface[]> = signal([]);
+  petSelected: WritableSignal<PetInterface | null> = signal(null);
 
   taskTylesList: WritableSignal<any[]> = signal([]);
   taskTypeSelected: WritableSignal<any | null> = signal(null);
@@ -79,15 +79,13 @@ export class TaskPage implements OnInit, OnDestroy {
   startDateValue: WritableSignal<string> = signal('');
   endDateValue: WritableSignal<string> = signal('');
 
-  dogSelectModalId: string = 'dogSelectModalId';
+  petSelectModalId: string = 'petSelectModalId';
   taskTypeSelectModalId: string = 'taskTypeSelectModalId';
 
   notificationState: boolean = false;
 
   constructor(
-    private _dogService: DogService, 
-    private _dogFacadeSerivce: DogFacadeService) {
-    // this._dogFacadeSerivce(_dogService);
+    private _petFacadeSerivce: PetFacadeService) {
   }
 
   ngOnInit() {
@@ -144,18 +142,12 @@ export class TaskPage implements OnInit, OnDestroy {
     return this.taskForm.get(controlName) as FormControl;
   }
 
-  private _getPets(): void {
-    // this._subscription.add(
-    //   this._dogService.getBreeds().subscribe({
-    //     next: (data: any) => {
-    //       this.dogsList = data;
-    //     },
-    //     error: (error: any) => {},
-    //     complete: () => {}
-    //   })
-    // );
+  private async _getPets() {
+    const pets = await firstValueFrom(this._petFacadeSerivce.getBreeds());
 
-    this.dogsList = this._dogFacadeSerivce.getBreeds();
+    if (pets) {
+      this.petsList.set(pets);
+    }
   }
 
   onStartDateChange(newDate: string): void {

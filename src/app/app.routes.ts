@@ -30,6 +30,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/private/pet-form/pet-form.page').then( m => m.PetFormPage)
   },
   {
+     path: 'pet-form/:id',
+    //canActivate: [authGuard],
+    loadComponent: () => import('./pages/private/pet-form/pet-form.page').then( m => m.PetFormPage)
+  },
+  {
     path: 'task',
     canActivate: [authGuard],
     loadComponent: () => import('./pages/private/task/task.page').then( m => m.TaskPage)

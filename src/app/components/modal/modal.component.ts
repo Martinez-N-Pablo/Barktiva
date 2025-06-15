@@ -1,4 +1,4 @@
-import { Component, input, Input, InputSignal, OnInit, ViewChild, WritableSignal } from '@angular/core';
+import { Component, input, Input, InputSignal, OnChanges, OnInit, SimpleChanges, ViewChild, WritableSignal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { PlaceholderMessages } from '@app/core/const/magicStrings';
 import { IonModal, IonAvatar, IonSearchbar, IonContent, IonList, IonItem, IonImg, IonLabel, IonText } from "@ionic/angular/standalone";
@@ -21,7 +21,7 @@ import { debounceTime } from 'rxjs';
     ReactiveFormsModule,
   ],
 })
-export class ModalComponent  implements OnInit {
+export class ModalComponent  implements OnInit, OnChanges {
   @Input() optionsList: any[] = [];
   @Input() optionSelected!: WritableSignal<any | null>;
   @Input() modalID: string = '';
@@ -38,10 +38,17 @@ export class ModalComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.optionsList)
     this.optionsFiltered = this.optionsList;
     this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(searchTerm => {
       this.filteroption(searchTerm);
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['optionsList']) {
+      this.optionsFiltered = [...this.optionsList];
+    }
   }
 
   filteroption(searchTerm: string | null): void {
