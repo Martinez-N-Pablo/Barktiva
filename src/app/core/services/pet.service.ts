@@ -231,4 +231,9 @@ export class PetService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this._http.put<any>(`${this._url}/pet/${petId}`, body, { headers });
   }
+
+  deletePet(petId: string, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.delete<any>(`${this._url}/pet/${petId}`, { headers });
+  }
 }

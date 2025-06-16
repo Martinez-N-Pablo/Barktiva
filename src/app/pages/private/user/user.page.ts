@@ -20,7 +20,10 @@ export const USER_MENU_OPTIONS = {
   templateUrl: './user.page.html',
   styleUrls: ['./user.page.scss'],
   standalone: true,
-  imports: [IonLabel, IonButtons, IonToolbar, IonBackButton, IonHeader, 
+  imports: [
+    IonButtons, 
+    IonToolbar, 
+    IonHeader, 
     IonIcon,
     IonButton, 
     IonContent,

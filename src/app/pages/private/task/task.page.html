@@ -1,7 +1,23 @@
 <ion-header collapse="condense">
-  <ion-title size="large">{{title || ""}}</ion-title>
-</ion-header>
+  @if(taskId) {
+    <ion-toolbar>
+      <div class="custom-title-row">
+        <span class="title-text">Modificar tarea</span>
 
+        <ion-buttons slot="end">
+          <ion-button (click)="presentOptionsModal()">
+            <ion-icon name="menu"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </div>
+    </ion-toolbar>
+  }
+  @else {
+    <ion-toolbar>
+      <span class="title-text">Crear tarea</span>
+    </ion-toolbar>
+  }
+</ion-header>
 <ion-content [fullscreen]="true">
   <form id="taskForm" form action="submit" (ngSubmit)="onSubmit()" [formGroup]="taskForm">
       <ion-list class="formList" role="list">

@@ -1,13 +1,13 @@
 import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonThumbnail, IonContent,IonHeader, IonTitle, IonList, IonItem, IonButton, IonImg } from '@ionic/angular/standalone';
+import { IonThumbnail, IonToolbar, IonContent, IonHeader, IonButtons, IonIcon, IonTitle, IonList, IonItem, IonButton, IonImg } from '@ionic/angular/standalone';
 import { LogoComponent } from "../../../components/logo/logo.component";
 import { ButtonComponent } from "../../../components/button/button.component";
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/const/magicStrings';
 import { firstValueFrom, Subscription } from 'rxjs';
 import { PetService } from '@app/core/services/pet.service';
-import { AlertController } from '@ionic/angular';
+import { ActionSheetController, AlertController } from '@ionic/angular';
 import { InputComponent } from '@app/components/input/input.component';
 import { PhotoUploaderService } from '@app/core/services/photo-uploader.service';
 import { SterilizedValue, Patterns, SexValue } from '@app/core/const/constValue';
@@ -16,7 +16,7 @@ import { Breed } from '@app/core/interfaces/breed';
 import { SelectInputComponent } from '@app/components/select-input/select-input.component';
 import { InputRadioComponent } from "../../../components/input-radio/input-radio.component";
 import { PetFacadeService } from '@app/core/presenters/pet-facade.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pet-form',
@@ -30,7 +30,6 @@ import { ActivatedRoute } from '@angular/router';
     IonList,
     IonContent,
     IonHeader,
-    IonTitle,
     CommonModule,
     FormsModule,
     ButtonComponent,
@@ -39,7 +38,12 @@ import { ActivatedRoute } from '@angular/router';
     IonThumbnail,
     ModalComponent,
     SelectInputComponent,
-    InputRadioComponent]
+    InputRadioComponent,
+    IonButtons,
+    IonButton,
+    IonIcon,
+    IonToolbar,
+  ]
 })
 export class PetFormPage implements OnInit, OnDestroy {
   private _subscription: Subscription = new Subscription();
@@ -48,6 +52,8 @@ export class PetFormPage implements OnInit, OnDestroy {
   private _petFacadeService: PetFacadeService = inject(PetFacadeService);
   private _photoUploaderService: PhotoUploaderService = inject(PhotoUploaderService);
   private _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  private _router: Router = inject(Router);
+  private _actionSheetController: ActionSheetController = inject(ActionSheetController); 
 
   previewImage: string = '';
 
@@ -239,4 +245,35 @@ export class PetFormPage implements OnInit, OnDestroy {
     this.castratedInputValue = value || "";
     this.petForm.get('castrated')?.setValue(this.castratedInputValue);
   }
+
+  async deletePet() {
+    await this._petFacadeService.deletePet(this.petId);
+  }
+
+
+  async presentOptionsModal() {
+    const actionSheet = await this._actionSheetController.create({
+      header: 'Opciones',
+      buttons: [
+        {
+          text: 'Eliminar Mascota',
+          role: 'destructive',
+          icon: 'trash',
+          handler: () => this.deletePet()
+        },
+        {
+          text: 'Ver Consejos',
+          icon: 'book',
+          handler: () => this._router.navigate(['/consejos'])
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          icon: 'close'
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
+
 }

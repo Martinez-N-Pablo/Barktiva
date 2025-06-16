@@ -1,19 +1,19 @@
 import { Component, inject, OnDestroy, OnInit, Signal, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonSelect, IonSelectOption, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonButton, IonImg, IonText, IonIcon, IonRadioGroup, IonLabel, IonAvatar, IonTextarea } from '@ionic/angular/standalone';
+import { IonContent, IonButton, IonButtons, IonSelect, IonSelectOption, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonText, IonIcon, IonTextarea, ActionSheetController } from '@ionic/angular/standalone';
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, Titles } from '@app/core/const/magicStrings';
 import { InputComponent } from '@app/components/input/input.component';
 import { ModalComponent } from '@app/components/modal/modal.component';
 import { ButtonComponent } from '@app/components/button/button.component';
 import { PetInterface } from '@app/core/interfaces/pet';
 import { firstValueFrom, Subscription } from 'rxjs';
-import { PetService } from '@app/core/services/pet.service';
 import { PetFacadeService } from '@app/core/presenters/pet-facade.service';
 import { SelectInputComponent } from "../../../components/select-input/select-input.component";
 import { InputDateComponent } from '@app/components/input-date/input-date.component';
 import { TaskService } from '@app/core/services/task.service';
 import { DosesTimeOptions } from '@app/core/const/dosesTimeOptions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task',
@@ -28,7 +28,6 @@ import { DosesTimeOptions } from '@app/core/const/dosesTimeOptions';
     IonList,
     IonContent,
     IonHeader,
-    IonTitle,
     CommonModule,
     FormsModule,
     ModalComponent,
@@ -38,6 +37,10 @@ import { DosesTimeOptions } from '@app/core/const/dosesTimeOptions';
     IonText,
     IonSelect,
     IonSelectOption,
+    IonToolbar,
+    IonIcon,
+    IonButtons,
+    IonButton,
   ]
 })
 export class TaskPage implements OnInit, OnDestroy {
@@ -45,6 +48,8 @@ export class TaskPage implements OnInit, OnDestroy {
   title: string = Titles.task;
 
   private _formBuilder: FormBuilder = inject(FormBuilder);
+    private _router: Router = inject(Router);
+  private _actionSheetController: ActionSheetController = inject(ActionSheetController);
   private _taskService: any = inject(TaskService);
 
   taskForm!: FormGroup;
@@ -83,6 +88,8 @@ export class TaskPage implements OnInit, OnDestroy {
   taskTypeSelectModalId: string = 'taskTypeSelectModalId';
 
   notificationState: boolean = false;
+
+  taskId: string = "";
 
   constructor(
     private _petFacadeSerivce: PetFacadeService) {
@@ -164,4 +171,30 @@ export class TaskPage implements OnInit, OnDestroy {
     this.notificationState = !this.notificationState
     this.taskForm.get('notification')?.setValue(this.notificationState);
   }
+
+  deleteTask(taskId?: string) {
+
+  }
+
+  async presentOptionsModal() {
+  const actionSheet = await this._actionSheetController.create({
+    header: 'Opciones',
+    buttons: [
+      {
+        text: 'Eliminar Tarea',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => this.deleteTask()
+      },
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        icon: 'close'
+      }
+    ]
+  });
+
+  await actionSheet.present();
+}
+
 }

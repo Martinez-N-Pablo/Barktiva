@@ -1,5 +1,22 @@
 <ion-header collapse="condense">
-    <ion-title size="large">{{title || ""}}</ion-title>
+  @if(petId) {
+    <ion-toolbar>
+      <div class="custom-title-row">
+        <span class="title-text">Modificar mascora</span>
+
+        <ion-buttons slot="end">
+          <ion-button (click)="presentOptionsModal()">
+            <ion-icon name="menu"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </div>
+    </ion-toolbar>
+  }
+  @else {
+    <ion-toolbar>
+      <span class="title-text">Crear mascota</span>
+    </ion-toolbar>
+  }
 </ion-header>
 
 <ion-content [fullscreen]="true">

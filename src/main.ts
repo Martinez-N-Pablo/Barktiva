@@ -8,7 +8,7 @@ import { isDevMode } from '@angular/core';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideHttpClient } from '@angular/common/http';
 import { addIcons } from 'ionicons';
-import { arrowBackOutline, chevronForward, personCircleOutline, personOutline, keyOutline, trashOutline  } from 'ionicons/icons';
+import { arrowBackOutline, chevronForward, personCircleOutline, personOutline, keyOutline, trashOutline, menu  } from 'ionicons/icons';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import 'hammerjs';
 
@@ -19,7 +19,8 @@ addIcons({
   personOutline, 
   keyOutline, 
   trashOutline,
-  arrowBackOutline 
+  arrowBackOutline,
+  menu,
 });
 
 bootstrapApplication(AppComponent, {

@@ -68,7 +68,6 @@ export class PetFacadeService {
   }
 
   async updatePet(petId: string, pet: PetInterface): Promise<any> {
-    console.log("modificar")
     const { value } = await Preferences.get({ key: 'user' });
     
     if(!value) {
@@ -113,6 +112,29 @@ export class PetFacadeService {
         })
         .catch(() => {
           return this._toastService.showToast(ToastErorMessage.getPetData || "", 'danger').then(() => false);
+        });
+    }
+  }
+
+  async deletePet(id: string): Promise<any> {
+    const { value } = await Preferences.get({ key: 'user' });
+    
+    if(!value) {
+        this._toastService.showToast(ToastErorMessage.permissions || "", 'danger').then(() => false);
+        return null;
+    }
+
+    const token = JSON.parse(value as string).token || "";
+
+    if(token) {
+      return firstValueFrom(this._petService.deletePet(id, token))
+        .then(response => {
+          console.log(response);
+          this._toastService.showToast(ToasSuccessMessage.deletePet || "", 'success').then(() => false);
+          return response;
+        })
+        .catch(() => {
+          return this._toastService.showToast(ToastErorMessage.deletePet || "", 'danger').then(() => false);
         });
     }
   }

@@ -9,7 +9,7 @@ import { IonModal, IonDatetime, IonItem, IonLabel, IonDatetimeButton } from "@io
   templateUrl: './input-date.component.html',
   styleUrls: ['./input-date.component.scss'],
   standalone: true,
-  imports: [FormsModule, IonDatetimeButton, IonLabel, IonItem, IonModal, IonDatetime],
+  imports: [FormsModule, IonDatetimeButton, IonLabel, IonModal, IonDatetime],
 })
 export class InputDateComponent  implements OnInit {
   @Input() label: string = PlaceholderMessages.date || '';

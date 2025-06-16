@@ -98,7 +98,8 @@ export const ToasSuccessMessage: any = {
     register: 'Se ha rergistrado con éxito',
     login: 'Inicio de sesión realizado',
     createPet: 'La mascota se ha creado con éxito',
-    updatePet: 'La mascota se ha actualizado con éxito'
+    updatePet: 'La mascota se ha actualizado con éxito',
+    deletePet: 'Se ha eliminado la mascota con éxito',
 };
 
 export const ToastErorMessage: any = {
@@ -108,5 +109,6 @@ export const ToastErorMessage: any = {
     permissions: 'No tiener permisos',
     createPet: 'Error al crear la mascota',
     getPetData: 'Error al obtener los datos de la mascota',
-    updatePet: 'Error al actualizar los valores de la mascota'
+    updatePet: 'Error al actualizar los valores de la mascota',
+    deletePet: 'Error al eliminar la mascota',
 };
