@@ -43,7 +43,7 @@ export class UserProfileComponent  implements OnInit {
   photoIsClicked: boolean = false;
 
   //Birhdate
-  birthdateValue: WritableSignal<string> = signal('');
+  birthdateValue: string = '';
   birthdate: any = {
     label: 'Fecha de nacimiento',
     placeholder: 'dd/MM/yyyy',

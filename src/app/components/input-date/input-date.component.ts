@@ -17,7 +17,7 @@ export class InputDateComponent  implements OnInit {
   @Input() idValue: string =  '';
   @Input() required: boolean = false;
 
-  @Input() value?: WritableSignal<string> = signal<string>('');
+  @Input() value?: string = '';
 
   @Output() valueChange = new EventEmitter<string>();
 
@@ -26,6 +26,8 @@ export class InputDateComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("Dentro del componente")
+    console.log(this.value);
   }
 
   /**
@@ -34,7 +36,6 @@ export class InputDateComponent  implements OnInit {
    */
   onChange(event: CustomEvent): void {
     const newDate = event.detail?.value || "";
-    this.value?.set(newDate);
     this.valueChange.emit(newDate);
 
     this.dateModal.dismiss();

@@ -1,33 +1,44 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { TaskTypes } from '../const/task';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { environment } from '@environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private _eventUrl = '';
-  
-  constructor(private _http: HttpClient) { }
+  private _url: string = environment.backendURL || "";
+  private _http: HttpClient = inject(HttpClient);
 
-  getTasks(): Observable<any> {
-    return of(TaskTypes);
+  constructor() { }
+
+  createTask(body: any, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.post<any>(`${this._url}/task`, body, { headers });
   }
 
-  getTaskById(id: string): Observable<any> {
-    return this._http.get<any>(`${this._eventUrl}/task/${id}`);
+  getAllTask(body: any, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.post<any>(`${this._url}/task/task`, body, { headers });
   }
 
-  createTask(task: any): Observable<any> {
-    return this._http.post<any>(`${this._eventUrl}/task`, task);
+  getTaskById(taskId: string, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.get<any>(`${this._url}/task/${taskId}`, { headers });
   }
 
-  updateTask(id: string, task: any): Observable<any> {
-    return this._http.put<any>(`${this._eventUrl}/task/${id}`, task);
+  updateTask(taskId: string, token: string, body: any): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.put<any>(`${this._url}/task/${taskId}`, body, { headers });
   }
 
-  deleteTask(id: string): Observable<any> {
-    return this._http.delete<any>(`${this._eventUrl}/task/${id}`);
+  deleteTask(taskId: string, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.delete<any>(`${this._url}/task/${taskId}`, { headers });
+  }
+
+  getTaskTypes(): Observable<any> {
+    return this._http.get<any>(`${this._url}/task/taskTypes`);
   }
 }

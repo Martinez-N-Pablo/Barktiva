@@ -19,21 +19,56 @@
   }
 </ion-header>
 <ion-content [fullscreen]="true">
-  <form id="taskForm" form action="submit" (ngSubmit)="onSubmit()" [formGroup]="taskForm">
+  <form id="taskForm" form action="submit" [formGroup]="taskForm">
       <ion-list class="formList" role="list">
-        <!-- Oet input select -->
+        <!-- Name input select -->
+        <ion-item role="listitem">
+          <app-input
+            [areaLabel]="'Nombre'"
+            [name]="'name'"
+            [type]="'text'"
+            [inputmode]="'text'"
+            [required]="true"
+            [class]="'main-input'"
+            [control]="getControl('name')"
+            [role]="'textbox'"
+            [validState]="taskForm.get('name')?.invalid && taskForm.get('name')?.touched && formSubmited"
+            [errors]="taskForm.get('name')?.errors ?? null"
+            [label]="placeholderMessages.name || ''"
+            [placeholder]="placeholderMessages.name || ''">
+          </app-input>
+        </ion-item>
+        <!-- Pet input select -->
         <ion-item role="listitem">
           <div [id]="petSelectModalId" class="modal-container-button">
-            <app-select-input class="container-modal-list" [class.modalOptionSelected]="petSelected()" [optionSelected]="petSelected" [placeholderMessage]="placeholderMessages.pet"></app-select-input>
+            <app-select-input 
+              class="container-modal-list" 
+              [class.modalOptionSelected]="petSelected()" 
+              [optionSelected]="petSelected" 
+              [placeholderMessage]="placeholderMessages.pet">
+            </app-select-input>
           </div>
-          <app-modal [modalID]="petSelectModalId" [optionSelected]="petSelected" [optionsList]="petsList()"></app-modal>
+          <app-modal 
+            [modalID]="petSelectModalId" 
+            [optionSelected]="petSelected" 
+            [optionsList]="petsList()">
+          </app-modal>
         </ion-item>
         <!-- Task input select -->
         <ion-item role="listitem">
           <div [id]="taskTypeSelectModalId" class="modal-container-button">
-            <app-select-input class="container-modal-list" [class.modalOptionSelected]="taskTypeSelected()" [optionSelected]="taskTypeSelected" [placeholderMessage]="placeholderMessages.task"></app-select-input>
+            <app-select-input 
+              class="container-modal-list" 
+              [class.modalOptionSelected]="taskTypeSelected()" 
+              [optionSelected]="taskTypeSelected" 
+              [placeholderMessage]="placeholderMessages.task">
+            </app-select-input>
           </div>
-          <app-modal [modalID]="taskTypeSelectModalId" [optionSelected]="taskTypeSelected" [optionsList]="taskTylesList()"></app-modal>
+          <app-modal 
+            [modalID]="taskTypeSelectModalId" 
+            [optionSelected]="taskTypeSelected" 
+            [optionsList]="taskTypesList()">
+          </app-modal>
         </ion-item>
         <!-- Num of days and times per day -->
         <div class="container">
@@ -41,13 +76,14 @@
             <ion-select 
               [label]="placeholderMessages.selectDosesOption || ''" 
               labelPlacement="floating"
-              formControlName="dose"
+              formControlName="dosesTime"
               >
               @for (option of dosesTimeOptions; track option) {
                 <ion-select-option [value]="option.id">{{option.nameLabel}}</ion-select-option>
               }
             </ion-select>
           </ion-item>
+          <!-- Doses per day-->
           <ion-item role="listitem">
             <app-input
               [areaLabel]="'Dosis por día'"
@@ -119,7 +155,7 @@
         <!-- End Date Input -->
         <ion-item role="listitem">
           <app-input-date
-            [value]="endDateValue" 
+            [value]="finalDateValue" 
             [label]="endDate.label || ''" 
             [placeholder]="endDate.placeholder || ''" 
             [idValue]="endDate.id || ''"
@@ -152,7 +188,14 @@
         </ion-item>
       </ion-list>
       <ion-item slot="fixed" class="bottom-absolute">
-        <app-button [role]="'submit'" [form]="'taskForm'" [type]="'submit'" [class]="'primary-button'" [buttonContent]="paragraphMessages.createTask"></app-button>
+        <app-button 
+          [role]="'submit'" 
+          [form]="'taskForm'" 
+          [type]="'submit'" 
+          [class]="'primary-button'" 
+          [buttonContent]="(taskId) ? paragraphMessages.updateTask : paragraphMessages.createTask"
+          (onButtonClicked)="onSubmit()">
+        </app-button>
       </ion-item>
   </form>
 </ion-content>

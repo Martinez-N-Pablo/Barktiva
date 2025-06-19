@@ -140,11 +140,9 @@ export class PetFormPage implements OnInit, OnDestroy {
 
   private async _getPetData(): Promise<void> {
     const pet = await this._petFacadeService.getPetById(this.petId);
-    console.log("Heeeee");
-    console.log(pet);
+
     if(pet) {
       this.petForm.patchValue(pet);
-      console.log(this.petForm.value);
 
       this.sexInputValue = pet.sex || "";
       this.castratedInputValue = pet.castrated || "";
@@ -217,11 +215,16 @@ export class PetFormPage implements OnInit, OnDestroy {
       console.log("Formulario inválido");
       return;
     }
-    console.log(this.petForm.value);
 
-    console.log(this.petId);
+    const res = (this.petId) ?  await this._petFacadeService.updatePet(this.petId, this.petForm.value) : await this._petFacadeService.createPet(this.petForm.value);
 
-    (this.petId) ?  await this._petFacadeService.updatePet(this.petId, this.petForm.value) : await this._petFacadeService.createPet(this.petForm.value);
+    if(res) {
+      this._navigateToDashboard();
+    }
+  }
+
+  private _navigateToDashboard(): void {
+    this._router.navigate(['dashboard']);
   }
 
   getControl(controlName: string): FormControl{
@@ -247,7 +250,11 @@ export class PetFormPage implements OnInit, OnDestroy {
   }
 
   async deletePet() {
-    await this._petFacadeService.deletePet(this.petId);
+    const petDeleted = await this._petFacadeService.deletePet(this.petId);
+
+    if(petDeleted) {
+      this._navigateToDashboard();
+    }
   }
 
 

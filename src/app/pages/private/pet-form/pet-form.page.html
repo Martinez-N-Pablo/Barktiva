@@ -128,7 +128,7 @@
           [form]="'petForm'" 
           [type]="'submit'" 
           [class]="'primary-button'" 
-          [buttonContent]="paragraphMessages.createPetForm"
+          [buttonContent]="(petId) ? paragraphMessages.updatePetForm : paragraphMessages.createPetForm"
           (onButtonClicked)="onSubmit()">
         </app-button>
       </ion-item>

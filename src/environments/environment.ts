@@ -4,7 +4,10 @@
 
 export const environment = {
   backendURL: "http://localhost:3000/api",
-  production: false
+  production: false,
+  pageSize: 100,
+  pageIndexStart: 1,
+  defaultOrder: "asc",
 };
 
 /*

@@ -36,12 +36,17 @@ export const routes: Routes = [
   },
   {
     path: 'task',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
+    loadComponent: () => import('./pages/private/task/task.page').then( m => m.TaskPage)
+  },
+  {
+    path: 'task/:id',
+    //canActivate: [authGuard],
     loadComponent: () => import('./pages/private/task/task.page').then( m => m.TaskPage)
   },
   {
     path: 'user',
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     loadComponent: () => import('./pages/private/user/user.page').then( m => m.UserPage)
   },
 

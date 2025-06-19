@@ -227,6 +227,11 @@ export class PetService {
     return this._http.get<any>(`${this._url}/pet/${petId}`, { headers });
   }
 
+  getAllPets(body: any, token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.post<any>(`${this._url}/pet/pets`, body, { headers });
+  }
+
   updatePet(petId: string, token: string, body: any): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this._http.put<any>(`${this._url}/pet/${petId}`, body, { headers });

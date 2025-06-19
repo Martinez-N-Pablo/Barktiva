@@ -1,12 +1,12 @@
-import { inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { PetService } from '../services/pet.service';
 import { Dog } from '../interfaces/dog';
 import { firstValueFrom, map, Observable } from 'rxjs';
 import { PetInterface } from '../interfaces/pet';
 import { Preferences } from '@capacitor/preferences';
-import { getToken } from '../scripts/getToken';
 import { ToasSuccessMessage, ToastErorMessage } from '../const/magicStrings';
 import { ToastService } from '../services/toast.service';
+import { environment } from '@environment/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,10 @@ export class PetFacadeService {
   private _dogs: WritableSignal<Dog[]> = signal<Dog[]>([]); // Signal who stores dogs
   private _petService: PetService = inject(PetService);
   private _toastService: ToastService = inject(ToastService);
+
+  petsPageIndex: number = environment.pageIndexStart || 1;
+  petsPageSize: number = environment.pageSize || 10;
+  petsOrder: string = environment.defaultOrder || "asc";
 
   constructor() {
     this.loadBreeds();
@@ -40,7 +44,6 @@ export class PetFacadeService {
   }
 
   async createPet(pet: PetInterface): Promise<any> {
-    console.log("crear")
     const { value } = await Preferences.get({ key: 'user' });
     
     if(!value) {
@@ -94,6 +97,34 @@ export class PetFacadeService {
     }
   }
   
+  async getAllPets(): Promise<any> {
+    const { value } = await Preferences.get({ key: 'user' });
+
+    const body = {
+      page: this.petsPageIndex,
+      size: this.petsPageSize,
+      order: this.petsOrder,
+    }
+    
+    if(!value) {
+        this._toastService.showToast(ToastErorMessage.permissions || "", 'danger').then(() => false);
+        return null;
+    }
+
+    const token = JSON.parse(value as string).token || "";
+
+    if(token) {
+      return firstValueFrom(this._petService.getAllPets(body, token))
+        .then(response => {
+          console.log(response);
+          return response;
+        })
+        .catch(() => {
+          return this._toastService.showToast(ToastErorMessage.getPetData || "", 'danger').then(() => false);
+        });
+    }
+  }
+
   async getPetById(id: string): Promise<any> {
     const { value } = await Preferences.get({ key: 'user' });
     
@@ -116,7 +147,7 @@ export class PetFacadeService {
     }
   }
 
-  async deletePet(id: string): Promise<any> {
+  async deletePet(petId: string): Promise<any> {
     const { value } = await Preferences.get({ key: 'user' });
     
     if(!value) {
@@ -127,7 +158,7 @@ export class PetFacadeService {
     const token = JSON.parse(value as string).token || "";
 
     if(token) {
-      return firstValueFrom(this._petService.deletePet(id, token))
+      return firstValueFrom(this._petService.deletePet(petId, token))
         .then(response => {
           console.log(response);
           this._toastService.showToast(ToasSuccessMessage.deletePet || "", 'success').then(() => false);

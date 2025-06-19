@@ -1,19 +1,19 @@
-import { Component, inject, OnDestroy, OnInit, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonButton, IonButtons, IonSelect, IonSelectOption, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonText, IonIcon, IonTextarea, ActionSheetController } from '@ionic/angular/standalone';
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, Titles } from '@app/core/const/magicStrings';
 import { InputComponent } from '@app/components/input/input.component';
 import { ModalComponent } from '@app/components/modal/modal.component';
 import { ButtonComponent } from '@app/components/button/button.component';
 import { PetInterface } from '@app/core/interfaces/pet';
-import { firstValueFrom, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { PetFacadeService } from '@app/core/presenters/pet-facade.service';
 import { SelectInputComponent } from "../../../components/select-input/select-input.component";
 import { InputDateComponent } from '@app/components/input-date/input-date.component';
-import { TaskService } from '@app/core/services/task.service';
 import { DosesTimeOptions } from '@app/core/const/dosesTimeOptions';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TaskFacadeService } from '@app/core/presenters/task-facade.service';
 
 @Component({
   selector: 'app-task',
@@ -45,12 +45,13 @@ import { Router } from '@angular/router';
 })
 export class TaskPage implements OnInit, OnDestroy {
   private _subscription: Subscription = new Subscription();
-  title: string = Titles.task;
+  title: string = Titles.task || "";
 
   private _formBuilder: FormBuilder = inject(FormBuilder);
-    private _router: Router = inject(Router);
+  private _router: Router = inject(Router);
   private _actionSheetController: ActionSheetController = inject(ActionSheetController);
-  private _taskService: any = inject(TaskService);
+  private _taskFacadeService: TaskFacadeService = inject(TaskFacadeService);
+  private _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
   taskForm!: FormGroup;
   formSubmited: boolean = false;
@@ -64,7 +65,7 @@ export class TaskPage implements OnInit, OnDestroy {
   petsList: WritableSignal<PetInterface[]> = signal([]);
   petSelected: WritableSignal<PetInterface | null> = signal(null);
 
-  taskTylesList: WritableSignal<any[]> = signal([]);
+  taskTypesList: WritableSignal<any[]> = signal([]);
   taskTypeSelected: WritableSignal<any | null> = signal(null);
 
   startDate: any = {
@@ -81,8 +82,8 @@ export class TaskPage implements OnInit, OnDestroy {
     required: true,
   };
 
-  startDateValue: WritableSignal<string> = signal('');
-  endDateValue: WritableSignal<string> = signal('');
+  startDateValue: string = '';
+  finalDateValue: string = '';
 
   petSelectModalId: string = 'petSelectModalId';
   taskTypeSelectModalId: string = 'taskTypeSelectModalId';
@@ -96,9 +97,15 @@ export class TaskPage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.taskId = this._activatedRoute.snapshot.paramMap.get('id') || "";
+    
     this._initForm();
     this._getPets();
-    this._getTaskTypes();    
+    this._getTaskTypes();
+
+    if(this.taskId) {
+      this.getTaskData();
+    }
   }
 
   ngOnDestroy(): void {
@@ -110,21 +117,24 @@ export class TaskPage implements OnInit, OnDestroy {
   }
 
   private _initForm(): void {
-    this.taskForm = this._formBuilder.group({
-      petId: new FormControl('', [Validators.required]),
-      taskType: new FormControl('', [Validators.required]),
-      dose: new FormControl('', [Validators.required]),
-      dosePerDay: new FormControl('', [Validators.required]),
-      dosePerWeek: new FormControl('', [Validators.required]),
-      dosePerMonth: new FormControl('', [Validators.required]),
+    const today: string = new Date().toISOString().split('T')[0] as string;
 
-      notification: new FormControl('', [Validators.required]),
-      quantity: new FormControl('', [Validators.required]),
-      totalTime: new FormControl('', [Validators.required]),
-      routeAdministration: new FormControl('', [Validators.required]),
-      initialDate: new FormControl('', [Validators.required]),
-      finalDate: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
+    this.taskForm = this._formBuilder.group({
+      name: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      pets: this._formBuilder.array([''], [Validators.required]),
+      taskType: new FormControl('', [Validators.required]),
+      dosesTime: new FormControl(''), // dia semana o mes
+      dosePerDay: new FormControl(''),
+      dosePerWeek: new FormControl(''),
+      dosePerMonth: new FormControl(''),
+
+      notification: new FormControl(''),
+      quantity: new FormControl(''),
+      totalTime: new FormControl(''),
+      routeAdministration: new FormControl(''),
+      initialDate: new FormControl(today, [Validators.required]),
+      finalDate: new FormControl(today, [Validators.required]),
+      description: new FormControl('',),
     });
     this.taskForm.get('dose')?.valueChanges.subscribe(value => {
       // console.log('Nuevo valor de dose:', value);
@@ -132,28 +142,109 @@ export class TaskPage implements OnInit, OnDestroy {
     });
   }
 
-  private _getTaskTypes(): void {
-    this._subscription.add(
-      this._taskService.getTasks().subscribe({
-        next: (data: any) => {
-          this.taskTylesList.set(data);
-        },
-        error: (error: any) => {},
-        complete: () => {}
-      })
-    );
+  get petsArray(): FormArray {
+    return this.taskForm.get('pets') as FormArray;
   }
-  onSubmit(): void {}
+
+  get initialDate(): FormControl {
+    return this.taskForm.get("initialDate") as FormControl;
+  }
+
+  get finalDate(): FormControl {
+    return this.taskForm.get("finalDate") as FormControl;
+  }
+
+  private async _getTaskTypes(): Promise<void> {
+    const taskTypes = await this._taskFacadeService.getAllTaskTypes();
+
+    if(taskTypes) {
+      this.taskTypesList.set(taskTypes || []);
+    }
+  }
+
+  private async getTaskData(): Promise<any> {
+    const task = await this._taskFacadeService.getTaskById(this.taskId);
+
+    console.log("Llega");
+    console.log(task);
+
+    if(task) {
+      this.taskForm.patchValue(task);
+
+      if(task.pets && task.pets.length > 0) {
+        this.petSelected.set(task.pets[0] || "");
+      }
+
+      this.taskTypeSelected.set(task.taskType || "");
+      this.notificationState = task.notification || false;
+
+      if(task.initialDate) {
+        this.startDateValue = task.initialDate;
+      }
+
+      if(task.finalDate) {
+        this.finalDateValue = task.finalDate;
+      }
+      
+      this.finalDateValue = task.initialDate || "";
+      this.finalDateValue = task.finalDate || "";
+    }
+
+    console.log(this.startDateValue);
+
+    console.log("Se almacena");
+    console.log(this.taskForm.value);
+  }
+
+  async onSubmit(): Promise<void> {
+    // Setear correctamente FormArray campos
+    const petsFormArray = this.taskForm.get('pets') as FormArray;
+    petsFormArray.clear(); // se limpia el valor anterior
+
+    const selectedPetId = this.petSelected()?._id;
+    const selectedTaskTypeId = this.taskTypeSelected()?._id;
+
+    if (selectedPetId && selectedTaskTypeId) {
+      petsFormArray.push(new FormControl(selectedPetId));
+      this.taskForm.get("taskType")?.setValue(selectedTaskTypeId);
+    }
+
+    this.formSubmited = true;
+    this.taskForm.markAllAsTouched();
+
+    if (this.taskForm.invalid) {
+      console.log("Formulario incorrecto");
+      this._logFormErrors(this.taskForm);
+      return;
+    }
+
+    const res = (this.taskId) 
+      ? await this._taskFacadeService.updateTask(this.taskId, this.taskForm.value) 
+      : await this._taskFacadeService.createTask(this.taskForm.value);
+
+    // if(res) {
+    //   this._navigateToDashboard();
+    // }
+  }
+
+  private _logFormErrors(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls).forEach(key => {
+      const control = formGroup.get(key);
+      if (control && control.invalid) {
+        console.warn(`❌ Campo inválido: "${key}"`, control.errors);
+      }
+    });
+  }
 
   getControl(controlName: string): FormControl{
     return this.taskForm.get(controlName) as FormControl;
   }
 
   private async _getPets() {
-    const pets = await firstValueFrom(this._petFacadeSerivce.getBreeds());
+    const pets = await this._petFacadeSerivce.getAllPets();
 
-    if (pets) {
-      this.petsList.set(pets);
+    if(pets) {
+      this.petsList.set(pets.pets || []);
     }
   }
 
@@ -172,29 +263,37 @@ export class TaskPage implements OnInit, OnDestroy {
     this.taskForm.get('notification')?.setValue(this.notificationState);
   }
 
-  deleteTask(taskId?: string) {
+  async deleteTask(taskId?: string) {
+    const id = (taskId) ? taskId : (this.taskId) ? this.taskId : "";
+    const taskDeleted = await this._taskFacadeService.deleteTask(id);
 
+    if(taskDeleted) {
+      this._navigateToDashboard();
+    }
+  }
+
+  private _navigateToDashboard(): void {
+    this._router.navigate(['dashboard']);
   }
 
   async presentOptionsModal() {
-  const actionSheet = await this._actionSheetController.create({
-    header: 'Opciones',
-    buttons: [
-      {
-        text: 'Eliminar Tarea',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => this.deleteTask()
-      },
-      {
-        text: 'Cancelar',
-        role: 'cancel',
-        icon: 'close'
-      }
-    ]
-  });
-
-  await actionSheet.present();
-}
+    const actionSheet = await this._actionSheetController.create({
+      header: 'Opciones',
+      buttons: [
+        {
+          text: 'Eliminar Tarea',
+          role: 'destructive',
+          icon: 'trash',
+          handler: () => this.deleteTask()
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          icon: 'close'
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
 
 }

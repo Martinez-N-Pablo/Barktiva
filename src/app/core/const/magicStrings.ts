@@ -100,6 +100,9 @@ export const ToasSuccessMessage: any = {
     createPet: 'La mascota se ha creado con éxito',
     updatePet: 'La mascota se ha actualizado con éxito',
     deletePet: 'Se ha eliminado la mascota con éxito',
+    createTask: 'La tarea se ha creado con éxito',
+    updateTask: 'La tarea se ha actualizado con éxito',
+    deleteTask: 'Se ha eliminado la tarea con éxito',
 };
 
 export const ToastErorMessage: any = {
@@ -111,4 +114,9 @@ export const ToastErorMessage: any = {
     getPetData: 'Error al obtener los datos de la mascota',
     updatePet: 'Error al actualizar los valores de la mascota',
     deletePet: 'Error al eliminar la mascota',
+    createTask: 'Error al crear la tarea',
+    getTaskData: 'Error al obtener los datos de la tarea',
+    updateTask: 'Error al actualizar la tarea',
+    deleteTask: 'Error al eliminar la tarea',
+    getTaskTypes: 'Error al obtener los tipos de tareas'
 };
