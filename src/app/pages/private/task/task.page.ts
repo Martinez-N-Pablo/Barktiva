@@ -82,8 +82,8 @@ export class TaskPage implements OnInit, OnDestroy {
     required: true,
   };
 
-  startDateValue: string = '';
-  finalDateValue: string = '';
+  startDateValue: string = new Date().toISOString();
+  finalDateValue: string = new Date().toISOString();
 
   petSelectModalId: string = 'petSelectModalId';
   taskTypeSelectModalId: string = 'taskTypeSelectModalId';
@@ -222,9 +222,9 @@ export class TaskPage implements OnInit, OnDestroy {
       ? await this._taskFacadeService.updateTask(this.taskId, this.taskForm.value) 
       : await this._taskFacadeService.createTask(this.taskForm.value);
 
-    // if(res) {
-    //   this._navigateToDashboard();
-    // }
+    if(res) {
+      this._navigateToDashboard();
+    }
   }
 
   private _logFormErrors(formGroup: FormGroup): void {
