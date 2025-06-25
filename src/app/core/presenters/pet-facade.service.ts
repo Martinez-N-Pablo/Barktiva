@@ -100,11 +100,29 @@ export class PetFacadeService {
 
     const userId = user.id || "";
     const token = user.token || "";
-
     pet.owner = userId;
+
+    const formData = new FormData();
+
+    // Añadir todos los campos excepto el archivo
+    Object.entries(pet).forEach(([key, val]) => {
+      if (key !== 'photo' && val !== undefined && val !== null) {
+        formData.append(key, val as string);
+      }
+    });
+
+    // Se comprueba si la variable photo contiene valor y se comprueba como se ha podido que es un objeto tipo File
+    if (pet.photo &&
+        typeof pet.photo === 'object' &&
+        'name' in pet.photo &&
+        'type' in pet.photo &&
+        'size' in pet.photo
+    ) {
+      formData.append('photo', pet.photo);
+    }
     
     if(token) {
-      return firstValueFrom(this._petService.updatePet(petId, token, pet))
+      return firstValueFrom(this._petService.updatePet(petId, token, formData))
         .then(response => {
           this._toastService.showToast(ToasSuccessMessage.updatePet || "", 'success').then(() => true);
           return true;
