@@ -55,7 +55,7 @@ export class PetFormPage implements OnInit, OnDestroy {
   private _router: Router = inject(Router);
   private _actionSheetController: ActionSheetController = inject(ActionSheetController); 
 
-  previewImage: string = '';
+  previewImage: string = "";
 
   logoPath: string = RoutesName.dashboard || "";
   isClicked: boolean = false;
@@ -145,8 +145,10 @@ export class PetFormPage implements OnInit, OnDestroy {
       this.petForm.patchValue(pet);
 
       this.sexInputValue = pet.sex || "";
+      this.previewImage = pet.photo;
       this.castratedInputValue = pet.castrated || "";
-      this.breedSelected.set(this.breeds.find(value => value.name === pet.breed) || ""); 
+      this.breedSelected.set(this.breeds.find(value => value.name === pet.breed) || "");
+      console.log(this.previewImage);
     }
   }
 
@@ -182,7 +184,7 @@ export class PetFormPage implements OnInit, OnDestroy {
     this.petForm = this._formBuilder.group({
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
       breed: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(100)]),
-      photo: new FormControl(''),
+      photo: new FormControl<File | null>(null),
       sex: new FormControl('', [Validators.minLength(1)]),
       age: new FormControl('0', [Validators.min(0), Validators.max(30), Validators.pattern(Patterns.integer)]),
       weight: new FormControl('0', [Validators.min(0)]),
@@ -232,10 +234,18 @@ export class PetFormPage implements OnInit, OnDestroy {
   }
 
   async onSelectImage() {
-    const imageBase64 = await this._photoUploaderService.selectImage();
-    if (imageBase64) {
-      this.previewImage = imageBase64; // Actualizamos la vista previa
-      this.petForm.patchValue({ photo: imageBase64 }); // Insertamos la imagen al formulario
+    const file = await this._photoUploaderService.selectImage(); // ahora devuelve un File
+
+    if (file) {
+      // Previsualización
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewImage = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+
+      // Insertar el archivo en el formulario (¡no como string!)
+      this.petForm.patchValue({ photo: file });
     }
   }
 

@@ -16,22 +16,32 @@ export class PhotoUploaderService {
 
   constructor() { }
 
-  async selectImage(): Promise<string | null> {
+  async selectImage(): Promise<File | null> {
     try {
       const image = await Camera.getPhoto({
         quality: 90,
         allowEditing: false,
-        resultType: CameraResultType.Base64, // Obtenemos la imagen en formato Base64
-        source: CameraSource.Photos, // Selecciona desde la galería
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Photos,
       });
 
-      this.imageBase64 = `data:image/jpeg;base64,${image.base64String}`;
-      return this.imageBase64;
+      if (!image.webPath) {
+        throw new Error('La imagen no tiene una ruta válida');
+      }
+
+      const response = await fetch(image.webPath);
+      const blob = await response.blob();
+      const file = new File([blob], `photo_${Date.now()}.jpg`, {
+        type: blob.type,
+      });
+
+      return file;
     } catch (error) {
       console.error('Error al seleccionar la imagen:', error);
       return null;
     }
   }
+
 
    /**
    * Retorna la imagen seleccionada como Base64.

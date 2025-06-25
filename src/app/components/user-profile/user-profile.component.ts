@@ -91,10 +91,18 @@ export class UserProfileComponent  implements OnInit {
   }
 
   async onSelectImage() {
-    const imageBase64 = await this._photoUploaderService.selectImage();
-    if (imageBase64) {
-      this.previewImage = imageBase64; // Actualizamos la vista previa
-      this.userProfileForm.patchValue({ photo: imageBase64 }); // Insertamos la imagen al formulario
+    const file = await this._photoUploaderService.selectImage(); // ahora devuelve un File
+
+    if (file) {
+      // Previsualización
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewImage = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+
+      // Insertar el archivo en el formulario (¡no como string!)
+      this.userProfileForm.patchValue({ photo: file });
     }
   }
 

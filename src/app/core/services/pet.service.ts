@@ -217,7 +217,7 @@ export class PetService {
     return of(this._breeds);
   }
 
-  createPets(body: any, token: string): Observable<any> {
+  createPets(body: FormData, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this._http.post<any>(`${this._url}/pet`, body, { headers });
   }
