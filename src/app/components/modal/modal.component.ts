@@ -38,6 +38,7 @@ export class ModalComponent  implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
+    console.log("Lista")
     console.log(this.optionsList)
     this.optionsFiltered = this.optionsList;
     this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(searchTerm => {
@@ -48,6 +49,8 @@ export class ModalComponent  implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['optionsList']) {
       this.optionsFiltered = [...this.optionsList];
+      console.log("Changes");
+      this.optionsFiltered;
     }
   }
 

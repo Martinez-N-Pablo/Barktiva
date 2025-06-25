@@ -93,7 +93,7 @@ export class TaskPage implements OnInit, OnDestroy {
   taskId: string = "";
 
   constructor(
-    private _petFacadeSerivce: PetFacadeService) {
+    private _petFacadeService: PetFacadeService) {
   }
 
   ngOnInit() {
@@ -241,8 +241,8 @@ export class TaskPage implements OnInit, OnDestroy {
   }
 
   private async _getPets() {
-    const pets = await this._petFacadeSerivce.getAllPets();
-
+    const pets = await this._petFacadeService.getAllPets();
+    
     if(pets) {
       this.petsList.set(pets.pets || []);
     }

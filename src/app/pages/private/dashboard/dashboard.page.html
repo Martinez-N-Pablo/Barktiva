@@ -5,16 +5,37 @@
     {{petTitle}}
   </h4>
   <div class="pet-card-container">
-    @for (dog of dogs; track dog; let i = $index) {
-      <div class="pet-card">
-        <ion-thumbnail slot="start">
-          <ion-img class="pet-card-img" [src]="i === 0 ? '../../../../assets/icon/plus.png' : '../../../../assets/icon/logo.png'"></ion-img>
-        </ion-thumbnail>
-        <ion-label>
-          <h2>{{ i === 0 ? 'Nuevo' : (dog.name || '') }}</h2>
-        </ion-label>
-      </div>
-    }
+    <swiper-container slides-per-view="4" space-between="10">
+      <swiper-slide>
+        <div class="story-card" (click)="sendToPetPage()">
+            <div class="story-img-wrapper">
+              <img 
+                src="assets/icon/plus.png" 
+                alt="Foto para añadir una nueva mascota" 
+                class="story-img" />
+            </div>
+            <div class="story-name">
+              Nuevo
+            </div>
+          </div>
+      </swiper-slide>
+      @for (pet of petsList; track pet; let i = $index) {
+        <swiper-slide>
+          <div class="story-card" (click)="sendToPetPage(pet._id)">
+            <div class="story-img-wrapper">
+              <img 
+                [src]="pet?.photo || 'assets/icon/logo.png'" 
+                alt="Foto del perfil del perro" 
+                class="story-img"
+                (error)="onImageError($event)" />
+            </div>
+            <div class="story-name">
+              {{pet?.name || ''}}
+            </div>
+          </div>
+        </swiper-slide>
+      }
+    </swiper-container>
   </div>
 
   <h4 class="container">

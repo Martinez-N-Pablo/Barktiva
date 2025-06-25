@@ -148,7 +148,6 @@ export class PetFormPage implements OnInit, OnDestroy {
       this.previewImage = pet.photo;
       this.castratedInputValue = pet.castrated || "";
       this.breedSelected.set(this.breeds.find(value => value.name === pet.breed) || "");
-      console.log(this.previewImage);
     }
   }
 

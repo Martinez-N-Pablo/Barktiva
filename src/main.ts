@@ -11,6 +11,7 @@ import { addIcons } from 'ionicons';
 import { arrowBackOutline, chevronForward, personCircleOutline, personOutline, keyOutline, trashOutline, menu  } from 'ionicons/icons';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import 'hammerjs';
+import { register } from 'swiper/element';
 
 // Register only icons will be used
 addIcons({
@@ -22,6 +23,8 @@ addIcons({
   arrowBackOutline,
   menu,
 });
+
+register();
 
 bootstrapApplication(AppComponent, {
   providers: [
