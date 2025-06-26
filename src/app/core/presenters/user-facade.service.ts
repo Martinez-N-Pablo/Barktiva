@@ -61,6 +61,9 @@ export class UserFacadeService {
     });
 
     const photo = body?.photo || undefined;
+
+    console.log("Foto");
+    console.log(photo);
     // Se comprueba si la variable photo contiene valor y se comprueba como se ha podido que es un objeto tipo File
     if (photo &&
         typeof photo === 'object' &&
@@ -72,7 +75,7 @@ export class UserFacadeService {
     }
 
     if(token) {
-      return firstValueFrom(this._userService.updateUser(body, token))
+      return firstValueFrom(this._userService.updateUser(formData, token))
         .then(response => {
           this._toastService.showToast(ToasSuccessMessage.updateUser || "", 'success').then(() => true);
           return true;

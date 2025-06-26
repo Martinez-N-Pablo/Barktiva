@@ -143,9 +143,7 @@ export class UserProfileComponent  implements OnInit {
 
     const res = this._userFacadeService.updateUser(this.userProfileForm.value);
 
-    console.log("Respuesta: ");
-    console.log(res);
-    //this._navigateToDashboard();
+    this._navigateToDashboard();
   }
 
   private _navigateToDashboard(): void {
