@@ -29,6 +29,7 @@ import { TaskInterface } from '@app/core/interfaces/task';
   ]
 })
 export class DashboardPage implements OnInit {
+  title: string = "Barktiva";
   logoPath: string = RoutesName.login;
 
   petsList: PetInterface[] = [];

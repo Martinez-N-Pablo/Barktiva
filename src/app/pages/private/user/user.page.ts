@@ -9,6 +9,7 @@ import { InputComponent } from '@app/components/input/input.component';
 import { Router } from '@angular/router';
 import { c } from '@angular/core/event_dispatcher.d-pVP0-wST';
 import { RoutesName } from '@app/core/const/magicStrings';
+import { HeaderComponent } from '@app/components/header/header.component';
 
 export const USER_MENU_OPTIONS = {
   EDIT_PROFILE: 1,
@@ -31,6 +32,7 @@ export const USER_MENU_OPTIONS = {
     FormsModule,
     UserProfileComponent,
     ChangePasswordComponent,
+    HeaderComponent
   ]
 })
 export class UserPage implements OnInit {

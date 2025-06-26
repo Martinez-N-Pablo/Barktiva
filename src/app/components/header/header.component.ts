@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonHeader, IonButton, IonToolbar, IonIcon } from "@ionic/angular/standalone";
 
@@ -12,13 +12,22 @@ import { IonHeader, IonButton, IonToolbar, IonIcon } from "@ionic/angular/standa
 export class HeaderComponent  implements OnInit {
   private _router: Router = inject(Router);
 
+  @Input() isDashboard: boolean = true;
+  @Input() title: string = "";
+
+  @Output() onBackButtonClicked: EventEmitter<void> = new EventEmitter<void>();
+
   constructor() { }
 
   ngOnInit() {}
 
   goToProfile() {
-    //    console.log('goToProfile: ' + RoutesName.user);
-        this._router.navigate(['user']);
+    this._router.navigate(['user']);
   }
 
+  goBack(): void {
+    setTimeout(() => {
+      this.onBackButtonClicked.emit();
+    }, 100);
+  }
 }

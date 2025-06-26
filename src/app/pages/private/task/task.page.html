@@ -2,11 +2,14 @@
   @if(taskId) {
     <ion-toolbar>
       <div class="custom-title-row">
-        <span class="title-text">Modificar tarea</span>
+        <ion-button fill="clear" class="custom-back-button" slot="start" (click)="goBack()">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+          <h3 class="title-text">Modificar tarea</h3>
+        </ion-button>
 
         <ion-buttons slot="end">
           <ion-button (click)="presentOptionsModal()">
-            <ion-icon name="menu"></ion-icon>
+            <ion-icon class="menu-icon" name="menu"></ion-icon>
           </ion-button>
         </ion-buttons>
       </div>
@@ -14,10 +17,16 @@
   }
   @else {
     <ion-toolbar>
-      <span class="title-text">Crear tarea</span>
+      <div class="custom-title-row">
+        <ion-button fill="clear" class="custom-back-button" (click)="goBack()">
+          <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+          <h3 class="title-text">Crear tarea</h3>
+        </ion-button>
+      </div>
     </ion-toolbar>
   }
 </ion-header>
+
 <ion-content [fullscreen]="true">
   <form id="taskForm" form action="submit" [formGroup]="taskForm">
       <ion-list class="formList" role="list">

@@ -1,35 +1,82 @@
+@use '@theme/variables.scss' as *;
+
 /*
     * Custom styles for header tittle
 */
+.ion-header {
+  min-height: 61px;
+}
+
 .custom-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .title-text {
-    font-size: 1.5rem;
-    font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 ion-button {
-    --padding-start: 0;
-    --padding-end: 0;
+  --padding-start: 0;
+  --padding-end: 0;
 }
 
+// User profile button
 ion-icon {
-    font-size: 35px;
-    color: var(--ion-color-dark);
+  font-size: 35px;
+  color: var(--ion-color-dark);
 }
 
 ion-toolbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-    z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+  height: 100%;
 }
 
 ion-button {
-    --padding-top: 0;
-    --padding-bottom: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
 }
+
+// Back button style
+ion-button.custom-back-button {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  font-weight: 500;
+  color: var(--ion-color-primary);
+  font-size: 1rem;
+  gap: 0.5rem; // Espaciado entre el h3 y el ícono
+
+
+  ion-icon {
+    font-size: 20px;
+    margin-right: $distance;
+
+  }
+
+  ion-label {
+    font-size: 1rem;
+  }
+
+  h3 {
+    margin: 0;
+    margin-top: 1px;
+  }
+
+  h3, ion-icon {
+    color: $black-color;
+  }
+}
+
+.no-dashboard {
+  ion-icon {
+    margin-left: .1em;
+  }
+}
+

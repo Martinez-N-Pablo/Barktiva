@@ -292,4 +292,7 @@ export class PetFormPage implements OnInit, OnDestroy {
     await actionSheet.present();
   }
 
+  goBack(): void {
+    this._router.navigate(['/dashboard']);
+  }
 }

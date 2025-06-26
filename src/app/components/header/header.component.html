@@ -1,10 +1,18 @@
 <ion-header collapse="condense">
   <ion-toolbar>
-    <div class="custom-title-row">
-      <span class="title-text">Barktiva</span>
-      <ion-button fill="clear" (click)="goToProfile()">
-        <ion-icon name="person-circle-outline"></ion-icon>
+    @if (isDashboard) {
+      <div class="custom-title-row">
+        <span class="title-text">{{title || ""}}</span>
+        <ion-button fill="clear" (click)="goToProfile()">
+          <ion-icon name="person-circle-outline"></ion-icon>
+        </ion-button>
+      </div>
+    }
+    @else {
+      <ion-button fill="clear" class="custom-back-button no-dashboard" (click)="goBack()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        <h3>{{title || ""}}</h3>
       </ion-button>
-    </div>
+    }
   </ion-toolbar>
 </ion-header>
