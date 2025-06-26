@@ -24,4 +24,8 @@ export class SelectInputComponent  implements OnInit {
   ngOnInit() {
   }
 
+  onImageError(event: Event) {
+    const imgElement = event.target as HTMLImageElement;
+    imgElement.src = 'assets/icon/logo.png';
+  }
 }

@@ -8,6 +8,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   HostListener,
+  Input,
 } from '@angular/core';
 import {
   startOfDay,
@@ -41,6 +42,7 @@ import { HammerModule } from '@angular/platform-browser';
 import { trigger, keyframes, animate, transition, style } from '@angular/animations';
 import { MonthCellTemplateComponent } from '../templates/shared/templates/month-cell-template/month-cell-template.component';
 import { IonSelect, IonSelectOption } from '@ionic/angular/standalone';
+import { TaskInterface } from '@app/core/interfaces/task';
 
 const colors: Record<string, EventColor> = {
   red: {
@@ -103,6 +105,15 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
   selectedDate: Date | null = null;
 
   private touchStartX = 0;
+
+  @Input()
+  set taskList(value: TaskInterface[]) {
+    if (value) {
+      this._taskList = value;
+      this._mapTasksToEvents(value);
+    }
+  }
+  private _taskList: TaskInterface[] = [];
 
   // Template for the month cell
   @ViewChild(MonthCellTemplateComponent, { static: true })
@@ -317,5 +328,29 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
       default:
         return this.viewDate;
     }
+  }
+
+  private _mapTasksToEvents(tasks: TaskInterface[]): void {
+    this.events = tasks.map(task => ({
+      start: new Date(task.initialDate),
+      end: new Date(task.finalDate),
+      title: `${task.name} - ${task.user.name} ${task.user.surname}`,
+      color: {
+        primary: '#1e90ff',
+        secondary: '#D1E8FF'
+      },
+      meta: {
+        taskId: task._id,
+        userId: task.user._id,
+        description: task.description || ''
+      },
+      draggable: false,
+      resizable: {
+        beforeStart: false,
+        afterEnd: false
+      }
+    }));
+
+    this.refresh.next(); // actualiza la vista
   }
 }

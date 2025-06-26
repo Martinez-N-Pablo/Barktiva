@@ -9,6 +9,7 @@ import { HeaderComponent } from '@app/components/header/header.component';
 import { PetInterface } from '@app/core/interfaces/pet';
 import { PetFacadeService } from '@app/core/presenters/pet-facade.service';
 import { TaskFacadeService } from '@app/core/presenters/task-facade.service';
+import { TaskInterface } from '@app/core/interfaces/task';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,6 +32,7 @@ export class DashboardPage implements OnInit {
   logoPath: string = RoutesName.login;
 
   petsList: PetInterface[] = [];
+  taskList: TaskInterface[] = []; 
 
   petTitle: string = "Perros";
   taskTitle: string = "Tareas";
@@ -42,6 +44,7 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
     this._getPets();
+    this._getTasks();
   }
 
   private async _getPets() {
@@ -49,6 +52,14 @@ export class DashboardPage implements OnInit {
 
     if(pets) {
       this.petsList = pets.pets || [];
+    }
+  }
+
+  private async _getTasks() {
+    const tasks = await this._taskFacadeService.getAllTask();
+
+    if(tasks) {
+      this.taskList = tasks?.tasks || [];
     }
   }
 

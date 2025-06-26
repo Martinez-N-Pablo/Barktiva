@@ -1,5 +1,6 @@
-export interface Task {
-  user: string;
+export interface TaskInterface {
+  _id: string;
+  user: any;
   pets: string[];
   taskType: string;
   name: string;
@@ -12,6 +13,6 @@ export interface Task {
   quantity?: number;
   routeAdministration?: string;
   initialDate: Date;
-  finalDate?: Date;
+  finalDate: Date;
   description?: string;
 }

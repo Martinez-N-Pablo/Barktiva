@@ -20,7 +20,7 @@ export class TaskService {
 
   getAllTask(body: any, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this._http.post<any>(`${this._url}/task/task`, body, { headers });
+    return this._http.post<any>(`${this._url}/task/tasks`, body, { headers });
   }
 
   getTaskById(taskId: string, token: string): Observable<any> {
