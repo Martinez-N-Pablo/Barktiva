@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages } from '@app/core/const/magicStrings';
 import { PhotoUploaderService } from '@app/core/services/photo-uploader.service';
 import { InputDateComponent } from '../input-date/input-date.component';
+import { UserFacadeService } from '@app/core/presenters/user-facade.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -30,7 +32,8 @@ import { InputDateComponent } from '../input-date/input-date.component';
 export class UserProfileComponent  implements OnInit {
   private _formBuilder: FormBuilder = inject(FormBuilder);
   private _photoUploaderService: PhotoUploaderService = inject(PhotoUploaderService);
-
+  private _userFacadeService: UserFacadeService = inject(UserFacadeService);
+  private _router: Router = inject(Router);
 
   userProfileForm!: FormGroup;
   formSubmitted: boolean = false;
@@ -43,13 +46,15 @@ export class UserProfileComponent  implements OnInit {
   photoIsClicked: boolean = false;
 
   //Birhdate
-  birthdateValue: string = '';
   birthdate: any = {
-    label: 'Fecha de nacimiento',
-    placeholder: 'dd/MM/yyyy',
+    label: this.placeholderMessages.birthdate || "",
+    placeholder: this.placeholderMessages.dateFormat || "",
     idValue: 'birthdate',
     required: false,
   };
+  birthdateValue: string = new Date().toISOString();
+
+  formSubmited: boolean = false;
 
   constructor() { }
 
@@ -59,16 +64,32 @@ export class UserProfileComponent  implements OnInit {
   }
 
   private _initForm(): void {
+    const today: string = new Date().toISOString().split('T')[0] as string;
+
     this.userProfileForm = this._formBuilder.group({
-      photo: new FormControl(''),
+      photo: new FormControl<File | null>(null),
       name: ['', [Validators.required, Validators.minLength(3)]],
       surname: ['', []],
       email: new FormControl('', [Validators.required, Validators.email]),
-      birthdate: new FormControl('', [Validators.required]),
+      birthdate: new FormControl(today, []),
     });
   }
 
-  private _getUserData(): void {}
+  private async _getUserData(): Promise<void> {
+    const user = await this._userFacadeService.getUserData();
+
+    const userData = user?.user || user; // Cambiar el back para que no llegue uno dentro de otro
+    
+    if(userData) {
+      this.userProfileForm.patchValue(userData);
+
+      this.previewImage = userData?.photo || "";
+      
+      if(userData.birhdate) {
+        this.birthdateValue = userData.birhdate;
+      }
+    }
+  }
 
   updateUserProfileData(): void {}
 
@@ -111,5 +132,23 @@ export class UserProfileComponent  implements OnInit {
     this.userProfileForm.get('birhdate')?.setValue(formatDatte);
   }
 
-  submit(): void {}
+  onSubmit(): void {
+    this.formSubmited = true;
+    this.userProfileForm.markAllAsTouched();
+
+    if(this.userProfileForm.invalid) {
+      console.log("Formulario inválido");
+      return;
+    }
+
+    const res = this._userFacadeService.updateUser(this.userProfileForm.value);
+
+    console.log("Respuesta: ");
+    console.log(res);
+    //this._navigateToDashboard();
+  }
+
+  private _navigateToDashboard(): void {
+    this._router.navigate(['dashboard']);
+  }
 }

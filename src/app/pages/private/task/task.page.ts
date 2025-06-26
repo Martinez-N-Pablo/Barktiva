@@ -165,9 +165,6 @@ export class TaskPage implements OnInit, OnDestroy {
   private async getTaskData(): Promise<any> {
     const task = await this._taskFacadeService.getTaskById(this.taskId);
 
-    console.log("Llega");
-    console.log(task);
-
     if(task) {
       this.taskForm.patchValue(task);
 
@@ -189,11 +186,6 @@ export class TaskPage implements OnInit, OnDestroy {
       this.finalDateValue = task.initialDate || "";
       this.finalDateValue = task.finalDate || "";
     }
-
-    console.log(this.startDateValue);
-
-    console.log("Se almacena");
-    console.log(this.taskForm.value);
   }
 
   async onSubmit(): Promise<void> {
@@ -231,7 +223,7 @@ export class TaskPage implements OnInit, OnDestroy {
     Object.keys(formGroup.controls).forEach(key => {
       const control = formGroup.get(key);
       if (control && control.invalid) {
-        console.warn(`❌ Campo inválido: "${key}"`, control.errors);
+        console.warn(`Campo inválido: "${key}"`, control.errors);
       }
     });
   }

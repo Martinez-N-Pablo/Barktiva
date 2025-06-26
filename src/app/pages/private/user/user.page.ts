@@ -74,7 +74,7 @@ export class UserPage implements OnInit {
         {
           text: 'Eliminar',
           role: 'destructive',
-          handler: () => this.deleteAccount()
+          handler: () => this._deleteAccount()
         }
       ]
     });
@@ -82,7 +82,7 @@ export class UserPage implements OnInit {
     await alert.present();
   }
 
-  deleteAccount() {
+  private _deleteAccount() {
     console.log('Cuenta eliminada');
   }
 

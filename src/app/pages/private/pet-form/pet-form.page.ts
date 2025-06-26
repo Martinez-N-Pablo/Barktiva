@@ -191,7 +191,6 @@ export class PetFormPage implements OnInit, OnDestroy {
     });
 
     this.petForm.get('breed')?.valueChanges.subscribe(data => {
-      console.log(data);
     });
   }
 
@@ -293,6 +292,6 @@ export class PetFormPage implements OnInit, OnDestroy {
   }
 
   goBack(): void {
-    this._router.navigate(['/dashboard']);
+    this._navigateToDashboard();
   }
 }

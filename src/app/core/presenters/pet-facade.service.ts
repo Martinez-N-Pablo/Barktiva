@@ -53,11 +53,11 @@ export class PetFacadeService {
 
     const user = JSON.parse(value as string);
 
-    const userId = user.id || "";
-    const token = user.token || "";
+    const userId: string = user.id || "";
+    const token: string = user.token || "";
     pet.owner = userId;
 
-    const formData = new FormData();
+    const formData: FormData = new FormData();
 
     // Añadir todos los campos excepto el archivo
     Object.entries(pet).forEach(([key, val]) => {

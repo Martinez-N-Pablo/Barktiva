@@ -103,6 +103,7 @@ export const ToasSuccessMessage: any = {
     createTask: 'La tarea se ha creado con éxito',
     updateTask: 'La tarea se ha actualizado con éxito',
     deleteTask: 'Se ha eliminado la tarea con éxito',
+    updateUser: 'Se ha actualizado la cuenta con éxito',
 };
 
 export const ToastErorMessage: any = {
@@ -118,5 +119,7 @@ export const ToastErorMessage: any = {
     getTaskData: 'Error al obtener los datos de la tarea',
     updateTask: 'Error al actualizar la tarea',
     deleteTask: 'Error al eliminar la tarea',
-    getTaskTypes: 'Error al obtener los tipos de tareas'
+    getTaskTypes: 'Error al obtener los tipos de tareas',
+    updateUser: 'Error al actualizar la cuenta',
+    deleteUser: 'Error al eliminar la cuenta',
 };
