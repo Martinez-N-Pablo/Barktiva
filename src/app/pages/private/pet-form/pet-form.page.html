@@ -101,14 +101,14 @@
             [placeholder]="placeholderMessages.age || ''">
           </app-input>
         </ion-item>
-        <!-- Castrated input -->
+        <!-- Sterilized input -->
         <ion-item role="listitem">
           <app-input-radio 
               [paragraphMessage]="paragraphMessages.sterilized || ''"
               [radioGroupID]="paragraphMessages.sterilized || ''"
               [radioOptions]="sterilizedRadioOptions"
-              [radioInputSelected]="castratedInputValue || ''"
-              (onRadioSelected)="castratedSelected($event)"
+              [radioInputSelected]="sterilizedInputValue || ''"
+              (onRadioSelected)="sterilizedSelected($event)"
             ></app-input-radio>
         </ion-item>
         <!-- Weight input -->

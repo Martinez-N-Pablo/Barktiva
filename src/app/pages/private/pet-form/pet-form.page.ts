@@ -78,7 +78,7 @@ export class PetFormPage implements OnInit, OnDestroy {
   photoFile!: File;
 
   sexInputValue: string = "";
-  castratedInputValue: string = "";
+  sterilizedInputValue: string = "";
 
   sexRadioOptions: {radioID: string, paragraphName: string}[] = [
     {radioID: this.sexValue.femenimo || "", paragraphName: this.placeholderMessages.female || ""},
@@ -146,7 +146,7 @@ export class PetFormPage implements OnInit, OnDestroy {
 
       this.sexInputValue = pet.sex || "";
       this.previewImage = pet.photo;
-      this.castratedInputValue = pet.castrated || "";
+      this.sterilizedInputValue = pet.castrated || "";
       this.breedSelected.set(this.breeds.find(value => value.name === pet.breed) || "");
     }
   }
@@ -187,7 +187,7 @@ export class PetFormPage implements OnInit, OnDestroy {
       sex: new FormControl('', [Validators.minLength(1)]),
       age: new FormControl('0', [Validators.min(0), Validators.max(30), Validators.pattern(Patterns.integer)]),
       weight: new FormControl('0', [Validators.min(0)]),
-      castrated: new FormControl(""),
+      sterilized: new FormControl(""),
     });
 
     this.petForm.get('breed')?.valueChanges.subscribe(data => {
@@ -252,9 +252,9 @@ export class PetFormPage implements OnInit, OnDestroy {
     this.petForm.get('sex')?.setValue(this.sexInputValue);
   }
 
-  castratedSelected(value: any): void {    
-    this.castratedInputValue = value || "";
-    this.petForm.get('castrated')?.setValue(this.castratedInputValue);
+  sterilizedSelected(value: any): void {    
+    this.sterilizedInputValue = value || "";
+    this.petForm.get('sterilized')?.setValue(this.sterilizedInputValue);
   }
 
   async deletePet() {

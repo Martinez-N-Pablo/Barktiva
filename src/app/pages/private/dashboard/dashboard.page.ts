@@ -44,6 +44,7 @@ export class DashboardPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("Hola")
     this._getPets();
     this._getTasks();
   }
