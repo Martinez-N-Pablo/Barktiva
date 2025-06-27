@@ -224,7 +224,7 @@ export class PetFormPage implements OnInit, OnDestroy {
   }
 
   private _navigateToDashboard(): void {
-    this._router.navigate(['dashboard']);
+    this._router.navigate([`/${RoutesName.dashboard}`]);
   }
 
   getControl(controlName: string): FormControl{

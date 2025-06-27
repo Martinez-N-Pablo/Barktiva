@@ -97,6 +97,7 @@ export const MetaDescriptions: any = {
 export const ToasSuccessMessage: any = {
     register: 'Se ha rergistrado con éxito',
     login: 'Inicio de sesión realizado',
+    logout: 'Se ha cerrado sesión correctamente',
     createPet: 'La mascota se ha creado con éxito',
     updatePet: 'La mascota se ha actualizado con éxito',
     deletePet: 'Se ha eliminado la mascota con éxito',
@@ -109,6 +110,7 @@ export const ToasSuccessMessage: any = {
 export const ToastErorMessage: any = {
     register: 'Error en el registro',
     login: 'Login fallido: credenciales inválidas o error del servidor',
+    logout: 'Error al cerrar sesión',
     token: 'Error con el token',
     permissions: 'No tiener permisos',
     createPet: 'Error al crear la mascota',

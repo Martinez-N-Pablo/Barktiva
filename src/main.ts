@@ -8,7 +8,7 @@ import { isDevMode } from '@angular/core';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideHttpClient } from '@angular/common/http';
 import { addIcons } from 'ionicons';
-import { arrowBackOutline, chevronForward, personCircleOutline, personOutline, keyOutline, trashOutline, menu  } from 'ionicons/icons';
+import { arrowBackOutline, chevronForward, personCircleOutline, personOutline, keyOutline, trashOutline, menu, logOutOutline  } from 'ionicons/icons';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import 'hammerjs';
 import { register } from 'swiper/element';
@@ -22,6 +22,7 @@ addIcons({
   trashOutline,
   arrowBackOutline,
   menu,
+  logOutOutline,
 });
 
 register();

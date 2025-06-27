@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { c } from '@angular/core/event_dispatcher.d-pVP0-wST';
 import { RoutesName } from '@app/core/const/magicStrings';
 import { HeaderComponent } from '@app/components/header/header.component';
+import { UserFacadeService } from '@app/core/presenters/user-facade.service';
+import { AuthFacadeService } from '@app/core/presenters/auth-facade.service';
 
 export const USER_MENU_OPTIONS = {
   EDIT_PROFILE: 1,
@@ -38,6 +40,8 @@ export const USER_MENU_OPTIONS = {
 export class UserPage implements OnInit {
   private _alertController: AlertController = inject(AlertController);
   private _router: Router = inject(Router);
+  private _userFacadeService: UserFacadeService = inject(UserFacadeService);
+  private _authFacadeService: AuthFacadeService = inject(AuthFacadeService);
 
   goBackText: string = 'Volver';
 
@@ -82,8 +86,12 @@ export class UserPage implements OnInit {
     await alert.present();
   }
 
-  private _deleteAccount() {
-    console.log('Cuenta eliminada');
+  private async _deleteAccount(): Promise<any> {
+    const userDeleted = await this._userFacadeService.deleteUser();
+
+    if(userDeleted) {
+      this._router.navigate(["/login"]); //CAMBIAR POR LOGOUT
+    }
   }
 
   goBack() {
@@ -93,6 +101,14 @@ export class UserPage implements OnInit {
     }
     
     this._router.navigate([`/${RoutesName.dashboard}`]);
+  }
+
+  async logout(): Promise<void> {
+    const res = await this._authFacadeService.logout();
+
+    if(res) {
+      this._router.navigate([`/${RoutesName.login}`]);
+    }
   }
 }
 

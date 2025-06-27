@@ -56,4 +56,15 @@ export class AuthFacadeService {
         return this._toastService.showToast(ToastErorMessage.permissions || "", 'danger').then(() => false);
       });
   }
+
+  async logout(): Promise<boolean> {
+    try {
+      await Preferences.remove({ key: 'user' });
+      this._toastService.showToast(ToasSuccessMessage.logout || "", 'success').then(() => false);
+      return true;
+    } catch (error) {
+      this._toastService.showToast(ToastErorMessage.logout || "", 'danger').then(() => false);
+      return false;
+    }
+  }
 }

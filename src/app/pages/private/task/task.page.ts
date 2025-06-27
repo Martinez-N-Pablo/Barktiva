@@ -2,7 +2,7 @@ import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@a
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonButton, IonButtons, IonSelect, IonSelectOption, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonText, IonIcon, IonTextarea, ActionSheetController } from '@ionic/angular/standalone';
-import { ErrorMessages, ParagraphMessages, PlaceholderMessages, Titles } from '@app/core/const/magicStrings';
+import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/const/magicStrings';
 import { InputComponent } from '@app/components/input/input.component';
 import { ModalComponent } from '@app/components/modal/modal.component';
 import { ButtonComponent } from '@app/components/button/button.component';
@@ -289,6 +289,6 @@ export class TaskPage implements OnInit, OnDestroy {
   }
   
   goBack(): void {
-    this._router.navigate(['/dashboard']);
+    this._router.navigate([`/${RoutesName.dashboard}`]);
   }
 }

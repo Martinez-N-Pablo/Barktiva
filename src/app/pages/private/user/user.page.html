@@ -12,6 +12,11 @@
         <ion-icon name="key-outline" slot="start"></ion-icon>
         <span>Cambiar contraseña</span>
       </ion-button>
+
+      <ion-button expand="block" fill="clear" class="user-menu-option" (click)="logout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <span>Cerrar sesión</span>
+      </ion-button>
   
       <ion-button expand="block" fill="clear" class="user-menu-option delete" (click)="confirmDeleteAccount()">
         <ion-icon name="trash-outline" slot="start"></ion-icon>
@@ -23,6 +28,7 @@
 @else if(optionSelected === 1) {
   <app-user-profile class="form"></app-user-profile>
 }
+
 
 @else if(optionSelected === 2) {
   <app-change-password class="form"></app-change-password>
