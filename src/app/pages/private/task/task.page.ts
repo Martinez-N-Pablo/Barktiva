@@ -289,6 +289,6 @@ export class TaskPage implements OnInit, OnDestroy {
   }
   
   goBack(): void {
-    this._router.navigate([`/${RoutesName.dashboard}`]);
+    this._router.navigate(['/dashboard'], { queryParams: { reload: Date.now() } }); //Force dashboard page to update
   }
 }

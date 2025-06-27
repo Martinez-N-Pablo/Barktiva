@@ -224,7 +224,7 @@ export class PetFormPage implements OnInit, OnDestroy {
   }
 
   private _navigateToDashboard(): void {
-    this._router.navigate([`/${RoutesName.dashboard}`]);
+    this._router.navigate(['/dashboard'], { queryParams: { reload: Date.now() } }); //Force dashboard page to update
   }
 
   getControl(controlName: string): FormControl{

@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonLabel, IonImg, IonThumbnail } from '@ionic/angular/standalone';
 import { RoutesName } from '@app/core/const/magicStrings';
 import { ScheludeComponent } from '@app/components/schelude/schelude.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HeaderComponent } from '@app/components/header/header.component';
 import { PetInterface } from '@app/core/interfaces/pet';
 import { PetFacadeService } from '@app/core/presenters/pet-facade.service';
 import { TaskFacadeService } from '@app/core/presenters/task-facade.service';
 import { TaskInterface } from '@app/core/interfaces/task';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,14 +40,17 @@ export class DashboardPage implements OnInit {
   taskTitle: string = "Tareas";
 
   private _router: Router = inject(Router);
+  private _activeRoute: ActivatedRoute = inject(ActivatedRoute);
   private _petFacadeService: PetFacadeService = inject(PetFacadeService);
   private _taskFacadeService: TaskFacadeService = inject(TaskFacadeService);
+
   constructor() { }
 
   ngOnInit() {
-    console.log("Hola")
-    this._getPets();
-    this._getTasks();
+    this._activeRoute.queryParams.subscribe(() => {
+      this._getPets();
+      this._getTasks();
+    });
   }
 
   private async _getPets() {
