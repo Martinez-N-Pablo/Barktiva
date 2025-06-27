@@ -7,6 +7,6 @@ export interface PetInterface {
     sex?: 'male' | 'female';
     age?: number;
     weight?: number;
-    castrated?: boolean;
+    sterelized?: 's' | 'i' | '';
     tasks?: string[];
 };
