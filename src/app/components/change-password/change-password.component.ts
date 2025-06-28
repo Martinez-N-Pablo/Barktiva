@@ -83,16 +83,11 @@ export class ChangePasswordComponent  implements OnInit, OnDestroy {
   }
 
   async submitPassword() {
-    // Acá validás primero tu formulario como siempre
     if (this.passwordForm.invalid || this.passwordForm.errors?.['passwordsMismatch']) {
       this.passwordFormSubmitted = true;
       return;
     }
   
-    // Aquí iría tu lógica de envío...
-    console.log('Contraseña actualizada');
-  
-    // Luego, mostrás el modal:
     const alert = await this._alertController.create({
       header: 'Éxito',
       message: 'Tu contraseña ha sido actualizada correctamente.',

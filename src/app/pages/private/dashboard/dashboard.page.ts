@@ -112,8 +112,6 @@ export class DashboardPage implements OnInit {
   }
 
   sendToTaskPage(taskId?: string) {
-    console.log("En dashbaord llega: ");
-    console.log(taskId);
     if(taskId) {
       this._router.navigate([`/${RoutesName.task}`, taskId]);
     }

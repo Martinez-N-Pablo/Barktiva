@@ -21,7 +21,6 @@ export class TaskFacadeService {
   constructor() { }
 
   async createTask(task: any): Promise<any> {
-    console.log("crear");
     const { value } = await Preferences.get({ key: 'user' });
     
     if(!value) {
@@ -46,7 +45,6 @@ export class TaskFacadeService {
   }
   
   async updateTask(taskId: string, task: any): Promise<any> {
-    console.log("actualizar");
     const { value } = await Preferences.get({ key: 'user' });
     
     if(!value) {
@@ -89,7 +87,6 @@ export class TaskFacadeService {
     if(token) {
       return firstValueFrom(this._taskService.getAllTask(body, token))
         .then(response => {
-          console.log(response);
           return response;
         })
         .catch(() => {
@@ -111,7 +108,6 @@ export class TaskFacadeService {
     if(token) {
       return firstValueFrom(this._taskService.getTaskById(taskId, token))
         .then(response => {
-          console.log(response);
           return response;
         })
         .catch(() => {
@@ -133,7 +129,6 @@ export class TaskFacadeService {
      if(token) {
       return firstValueFrom(this._taskService.deleteTask(taskId, token))
         .then(response => {
-          console.log(response);
           this._toastService.showToast(ToasSuccessMessage.deleteTask || "", 'success').then(() => false);
           return response;
         })

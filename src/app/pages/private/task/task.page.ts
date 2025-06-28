@@ -14,6 +14,7 @@ import { InputDateComponent } from '@app/components/input-date/input-date.compon
 import { DosesTimeOptions } from '@app/core/const/dosesTimeOptions';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskFacadeService } from '@app/core/presenters/task-facade.service';
+import { InputHourComponent } from '@app/components/input-hour/input-hour.component';
 
 @Component({
   selector: 'app-task',
@@ -41,6 +42,7 @@ import { TaskFacadeService } from '@app/core/presenters/task-facade.service';
     IonIcon,
     IonButtons,
     IonButton,
+    InputHourComponent,
   ]
 })
 export class TaskPage implements OnInit, OnDestroy {
@@ -81,6 +83,14 @@ export class TaskPage implements OnInit, OnDestroy {
     id: 'endDate',
     required: true,
   };
+
+  hourDosis: any = {
+    label: this.placeholderMessages.hour || 'Hora del recordatorio',
+    placeholder: this.placeholderMessages.hourFormat || 'HH:mm',
+    id: 'reminderTime',
+    required: true,
+  };
+  hourDosisValue: string = new Date().toISOString();
 
   startDateValue: string = new Date().toISOString();
   finalDateValue: string = new Date().toISOString();
@@ -123,7 +133,7 @@ export class TaskPage implements OnInit, OnDestroy {
       name: new FormControl('', [Validators.required, Validators.minLength(1)]),
       pets: this._formBuilder.array([''], [Validators.required]),
       taskType: new FormControl('', [Validators.required]),
-      dosesTime: new FormControl(''), // dia semana o mes
+      // dosesTime: new FormControl(''), // dia semana o mes
       dosePerDay: new FormControl(''),
       dosePerWeek: new FormControl(''),
       dosePerMonth: new FormControl(''),
@@ -132,13 +142,12 @@ export class TaskPage implements OnInit, OnDestroy {
       quantity: new FormControl(''),
       totalTime: new FormControl(''),
       routeAdministration: new FormControl(''),
+      hourDosis: new FormControl('', [Validators.required]),
       initialDate: new FormControl(today, [Validators.required]),
       finalDate: new FormControl(today, [Validators.required]),
       description: new FormControl('',),
     });
     this.taskForm.get('dose')?.valueChanges.subscribe(value => {
-      // console.log('Nuevo valor de dose:', value);
-      // console.log(this.dosesTimeOptions[2].id);
     });
   }
 
@@ -166,6 +175,8 @@ export class TaskPage implements OnInit, OnDestroy {
     const task = await this._taskFacadeService.getTaskById(this.taskId);
 
     if(task) {
+      console.log("Llega taskData:");
+      console.log(task);
       this.taskForm.patchValue(task);
 
       if(task.pets && task.pets.length > 0) {
@@ -174,6 +185,10 @@ export class TaskPage implements OnInit, OnDestroy {
 
       this.taskTypeSelected.set(task.taskType || "");
       this.notificationState = task.notification || false;
+
+      if(task.hourDosis) {
+        this.hourDosisValue = task.hourDosis;
+      }
 
       if(task.initialDate) {
         this.startDateValue = task.initialDate;
@@ -186,6 +201,9 @@ export class TaskPage implements OnInit, OnDestroy {
       this.finalDateValue = task.initialDate || "";
       this.finalDateValue = task.finalDate || "";
     }
+
+    console.log("Form");
+    console.log(this.taskForm.value);
   }
 
   async onSubmit(): Promise<void> {
@@ -200,6 +218,9 @@ export class TaskPage implements OnInit, OnDestroy {
       petsFormArray.push(new FormControl(selectedPetId));
       this.taskForm.get("taskType")?.setValue(selectedTaskTypeId);
     }
+
+    console.log("Submit");
+    console.log(this.taskForm.value)
 
     this.formSubmited = true;
     this.taskForm.markAllAsTouched();
@@ -240,12 +261,18 @@ export class TaskPage implements OnInit, OnDestroy {
     }
   }
 
+  onHourChange(newHour: any) {
+    console.log("Llega");
+    console.log(newHour);
+    this.taskForm.get('hourDosis')?.setValue(newHour);
+  }
+
   onStartDateChange(newDate: string): void {
     const formatDatte = newDate.split('T')[0]; // Format the date to DD-MM-YYYY, whitout time
     this.taskForm.get('initialDate')?.setValue(formatDatte);
   }
 
-  onEndDateChange(newDate: any): void {
+  onEndDateChange(newDate: string): void {
     const formatDatte = newDate.split('T')[0]; // Format the date to DD-MM-YYYY, whitout time
     this.taskForm.get('finalDate')?.setValue(formatDatte);
   }

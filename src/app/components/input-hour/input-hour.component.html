@@ -1,0 +1,17 @@
+<ion-label>{{ label || 'Hora' }}{{required ? "*" : ""}}</ion-label>
+<ion-datetime-button [datetime]="idValue"></ion-datetime-button>
+
+<ion-modal #hourModal [keepContentsMounted]="true">
+  <ng-template>
+    <ion-datetime
+      [id]="idValue"
+      presentation="time"
+      locale="es-ES"
+      [formatOptions]="{
+        time: { hour: '2-digit', minute: '2-digit' }
+      }"
+      [value]="value"
+      (ionChange)="onChange($event)">
+    </ion-datetime>
+  </ng-template>
+</ion-modal>

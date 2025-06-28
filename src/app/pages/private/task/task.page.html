@@ -80,9 +80,9 @@
           </app-modal>
         </ion-item>
         <!-- Num of days and times per day -->
-        <div class="container">
+        <div class="container hour-doses-container">
           <ion-item role="listitem">
-            <ion-select 
+            <!-- <ion-select 
               [label]="placeholderMessages.selectDosesOption || ''" 
               labelPlacement="floating"
               formControlName="dosesTime"
@@ -90,7 +90,16 @@
               @for (option of dosesTimeOptions; track option) {
                 <ion-select-option [value]="option.id">{{option.nameLabel}}</ion-select-option>
               }
-            </ion-select>
+            </ion-select> -->
+            <app-input-hour
+              [value]="hourDosisValue" 
+              [label]="hourDosis.label || ''" 
+              [placeholder]="hourDosis.placeholder || ''" 
+              [idValue]="hourDosis.id || ''"
+              [required]="hourDosis.required || false"
+              (valueChange)="onHourChange($event)"
+            >
+            </app-input-hour>
           </ion-item>
           <!-- Doses per day-->
           <ion-item role="listitem">

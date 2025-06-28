@@ -20,7 +20,7 @@ import { RoutesName } from '@app/core/const/magicStrings';
 export class HomePage {
   private _router: Router = inject(Router);
 
-  logoPath: string = RoutesName.dashboard;
+  logoPath: string = RoutesName.login;
   
   constructor() {}
 

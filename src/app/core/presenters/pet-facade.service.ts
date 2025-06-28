@@ -152,7 +152,6 @@ export class PetFacadeService {
     if(token) {
       return firstValueFrom(this._petService.getAllPets(body, token))
         .then(response => {
-          console.log(response);
           return response;
         })
         .catch(() => {
@@ -174,7 +173,6 @@ export class PetFacadeService {
     if(token) {
       return firstValueFrom(this._petService.getPetById(id, token))
         .then(response => {
-          console.log(response);
           return response;
         })
         .catch(() => {
@@ -196,7 +194,6 @@ export class PetFacadeService {
     if(token) {
       return firstValueFrom(this._petService.deletePet(petId, token))
         .then(response => {
-          console.log(response);
           this._toastService.showToast(ToasSuccessMessage.deletePet || "", 'success').then(() => false);
           return response;
         })

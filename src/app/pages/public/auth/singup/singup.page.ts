@@ -79,14 +79,9 @@ export class SingupPage implements OnInit {
     this.formSubmitted = true;
     this.singupForm.markAllAsTouched();
 
-    console.log(this.singupForm.errors);
-
     if (this.singupForm.invalid) {
       console.log('Formulario inválido');
-      
       this.printFormErrors(this.singupForm);
-      
-      console.log(this.singupForm.errors);
       return;
     }
 

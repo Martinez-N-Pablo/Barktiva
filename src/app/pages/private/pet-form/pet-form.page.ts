@@ -176,7 +176,6 @@ export class PetFormPage implements OnInit, OnDestroy {
 
   // Detectar cambios en la selección
   onSelectChange(event: any): void {
-    console.log('Seleccionado:', event.detail.value);
   }
 
   private _initPetForm(): void {

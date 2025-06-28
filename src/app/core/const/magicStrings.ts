@@ -49,7 +49,9 @@ export const PlaceholderMessages: any = {
     routeAdministration: 'Ruta administración',
     sterilized: 'Esterilizado',
     dateFormat: 'dd/MM/yyyy',
-    selectDosesOption: 'Veces por'
+    selectDosesOption: 'Veces por',
+    hour: 'Hora',
+    hourFormat: 'HH:MM',
 };
 
 export const ParagraphMessages: any = {

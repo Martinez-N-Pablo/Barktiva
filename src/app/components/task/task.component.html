@@ -13,6 +13,7 @@
     <ion-text>
       {{ task?.initialDate | date: 'yyyy-MM-dd' }} - {{ task?.finalDate | date: 'yyyy-MM-dd' }}
     </ion-text>
+    <ion-text>{{task?.hourDosis || ''}}</ion-text>
   </div>
 
   <div class="bordersContainer">

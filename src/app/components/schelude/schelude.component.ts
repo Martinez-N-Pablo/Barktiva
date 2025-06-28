@@ -337,8 +337,6 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
   }
 
   private _mapTasksToEvents(tasks: TaskInterface[]): void {
-    console.log("Llega al schelude:");
-    console.log(tasks);
     this.events = tasks.map(task => ({
       start: new Date(task.initialDate),
       end: new Date(task.finalDate),

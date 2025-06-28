@@ -16,7 +16,6 @@ export class TaskListComponent  implements OnInit {
     set taskListSetter(value: TaskInterface[]) {
       if (value) {
         this.taskList = value;
-        console.log(this.taskList);
       }
     }
   @Output() onTaskSelected: EventEmitter<string> = new EventEmitter<string>();
@@ -25,12 +24,9 @@ export class TaskListComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("Hola")
   }
 
   taskSelected(event: any) {
-    console.log("Llega");
-    console.log(event);
     this.onTaskSelected.emit(event);
   }
 }

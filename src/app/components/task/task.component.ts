@@ -20,8 +20,10 @@ export class TaskComponent  implements OnInit {
   @Input()
     set taskSetter(value: TaskInterface) {
       if (value) {
-        this.task = value;
-        console.log(this.task);
+        this.task = {
+          ...value,
+          hourDosis: this._parseHour(value.hourDosis)
+        };
       }
     }
 
@@ -40,4 +42,23 @@ export class TaskComponent  implements OnInit {
   taskSelected() {
     this.onTaskSelected.emit(this.task?._id || "");
   }
+  /**
+   * 
+   * @param hour: string | Date; hour to parse as format HH:MM
+   * @returns 
+   */
+  private _parseHour(hour: string | Date): string {
+  try {
+    // Se parsea el string a tipo Date
+    const date = typeof hour === 'string' 
+      ? new Date(`1970-01-01T${hour}`) 
+      : new Date(hour);
+    
+    if (isNaN(date.getTime())) return ''; // Check if date is valid
+    
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // return hour into format HH:MM
+  } catch {
+    return '';
+  }
+}
 }

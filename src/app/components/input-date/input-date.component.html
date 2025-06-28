@@ -6,12 +6,13 @@
     <ion-datetime
       [id]="idValue"
       presentation="date"
+      locale="es-ES"
       [formatOptions]="{
         date: {
           day: '2-digit',
           month: '2-digit',
           year: 'numeric'
-        }
+        },
       }"
       [value]="value"
       (ionChange)="onChange($event)"
