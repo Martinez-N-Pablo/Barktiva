@@ -2,7 +2,7 @@
 
 <ion-content [fullscreen]="true">
   <h4 class="container mt-1">
-    {{petTitle}}
+    {{petTitle || ""}}
   </h4>
   <div class="pet-card-container">
     <swiper-container slides-per-view="4" space-between="10">
@@ -39,7 +39,28 @@
   </div>
 
   <h4 class="container">
-    {{taskTitle}}
+    {{taskTitle || ""}}
   </h4>
-  <app-schelude [taskList]="taskList"></app-schelude>
+  <app-schelude [taskList]="taskList" (selectedDateChange)="onSelectedDateChange($event)"></app-schelude>
+
+  <h4 class="container subTaskTitle">
+    {{subTaskDaySelectedTitle || ""}}
+  </h4>
+  <!-- <div class="taskNewItem" (click)="sendToTaskPage()">
+    <ion-icon name="add-outline"></ion-icon>
+    <ion-text>Nueva tarea</ion-text>
+  </div> -->
+  <app-button
+    class="taskNewItem"
+    [role]="'submit'" 
+    [form]="" 
+    [type]="'submit'" 
+    [class]="'secondary-button'" 
+    [buttonContent]="'Nueva tarea'"
+    [icon]="'add-outline'"
+    (onButtonClicked)="sendToTaskPage()">
+  </app-button>
+  @if (taskListOnDateSelected.length > 0) {
+    <app-task-list [taskListSetter]="taskListOnDateSelected" (onTaskSelected)="sendToTaskPage($event)"></app-task-list>
+  }
 </ion-content>

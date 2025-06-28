@@ -1,8 +1,8 @@
 export interface TaskInterface {
   _id: string;
   user: any;
-  pets: string[];
-  taskType: string;
+  pets: any[];
+  taskType: any;
   name: string;
   photo?: string;
   dosesTime?: string;

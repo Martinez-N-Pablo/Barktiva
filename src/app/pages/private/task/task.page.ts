@@ -265,7 +265,7 @@ export class TaskPage implements OnInit, OnDestroy {
   }
 
   private _navigateToDashboard(): void {
-    this._router.navigate(['dashboard']);
+    this._router.navigate([`/${RoutesName.dashboard}`], { queryParams: { reload: Date.now() } }); //Force dashboard page to update
   }
 
   async presentOptionsModal() {
@@ -289,6 +289,6 @@ export class TaskPage implements OnInit, OnDestroy {
   }
   
   goBack(): void {
-    this._router.navigate(['/dashboard'], { queryParams: { reload: Date.now() } }); //Force dashboard page to update
+    this._navigateToDashboard();
   }
 }

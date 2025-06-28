@@ -74,6 +74,7 @@ export const RoutesName: any = {
     dashboard: 'dashboard',
     petForm: 'pet-form',
     user: 'userProfile',
+    task: 'task',
 };
 
 export const Titles: any = {

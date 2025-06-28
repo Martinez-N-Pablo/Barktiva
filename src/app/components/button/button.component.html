@@ -4,10 +4,13 @@
   [ngClass]="{ 'android-button': isAndroid }"
   expand="block"
   shape="round"
-  [form]="form"
+  [form]="form || null"
   (click)="onClick()"
-  buttonType="type"
+  [buttonType]="type"
   [class.clicked]="isClicked"
 >
+  @if (icon) {
+    <ion-icon [name]="icon"></ion-icon>
+  }
   {{ buttonContent || "" }}
 </ion-button>

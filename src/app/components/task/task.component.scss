@@ -1,0 +1,49 @@
+@use '@theme/variables.scss' as *;
+
+.taskItem {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 1fr 20%;
+    align-items: center;
+    
+    padding: .7em;
+    margin-top: $distance;
+    gap: 1em;
+
+    border: 1px solid $black-color;
+    border-radius: #{$border-radius} #{$border-radius} 0px 0px;
+    border-color: #{$black-color};
+
+    // Centro del task
+    div:nth-child(2) {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+
+    ion-avatar {
+        --border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+
+    ion-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    ion-text {
+        font-size: 0.8rem;
+    }
+}
+
+.secondaryText {
+    font-size: .7rem !important;
+}
+
+.bordersContainer {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}

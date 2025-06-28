@@ -1,7 +1,26 @@
-<ion-avatar slot="start">
-  <ion-img [src]="task()!.pet.img || ''"></ion-img>
-</ion-avatar>
-  <ion-label>
-  <ion-text>{{task()!.pet.name || ""}}</ion-text>
-  <ion-text>{{task()!.name || ""}}</ion-text>
-</ion-label>
+<div class="taskItem" (click)="taskSelected()">
+  <div class="bordersContainer">
+    <ion-avatar slot="start">
+      <ion-img [src]="task!.pets[0].photo || 'assets/icon/logo.png'" (error)="onImageError($event)"></ion-img>
+    </ion-avatar>
+    <ion-label>
+      <ion-text class="secondaryText">{{task!.pets[0].name || ""}}</ion-text>
+    </ion-label>
+  </div>
+  
+  <div class="bordersContainer">
+    <ion-text>{{task!.name || ""}}</ion-text>
+    <ion-text>
+      {{ task?.initialDate | date: 'yyyy-MM-dd' }} - {{ task?.finalDate | date: 'yyyy-MM-dd' }}
+    </ion-text>
+  </div>
+
+  <div class="bordersContainer">
+    <ion-avatar slot="start">
+      <ion-img [src]="task!.taskType.photo || 'assets/icon/logo.png'" (error)="onImageError($event)"></ion-img>
+    </ion-avatar>
+    <ion-label>
+      <ion-text class="secondaryText">{{task!.taskType.name || "Tipo Nombre"}}</ion-text>
+    </ion-label>
+  </div>
+</div>

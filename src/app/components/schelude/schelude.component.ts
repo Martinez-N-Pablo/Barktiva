@@ -9,6 +9,8 @@ import {
   ChangeDetectorRef,
   HostListener,
   Input,
+  EventEmitter,
+  Output,
 } from '@angular/core';
 import {
   startOfDay,
@@ -115,6 +117,8 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
   }
   private _taskList: TaskInterface[] = [];
 
+  @Output() selectedDateChange = new EventEmitter<Date>();
+
   // Template for the month cell
   @ViewChild(MonthCellTemplateComponent, { static: true })
     monthCellCmp!: MonthCellTemplateComponent;
@@ -201,7 +205,8 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
 
   // #region Implements methods
   ngOnInit(): void {
-    
+    this.selectedDate = this.viewDate;
+    this.selectedDateChange.emit(this.viewDate);
   }
 
   ngAfterViewInit(): void {
@@ -222,6 +227,7 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
       }
       this.viewDate = date;
       this.selectedDate = date;
+      this.selectedDateChange.emit(date); // Se envia al padre del calendario el día seleccionado
     }
   }
 

@@ -71,3 +71,14 @@ swiper-slide {
   max-width: 70px;
   overflow: hidden;
 }
+
+.subTaskTitle {
+  margin-top: .5em;
+}
+
+.taskNewItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: $distance;
+}

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { IonButton, Platform } from '@ionic/angular/standalone';
+import { IonButton, Platform, IonIcon } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   standalone: true,
-  imports: [IonButton, CommonModule]
+  imports: [IonButton, CommonModule, IonIcon]
 })
 export class ButtonComponent  implements OnInit {
   @Input()
@@ -18,9 +18,11 @@ export class ButtonComponent  implements OnInit {
   @Input()
   type: string = "";
   @Input()
-  form: string = "";
+  form?: string = "";
   @Input()
   role: string = "";
+  @Input()
+  icon: string = "";
 
   @Output()
   onButtonClicked: EventEmitter<void> = new EventEmitter<void>();
