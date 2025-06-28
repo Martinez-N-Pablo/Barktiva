@@ -175,8 +175,6 @@ export class TaskPage implements OnInit, OnDestroy {
     const task = await this._taskFacadeService.getTaskById(this.taskId);
 
     if(task) {
-      console.log("Llega taskData:");
-      console.log(task);
       this.taskForm.patchValue(task);
 
       if(task.pets && task.pets.length > 0) {
@@ -201,9 +199,6 @@ export class TaskPage implements OnInit, OnDestroy {
       this.finalDateValue = task.initialDate || "";
       this.finalDateValue = task.finalDate || "";
     }
-
-    console.log("Form");
-    console.log(this.taskForm.value);
   }
 
   async onSubmit(): Promise<void> {
@@ -218,9 +213,6 @@ export class TaskPage implements OnInit, OnDestroy {
       petsFormArray.push(new FormControl(selectedPetId));
       this.taskForm.get("taskType")?.setValue(selectedTaskTypeId);
     }
-
-    console.log("Submit");
-    console.log(this.taskForm.value)
 
     this.formSubmited = true;
     this.taskForm.markAllAsTouched();
@@ -261,9 +253,7 @@ export class TaskPage implements OnInit, OnDestroy {
     }
   }
 
-  onHourChange(newHour: any) {
-    console.log("Llega");
-    console.log(newHour);
+  onHourChange(newHour: string) {
     this.taskForm.get('hourDosis')?.setValue(newHour);
   }
 

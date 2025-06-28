@@ -44,7 +44,7 @@ export class DashboardPage implements OnInit {
 
   petTitle: string = "Perros";
   taskTitle: string = "Tareas";
-  subTaskDaySelectedTitle: string = "Tareas para hoy";
+  subTaskDaySelectedTitle: string = "Tareas del día seleccionado";
 
   private _router: Router = inject(Router);
   private _activeRoute: ActivatedRoute = inject(ActivatedRoute);
@@ -120,12 +120,20 @@ export class DashboardPage implements OnInit {
     }
   }
 
-  // Cuando la fecha seleccionada cambia, se filtra las tareas para obtener las que conincidan con la fecha seleccionada
-  onSelectedDateChange(date: Date) {
+  /**
+   * Recive new date, format to get only the date whithout the time, thats becacuse we dont care if the time has passed,
+   * then check if the date is between the start and end of any task created by the user and save into taskListOnDateSelected.
+   * 
+   * @param date: Date; New Date selected by the user;
+   */
+  onSelectedDateChange(date: Date): void {
+    const selected = new Date(date.toDateString()); // parsea la fecha que llega para quitar las horas y dejar solo la fecha !!Importante!!
+
     this.taskListOnDateSelected = this.taskList.filter(task => {
-      const start = new Date(task.initialDate);
-      const end = new Date(task.finalDate);
-      return date >= start && date <= end;
+      const start = new Date(new Date(task.initialDate).toDateString());
+      const end = new Date(new Date(task.finalDate).toDateString());
+
+      return selected >= start && selected <= end;
     });
   }
 }
