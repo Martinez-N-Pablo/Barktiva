@@ -337,10 +337,12 @@ export class ScheludeComponent implements OnInit, AfterViewInit {
   }
 
   private _mapTasksToEvents(tasks: TaskInterface[]): void {
+    console.log("Llega al schelude:");
+    console.log(tasks);
     this.events = tasks.map(task => ({
       start: new Date(task.initialDate),
       end: new Date(task.finalDate),
-      title: `${task.name} - ${task.user.name} ${task.user.surname}`,
+      title: `${task?.taskType?.name || ""} - ${task.name || ""} para ${task.pets[0]?.name || ""}`,
       color: {
         primary: '#1e90ff',
         secondary: '#D1E8FF'

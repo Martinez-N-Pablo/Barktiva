@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthFacadeService } from '@app/core/presenters/auth-facade.service';
+import { RoutesName } from '../const/magicStrings';
 
 export const authGuard: CanActivateFn = async (route, state) => {
   const authFacade: AuthFacadeService = inject(AuthFacadeService);
@@ -11,7 +12,8 @@ export const authGuard: CanActivateFn = async (route, state) => {
   if (user) {
     return true;
   } else {
-    router.navigate(['/login']);
+    await authFacade.logout();
+    router.navigate([`/${RoutesName.login}`]);
     return false;
   }
 };
