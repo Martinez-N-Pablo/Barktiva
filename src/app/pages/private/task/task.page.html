@@ -51,7 +51,8 @@
         <ion-item role="listitem">
           <div [id]="petSelectModalId" class="modal-container-button">
             <app-select-input 
-              class="container-modal-list" 
+              class="container-modal-list"
+              [required]="true"
               [class.modalOptionSelected]="petSelected()" 
               [optionSelected]="petSelected" 
               [placeholderMessage]="placeholderMessages.pet">
@@ -67,7 +68,8 @@
         <ion-item role="listitem">
           <div [id]="taskTypeSelectModalId" class="modal-container-button">
             <app-select-input 
-              class="container-modal-list" 
+              class="container-modal-list"
+              [required]="true"
               [class.modalOptionSelected]="taskTypeSelected()" 
               [optionSelected]="taskTypeSelected" 
               [placeholderMessage]="placeholderMessages.task">
