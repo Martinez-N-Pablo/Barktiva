@@ -70,4 +70,9 @@ export class ModalComponent  implements OnInit, OnChanges {
       this.modal.dismiss();
     }
   }
+
+  onImageError(event: Event) {
+    const imgElement = event.target as HTMLImageElement;
+    imgElement.src = 'assets/icon/logo.png';
+  }
 }

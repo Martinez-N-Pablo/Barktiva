@@ -231,7 +231,7 @@ export class PetFormPage implements OnInit, OnDestroy {
   }
 
   async onSelectImage() {
-    const file = await this._photoUploaderService.selectImage(); // ahora devuelve un File
+    const file = await this._photoUploaderService.selectImage(); // devuelve el file seleccionado por el usuario
 
     if (file) {
       // Previsualización
@@ -241,7 +241,7 @@ export class PetFormPage implements OnInit, OnDestroy {
       };
       reader.readAsDataURL(file);
 
-      // Insertar el archivo en el formulario (¡no como string!)
+      // Insertar el archivo en el formulario
       this.petForm.patchValue({ photo: file });
     }
   }

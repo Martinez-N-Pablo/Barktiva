@@ -7,30 +7,28 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
   providedIn: 'root'
 })
 export class PhotoUploaderService {
-  private _plt: Platform = inject(Platform);
-  private _htttp: HttpClient = inject(HttpClient);
-  private _loadingCtrl: LoadingController = inject(LoadingController);
-	private _toastCtrl: ToastController = inject(ToastController);
-
   private imageBase64: string | null = null;
 
   constructor() { }
 
   async selectImage(): Promise<File | null> {
     try {
+      // Open galery using capacitator plugin
       const image = await Camera.getPhoto({
         quality: 90,
         allowEditing: false,
-        resultType: CameraResultType.Uri,
-        source: CameraSource.Photos,
+        resultType: CameraResultType.Uri, // URL File
+        source: CameraSource.Photos, // Open there the galery
       });
 
       if (!image.webPath) {
         throw new Error('La imagen no tiene una ruta válida');
       }
 
+      // Dowload image as a Blob type
       const response = await fetch(image.webPath);
       const blob = await response.blob();
+      // Create File using Blob
       const file = new File([blob], `photo_${Date.now()}.jpg`, {
         type: blob.type,
       });
