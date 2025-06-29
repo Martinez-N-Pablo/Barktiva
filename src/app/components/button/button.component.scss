@@ -37,8 +37,10 @@ ion-button.clicked {
 }
 
 ion-button.secondary-button {
+    display: flex;
     text-align: center;
     align-self: center;
+    justify-self: center;
     width: 90%;
     
     --color: #{$black-color};

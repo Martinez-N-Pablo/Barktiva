@@ -7,7 +7,7 @@ export const guestGuardGuard: CanActivateFn = async (route, state) => {
   const authFacade: AuthFacadeService = inject(AuthFacadeService);
   const router: Router = inject(Router);
 
-  const user = await authFacade.verifyToken();
+  const user = await authFacade.isTokenStillValid();
 
   if (user) {
     router.navigate([`/${RoutesName.dashboard}`]);

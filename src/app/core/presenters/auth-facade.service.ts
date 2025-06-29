@@ -57,6 +57,19 @@ export class AuthFacadeService {
       });
   }
 
+  // Use in guest guard, try to get user from local storage, if it did no exits, return false, in the other case, try to validate it
+  async isTokenStillValid(): Promise<boolean> {
+    console.log("Hola");
+    const { value } = await Preferences.get({ key: 'user' });
+    console.log(value);
+    if (!value) return false;
+    console.log("No lo he pasado")
+    const user = JSON.parse(value);
+    return firstValueFrom(this._authService.validateToken(user.token || ''))
+      .then(() => true)
+      .catch(() => false);
+  }
+
   async logout(): Promise<boolean> {
     try {
       await Preferences.remove({ key: 'user' });

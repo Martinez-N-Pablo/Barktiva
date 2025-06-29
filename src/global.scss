@@ -125,7 +125,8 @@ ion-input {
   margin-top: auto;
   margin-bottom: 16px;
   width: 100%;
-  display: block;
+  display: flex;
+  flex-flow: column;
   position: absolute;
   bottom: 0;
 }
