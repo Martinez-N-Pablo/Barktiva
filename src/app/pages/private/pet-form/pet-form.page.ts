@@ -215,8 +215,8 @@ export class PetFormPage implements OnInit, OnDestroy {
       return;
     }
 
-    const res = (this.petId) ? await this._petFacadeService.updatePet(this.petId, this.petForm.value) : await this._petFacadeService.createPet(this.petForm.value);
-
+    // const res = (this.petId) ? await this._petFacadeService.updatePet(this.petId, this.petForm.value) : await this._petFacadeService.createPet(this.petForm.value);
+    const res = await this._petFacadeService.sendPetData(this.petForm.value, (this.petId ? this.petId : undefined))
     if(res) {
       this._navigateToDashboard();
     }

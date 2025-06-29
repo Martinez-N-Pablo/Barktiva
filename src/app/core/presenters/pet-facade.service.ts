@@ -43,7 +43,7 @@ export class PetFacadeService {
     return this._petService.getBreeds(); // ya devuelve Observable
   }
 
-  async createPet(pet: PetInterface): Promise<any> {
+  async sendPetData(pet: PetInterface, petId?: string): Promise<any> {
     const { value } = await Preferences.get({ key: 'user' });
     
     if(!value) {
@@ -52,56 +52,7 @@ export class PetFacadeService {
     }
 
     const user = JSON.parse(value as string);
-
-    const userId: string = user.id || "";
-    const token: string = user.token || "";
-    pet.owner = userId;
-
-    const formData: FormData = new FormData();
-
-    // Añadir todos los campos excepto el archivo
-    Object.entries(pet).forEach(([key, val]) => {
-      if (key !== 'photo' && val !== undefined && val !== null) {
-        formData.append(key, val as string);
-      }
-    });
-
-    // Se comprueba si la variable photo contiene valor y se comprueba como se ha podido que es un objeto tipo File
-    if (pet.photo &&
-        typeof pet.photo === 'object' &&
-        'name' in pet.photo &&
-        'type' in pet.photo &&
-        'size' in pet.photo
-    ) {
-      formData.append('photo', pet.photo);
-    }
-    
-    if(token) {
-      return firstValueFrom(this._petService.createPets(formData, token))
-        .then(response => {
-          this._toastService.showToast(ToasSuccessMessage.createPet || "", 'success').then(() => true);
-          return true;
-        })
-        .catch(() => {
-          return this._toastService.showToast(ToastErorMessage.createPet || "", 'danger').then(() => false);
-        });
-    }
-  }
-
-  async updatePet(petId: string, pet: PetInterface): Promise<any> {
-    const { value } = await Preferences.get({ key: 'user' });
-    
-    if(!value) {
-        this._toastService.showToast(ToastErorMessage.permissions || "", 'danger').then(() => false);
-        return null;
-    }
-
-    const user = JSON.parse(value as string);
-
-    const userId = user.id || "";
     const token = user.token || "";
-    pet.owner = userId;
-
     const formData = new FormData();
 
     // Añadir todos los campos excepto el archivo
@@ -122,7 +73,8 @@ export class PetFacadeService {
     }
     
     if(token) {
-      return firstValueFrom(this._petService.updatePet(petId, token, formData))
+      if(petId) {
+        return firstValueFrom(this._petService.updatePet(petId, token, formData))
         .then(response => {
           this._toastService.showToast(ToasSuccessMessage.updatePet || "", 'success').then(() => true);
           return true;
@@ -130,6 +82,17 @@ export class PetFacadeService {
         .catch(() => {
           return this._toastService.showToast(ToastErorMessage.updatePet || "", 'danger').then(() => false);
         });
+      }
+      else {
+        return firstValueFrom(this._petService.createPets(formData, token))
+        .then(response => {
+          this._toastService.showToast(ToasSuccessMessage.createPet || "", 'success').then(() => true);
+          return true;
+        })
+        .catch(() => {
+          return this._toastService.showToast(ToastErorMessage.createPet || "", 'danger').then(() => false);
+        });
+      }
     }
   }
   
