@@ -65,8 +65,6 @@ export class ModalComponent  implements OnInit, OnChanges {
 
   // When the user select a option, it is send to the father component
   onSelectOption(option: any): void {
-    console.log("En el kmodal se envía");
-    console.log(option)
     if(option) {
       this.optionSelected.set(option);
       this.modal.dismiss();
