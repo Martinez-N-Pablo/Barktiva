@@ -205,16 +205,15 @@ export class PetService {
   private _url: string = environment.backendURL || "";
   private _http: HttpClient = inject(HttpClient);
 
-  private _eventUrl = 'https://api.thedogapi.com/v1/events';
-
   getPets(): Observable<any[]> {
       return of(this._auxPets);
   }
 
   constructor() { }
 
-  getBreeds(): Observable<any[]> {
-    return of(this._breeds);
+  getBreeds(token: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.get<any>(`${this._url}/pet/breeds`, { headers });
   }
 
   createPets(body: FormData, token: string): Observable<any> {

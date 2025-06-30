@@ -127,4 +127,5 @@ export const ToastErorMessage: any = {
     getTaskTypes: 'Error al obtener los tipos de tareas',
     updateUser: 'Error al actualizar la cuenta',
     deleteUser: 'Error al eliminar la cuenta',
+    breeds: 'Error al obtener las razas de perro',
 };

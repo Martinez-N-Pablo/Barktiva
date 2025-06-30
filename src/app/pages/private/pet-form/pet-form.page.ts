@@ -147,7 +147,7 @@ export class PetFormPage implements OnInit, OnDestroy {
       this.sexInputValue = pet.sex || "";
       this.previewImage = pet.photo;
       this.sterilizedInputValue = pet.castrated || "";
-      this.breedSelected.set(this.breeds.find(value => value.name === pet.breed) || "");
+      this.breedSelected.set(this.breeds.find(value => value._id === pet.breed._id) || "");
     }
   }
 
@@ -194,7 +194,7 @@ export class PetFormPage implements OnInit, OnDestroy {
   }
 
   private async _getPetsBreed() {
-    const breeds = await firstValueFrom(this._petFacadeService.getBreeds());
+    const breeds = await this._petFacadeService.getBreeds();
 
     if(breeds) {
       this.breeds = breeds;
@@ -204,7 +204,7 @@ export class PetFormPage implements OnInit, OnDestroy {
 
   async onSubmit() {
     if(this.breedSelected()) {
-      this.petForm.get("breed")?.setValue(this.breedSelected()!["name"] || "");
+      this.petForm.get("breed")?.setValue(this.breedSelected()!["_id"] || "");
     }
 
     this.formSubmited = true;
@@ -215,7 +215,6 @@ export class PetFormPage implements OnInit, OnDestroy {
       return;
     }
 
-    // const res = (this.petId) ? await this._petFacadeService.updatePet(this.petId, this.petForm.value) : await this._petFacadeService.createPet(this.petForm.value);
     const res = await this._petFacadeService.sendPetData(this.petForm.value, (this.petId ? this.petId : undefined))
     if(res) {
       this._navigateToDashboard();

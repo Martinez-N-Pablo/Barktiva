@@ -21,26 +21,43 @@ export class PetFacadeService {
   petsOrder: string = environment.defaultOrder || "asc";
 
   constructor() {
-    this.loadBreeds();
   }
 
   // Metodo para obtener y transformar los datos
-  loadBreeds(): void {
-    this._petService.getPets()
-      .pipe(
-        map(pets => pets.map(breed => ({
-          name: breed.name,
-          img: breed.reference_image_id 
-            ? `https://cdn2.thedogapi.com/images/${breed.reference_image_id}.jpg`
-            : 'https://via.placeholder.com/150' // Imagen por defecto si no tiene
-        })))
-      )
-      .subscribe(transformedBreeds => this._dogs.set(transformedBreeds));
-  }
+  // loadBreeds(): void {
+  //   this._petService.getPets()
+  //     .pipe(
+  //       map(pets => pets.map(breed => ({
+  //         name: breed.name,
+  //         img: breed.reference_image_id 
+  //           ? `https://cdn2.thedogapi.com/images/${breed.reference_image_id}.jpg`
+  //           : 'https://via.placeholder.com/150' // Imagen por defecto si no tiene
+  //       })))
+  //     )
+  //     .subscribe(transformedBreeds => this._dogs.set(transformedBreeds));
+  // }
 
   // Método para exponer los datos al componente
-  getBreeds(): Observable<PetInterface[]> {
-    return this._petService.getBreeds(); // ya devuelve Observable
+  async getBreeds(): Promise<any>  {
+    const { value } = await Preferences.get({ key: 'user' });
+    
+    if(!value) {
+        this._toastService.showToast(ToastErorMessage.permissions || "", 'danger').then(() => false);
+        return null;
+    }
+
+    const user = JSON.parse(value as string);
+    const token = user.token || "";
+
+    if(token) {
+      return firstValueFrom(this._petService.getBreeds(token))
+        .then(response => {
+          return response.petsBreeds || [];
+        })
+        .catch(() => {
+          return this._toastService.showToast(ToastErorMessage.breeds || "", 'danger').then(() => false);
+        });;
+    }
   }
 
   async sendPetData(pet: PetInterface, petId?: string): Promise<any> {
