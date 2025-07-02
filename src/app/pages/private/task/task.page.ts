@@ -128,6 +128,7 @@ export class TaskPage implements OnInit, OnDestroy {
 
   private _initForm(): void {
     const today: string = new Date().toISOString().split('T')[0] as string;
+    const actualTime: string = new Date().toISOString().split('T')[1] as string;
 
     this.taskForm = this._formBuilder.group({
       name: new FormControl('', [Validators.required, Validators.minLength(1)]),
@@ -142,7 +143,7 @@ export class TaskPage implements OnInit, OnDestroy {
       quantity: new FormControl(''),
       totalTime: new FormControl(''),
       routeAdministration: new FormControl(''),
-      hourDosis: new FormControl('', [Validators.required]),
+      hourDosis: new FormControl(actualTime, [Validators.required]),
       initialDate: new FormControl(today, [Validators.required]),
       finalDate: new FormControl(today, [Validators.required]),
       description: new FormControl('',),
