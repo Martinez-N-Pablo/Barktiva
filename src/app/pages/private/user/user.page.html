@@ -1,4 +1,4 @@
-<app-header [title]="'Volver'" [isDashboard]="false" (onBackButtonClicked)="goBack()"></app-header>
+<app-header [title]="optionSelected !== 1 ? 'Volver' : 'Perfil de usuario'" [isDashboard]="false" (onBackButtonClicked)="goBack()"></app-header>
 
 @if (optionSelected === -1) {
   <ion-content [fullscreen]="true">
