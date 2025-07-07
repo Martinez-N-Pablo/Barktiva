@@ -80,3 +80,9 @@ Thumbs.db
 .png
 .jpg
 .jpeg
+
+
+android/
+android/*
+ios/
+ios/*
