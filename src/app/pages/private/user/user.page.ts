@@ -1,13 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormsModule } from '@angular/forms';
-import { IonContent, IonButton, IonIcon, IonHeader, IonBackButton, IonToolbar, IonButtons, IonLabel } from '@ionic/angular/standalone';
+import { FormsModule } from '@angular/forms';
+import { IonContent, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { AlertController } from '@ionic/angular';
 import { ChangePasswordComponent } from '@app/components/change-password/change-password.component';
 import { UserProfileComponent } from '@app/components/user-profile/user-profile.component';
-import { InputComponent } from '@app/components/input/input.component';
 import { Router } from '@angular/router';
-import { c } from '@angular/core/event_dispatcher.d-pVP0-wST';
 import { RoutesName } from '@app/core/const/magicStrings';
 import { HeaderComponent } from '@app/components/header/header.component';
 import { UserFacadeService } from '@app/core/presenters/user-facade.service';
@@ -24,9 +22,6 @@ export const USER_MENU_OPTIONS = {
   styleUrls: ['./user.page.scss'],
   standalone: true,
   imports: [
-    IonButtons, 
-    IonToolbar, 
-    IonHeader, 
     IonIcon,
     IonButton, 
     IonContent,

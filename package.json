@@ -1,15 +1,18 @@
 {
-  "name": "TFG",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
+  "name": "tfg",
+  "version": "1.0.0",
+  "author": "Pablo Martínez Navarro",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:prod": "ng serve --configuration production",
+    "build:prod": "ng build --configuration production",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+      "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "assets": "npm run prepare:icon && npx @capacitor/assets generate"
   },
   "private": true,
   "dependencies": {
@@ -78,5 +81,5 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.6.3"
   },
-  "description": "An Ionic project"
+  "description": "An application to manage pet care and related information."
 }

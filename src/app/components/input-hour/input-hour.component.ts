@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { PlaceholderMessages } from '@app/core/const/magicStrings';
-import { IonDatetime, IonDatetimeButton, IonLabel, IonItem, IonModal } from '@ionic/angular/standalone';
+import { IonDatetime, IonDatetimeButton, IonLabel, IonModal } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-input-hour',
@@ -11,7 +11,6 @@ import { IonDatetime, IonDatetimeButton, IonLabel, IonItem, IonModal } from '@io
     IonLabel,
     IonDatetimeButton,
     IonDatetime,
-    IonItem,
     IonModal
   ]
 })

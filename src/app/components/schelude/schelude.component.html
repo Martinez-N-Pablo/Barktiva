@@ -1,9 +1,9 @@
-<div class="d-flex justify-content-between align-items-center mb-3 px-2 schelude-header">
+<div class="d-flex justify-content-center text-center align-items-center mb-3 px-2 schelude-header"> <!--justify-content-between-->
   <h4 class="mb-0 text-center">
     {{ viewDate | calendarDate:(view + 'ViewTitle'):'es' }}
   </h4>
 
-  <div class="btn-group ms-3">
+  <!-- <div class="btn-group ms-3">
     <ion-select 
       aria-label="Vista del calendario" 
       interface="popover" 
@@ -15,7 +15,7 @@
         <ion-select-option [value]="CalendarView.Week">Semana</ion-select-option>
         <ion-select-option [value]="CalendarView.Day">Día</ion-select-option>
     </ion-select>
-  </div>
+  </div> -->
 </div>
 
 

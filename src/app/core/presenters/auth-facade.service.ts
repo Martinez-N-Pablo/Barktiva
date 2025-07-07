@@ -29,7 +29,8 @@ export class AuthFacadeService {
           }),
         });
 
-        return this._toastService.showToast(ToasSuccessMessage.login || "", 'success').then(() => true);
+        this._toastService.showToast(ToasSuccessMessage.login || "", 'success').then(() => true);
+        return response;
       } else {
         return this._toastService.showToast(ToastErorMessage.login, 'danger').then(() => false);
       }
@@ -59,11 +60,8 @@ export class AuthFacadeService {
 
   // Use in guest guard, try to get user from local storage, if it did no exits, return false, in the other case, try to validate it
   async isTokenStillValid(): Promise<boolean> {
-    console.log("Hola");
     const { value } = await Preferences.get({ key: 'user' });
-    console.log(value);
     if (!value) return false;
-    console.log("No lo he pasado")
     const user = JSON.parse(value);
     return firstValueFrom(this._authService.validateToken(user.token || ''))
       .then(() => true)

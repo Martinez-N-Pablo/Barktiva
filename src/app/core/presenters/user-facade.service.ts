@@ -33,8 +33,8 @@ export class UserFacadeService {
       this._toastService.showToast(ToasSuccessMessage.register || "", 'success').then(() => true);
       return true;
     })
-    .catch(() => {
-      return this._toastService.showToast(ToastErorMessage.register || "", 'danger').then(() => false);
+    .catch((error: any) => {
+      return this._toastService.showToast((error?.status !== 409) ? ToastErorMessage.register || "" : ToastErorMessage.duplicateEmail || "", 'danger').then(() => false);
     })
   };
 

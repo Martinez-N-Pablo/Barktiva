@@ -128,4 +128,5 @@ export const ToastErorMessage: any = {
     updateUser: 'Error al actualizar la cuenta',
     deleteUser: 'Error al eliminar la cuenta',
     breeds: 'Error al obtener las razas de perro',
+    duplicateEmail: 'El emial introducido ya exsite',
 };
