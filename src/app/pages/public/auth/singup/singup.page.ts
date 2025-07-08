@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonList, IonItem, IonFooter } from '@ionic/angular/standalone';
-import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/const/magicStrings';
+import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles, ToasSuccessMessage } from '@app/core/const/magicStrings';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LogoComponent } from '@app/components/logo/logo.component';
@@ -10,6 +10,8 @@ import { ButtonComponent } from '@app/components/button/button.component';
 import { InputComponent } from '@app/components/input/input.component';
 import { validateForm } from '@app/core/scripts/validate-forms';
 import { UserFacadeService } from '@app/core/presenters/user-facade.service';
+import { ToastService } from '@app/core/services/toast.service';
+import { environment } from '@environment/environment';
 
 @Component({
   selector: 'app-singup',
@@ -33,6 +35,11 @@ export class SingupPage implements OnInit {
   private _router: Router = inject(Router);
   private _formBuilder: FormBuilder = inject(FormBuilder);
   private _userFacade: UserFacadeService = inject(UserFacadeService);
+    private _toastService: ToastService = inject(ToastService);
+
+    logContent: string = 'Hola';
+    logContent2: any;
+  
 
   logoContainerWidth = '40%';
 
@@ -76,8 +83,11 @@ export class SingupPage implements OnInit {
   }
   
   async singup() {
+          this._toastService.showToast("Me llama", 'success').then(() => true);
     this.formSubmitted = true;
     this.singupForm.markAllAsTouched();
+
+    this.logContent = environment.backendURL;
 
     if (this.singupForm.invalid) {
       console.log('Formulario inválido');
@@ -89,6 +99,10 @@ export class SingupPage implements OnInit {
     newUser.role = "user";
 
     const singup = await this._userFacade.createUser(newUser);
+    this.logContent = "Hellamado al servicio";
+    this.logContent2 = singup;
+
+    this._toastService.showToast(singup ? 'true' : 'false', 'success').then(() => true);
 
     if(singup) {
       // Call to the service to login

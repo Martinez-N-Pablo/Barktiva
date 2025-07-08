@@ -8,9 +8,9 @@
       "resources": {
         "files": [
           "/favicon.ico",
-          "/index.csr.html",
           "/index.html",
           "/manifest.webmanifest",
+          "/assets/**",
           "/*.css",
           "/*.js"
         ]

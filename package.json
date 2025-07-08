@@ -1,15 +1,15 @@
 {
-  "name": "tfg",
+  "name": "barktiva",
   "version": "1.0.0",
   "author": "Pablo Martínez Navarro",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:prod": "ng serve --configuration production",
+    "start:prod": "ng serve --platform=ios --configuration production",
     "build:prod": "ng build --configuration production",
     "build": "ng build",
-      "watch": "ng build --watch --configuration development",
+    "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
     "assets": "npm run prepare:icon && npx @capacitor/assets generate"

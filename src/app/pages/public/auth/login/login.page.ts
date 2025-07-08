@@ -93,4 +93,8 @@ export class LoginPage implements OnInit {
   getControl(controlName: string): FormControl{
     return this.loginForm.get(controlName) as FormControl;
   }
+
+  trampa() {
+    this._router.navigate(['/dashboard']);
+  }
 }

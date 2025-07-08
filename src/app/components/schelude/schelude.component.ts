@@ -29,7 +29,6 @@ import {
 import { Subject } from 'rxjs';
 import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import {
-  CalendarDateFormatter,
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
@@ -41,9 +40,8 @@ import { CommonModule } from '@angular/common';
 import { FlatPickrModuleModule } from '@app/core/modules/flat-pickr-module.module';
 import { CalendarModuleModule } from '@app/core/modules/calendar-module.module';
 import { HammerModule } from '@angular/platform-browser';
-import { trigger, keyframes, animate, transition, style } from '@angular/animations';
+import { trigger, animate, transition, style } from '@angular/animations';
 import { MonthCellTemplateComponent } from '../templates/shared/templates/month-cell-template/month-cell-template.component';
-import { IonSelect, IonSelectOption } from '@ionic/angular/standalone';
 import { TaskInterface } from '@app/core/interfaces/task';
 
 const colors: Record<string, EventColor> = {
@@ -75,8 +73,6 @@ const colors: Record<string, EventColor> = {
     CalendarModuleModule,
     HammerModule,
     MonthCellTemplateComponent,
-    IonSelect,
-    IonSelectOption
   ],
   animations: [
     trigger('calendarSlide', [

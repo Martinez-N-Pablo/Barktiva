@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header> -->
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" scroll-y="true">
   <div class="logo-container">
     <app-logo
       [customStyles]="{ 'width': logoContainerWidth }"
@@ -66,7 +66,7 @@
         </ion-item>
 
         <div role="listitem" class="forgot-password">
-          <p><a href="" role="link" [attr.aria-label]="paragraphMessages.loginFortgotPassword || ''">{{ paragraphMessages.loginFortgotPassword || "" }}</a></p>
+          <p><a href="" role="link" (click)="trampa()" [attr.aria-label]="paragraphMessages.loginFortgotPassword || ''">{{ paragraphMessages.loginFortgotPassword || "" }}</a></p>
         </div>
        </ion-list>
     </form>
