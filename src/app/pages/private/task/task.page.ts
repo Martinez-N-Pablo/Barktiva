@@ -138,7 +138,7 @@ export class TaskPage implements OnInit, OnDestroy {
       dosePerWeek: new FormControl(''),
       dosePerMonth: new FormControl(''),
 
-      notification: new FormControl(''),
+      notification: new FormControl(false),
       quantity: new FormControl(''),
       totalTime: new FormControl(''),
       routeAdministration: new FormControl(''),
@@ -176,9 +176,6 @@ export class TaskPage implements OnInit, OnDestroy {
 
     if(task) {
       this.taskForm.patchValue(task);
-
-      console.log("Hola");
-      console.log(task);
 
       if(task.pets && task.pets.length > 0) {
         this.petSelected.set(task.pets[0] || "");
