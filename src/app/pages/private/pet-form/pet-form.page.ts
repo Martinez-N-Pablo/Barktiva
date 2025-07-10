@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonThumbnail, IonToolbar, IonContent, IonHeader, IonButtons, IonIcon, IonTitle, IonList, IonItem, IonButton, IonImg } from '@ionic/angular/standalone';
+import { IonThumbnail, IonToolbar, IonContent, IonHeader, IonButtons, IonIcon, IonTitle, IonList, IonItem, IonButton, IonImg, IonActionSheet } from '@ionic/angular/standalone';
 import { LogoComponent } from "../../../components/logo/logo.component";
 import { ButtonComponent } from "../../../components/button/button.component";
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/const/magicStrings';
@@ -43,6 +43,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     IonButton,
     IonIcon,
     IonToolbar,
+    IonActionSheet,
   ]
 })
 export class PetFormPage implements OnInit, OnDestroy {
@@ -270,8 +271,6 @@ export class PetFormPage implements OnInit, OnDestroy {
 
   async presentOptionsModal() {
     try {
-          console.log("Hola");
-
       const actionSheet = await this._actionSheetController.create({
         header: 'Opciones',
         buttons: [
@@ -288,11 +287,9 @@ export class PetFormPage implements OnInit, OnDestroy {
           }
         ]
       });
-      console.log("Hola (después de crear)");
       await actionSheet.present();
-      console.log("Hola (después de present)");
     } catch (err) {
-      console.error("Error en presentOptionsModal:", err);
+      console.error("Error al abrir las opciones:", err);
     }
   }
 

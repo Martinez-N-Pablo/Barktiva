@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonButton, IonIcon } from '@ionic/angular/standalone';
+import { IonContent, IonButton, IonIcon, IonActionSheet, IonAlert } from '@ionic/angular/standalone';
 import { AlertController } from '@ionic/angular';
 import { ChangePasswordComponent } from '@app/components/change-password/change-password.component';
 import { UserProfileComponent } from '@app/components/user-profile/user-profile.component';
@@ -29,7 +29,9 @@ export const USER_MENU_OPTIONS = {
     FormsModule,
     UserProfileComponent,
     ChangePasswordComponent,
-    HeaderComponent
+    HeaderComponent,
+    IonActionSheet,
+    IonAlert,
   ]
 })
 export class UserPage implements OnInit {

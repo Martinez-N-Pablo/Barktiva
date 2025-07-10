@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonButton, IonButtons, IonHeader, IonToolbar, IonList, IonItem, IonText, IonIcon, IonTextarea, ActionSheetController } from '@ionic/angular/standalone';
+import { IonContent, IonButton, IonButtons, IonHeader, IonToolbar, IonList, IonItem, IonText, IonIcon, IonTextarea, ActionSheetController, IonActionSheet } from '@ionic/angular/standalone';
 import { ErrorMessages, ParagraphMessages, PlaceholderMessages, RoutesName, Titles } from '@app/core/const/magicStrings';
 import { InputComponent } from '@app/components/input/input.component';
 import { ModalComponent } from '@app/components/modal/modal.component';
@@ -41,6 +41,7 @@ import { InputHourComponent } from '@app/components/input-hour/input-hour.compon
     IonButtons,
     IonButton,
     InputHourComponent,
+    IonActionSheet,
   ]
 })
 export class TaskPage implements OnInit, OnDestroy {

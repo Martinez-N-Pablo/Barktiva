@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
-import { IonItem } from "@ionic/angular/standalone";
+import { IonAlert, IonItem } from "@ionic/angular/standalone";
 import { Subscription } from 'rxjs';
 import { InputComponent } from '../input/input.component';
 import { ButtonComponent } from '../button/button.component';
@@ -16,7 +16,8 @@ import { AlertController } from '@ionic/angular';
     IonItem,
     InputComponent,
     ButtonComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IonAlert,
   ]
 })
 export class ChangePasswordComponent  implements OnInit, OnDestroy {
