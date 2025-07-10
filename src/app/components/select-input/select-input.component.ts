@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, WritableSignal } from '@angular/core';
-import { Breed } from '@app/core/interfaces/breed';
 import { IonText, IonLabel, IonAvatar, IonImg, IonIcon } from "@ionic/angular/standalone";
 
 @Component({

@@ -1,6 +1,18 @@
-<app-header [title]="title"></app-header>
 
-<ion-content [fullscreen]="true">
+<!-- <ion-header collapse="condense">
+  <ion-toolbar>
+    <div class="custom-title-row">
+      <span class="title-text">{{title || ""}}</span>
+      <ion-button fill="clear" (click)="goToProfile()">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content> <!--Fullscren-->
+  <app-header [title]="title"></app-header>
+
   <h4 class="container mt-1">
     {{petTitle || ""}}
   </h4>

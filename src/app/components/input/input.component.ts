@@ -10,13 +10,13 @@ import { ErrorMessages } from '@app/core/const/magicStrings';
   styleUrls: ['./input.component.scss'],
   standalone: true,
   imports: [CommonModule, IonInput, ReactiveFormsModule],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
-      multi: true,
-    },
-  ],
+  // providers: [
+  //   {
+  //     provide: NG_VALUE_ACCESSOR,
+  //     useExisting: forwardRef(() => InputComponent),
+  //     multi: true,
+  //   },
+  // ],
 })
 export class InputComponent  implements OnInit {
   @Input() placeholder: string = '';

@@ -1,7 +1,7 @@
 <app-header [title]="optionSelected !== 1 ? 'Volver' : 'Perfil de usuario'" [isDashboard]="false" (onBackButtonClicked)="goBack()"></app-header>
 
 @if (optionSelected === -1) {
-  <ion-content [fullscreen]="true">
+  <ion-content>
     <div class="user-menu-container">
       <ion-button expand="block" fill="clear" class="user-menu-option" (click)="redirectToEditProfile()">
         <ion-icon name="person-outline" slot="start"></ion-icon>

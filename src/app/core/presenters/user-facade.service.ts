@@ -12,19 +12,18 @@ import { Preferences } from '@capacitor/preferences';
   providedIn: 'root'
 })
 export class UserFacadeService {
-  private _userService: UserService = inject(UserService);
-  private _authFacade: AuthFacadeService = inject(AuthFacadeService);
-  private _toastService: ToastService = inject(ToastService);
+  // private _userService: UserService = inject(UserService);
+  // private _authFacade: AuthFacadeService = inject(AuthFacadeService);
+  // private _toastService: ToastService = inject(ToastService);
 
-  constructor() { }
+  constructor(private _userService: UserService, private _authFacade: AuthFacadeService, private _toastService: ToastService) { }
 
   async createUser(body: any): Promise<boolean> {
-    const {email, password} = body;
+    const { email, password } = body;
     
     return firstValueFrom(this._userService.createUser(body))
-    .then(async response => {
-      
-      const logged = await this._authFacade.login({email, password});
+    .then(async response => {      
+      const logged = await this._authFacade.login({ email, password });
 
       if(!logged) {
         return false;
@@ -75,6 +74,7 @@ export class UserFacadeService {
     if(token) {
       return firstValueFrom(this._userService.updateUser(formData, token))
         .then(response => {
+          console.log("Toast");
           this._toastService.showToast(ToasSuccessMessage.updateUser || "", 'success').then(() => true);
           return true;
         })
@@ -99,10 +99,9 @@ export class UserFacadeService {
       return null;
     }
 
-    
     return firstValueFrom(this._userService.getUserData(token))
       .then(response => {
-        return response;
+        return response.user;
       })
       .catch(() => {
         return this._toastService.showToast(ToastErorMessage.getPetData || "", 'danger').then(() => false);
@@ -122,11 +121,11 @@ export class UserFacadeService {
     if(token) {
       return firstValueFrom(this._userService.deleteUser(token))
         .then(response => {
-          this._toastService.showToast(ToasSuccessMessage.deletePet || "", 'success').then(() => false);
+          this._toastService.showToast(ToasSuccessMessage.deleteUser || "", 'success').then(() => false);
           return response;
         })
         .catch(() => {
-          return this._toastService.showToast(ToastErorMessage.deletePet || "", 'danger').then(() => false);
+          return this._toastService.showToast(ToastErorMessage.deleteUser || "", 'danger').then(() => false);
         });
     }
   }

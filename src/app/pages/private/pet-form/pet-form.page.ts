@@ -215,6 +215,9 @@ export class PetFormPage implements OnInit, OnDestroy {
       return;
     }
 
+    console.log("Formulario");
+    console.log(this.petForm.value);
+
     const res = await this._petFacadeService.sendPetData(this.petForm.value, (this.petId ? this.petId : undefined))
     if(res) {
       this._navigateToDashboard();
@@ -256,6 +259,7 @@ export class PetFormPage implements OnInit, OnDestroy {
   }
 
   async deletePet() {
+    console.log("Hola")
     const petDeleted = await this._petFacadeService.deletePet(this.petId);
 
     if(petDeleted) {
@@ -265,28 +269,31 @@ export class PetFormPage implements OnInit, OnDestroy {
 
 
   async presentOptionsModal() {
-    const actionSheet = await this._actionSheetController.create({
-      header: 'Opciones',
-      buttons: [
-        {
-          text: 'Eliminar Mascota',
-          role: 'destructive',
-          icon: 'trash',
-          handler: () => this.deletePet()
-        },
-        {
-          text: 'Ver Consejos',
-          icon: 'book',
-          handler: () => this._router.navigate(['/consejos'])
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          icon: 'close'
-        }
-      ]
-    });
-    await actionSheet.present();
+    try {
+          console.log("Hola");
+
+      const actionSheet = await this._actionSheetController.create({
+        header: 'Opciones',
+        buttons: [
+          {
+            text: 'Eliminar Mascota',
+            role: 'destructive',
+            icon: 'trash',
+            handler: () => this.deletePet()
+          },
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            icon: 'close'
+          }
+        ]
+      });
+      console.log("Hola (después de crear)");
+      await actionSheet.present();
+      console.log("Hola (después de present)");
+    } catch (err) {
+      console.error("Error en presentOptionsModal:", err);
+    }
   }
 
   goBack(): void {

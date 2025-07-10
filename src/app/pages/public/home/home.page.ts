@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { LogoComponent } from '../../../components/logo/logo.component';
@@ -17,12 +17,18 @@ import { RoutesName } from '@app/core/const/magicStrings';
     LogoComponent
   ],
 })
-export class HomePage {
+export class HomePage implements AfterViewInit {
   private _router: Router = inject(Router);
 
   logoPath: string = RoutesName.login;
   
   constructor() {}
+
+  ngAfterViewInit() {
+    requestAnimationFrame(() => {
+      document.body.offsetHeight;
+    });
+  }
 
   navigateToLogin() {
     this._router.navigate([`/${RoutesName.login}`]);

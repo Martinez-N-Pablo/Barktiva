@@ -85,7 +85,7 @@ export class UserPage implements OnInit {
     const userDeleted = await this._userFacadeService.deleteUser();
 
     if(userDeleted) {
-      this.logout;
+      this.logout();
     }
   }
 

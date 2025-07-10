@@ -83,11 +83,8 @@ export class SingupPage implements OnInit {
   }
   
   async singup() {
-          this._toastService.showToast("Me llama", 'success').then(() => true);
     this.formSubmitted = true;
     this.singupForm.markAllAsTouched();
-
-    this.logContent = environment.backendURL;
 
     if (this.singupForm.invalid) {
       console.log('Formulario inválido');
@@ -99,10 +96,6 @@ export class SingupPage implements OnInit {
     newUser.role = "user";
 
     const singup = await this._userFacade.createUser(newUser);
-    this.logContent = "Hellamado al servicio";
-    this.logContent2 = singup;
-
-    this._toastService.showToast(singup ? 'true' : 'false', 'success').then(() => true);
 
     if(singup) {
       // Call to the service to login

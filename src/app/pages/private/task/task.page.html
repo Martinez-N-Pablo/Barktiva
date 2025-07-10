@@ -1,4 +1,7 @@
-<ion-header collapse="condense">
+
+
+<ion-content>
+  <ion-header collapse="condense">
   @if(taskId) {
     <ion-toolbar>
       <div class="custom-title-row">
@@ -26,8 +29,6 @@
     </ion-toolbar>
   }
 </ion-header>
-
-<ion-content [fullscreen]="true">
   <form id="taskForm" form action="submit" [formGroup]="taskForm">
       <ion-list class="formList" role="list">
         <!-- Name input select -->

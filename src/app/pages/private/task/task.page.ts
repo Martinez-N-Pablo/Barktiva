@@ -176,6 +176,9 @@ export class TaskPage implements OnInit, OnDestroy {
     if(task) {
       this.taskForm.patchValue(task);
 
+      console.log("Hola");
+      console.log(task);
+
       if(task.pets && task.pets.length > 0) {
         this.petSelected.set(task.pets[0] || "");
       }

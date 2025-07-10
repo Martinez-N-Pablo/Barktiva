@@ -60,7 +60,7 @@ export class PetFacadeService {
     }
   }
 
-  async sendPetData(pet: PetInterface, petId?: string): Promise<any> {
+  async sendPetData(pet: any, petId?: string): Promise<any> {
     const { value } = await Preferences.get({ key: 'user' });
     
     if(!value) {
@@ -88,7 +88,14 @@ export class PetFacadeService {
     ) {
       formData.append('photo', pet.photo);
     }
-    
+
+
+    console.log("Antes  de enviar la solicitud");
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
+    console.log(pet);
+
     if(token) {
       if(petId) {
         return firstValueFrom(this._petService.updatePet(petId, token, formData))

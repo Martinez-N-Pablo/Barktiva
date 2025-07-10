@@ -38,12 +38,11 @@
         [name]="'surname'"
         [type]="'text'"
         [inputmode]="'text'"
-        [required]="true"
+        [required]="false"
         [class]="'main-input'"
         [control]="getControl('surname')"
         [role]="'textbox'"
         [validState]="userProfileForm.get('surname')?.invalid && userProfileForm.get('surname')?.touched && formSubmitted"
-        [errors]="userProfileForm.get('surname')?.errors ?? null"
         [label]="placeholderMessages.surname || ''"
         [placeholder]="placeholderMessages.surname || ''">
       </app-input>

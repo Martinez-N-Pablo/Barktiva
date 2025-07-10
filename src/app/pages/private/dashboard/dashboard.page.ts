@@ -131,4 +131,8 @@ export class DashboardPage implements OnInit {
       return selected >= start && selected <= end;
     });
   }
+
+  goToProfile() {
+    this._router.navigate(['user']);
+  }
 }

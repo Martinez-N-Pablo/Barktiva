@@ -1,33 +1,33 @@
-<ion-header collapse="condense">
-  @if(petId) {
-    <ion-toolbar>
-      <div class="custom-title-row">
-        <ion-button fill="clear" class="custom-back-button" slot="start" (click)="goBack()">
-          <ion-icon name="arrow-back-outline"></ion-icon>
-          <h3 class="title-text">Modificar mascota</h3>
-        </ion-button>
-
-        <ion-buttons slot="end">
-          <ion-button (click)="presentOptionsModal()">
-            <ion-icon class="menu-icon" name="menu"></ion-icon>
+<ion-content>
+  <ion-header collapse="condense">
+    @if(petId) {
+      <ion-toolbar>
+        <div class="custom-title-row">
+          <ion-button fill="clear" class="custom-back-button" slot="start" (click)="goBack()">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            <h3 class="title-text">Modificar mascota</h3>
           </ion-button>
-        </ion-buttons>
-      </div>
-    </ion-toolbar>
-  }
-  @else {
-    <ion-toolbar>
-      <div class="custom-title-row">
-        <ion-button fill="clear" class="custom-back-button" (click)="goBack()">
-          <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
-          <h3 class="title-text">Crear mascota</h3>
-        </ion-button>
-      </div>
-    </ion-toolbar>
-  }
-</ion-header>
 
-<ion-content [fullscreen]="true">
+          <ion-buttons slot="end">
+            <ion-button (click)="presentOptionsModal()">
+              <ion-icon class="menu-icon" name="menu"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </ion-toolbar>
+    }
+    @else {
+      <ion-toolbar>
+        <div class="custom-title-row">
+          <ion-button fill="clear" class="custom-back-button" (click)="goBack()">
+            <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+            <h3 class="title-text">Crear mascota</h3>
+          </ion-button>
+        </div>
+      </ion-toolbar>
+    }
+  </ion-header>
+  
   <form id="petForm" form action="submit" [formGroup]="petForm">
       <!-- Photo input -->
       <ion-list class="formList" role="list">

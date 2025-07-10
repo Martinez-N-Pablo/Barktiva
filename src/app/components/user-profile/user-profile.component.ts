@@ -73,21 +73,29 @@ export class UserProfileComponent  implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       birthdate: new FormControl(today, []),
     });
+
+    console.log('surname validators:', this.userProfileForm.get('surname')?.validator);
+
   }
 
   private async _getUserData(): Promise<void> {
-    const user = await this._userFacadeService.getUserData();
-
-    const userData = user?.user || user; // Cambiar el back para que no llegue uno dentro de otro
+    const userData = await this._userFacadeService.getUserData();
     
     if(userData) {
       this.userProfileForm.patchValue(userData);
 
       this.previewImage = userData?.photo || "";
-      
-      if(userData.birhdate) {
-        this.birthdateValue = userData.birhdate;
+      if(userData.birthdate) {
+        this.birthdateValue = userData.birthdate;
       }
+    }
+
+    // Error de required en surname
+    const surnameCtrl = this.userProfileForm.get('surname');
+    if (surnameCtrl) {
+      surnameCtrl.clearValidators();  // Quita todo
+      surnameCtrl.setValidators([]); // Asegura nulo
+      surnameCtrl.updateValueAndValidity();
     }
   }
 
@@ -129,7 +137,7 @@ export class UserProfileComponent  implements OnInit {
 
   onBirthdateChange(newDate: string): void {
     const formatDatte = newDate.split('T')[0]; // Format the date to DD-MM-YYYY, whitout time
-    this.userProfileForm.get('birhdate')?.setValue(formatDatte);
+    this.userProfileForm.get('birthdate')?.setValue(formatDatte);
   }
 
   onSubmit(): void {
@@ -137,6 +145,7 @@ export class UserProfileComponent  implements OnInit {
     this.userProfileForm.markAllAsTouched();
 
     if(this.userProfileForm.invalid) {
+      this.printFormErrors(this.userProfileForm);
       console.log("Formulario inválido");
       return;
     }

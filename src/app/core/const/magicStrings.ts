@@ -108,6 +108,7 @@ export const ToasSuccessMessage: any = {
     updateTask: 'La tarea se ha actualizado con éxito',
     deleteTask: 'Se ha eliminado la tarea con éxito',
     updateUser: 'Se ha actualizado la cuenta con éxito',
+    deleteUser: 'Se ha dado de baja la cuenta con éxito',
 };
 
 export const ToastErorMessage: any = {
