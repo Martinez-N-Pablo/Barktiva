@@ -12,6 +12,7 @@ import { TaskFacadeService } from '@app/core/presenters/task-facade.service';
 import { TaskInterface } from '@app/core/interfaces/task';
 import { TaskListComponent } from '@app/components/task-list/task-list.component';
 import { ButtonComponent } from '@app/components/button/button.component';
+import { LocalNotifications } from '@capacitor/local-notifications';
 
 @Component({
   selector: 'app-dashboard',
@@ -90,8 +91,53 @@ export class DashboardPage implements OnInit {
 
         return sameOrBefore && sameOrAfter;
       });
+
+      this._createNotifications();
     }
   }
+
+  private _createNotifications():void {
+    const today = new Date();
+    // const todayDayWithourTime = today.toISOString().split('T')[0];
+
+    this.taskList.map(async task => {
+      const start = new Date(task.initialDate);
+      const end = new Date(task.finalDate);
+
+      if (today >= start && today <= end) {
+        const [hours, minutes] = task.hourDosis.split(':');
+        const notificationDate = new Date(today);
+        notificationDate.setHours(Number(hours), Number(minutes), 0, 0);
+
+        await LocalNotifications.schedule({
+          notifications: [
+            {
+              title: 'Tarea pendiente',
+              body: task.name,
+              id: this._hashStringToInt(task._id),
+              schedule: { at: notificationDate },
+            }
+          ]
+        });
+      }
+    });
+  }
+
+  /**
+   * Recibe el id de la tarea y genera un identificador unico de tipo numerico para las notificaciones.
+   * 
+   * @param str: string; Cadena de texto a convertir
+   * @returns: number; Identificador unico para notificaciones
+   */
+  private _hashStringToInt(str: string): number {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+      hash = hash & hash; // convierte a 32-bit
+    }
+    return Math.abs(hash);
+}
 
   onImageError(event: Event): void {
     const imgElement = event.target as HTMLImageElement;

@@ -74,7 +74,6 @@ export class UserFacadeService {
     if(token) {
       return firstValueFrom(this._userService.updateUser(formData, token))
         .then(response => {
-          console.log("Toast");
           this._toastService.showToast(ToasSuccessMessage.updateUser || "", 'success').then(() => true);
           return true;
         })

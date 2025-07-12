@@ -73,9 +73,6 @@ export class UserProfileComponent  implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       birthdate: new FormControl(today, []),
     });
-
-    console.log('surname validators:', this.userProfileForm.get('surname')?.validator);
-
   }
 
   private async _getUserData(): Promise<void> {

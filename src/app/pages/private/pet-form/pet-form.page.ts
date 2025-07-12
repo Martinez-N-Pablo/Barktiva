@@ -216,9 +216,6 @@ export class PetFormPage implements OnInit, OnDestroy {
       return;
     }
 
-    console.log("Formulario");
-    console.log(this.petForm.value);
-
     const res = await this._petFacadeService.sendPetData(this.petForm.value, (this.petId ? this.petId : undefined))
     if(res) {
       this._navigateToDashboard();
@@ -260,7 +257,6 @@ export class PetFormPage implements OnInit, OnDestroy {
   }
 
   async deletePet() {
-    console.log("Hola")
     const petDeleted = await this._petFacadeService.deletePet(this.petId);
 
     if(petDeleted) {

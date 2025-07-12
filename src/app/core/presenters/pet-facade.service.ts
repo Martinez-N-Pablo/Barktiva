@@ -89,13 +89,6 @@ export class PetFacadeService {
       formData.append('photo', pet.photo);
     }
 
-
-    console.log("Antes  de enviar la solicitud");
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
-    console.log(pet);
-
     if(token) {
       if(petId) {
         return firstValueFrom(this._petService.updatePet(petId, token, formData))
