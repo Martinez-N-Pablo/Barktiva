@@ -79,18 +79,21 @@ export class DashboardPage implements OnInit {
     if(tasks) {
       this.taskList = tasks?.tasks || [];
 
-      const today = new Date();
+      const todayAux = new Date();
+      const today = new Date(todayAux.toDateString());
+
+      console.log("Hoy");
+      console.log(today);
 
       this.taskListOnDateSelected = this.taskList.filter(task => {
-        const start = new Date(task.initialDate);
-        const end = new Date(task.finalDate);
+        const start = new Date(new Date(task.initialDate).toDateString());
+        const end = new Date(new Date(task.finalDate).toDateString());
 
-        // Comparar solo fechas sin horas
-        const sameOrBefore = start <= today;
-        const sameOrAfter = end >= today;
-
-        return sameOrBefore && sameOrAfter;
+        return today >= start && today <= end;
       });
+
+      console.log("Termina con las fechas");
+      console.log(this.taskListOnDateSelected);
 
       this._createNotifications();
       const pending = await LocalNotifications.getPending();
@@ -102,28 +105,30 @@ export class DashboardPage implements OnInit {
     // const todayDayWithourTime = today.toISOString().split('T')[0];
 
     for (const task of this.taskList) {
-      const start = new Date(task.initialDate);
-      const end = new Date(task.finalDate);
+      if(task.notification) {
+        const start = new Date(task.initialDate);
+        const end = new Date(task.finalDate);
 
-      if (today >= start && today <= end) {
-        const timeSplit = task.hourDosis.split(':');
-        const hours = timeSplit[0];
-        const minutes = timeSplit[1];
-        const notificationDate = new Date(today);
-        
-        notificationDate.setHours(Number(hours), Number(minutes), 0, 0);
+        if (today >= start && today <= end) {
+          const timeSplit = task.hourDosis.split(':');
+          const hours = timeSplit[0];
+          const minutes = timeSplit[1];
+          const notificationDate = new Date(today);
+          
+          notificationDate.setHours(Number(hours), Number(minutes), 0, 0);
 
-        const res = await LocalNotifications.schedule({
-          notifications: [
-            {
-              title: 'Tarea pendiente',
-              body: task.name,
-              id: this._hashStringToInt(task._id),
-              schedule: { at: notificationDate },
-              channelId: 'default',
-            }
-          ]
-        });
+          const res = await LocalNotifications.schedule({
+            notifications: [
+              {
+                title: task.name,
+                body: task.description || "",
+                id: this._hashStringToInt(task._id),
+                schedule: { at: notificationDate },
+                channelId: 'default',
+              }
+            ]
+          });
+        } 
       }
     }
   }
