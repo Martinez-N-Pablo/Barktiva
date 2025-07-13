@@ -36,7 +36,7 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+// @import '@ionic/angular/css/palettes/dark.system.css'; Des comentar cuando se implemente tema oscuro
 
 :root {
   --ion-background-color: #{$background-color-white};
@@ -53,6 +53,8 @@
   --ion-toolbar-background: #{$background-color-white};
 
   --background: $background-color-white;
+
+  color-scheme: light; // Modificar cuando se implemente tema oscuro
 }
 
 html, body {

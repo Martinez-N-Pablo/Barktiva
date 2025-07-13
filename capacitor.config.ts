@@ -13,6 +13,11 @@ const config: CapacitorConfig = {
    plugins: {
     CapacitorHttp: {
       enabled: true
+    },
+    LocalNotifications: {
+      smallIcon: "ic_stat_logo",
+      iconColor: "#f87642",
+      sound: "default",
     }
   }
 };

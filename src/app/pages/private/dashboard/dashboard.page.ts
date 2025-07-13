@@ -93,34 +93,39 @@ export class DashboardPage implements OnInit {
       });
 
       this._createNotifications();
+      const pending = await LocalNotifications.getPending();
     }
   }
 
-  private _createNotifications():void {
+  private async _createNotifications(): Promise<void> {
     const today = new Date();
     // const todayDayWithourTime = today.toISOString().split('T')[0];
 
-    this.taskList.map(async task => {
+    for (const task of this.taskList) {
       const start = new Date(task.initialDate);
       const end = new Date(task.finalDate);
 
       if (today >= start && today <= end) {
-        const [hours, minutes] = task.hourDosis.split(':');
+        const timeSplit = task.hourDosis.split(':');
+        const hours = timeSplit[0];
+        const minutes = timeSplit[1];
         const notificationDate = new Date(today);
+        
         notificationDate.setHours(Number(hours), Number(minutes), 0, 0);
 
-        await LocalNotifications.schedule({
+        const res = await LocalNotifications.schedule({
           notifications: [
             {
               title: 'Tarea pendiente',
               body: task.name,
               id: this._hashStringToInt(task._id),
               schedule: { at: notificationDate },
+              channelId: 'default',
             }
           ]
         });
       }
-    });
+    }
   }
 
   /**

@@ -89,7 +89,7 @@ export class TaskPage implements OnInit, OnDestroy {
     id: 'reminderTime',
     required: true,
   };
-  hourDosisValue: string = new Date().toISOString();
+  hourDosisValue: string = new Date().toLocaleString("sv-SE", { timeZone: "Europe/Madrid" }).replace(" ", "T"); // Obtiene la hora actual en la zona horaria de Madrid
 
   startDateValue: string = new Date().toISOString();
   finalDateValue: string = new Date().toISOString();
