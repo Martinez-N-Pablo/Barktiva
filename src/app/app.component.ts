@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       }
     });
     this._handlePermissions();
-    this._createDefaultNotificationChannel();
+    this._createNotificationChannel();
   }
 
   /**
@@ -49,8 +49,8 @@ export class AppComponent implements OnInit {
     }
   }
 
-   private async _createDefaultNotificationChannel(): Promise<void> {
-    // Comrpueba que el SO del dispositivo es un dispositivo movil, no un ordenador y crea el canal para las notificaciones.
+  private async _createNotificationChannel(): Promise<void> {
+    // Comprueba que el SO del dispositivo es un dispositivo movil, no un ordenador y crea el canal para las notificaciones.
     if(Capacitor.isNativePlatform()){
       try {
         await LocalNotifications.createChannel({

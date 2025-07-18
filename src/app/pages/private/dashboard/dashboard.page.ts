@@ -82,9 +82,6 @@ export class DashboardPage implements OnInit {
       const todayAux = new Date();
       const today = new Date(todayAux.toDateString());
 
-      console.log("Hoy");
-      console.log(today);
-
       this.taskListOnDateSelected = this.taskList.filter(task => {
         const start = new Date(new Date(task.initialDate).toDateString());
         const end = new Date(new Date(task.finalDate).toDateString());
@@ -92,11 +89,7 @@ export class DashboardPage implements OnInit {
         return today >= start && today <= end;
       });
 
-      console.log("Termina con las fechas");
-      console.log(this.taskListOnDateSelected);
-
       this._createNotifications();
-      const pending = await LocalNotifications.getPending();
     }
   }
 

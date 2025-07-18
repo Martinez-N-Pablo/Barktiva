@@ -49,7 +49,14 @@
 	<string>Upload photos</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Add photo</string>
+	
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Store phoyos</string>
+	<string>La app necesita acceder a tu galería para seleccionar imágenes.</string>
+
+	<key>NSCalendarsUsageDescription</key>
+	<string>La app necesita acceder al calendario para programar recordatorios.</string>
+
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Se requiere acceso a la red local para conectarse con dispositivos cercanos.</string>
 </dict>
 </plist>

@@ -18,6 +18,9 @@ const config: CapacitorConfig = {
       smallIcon: "ic_stat_logo",
       iconColor: "#f87642",
       sound: "default",
+    },
+    Keyboard: {
+      resize: 'body'
     }
   }
 };

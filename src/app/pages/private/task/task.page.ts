@@ -202,6 +202,14 @@ export class TaskPage implements OnInit, OnDestroy {
   }
 
   async onSubmit(): Promise<void> {
+    // Error de required en dosis por dia
+    const dosePerDayCtrl = this.taskForm.get('dosePerDay');
+    if (dosePerDayCtrl) {
+      dosePerDayCtrl.clearValidators();  // Quita todo
+      dosePerDayCtrl.setValidators([]); // Asegura nulo
+      dosePerDayCtrl.updateValueAndValidity();
+    }
+    
     // Setear correctamente FormArray campos
     const petsFormArray = this.taskForm.get('pets') as FormArray;
     petsFormArray.clear(); // se limpia el valor anterior
