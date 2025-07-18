@@ -53,5 +53,9 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () => import('./pages/private/user/user.page').then( m => m.UserPage)
   },
-
+  {
+    path: 'toxic/:petId',
+    canActivate: [authGuard],
+    loadComponent: () => import('./pages/private/toxics/toxics.page').then( m => m.ToxicsPage)
+  },
 ];

@@ -77,6 +77,7 @@ export const RoutesName: any = {
     petForm: 'pet-form',
     user: 'userProfile',
     task: 'task',
+    toxic: 'toxic',
 };
 
 export const Titles: any = {
@@ -130,4 +131,5 @@ export const ToastErorMessage: any = {
     deleteUser: 'Error al eliminar la cuenta',
     breeds: 'Error al obtener las razas de perro',
     duplicateEmail: 'El emial introducido ya exsite',
+    getToxics: 'Error al obtener los tóxicos'
 };

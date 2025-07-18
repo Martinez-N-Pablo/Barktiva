@@ -1,0 +1,21 @@
+
+<ion-content>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <div class="custom-title-row">
+        <ion-button fill="clear" class="custom-back-button" (click)="goBack()">
+          <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+          <h3 class="title-text">{{title || ""}}</h3>
+        </ion-button>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+
+  <div>
+    @if (toxicList) {
+      @for (toxic of toxicList; track toxic; let index = $index) {
+        <app-toxic [toxicSetter]="toxic"></app-toxic>
+      }
+    }
+  </div>
+</ion-content>

@@ -1,0 +1,8 @@
+<div class="toxicItem">
+  <ion-avatar slot="start">
+    <ion-img [src]="toxic!.photo || 'assets/icon/logo.png'" (error)="onImageError($event)"></ion-img>
+  </ion-avatar>
+  <ion-label>
+    <ion-text>{{toxic!.name || ""}}</ion-text>
+  </ion-label>
+</div>

@@ -264,12 +264,20 @@ export class PetFormPage implements OnInit, OnDestroy {
     }
   }
 
+  navigateToToxics(): void {
+    this._router.navigate([`${RoutesName.toxic}/${this.petId || ""}`]);
+  }
 
   async presentOptionsModal() {
     try {
       const actionSheet = await this._actionSheetController.create({
         header: 'Opciones',
         buttons: [
+          {
+            text: 'Consultar tóxicos',
+            icon: 'book',
+            handler: () => this.navigateToToxics()
+          },
           {
             text: 'Eliminar Mascota',
             role: 'destructive',

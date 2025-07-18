@@ -20,8 +20,6 @@ export class TaskComponent  implements OnInit {
   @Input()
     set taskSetter(value: TaskInterface) {
       if (value) {
-        console.log("Tarea");
-        console.log(value);
         this.task = {
           ...value,
           hourDosis: this._parseHour(value.hourDosis)
